@@ -1,0 +1,539 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		834C0FC2158F7121000C5652 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834C0FC1158F7121000C5652 /* UIKit.framework */; };
+		834C0FC4158F7121000C5652 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834C0FC3158F7121000C5652 /* Foundation.framework */; };
+		834C0FC6158F7121000C5652 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834C0FC5158F7121000C5652 /* CoreGraphics.framework */; };
+		834C0FC8158F7121000C5652 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834C0FC7158F7121000C5652 /* CoreData.framework */; };
+		834C0FEB158F7121000C5652 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834C0FEA158F7121000C5652 /* SenTestingKit.framework */; };
+		834C0FEC158F7121000C5652 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834C0FC1158F7121000C5652 /* UIKit.framework */; };
+		834C0FED158F7121000C5652 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834C0FC3158F7121000C5652 /* Foundation.framework */; };
+		834C0FEE158F7121000C5652 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834C0FC7158F7121000C5652 /* CoreData.framework */; };
+		834C0FF6158F7121000C5652 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 834C0FF4158F7121000C5652 /* InfoPlist.strings */; };
+		834C0FF9158F7121000C5652 /* PainMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 834C0FF8158F7121000C5652 /* PainMeTests.m */; };
+		834C101A158F7255000C5652 /* InvoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 834C1005158F7255000C5652 /* InvoAppDelegate.m */; };
+		834C101B158F7255000C5652 /* InvoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834C1007158F7255000C5652 /* InvoDetailViewController.m */; };
+		834C101C158F7255000C5652 /* InvoMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834C1009158F7255000C5652 /* InvoMasterViewController.m */; };
+		834C101D158F7255000C5652 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 834C100B158F7255000C5652 /* main.m */; };
+		834C101E158F7255000C5652 /* PainMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 834C1011158F7255000C5652 /* PainMe.xcdatamodeld */; };
+		834C101F158F7255000C5652 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 834C1013158F7255000C5652 /* InfoPlist.strings */; };
+		834C1020158F7255000C5652 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 834C1015158F7255000C5652 /* MainStoryboard_iPad.storyboard */; };
+		834C1021158F7255000C5652 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 834C1017158F7255000C5652 /* MainStoryboard_iPhone.storyboard */; };
+		834C1022158F7255000C5652 /* PainMe-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 834C1019158F7255000C5652 /* PainMe-Info.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		834C0FEF158F7121000C5652 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 834C0FB4158F7121000C5652 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 834C0FBC158F7121000C5652;
+			remoteInfo = PainMe;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		834C0FBD158F7121000C5652 /* PainMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PainMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		834C0FC1158F7121000C5652 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		834C0FC3158F7121000C5652 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		834C0FC5158F7121000C5652 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		834C0FC7158F7121000C5652 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		834C0FE9158F7121000C5652 /* PainMeTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PainMeTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		834C0FEA158F7121000C5652 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		834C0FF3158F7121000C5652 /* PainMeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PainMeTests-Info.plist"; sourceTree = "<group>"; };
+		834C0FF5158F7121000C5652 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		834C0FF7158F7121000C5652 /* PainMeTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PainMeTests.h; sourceTree = "<group>"; };
+		834C0FF8158F7121000C5652 /* PainMeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PainMeTests.m; sourceTree = "<group>"; };
+		834C1004158F7255000C5652 /* InvoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoAppDelegate.h; sourceTree = "<group>"; };
+		834C1005158F7255000C5652 /* InvoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoAppDelegate.m; sourceTree = "<group>"; };
+		834C1006158F7255000C5652 /* InvoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoDetailViewController.h; sourceTree = "<group>"; };
+		834C1007158F7255000C5652 /* InvoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoDetailViewController.m; sourceTree = "<group>"; };
+		834C1008158F7255000C5652 /* InvoMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoMasterViewController.h; sourceTree = "<group>"; };
+		834C1009158F7255000C5652 /* InvoMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoMasterViewController.m; sourceTree = "<group>"; };
+		834C100B158F7255000C5652 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		834C100C158F7255000C5652 /* PainMe-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PainMe-Prefix.pch"; sourceTree = "<group>"; };
+		834C1012158F7255000C5652 /* PainMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PainMe.xcdatamodel; sourceTree = "<group>"; };
+		834C1014158F7255000C5652 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		834C1016158F7255000C5652 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		834C1018158F7255000C5652 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		834C1019158F7255000C5652 /* PainMe-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PainMe-Info.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		834C0FBA158F7121000C5652 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				834C0FC2158F7121000C5652 /* UIKit.framework in Frameworks */,
+				834C0FC4158F7121000C5652 /* Foundation.framework in Frameworks */,
+				834C0FC6158F7121000C5652 /* CoreGraphics.framework in Frameworks */,
+				834C0FC8158F7121000C5652 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		834C0FE5158F7121000C5652 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				834C0FEB158F7121000C5652 /* SenTestingKit.framework in Frameworks */,
+				834C0FEC158F7121000C5652 /* UIKit.framework in Frameworks */,
+				834C0FED158F7121000C5652 /* Foundation.framework in Frameworks */,
+				834C0FEE158F7121000C5652 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		834C0FB2158F7121000C5652 = {
+			isa = PBXGroup;
+			children = (
+				834C0FC9158F7121000C5652 /* PainMe */,
+				834C0FF1158F7121000C5652 /* PainMeTests */,
+				834C0FC0158F7121000C5652 /* Frameworks */,
+				834C0FBE158F7121000C5652 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		834C0FBE158F7121000C5652 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				834C0FBD158F7121000C5652 /* PainMe.app */,
+				834C0FE9158F7121000C5652 /* PainMeTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		834C0FC0158F7121000C5652 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				834C0FC1158F7121000C5652 /* UIKit.framework */,
+				834C0FC3158F7121000C5652 /* Foundation.framework */,
+				834C0FC5158F7121000C5652 /* CoreGraphics.framework */,
+				834C0FC7158F7121000C5652 /* CoreData.framework */,
+				834C0FEA158F7121000C5652 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		834C0FC9158F7121000C5652 /* PainMe */ = {
+			isa = PBXGroup;
+			children = (
+				834C1002158F7255000C5652 /* Classes */,
+				834C100F158F7255000C5652 /* Resources */,
+			);
+			path = PainMe;
+			sourceTree = "<group>";
+		};
+		834C0FF1158F7121000C5652 /* PainMeTests */ = {
+			isa = PBXGroup;
+			children = (
+				834C0FF7158F7121000C5652 /* PainMeTests.h */,
+				834C0FF8158F7121000C5652 /* PainMeTests.m */,
+				834C0FF2158F7121000C5652 /* Supporting Files */,
+			);
+			path = PainMeTests;
+			sourceTree = "<group>";
+		};
+		834C0FF2158F7121000C5652 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				834C0FF3158F7121000C5652 /* PainMeTests-Info.plist */,
+				834C0FF4158F7121000C5652 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		834C1002158F7255000C5652 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				834C1003158F7255000C5652 /* Controllers */,
+				834C100A158F7255000C5652 /* Helpers */,
+				834C100D158F7255000C5652 /* Model */,
+				834C100E158F7255000C5652 /* Views */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		834C1003158F7255000C5652 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				834C1004158F7255000C5652 /* InvoAppDelegate.h */,
+				834C1005158F7255000C5652 /* InvoAppDelegate.m */,
+				834C1006158F7255000C5652 /* InvoDetailViewController.h */,
+				834C1007158F7255000C5652 /* InvoDetailViewController.m */,
+				834C1008158F7255000C5652 /* InvoMasterViewController.h */,
+				834C1009158F7255000C5652 /* InvoMasterViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		834C100A158F7255000C5652 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				834C100B158F7255000C5652 /* main.m */,
+				834C100C158F7255000C5652 /* PainMe-Prefix.pch */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		834C100D158F7255000C5652 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		834C100E158F7255000C5652 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		834C100F158F7255000C5652 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				834C1010158F7255000C5652 /* Core Data */,
+				834C1013158F7255000C5652 /* InfoPlist.strings */,
+				834C1015158F7255000C5652 /* MainStoryboard_iPad.storyboard */,
+				834C1017158F7255000C5652 /* MainStoryboard_iPhone.storyboard */,
+				834C1019158F7255000C5652 /* PainMe-Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		834C1010158F7255000C5652 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				834C1011158F7255000C5652 /* PainMe.xcdatamodeld */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		834C0FBC158F7121000C5652 /* PainMe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 834C0FFC158F7121000C5652 /* Build configuration list for PBXNativeTarget "PainMe" */;
+			buildPhases = (
+				834C0FB9158F7121000C5652 /* Sources */,
+				834C0FBA158F7121000C5652 /* Frameworks */,
+				834C0FBB158F7121000C5652 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PainMe;
+			productName = PainMe;
+			productReference = 834C0FBD158F7121000C5652 /* PainMe.app */;
+			productType = "com.apple.product-type.application";
+		};
+		834C0FE8158F7121000C5652 /* PainMeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 834C0FFF158F7121000C5652 /* Build configuration list for PBXNativeTarget "PainMeTests" */;
+			buildPhases = (
+				834C0FE4158F7121000C5652 /* Sources */,
+				834C0FE5158F7121000C5652 /* Frameworks */,
+				834C0FE6158F7121000C5652 /* Resources */,
+				834C0FE7158F7121000C5652 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				834C0FF0158F7121000C5652 /* PBXTargetDependency */,
+			);
+			name = PainMeTests;
+			productName = PainMeTests;
+			productReference = 834C0FE9158F7121000C5652 /* PainMeTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		834C0FB4158F7121000C5652 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = Invo;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "ZWorkbench, Inc.";
+			};
+			buildConfigurationList = 834C0FB7158F7121000C5652 /* Build configuration list for PBXProject "PainMe" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 834C0FB2158F7121000C5652;
+			productRefGroup = 834C0FBE158F7121000C5652 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				834C0FBC158F7121000C5652 /* PainMe */,
+				834C0FE8158F7121000C5652 /* PainMeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		834C0FBB158F7121000C5652 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				834C101F158F7255000C5652 /* InfoPlist.strings in Resources */,
+				834C1020158F7255000C5652 /* MainStoryboard_iPad.storyboard in Resources */,
+				834C1021158F7255000C5652 /* MainStoryboard_iPhone.storyboard in Resources */,
+				834C1022158F7255000C5652 /* PainMe-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		834C0FE6158F7121000C5652 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				834C0FF6158F7121000C5652 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		834C0FE7158F7121000C5652 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		834C0FB9158F7121000C5652 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				834C101A158F7255000C5652 /* InvoAppDelegate.m in Sources */,
+				834C101B158F7255000C5652 /* InvoDetailViewController.m in Sources */,
+				834C101C158F7255000C5652 /* InvoMasterViewController.m in Sources */,
+				834C101D158F7255000C5652 /* main.m in Sources */,
+				834C101E158F7255000C5652 /* PainMe.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		834C0FE4158F7121000C5652 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				834C0FF9158F7121000C5652 /* PainMeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		834C0FF0158F7121000C5652 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 834C0FBC158F7121000C5652 /* PainMe */;
+			targetProxy = 834C0FEF158F7121000C5652 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		834C0FF4158F7121000C5652 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				834C0FF5158F7121000C5652 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		834C1013158F7255000C5652 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				834C1014158F7255000C5652 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		834C1015158F7255000C5652 /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				834C1016158F7255000C5652 /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		834C1017158F7255000C5652 /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				834C1018158F7255000C5652 /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		834C0FFA158F7121000C5652 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		834C0FFB158F7121000C5652 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		834C0FFD158F7121000C5652 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PainMe/PainMe-Prefix.pch";
+				INFOPLIST_FILE = "PainMe/PainMe-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		834C0FFE158F7121000C5652 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PainMe/PainMe-Prefix.pch";
+				INFOPLIST_FILE = "PainMe/PainMe-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		834C1000158F7121000C5652 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PainMe.app/PainMe";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PainMe/PainMe-Prefix.pch";
+				INFOPLIST_FILE = "PainMeTests/PainMeTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		834C1001158F7121000C5652 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PainMe.app/PainMe";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PainMe/PainMe-Prefix.pch";
+				INFOPLIST_FILE = "PainMeTests/PainMeTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		834C0FB7158F7121000C5652 /* Build configuration list for PBXProject "PainMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				834C0FFA158F7121000C5652 /* Debug */,
+				834C0FFB158F7121000C5652 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		834C0FFC158F7121000C5652 /* Build configuration list for PBXNativeTarget "PainMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				834C0FFD158F7121000C5652 /* Debug */,
+				834C0FFE158F7121000C5652 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		834C0FFF158F7121000C5652 /* Build configuration list for PBXNativeTarget "PainMeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				834C1000158F7121000C5652 /* Debug */,
+				834C1001158F7121000C5652 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		834C1011158F7255000C5652 /* PainMe.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				834C1012158F7255000C5652 /* PainMe.xcdatamodel */,
+			);
+			currentVersion = 834C1012158F7255000C5652 /* PainMe.xcdatamodel */;
+			path = PainMe.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 834C0FB4158F7121000C5652 /* Project object */;
+}
