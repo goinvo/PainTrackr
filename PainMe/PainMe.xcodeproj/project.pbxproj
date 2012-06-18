@@ -22,10 +22,8 @@
 		834C101C158F7255000C5652 /* InvoMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834C1009158F7255000C5652 /* InvoMasterViewController.m */; };
 		834C101D158F7255000C5652 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 834C100B158F7255000C5652 /* main.m */; };
 		834C101E158F7255000C5652 /* PainMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 834C1011158F7255000C5652 /* PainMe.xcdatamodeld */; };
-		834C101F158F7255000C5652 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 834C1013158F7255000C5652 /* InfoPlist.strings */; };
 		834C1020158F7255000C5652 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 834C1015158F7255000C5652 /* MainStoryboard_iPad.storyboard */; };
 		834C1021158F7255000C5652 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 834C1017158F7255000C5652 /* MainStoryboard_iPhone.storyboard */; };
-		834C1022158F7255000C5652 /* PainMe-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 834C1019158F7255000C5652 /* PainMe-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -289,10 +287,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				834C101F158F7255000C5652 /* InfoPlist.strings in Resources */,
 				834C1020158F7255000C5652 /* MainStoryboard_iPad.storyboard in Resources */,
 				834C1021158F7255000C5652 /* MainStoryboard_iPhone.storyboard in Resources */,
-				834C1022158F7255000C5652 /* PainMe-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,8 +436,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PainMe/PainMe-Prefix.pch";
-				INFOPLIST_FILE = "PainMe/PainMe-Info.plist";
+				GCC_PREFIX_HEADER = "PainMe/Classes/Helpers/PainMe-Prefix.pch";
+				INFOPLIST_FILE = "PainMe/Resources/PainMe-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -451,8 +447,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PainMe/PainMe-Prefix.pch";
-				INFOPLIST_FILE = "PainMe/PainMe-Info.plist";
+				GCC_PREFIX_HEADER = "PainMe/Classes/Helpers/PainMe-Prefix.pch";
+				INFOPLIST_FILE = "PainMe/Resources/PainMe-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
