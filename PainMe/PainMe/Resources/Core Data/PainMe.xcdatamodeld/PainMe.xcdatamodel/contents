@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1171" systemVersion="11E53" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Event">
+        <attribute name="extraInfo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="painLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="timeStamp" optional="YES" attributeType="Date"/>
+        <relationship name="entryToLocation" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PainLocation" syncable="YES"/>
+    </entity>
+    <entity name="PainLocation" syncable="YES">
+        <attribute name="partName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shape" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zoomLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="locToEntry" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="261" positionY="189" width="128" height="60"/>
+        <element name="Event" positionX="16" positionY="225" width="128" height="105"/>
+        <element name="PainLocation" positionX="270" positionY="225" width="128" height="105"/>
     </elements>
 </model>
