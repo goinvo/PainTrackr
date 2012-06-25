@@ -8,7 +8,7 @@
 
 #import "InvoAppDelegate.h"
 
-#import "InvoMasterViewController.h"
+#import "InvoBodySelectionViewControllerViewController.h"
 
 @implementation InvoAppDelegate
 
@@ -25,13 +25,11 @@
        UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
        splitViewController.delegate = (id)navigationController.topViewController;
        
-       UINavigationController *masterNavigationController = [splitViewController.viewControllers objectAtIndex:0];
-       InvoMasterViewController *controller = (InvoMasterViewController *)masterNavigationController.topViewController;
-       controller.managedObjectContext = self.managedObjectContext;
+       //UINavigationController *masterNavigationController = [splitViewController.viewControllers objectAtIndex:0];
+       //InvoBodySelectionViewControllerViewController *controller = (InvoBodySelectionViewControllerViewController *)masterNavigationController.topViewController;
    } else {
-       UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-       InvoMasterViewController *controller = (InvoMasterViewController *)navigationController.topViewController;
-       controller.managedObjectContext = self.managedObjectContext;
+       //UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+       //InvoBodySelectionViewControllerViewController *controller = (InvoBodySelectionViewControllerViewController *)navigationController.topViewController;
    }
     return YES;
 }
@@ -120,7 +118,13 @@
     
     NSError *error = nil;
     __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+   
+   NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                            [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+                            [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+
+   
+    if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options: options error:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
          
@@ -144,6 +148,8 @@
          Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
          
          */
+       [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
+
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }    
