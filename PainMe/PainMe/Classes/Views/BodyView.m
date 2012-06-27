@@ -46,7 +46,7 @@
    //CGFloat scale = [UIScreen mainScreen].scale;
    tiledLayer.tileSize = CGSizeMake(BODY_TILE_SIZE, BODY_TILE_SIZE);
    self.contentScaleFactor = 1.0;
-   
+    
    _imageCache = [[NSCache alloc] init];
    [_imageCache setCountLimit: 5 * 7];
                   
