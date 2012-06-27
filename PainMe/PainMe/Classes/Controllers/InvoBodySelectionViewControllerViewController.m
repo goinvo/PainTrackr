@@ -35,10 +35,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-   self.scrollView.contentSize = CGSizeMake(BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT);
-   self.scrollView.zoomScale = 0.25;
+    self.scrollView.zoomScale = 0.25;
+    self.scrollView.contentSize = CGSizeMake(BODY_VIEW_WIDTH *self.scrollView.zoomScale, BODY_VIEW_HEIGHT *self.scrollView.zoomScale);
+//    self.scrollView.zoomScale = 0.25;
    
-   self.bodyView.frame = CGRectMake(0,0,BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT);
+   self.bodyView.frame = CGRectMake(0,0,BODY_VIEW_WIDTH*self.scrollView.zoomScale, BODY_VIEW_HEIGHT*self.scrollView.zoomScale);
 }
 
 - (void)viewDidUnload

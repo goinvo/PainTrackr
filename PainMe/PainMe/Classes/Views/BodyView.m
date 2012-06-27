@@ -18,7 +18,7 @@
 
 @implementation BodyView
 
-+ layerClass
++(Class)layerClass
 {
    return [CATiledLayer class];
 }
@@ -32,13 +32,19 @@
     return self;
 }
 
+/*
++(CFTimeInterval)fadeDuration{
+
+    return 0.0;
+}
+*/
+
 - (void) awakeFromNib {
    [super awakeFromNib];
    CATiledLayer *tiledLayer = (CATiledLayer *) self.layer;
    
    //CGFloat scale = [UIScreen mainScreen].scale;
    tiledLayer.tileSize = CGSizeMake(BODY_TILE_SIZE, BODY_TILE_SIZE);
-   
    self.contentScaleFactor = 1.0;
    
    _imageCache = [[NSCache alloc] init];
