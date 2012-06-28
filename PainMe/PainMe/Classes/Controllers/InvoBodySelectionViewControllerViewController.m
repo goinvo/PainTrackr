@@ -79,14 +79,15 @@
     
     float row = (location.y/divideNum);
     
-    NSLog(@"touched image at y:%.1f",(row-1 >0)?row-1:row);
+    NSLog(@"touched image at y:%.1f",(row - (int)row));
     
     NSLog(@"Row is :%f",floorf(ceilf(row)));
     row = floorf(ceilf(row));
     
     float column = (location.x/divideNum);
     
-    NSLog(@"touched image at x:%.1f",(column-1 >0)?column-1:column);
+//    NSLog(@"touched image at x:%.1f",(column-1 >0)?column-1:column);
+        NSLog(@"touched image at x:%.1f",(column - (int)column));
 
      NSLog(@"Column is :%f",floorf(ceilf(column)));
     column = floorf(ceilf(column));
