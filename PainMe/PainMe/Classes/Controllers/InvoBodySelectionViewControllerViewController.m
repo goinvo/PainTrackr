@@ -15,12 +15,16 @@
 
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet BodyView *bodyView;
+@property (nonatomic, retain) UITapGestureRecognizer *tapGesture;
 
+-(void)initTapGesture;
+-(int)tileAtTouchLocation:(CGPoint)touchPt;
 @end
 
 @implementation InvoBodySelectionViewControllerViewController
 
 @synthesize scrollView = _scrollView, bodyView = _bodyView;
+@synthesize tapGesture = _tapGesture;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,11 +40,62 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.scrollView.zoomScale = 0.25;
+
     self.scrollView.contentSize = CGSizeMake(BODY_VIEW_WIDTH *self.scrollView.zoomScale, BODY_VIEW_HEIGHT *self.scrollView.zoomScale);
 //    self.scrollView.zoomScale = 0.25;
    
    self.bodyView.frame = CGRectMake(0,0,BODY_VIEW_WIDTH*self.scrollView.zoomScale, BODY_VIEW_HEIGHT*self.scrollView.zoomScale);
+    
+//Init TapGesture Recognizer    
+    [self initTapGesture];
 }
+
+-(void)initTapGesture{
+
+    self.tapGesture   =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+    self.tapGesture.delegate = self;
+    self.tapGesture.numberOfTapsRequired = 1;
+    [self.scrollView addGestureRecognizer:self.tapGesture];
+}
+
+#pragma mark Handle Tap Gesture
+
+-(void)handleTapGesture:(UITapGestureRecognizer *)gestureReco{
+
+    CGPoint touchLocation = [gestureReco locationInView:self.scrollView];
+    NSLog(@"Tapped inside scrollView at x:%f y:%f",touchLocation.x, touchLocation.y);
+    
+    int tileNum = [self tileAtTouchLocation:touchLocation];
+    NSLog(@"Tile which was tapped was %d",tileNum);
+
+}
+
+-(int)tileAtTouchLocation:(CGPoint)touchPt{
+
+
+    float scrollZoom = self.scrollView.zoomScale;
+    int divideNum = 1024*scrollZoom;
+    CGPoint location = touchPt;
+    
+    float row = (location.y/divideNum);
+    
+    NSLog(@"touched image at y:%.1f",(row-1 >0)?row-1:row);
+    
+    NSLog(@"Row is :%f",floorf(ceilf(row)));
+    row = floorf(ceilf(row));
+    
+    float column = (location.x/divideNum);
+    
+    NSLog(@"touched image at x:%.1f",(column-1 >0)?column-1:column);
+
+     NSLog(@"Column is :%f",floorf(ceilf(column)));
+    column = floorf(ceilf(column));
+    
+    int numtoRet = (column <= 7 && row >=2)? (8*(row-1) + column): (row * column) ;
+    
+    return (numtoRet);
+}
+#pragma mark-
 
 - (void)viewDidUnload
 {

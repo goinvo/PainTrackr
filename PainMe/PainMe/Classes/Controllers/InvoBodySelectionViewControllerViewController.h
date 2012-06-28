@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InvoBodySelectionViewControllerViewController : UIViewController <UIScrollViewDelegate>
+@interface InvoBodySelectionViewControllerViewController : UIViewController <UIScrollViewDelegate,UIGestureRecognizerDelegate>
 
 
 
