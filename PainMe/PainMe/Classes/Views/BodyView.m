@@ -102,9 +102,7 @@
     }
     
    if (col>= 0 && col < BODY_TILE_COLUMNS && row >= 0 && row < BODY_TILE_ROWS) {
-      
-//      NSString *filename = [NSString stringWithFormat:@"body_large_%02d_%d.png", (col+1) % BODY_TILE_COLUMNS + (row) * BODY_TILE_COLUMNS,numFrmScale];
-       
+             
        NSString *filename = [NSString stringWithFormat:@"body_large_%02d_%d.png", (col+1) + (row) * BODY_TILE_COLUMNS,numFrmScale];
        
 //       NSLog(@"Body Image name is %@",filename );

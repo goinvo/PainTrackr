@@ -87,12 +87,15 @@
     float column = (location.x/divideNum);
     
 //    NSLog(@"touched image at x:%.1f",(column-1 >0)?column-1:column);
-        NSLog(@"touched image at x:%.1f",(column - (int)column));
+    NSLog(@"touched image at x:%.1f",(column - (int)column));
 
      NSLog(@"Column is :%f",floorf(ceilf(column)));
     column = floorf(ceilf(column));
     
     int numtoRet = (column <= 7 && row >=2)? (8*(row-1) + column): (row * column) ;
+    
+    NSLog(@"Body Offset Location x:%0.2f",touchPt.x/(divideNum*BODY_TILE_COLUMNS));
+    NSLog(@"Body Offset Location y:%0.2f",touchPt.y/(divideNum*BODY_TILE_ROWS));
     
     return (numtoRet);
 }
