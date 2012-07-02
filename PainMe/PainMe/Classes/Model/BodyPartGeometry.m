@@ -13,26 +13,43 @@
 }
 
 @property (nonatomic, readonly) NSInteger pointCount;
+@property (nonatomic, retain) UIBezierPath *bezierPath;
 
 @end
 
 @implementation BodyPartGeometry
 
-@synthesize pointCount = _pointCount;
+@synthesize pointCount = _pointCount, bezierPath = _bezierPath;
 
 - (id) init {
    self = [super init];
    if (self) {
-      
-       
+      // set point count
+      // [self setPointCount: 18];
+      //_points[0] = CGPointMake(0.46, ...);
    }
    return self;
+}
+
+- (UIBezierPath *) bezierPath {
+   if (!_bezierPath) {
+      _bezierPath = [UIBezierPath bezierPath];
+      if (_pointCount > 2) {
+         [_bezierPath moveToPoint: _points[0]];
+         for (int i=1; i<_pointCount; i++) {
+            [_bezierPath addLineToPoint: _points[i]];
+         }
+         [_bezierPath closePath];
+      }
+   }
+   return _bezierPath;
 }
 
 - (void) setPointCount: (NSInteger) newPoints {
    if (_points) free(_points);
    _points = calloc(sizeof(CGPoint), newPoints);
    _pointCount = newPoints;
+   self.bezierPath = nil;
 }
 
 - (void) dealloc {
@@ -41,43 +58,7 @@
 
 - (BOOL) containsPoint: (CGPoint) point {
    // TODO:  Find an algorithm for quickly determining whether a polygon contains a point
-    
-    if (point.x >=0.46 && point.x <=0.54) {
-        
-        if (point.y >=0.36 && point.y <= 0.4) {
-            
-            [self setPointCount:18];
-
-            CGPoint bellyPoints[] = {   CGPointMake(990, 182),
-                                        CGPointMake(921, 190),
-                                        CGPointMake(858, 210),
-                                        CGPointMake(800, 244),
-                                        CGPointMake(748, 285),
-                                        CGPointMake(706, 339),
-                                        CGPointMake(674, 396),
-                                        CGPointMake(654, 458),
-                                        CGPointMake(645, 525),
-                                        CGPointMake(650, 592),
-                                        CGPointMake(667, 656),
-                                        CGPointMake(696, 717),
-                                        CGPointMake(737, 768),
-                                        CGPointMake(786, 814),
-                                        CGPointMake(843, 849),
-                                        CGPointMake(905, 872),
-                                        CGPointMake(939, 879),
-                                        CGPointMake(988, 884),
-                                        
-                                        };
-            
-            
-            _points = memcpy(_points, bellyPoints, _pointCount*sizeof(CGPoint));
-            
-
-            return YES;
-        }
-    }
-
-   return NO;
+   return [self.bezierPath containsPoint: point];
 }
 
 -(CGPoint *)getPoints{
