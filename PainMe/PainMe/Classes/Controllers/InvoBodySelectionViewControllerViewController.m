@@ -8,23 +8,32 @@
 
 #import "InvoBodySelectionViewControllerViewController.h"
 #import "BodyView.h"
+#import "BodyPartView.h"
+#import "BodyPartGeometry.h"
 
 @interface InvoBodySelectionViewControllerViewController () {
    
+    CGPoint bodyOffset;
 }
 
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet BodyView *bodyView;
 @property (nonatomic, retain) UITapGestureRecognizer *tapGesture;
+@property (nonatomic, retain) BodyPartView *bodyPartView;
+@property (nonatomic, retain) BodyPartGeometry *bodyGeometry;
+
 
 -(void)initTapGesture;
 -(int)tileAtTouchLocation:(CGPoint)touchPt;
+
 @end
 
 @implementation InvoBodySelectionViewControllerViewController
 
 @synthesize scrollView = _scrollView, bodyView = _bodyView;
 @synthesize tapGesture = _tapGesture;
+@synthesize bodyPartView = _bodyPartView;
+@synthesize bodyGeometry = _bodyGeometry;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,15 +48,19 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    bodyOffset = CGPointZero;
     self.scrollView.zoomScale = 0.25;
 
     self.scrollView.contentSize = CGSizeMake(BODY_VIEW_WIDTH *self.scrollView.zoomScale, BODY_VIEW_HEIGHT *self.scrollView.zoomScale);
-//    self.scrollView.zoomScale = 0.25;
    
    self.bodyView.frame = CGRectMake(0,0,BODY_VIEW_WIDTH*self.scrollView.zoomScale, BODY_VIEW_HEIGHT*self.scrollView.zoomScale);
     
 //Init TapGesture Recognizer    
     [self initTapGesture];
+    
+    self.bodyGeometry = [[BodyPartGeometry alloc] init];
+    
 }
 
 -(void)initTapGesture{
@@ -68,10 +81,19 @@
     int tileNum = [self tileAtTouchLocation:touchLocation];
     NSLog(@"Tile which was tapped was %d",tileNum);
 
+
+// Point is inside the Belly circle    
+    if (YES == [self.bodyGeometry containsPoint:bodyOffset]) {
+        
+        self.bodyPartView = nil;
+        self.bodyPartView = [[BodyPartView alloc] initWithShape:[self.bodyGeometry getPoints]];
+        
+        [self.view insertSubview:self.bodyPartView atIndex:2];
+    }
+    
 }
 
 -(int)tileAtTouchLocation:(CGPoint)touchPt{
-
 
     float scrollZoom = self.scrollView.zoomScale;
     int divideNum = 1024*scrollZoom;
@@ -86,7 +108,6 @@
     
     float column = (location.x/divideNum);
     
-//    NSLog(@"touched image at x:%.1f",(column-1 >0)?column-1:column);
     NSLog(@"touched image at x:%.1f",(column - (int)column));
 
      NSLog(@"Column is :%f",floorf(ceilf(column)));
@@ -94,8 +115,14 @@
     
     int numtoRet = (column <= 7 && row >=2)? (8*(row-1) + column): (row * column) ;
     
+    CGFloat bodyOffsetX = touchPt.x/(divideNum*BODY_TILE_COLUMNS);
+    CGFloat bodyOffsetY = touchPt.y/(divideNum*BODY_TILE_ROWS);
+    
     NSLog(@"Body Offset Location x:%0.2f",touchPt.x/(divideNum*BODY_TILE_COLUMNS));
     NSLog(@"Body Offset Location y:%0.2f",touchPt.y/(divideNum*BODY_TILE_ROWS));
+
+//Setting the offset of body based on the touch(Tap) onto the body    
+    bodyOffset = CGPointMake(bodyOffsetX, bodyOffsetY);
     
     return (numtoRet);
 }

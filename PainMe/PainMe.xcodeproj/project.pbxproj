@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7612E21215A1E94500E8E009 /* BodyPartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7612E21115A1E94500E8E009 /* BodyPartView.m */; };
 		76200824159CECFF00134D05 /* body_large_01_1024@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7620079C159CECFF00134D05 /* body_large_01_1024@2x.png */; };
 		76200825159CECFF00134D05 /* body_large_02_1024@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7620079D159CECFF00134D05 /* body_large_02_1024@2x.png */; };
 		76200826159CECFF00134D05 /* body_large_03_1024@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7620079E159CECFF00134D05 /* body_large_03_1024@2x.png */; };
@@ -868,6 +869,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7612E21015A1E94500E8E009 /* BodyPartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodyPartView.h; sourceTree = "<group>"; };
+		7612E21115A1E94500E8E009 /* BodyPartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyPartView.m; sourceTree = "<group>"; };
 		7620079C159CECFF00134D05 /* body_large_01_1024@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "body_large_01_1024@2x.png"; sourceTree = "<group>"; };
 		7620079D159CECFF00134D05 /* body_large_02_1024@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "body_large_02_1024@2x.png"; sourceTree = "<group>"; };
 		7620079E159CECFF00134D05 /* body_large_03_1024@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "body_large_03_1024@2x.png"; sourceTree = "<group>"; };
@@ -2754,6 +2757,8 @@
 			children = (
 				83C4401E1598D73E00F401D2 /* BodyView.h */,
 				83C4401F1598D73E00F401D2 /* BodyView.m */,
+				7612E21015A1E94500E8E009 /* BodyPartView.h */,
+				7612E21115A1E94500E8E009 /* BodyPartView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -3735,6 +3740,7 @@
 				83C440201598D73E00F401D2 /* BodyView.m in Sources */,
 				83C440241598D85100F401D2 /* InvoBodySelectionViewControllerViewController.m in Sources */,
 				83C4402A1598DA2700F401D2 /* PainLocation.m in Sources */,
+				7612E21215A1E94500E8E009 /* BodyPartView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

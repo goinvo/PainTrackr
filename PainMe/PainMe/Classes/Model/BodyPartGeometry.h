@@ -13,5 +13,6 @@
 - (void) setPointCount: (NSInteger) newPoints;
 
 - (BOOL) containsPoint: (CGPoint) point;
+- (CGPoint *)getPoints;
 
 @end
