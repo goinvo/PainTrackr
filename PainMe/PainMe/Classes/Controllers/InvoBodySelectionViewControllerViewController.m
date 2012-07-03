@@ -50,11 +50,12 @@
     // Do any additional setup after loading the view from its nib.
     
     bodyOffset = CGPointZero;
-    self.scrollView.zoomScale = 0.25;
 
-    self.scrollView.contentSize = CGSizeMake(BODY_VIEW_WIDTH *self.scrollView.zoomScale, BODY_VIEW_HEIGHT *self.scrollView.zoomScale);
+    self.scrollView.contentSize = CGSizeMake(BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT );
    
-   self.bodyView.frame = CGRectMake(0,0,BODY_VIEW_WIDTH*self.scrollView.zoomScale, BODY_VIEW_HEIGHT*self.scrollView.zoomScale);
+   self.bodyView.frame = CGRectMake(0,0,BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT);
+    
+    self.scrollView.zoomScale = 0.25;
     
 //Init TapGesture Recognizer    
     [self initTapGesture];
@@ -94,9 +95,9 @@
     
         self.bodyPartView = [[BodyPartView alloc] initWithShape:self.bodyGeometry.bezierPath];
         
-        [self.bodyPartView setFrame:CGRectMake(0, 0, (BODY_VIEW_WIDTH * self.scrollView.zoomScale), (BODY_VIEW_HEIGHT * self.scrollView.zoomScale) )];
+        [self.bodyPartView setFrame:CGRectMake(0, 0, 1024, 1024)];
         
-        [self.view insertSubview:self.bodyPartView atIndex:2];
+        [self.bodyView insertSubview:self.bodyPartView atIndex:1];
     }
     
 }
