@@ -14,5 +14,5 @@
 
 - (BOOL) containsPoint: (CGPoint) point;
 - (CGPoint *)getPoints;
-
+- (UIBezierPath *) bezierPath;
 @end
