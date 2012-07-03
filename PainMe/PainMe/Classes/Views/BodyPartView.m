@@ -34,22 +34,12 @@
     self = [super init];
     
     if(self){
-        
-//        CATiledLayer *tiledLayer = (CATiledLayer *)self.layer;
-//        tiledLayer.levelsOfDetail = 3;
-//        tiledLayer.tileSize = CGSizeMake(1024*8, 1024*17);
-        
+                
         [self setUserInteractionEnabled:NO];
         self.backgroundColor = [UIColor clearColor];
-        self.partPath = shapePath;
+        self.partPath = [shapePath copy];
         self.partPath.lineJoinStyle = kCGLineJoinRound;
-  
- //        CGAffineTransform trans = CGAffineTransformMakeTranslation(-100, 100);
-//        trans = CGAffineTransformScale(trans, 1024.0 * (8.0/3), 1024.0 *(17.0/6));
-//        [_partPath applyTransform:trans];
-
-//        [_partPath applyTransform:CGAffineTransformMakeScale(400.0f, 400.0f)];
-        
+          
         [self setNeedsDisplay];
     }
     return self;
@@ -68,12 +58,15 @@
     NSLog(@"partpath curr point x:%f y:%f", _partPath.currentPoint.x, _partPath.currentPoint.y);
     NSLog(@"curr bounds are width:%f height:%f", self.bounds.size.width, self.bounds.size.height);
     NSLog(@"super view bounds are %f %f", self.superview.bounds.size.width,self.superview.bounds.size.height);
+
     [_partPath applyTransform:CGAffineTransformMakeScale(1024, self.bounds.size.height)];
-    
-//    CGAffineTransform trans = CGAffineTransformTranslate(CGAffineTransformIdentity, 0.5 *self.bounds.size.width, 0.36 *self.bounds.size.height);
-    
+
+    [[UIColor blueColor] setStroke];
+    [[UIColor colorWithRed:0.9 green:0.0 blue:0.0 alpha:1.0] setFill];
     [_partPath fill];
     [_partPath stroke];
+
+    self.partPath = nil;
     
     CGAffineTransform tranSelf = CGAffineTransformMakeTranslation(512 +(3*1024), 8*1024);
     [self setTransform:CGAffineTransformScale(tranSelf,8, 17)];

@@ -91,8 +91,13 @@
     
     if (YES == [self.bodyGeometry containsPoint:bodyOffset]) {
         
-        self.bodyPartView = nil;
-    
+//        self.bodyPartView = nil;
+        if (self.bodyPartView) {
+            [self.bodyPartView removeFromSuperview];    
+            self.bodyPartView = nil;
+            return;
+        }
+        
         self.bodyPartView = [[BodyPartView alloc] initWithShape:self.bodyGeometry.bezierPath];
         
         [self.bodyPartView setFrame:CGRectMake(0, 0, 1024, 1024)];
