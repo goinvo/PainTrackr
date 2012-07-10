@@ -53,6 +53,10 @@
                   
 }
 
+// handle delegate method
+// body pain level changed
+// [self setNeedsDisplayInRect: ...]
+
 - (void)drawRect:(CGRect)rect {
  	CGContextRef context = UIGraphicsGetCurrentContext();
    
@@ -84,9 +88,15 @@
             [[UIColor redColor] set];
             CGContextSetLineWidth(context, 6.0);
             CGContextStrokeRect(context, tileRect);
+             
+             CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
+             CGContextFillEllipseInRect(context, CGRectMake(0, 0, rect.size.width*0.25*scale, rect.size.height*0.25*scale));
          }
       }
    }
+    // iterate over pain entries
+    // if pain entry's body part is inside rect, draw it
+    
 }
 
 - (UIImage*)tileAtCol:(int)col row:(int)row withScale:(CGFloat)scale

@@ -72,6 +72,10 @@
     [self.scrollView addGestureRecognizer:self.tapGesture];
 }
 
+// button handler:
+// set new pain level
+// [bodyView setNeedsDisplayInRect: ...]
+
 #pragma mark Handle Tap Gesture
 
 -(void)handleTapGesture:(UITapGestureRecognizer *)gestureReco{
@@ -90,6 +94,10 @@
 
     
     if (YES == [self.bodyGeometry containsPoint:bodyOffset]) {
+        // create new pain entry
+        // bring up buttons for pain entry
+        // set new pain entry to instance variable
+        
         
 //        self.bodyPartView = nil;
         if (self.bodyPartView) {
