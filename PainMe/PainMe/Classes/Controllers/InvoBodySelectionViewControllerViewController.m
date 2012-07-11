@@ -44,6 +44,13 @@
     return self;
 }
 
+
+-(void)viewWillAppear:(BOOL)animated{
+
+    [self.navigationController setNavigationBarHidden:YES];
+    [super viewWillAppear:animated];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -54,8 +61,11 @@
     self.scrollView.contentSize = CGSizeMake(BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT );
    
    self.bodyView.frame = CGRectMake(0,0,BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT);
+    self.scrollView.minimumZoomScale = 0.038;
+//    self.scrollView.zoomScale = 0.25;
+    self.scrollView.zoomScale = 0.038;
+    self.scrollView.maximumZoomScale = 1.0;
     
-    self.scrollView.zoomScale = 0.25;
     
 //Init TapGesture Recognizer    
     [self initTapGesture];
@@ -92,14 +102,16 @@
 
 // Point is inside the Belly circle  
 
-    
     if (YES == [self.bodyGeometry containsPoint:bodyOffset]) {
+        
+//        [self.bodyView renderPainForBodyPartPath:self.bodyGeometry.bezierPath];
+         
         // create new pain entry
         // bring up buttons for pain entry
         // set new pain entry to instance variable
         
         
-//        self.bodyPartView = nil;
+
         if (self.bodyPartView) {
             [self.bodyPartView removeFromSuperview];    
             self.bodyPartView = nil;
@@ -108,9 +120,11 @@
         
         self.bodyPartView = [[BodyPartView alloc] initWithShape:self.bodyGeometry.bezierPath];
         
-        [self.bodyPartView setFrame:CGRectMake(0, 0, 1024, 1024)];
+//        [self.bodyPartView setFrame:self.bodyView.frame];
+          [self.bodyPartView setFrame:CGRectMake(0, 0, 1024*8, 1024*8)];
         
         [self.bodyView insertSubview:self.bodyPartView atIndex:1];
+ 
     }
     
 }

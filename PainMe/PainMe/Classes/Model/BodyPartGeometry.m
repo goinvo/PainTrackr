@@ -15,6 +15,7 @@
 @property (nonatomic, readonly) NSInteger pointCount;
 @property (nonatomic, retain) UIBezierPath *bezierPath;
 
+
 @end
 
 #define NUM_TO_DIVIDEX (1024.0*8)
@@ -78,22 +79,26 @@
 }
 
 - (UIBezierPath *) bezierPath {
+    
+    
    if (!_bezierPath) {
 
        _bezierPath = [UIBezierPath bezierPath];
 
        if (_pointCount > 2) {
          
-          [_bezierPath moveToPoint: _points[0]];
+//          [_bezierPath moveToPoint: _points[0]];
+           [_bezierPath moveToPoint: CGPointMake(_points[0].x*NUM_TO_DIVIDEX,_points[0].y*NUM_TO_DIVIDEY ) ];
 
           for (int i=1; i<_pointCount; i++) {
              
              NSLog(@"Point is x:%f y:%f",_points[i].x, _points[i].y);
              
-            [_bezierPath addLineToPoint: _points[i]];
+//            [_bezierPath addLineToPoint: _points[i]];
+              [_bezierPath addLineToPoint:CGPointMake(_points[i].x*NUM_TO_DIVIDEX,_points[i].y*NUM_TO_DIVIDEY )];
          }
          [_bezierPath closePath];
-      }
+     }
    }
    return _bezierPath;
 }
@@ -103,6 +108,7 @@
    _points = calloc(sizeof(CGPoint), newPoints);
    _pointCount = newPoints;
    self.bezierPath = nil;
+    
 }
 
 - (void) dealloc {
@@ -112,11 +118,12 @@
 - (BOOL) containsPoint: (CGPoint) point {
    // TODO:  Find an algorithm for quickly determining whether a polygon contains a point
         
-//    NSLog(@"The bounds of Bezierpath are %f %f", self.bezierPath.bounds.size.width,self.bezierPath.bounds.size.height);
+    NSLog(@"The bounds of Bezierpath are %f %f", self.bezierPath.bounds.size.width,self.bezierPath.bounds.size.height);
     
+    return [self.bezierPath containsPoint:CGPointMake(point.x*NUM_TO_DIVIDEX, point.y*NUM_TO_DIVIDEY)];
 //    return (CGRectContainsPoint(self.bezierPath.bounds, point));
     
-    return [self.bezierPath containsPoint: point];
+//    return [self.bezierPath containsPoint: point];
 }
 
 -(CGPoint *)getPoints{

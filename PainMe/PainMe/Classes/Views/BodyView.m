@@ -13,10 +13,14 @@
 @interface BodyView() {
    NSCache *_imageCache;
 }
+@property (nonatomic, retain) UIBezierPath *pathShape;
 
 @end
 
 @implementation BodyView
+
+@synthesize pathShape = _pathShape;
+
 
 +(Class)layerClass
 {
@@ -40,30 +44,67 @@
 */
 
 - (void) awakeFromNib {
+    
+    
    [super awakeFromNib];
    CATiledLayer *tiledLayer = (CATiledLayer *) self.layer;
-    tiledLayer.levelsOfDetail = 3;
+   
    //CGFloat scale = [UIScreen mainScreen].scale;
    tiledLayer.tileSize = CGSizeMake(BODY_TILE_SIZE, BODY_TILE_SIZE);
+   
+      
+    tiledLayer.levelsOfDetail = 4;
+//    tiledLayer.levelsOfDetailBias = 1;
     
    self.contentScaleFactor = 1.0;
     
    _imageCache = [[NSCache alloc] init];
    [_imageCache setCountLimit: 5 * 7];
-                  
+    
+    notdrawn = YES;
 }
 
 // handle delegate method
 // body pain level changed
 // [self setNeedsDisplayInRect: ...]
 
+
+-(void)renderPainForBodyPartPath:(UIBezierPath *)path{
+
+    self.pathShape = [path copy];
+    self.pathShape.lineJoinStyle = kCGLineJoinRound;
+    
+//    [self.pathShape applyTransform:CGAffineTransformMakeScale(1024, 1024)];
+    notdrawn = NO;
+    [self setNeedsDisplayInRect:[self.pathShape bounds]];
+   
+}
+
 - (void)drawRect:(CGRect)rect {
+   /* 
+    if (self.pathShape!=nil && notdrawn == YES) {
+        
+        [[UIColor blueColor] setStroke];
+        [[UIColor colorWithRed:0.9 green:0.0 blue:0.0 alpha:1.0] setFill];
+        
+        [self.pathShape fill];
+        [self.pathShape stroke];
+    }
+    */
  	CGContextRef context = UIGraphicsGetCurrentContext();
    
    CGSize tileSize = (CGSize){BODY_TILE_SIZE, BODY_TILE_SIZE};
    
     CGFloat scale = CGContextGetCTM(context).a;
-//    NSLog(@"Scale in draw is %f",scale);
+    NSLog(@"Scale in draw is %f",scale);
+    
+    if (scale <=0.25) {
+        
+        UIImage *img = [UIImage imageNamed:@"zoomed_out_body.png"];
+        CGRect imgRect = CGRectMake(0, 0, BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT);
+        [img drawInRect:imgRect];
+        return;
+    }
     
    int firstCol = floorf(CGRectGetMinX(rect) / tileSize.width);
    int lastCol = floorf((CGRectGetMaxX(rect)-1) / tileSize.width);
@@ -89,8 +130,8 @@
             CGContextSetLineWidth(context, 6.0);
             CGContextStrokeRect(context, tileRect);
              
-             CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
-             CGContextFillEllipseInRect(context, CGRectMake(0, 0, rect.size.width*0.25*scale, rect.size.height*0.25*scale));
+//             CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
+//             CGContextFillEllipseInRect(context, CGRectMake(0, 0, rect.size.width*0.25*scale, rect.size.height*0.25*scale));
          }
       }
    }

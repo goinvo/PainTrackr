@@ -10,6 +10,7 @@
 
 @interface BodyPartGeometry : NSObject
 
+
 - (void) setPointCount: (NSInteger) newPoints;
 
 - (BOOL) containsPoint: (CGPoint) point;

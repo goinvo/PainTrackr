@@ -59,17 +59,17 @@
     NSLog(@"curr bounds are width:%f height:%f", self.bounds.size.width, self.bounds.size.height);
     NSLog(@"super view bounds are %f %f", self.superview.bounds.size.width,self.superview.bounds.size.height);
 
-    [_partPath applyTransform:CGAffineTransformMakeScale(1024, self.bounds.size.height)];
+//    [_partPath applyTransform:CGAffineTransformMakeScale(1024, self.bounds.size.height)];
 
-    [[UIColor blueColor] setStroke];
-    [[UIColor colorWithRed:0.9 green:0.0 blue:0.0 alpha:1.0] setFill];
+    [[UIColor blackColor] setStroke];
+    [[UIColor colorWithRed:1.0 green:192.0/255 blue:203.0/255 alpha:1.0] setFill];
     [_partPath fill];
     [_partPath stroke];
 
     self.partPath = nil;
     
-    CGAffineTransform tranSelf = CGAffineTransformMakeTranslation(512 +(3*1024), 8*1024);
-    [self setTransform:CGAffineTransformScale(tranSelf,8, 17)];
+//    CGAffineTransform tranSelf = CGAffineTransformMakeTranslation(512 +(3*1024), 8*1024);
+//    [self setTransform:CGAffineTransformScale(tranSelf,8, 17)];
 
 }
 
