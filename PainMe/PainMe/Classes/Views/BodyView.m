@@ -88,13 +88,13 @@
     CGFloat scale = CGContextGetCTM(context).a;
     NSLog(@"Scale in draw is %f",scale);
     
-    if (scale <0.25) {
-        
-        UIImage *img = [UIImage imageNamed:@"zoomed_out_body.png"];
-        CGRect imgRect = CGRectMake(0, 0, BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT);
-        [img drawInRect:imgRect];
-        
-    }else{
+//    if (scale <0.25) {
+//        
+//        UIImage *img = [UIImage imageNamed:@"zoomed_out_body.png"];
+//        CGRect imgRect = CGRectMake(0, 0, BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT);
+//        [img drawInRect:imgRect];
+//        
+//    }else{
     
         int firstCol = floorf(CGRectGetMinX(rect) / tileSize.width);
         int lastCol = floorf((CGRectGetMaxX(rect)-1) / tileSize.width);
@@ -124,7 +124,7 @@
                     //             CGContextFillEllipseInRect(context, CGRectMake(0, 0, rect.size.width*0.25*scale, rect.size.height*0.25*scale));
                 }
             }
-        }
+//        }
     }
     // iterate over pain entries
     // if pain entry's body part is inside rect, draw it
@@ -149,13 +149,27 @@
     else if (scale == 0.5) {
         numFrmScale = 512;
     }
-    else {
+    else if(scale ==0.25) {
         numFrmScale = 256;
+    }
+    else {
+        numFrmScale =0;
     }
     
    if (col>= 0 && col < BODY_TILE_COLUMNS && row >= 0 && row < BODY_TILE_ROWS) {
-             
-       NSString *filename = [NSString stringWithFormat:@"body_large_%02d_%d.png", (col+1) + (row) * BODY_TILE_COLUMNS,numFrmScale];
+       
+       NSString *filename;
+       
+       if (numFrmScale !=0) {
+
+           filename = [NSString stringWithFormat:@"body_large_%02d_%d.png", (col+1) + (row) * BODY_TILE_COLUMNS,numFrmScale];           
+       }
+       else {
+           
+           filename = [NSString stringWithFormat:@"body_out_%02d.png", (col+1) + (row) * BODY_TILE_COLUMNS];
+       }
+       
+
        
 //       NSLog(@"Body Image name is %@",filename );
        

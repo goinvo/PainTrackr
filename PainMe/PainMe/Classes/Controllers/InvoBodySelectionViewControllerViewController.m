@@ -51,6 +51,7 @@
 -(void)viewWillAppear:(BOOL)animated{
 
     [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setToolbarHidden:NO];
     
     [super viewWillAppear:animated];
     
@@ -71,6 +72,12 @@
 //    self.scrollView.zoomScale = 0.25;
     self.scrollView.zoomScale = 0.0265;
     self.scrollView.maximumZoomScale = 1.0;
+    
+    if (self.scrollView.zoomScale < 0.4) {
+        
+        self.scrollView.frame = CGRectMake(50, self.scrollView.frame.origin.y, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+    }
+
 
 // Add the Face button View
     
@@ -211,6 +218,14 @@
    
     NSLog(@"Scale is %f",scale);
     
+    if (self.scrollView.zoomScale < 0.4) {
+        
+        self.scrollView.frame = CGRectMake(50, self.scrollView.frame.origin.y, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+    }
+    else {
+        self.scrollView.frame = CGRectMake(0, self.scrollView.frame.origin.y, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+    }
+    
     [self.painFace increaseVisibility];
 
 }
@@ -240,6 +255,9 @@
     if (scrollView.zoomScale <=0.04  ) {
         scrollView.zoomScale = 0.04;
     }
+   
+    self.scrollView.frame = CGRectMake(0, self.scrollView.frame.origin.y, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+    
     
     [self.painFace reduceVisibility];
 }
@@ -251,8 +269,9 @@
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    
 
-   return self.bodyView;
+    return self.bodyView;
 }
 
 
