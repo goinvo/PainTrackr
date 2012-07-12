@@ -36,6 +36,8 @@
 
 @synthesize dragGesture = _dragGesture;
 
+@synthesize delegate;
+
 -(id)init{
 
     if (self = [super initWithFrame:CGRectMake(0, 0, 55, 480)]) {
@@ -51,42 +53,42 @@
         self.f1= [[UIView alloc]init];
         UIImage *img = [UIImage imageNamed:@"F1.png"];
         [self.f1 setBackgroundColor:[UIColor colorWithPatternImage:img]];
-        [self.f1 setFrame:CGRectMake(10, 10, img.size.width, img.size.height)];
+        [self.f1 setFrame:CGRectMake(10, 5, img.size.width, img.size.height)];
         self.f1.tag = kTagFace1;
         [self addSubview:self.f1];
         
         self.f2= [[UIView alloc]init];
         img = [UIImage imageNamed:@"F2.png"];
         [self.f2 setBackgroundColor:[UIColor colorWithPatternImage:img]];
-        [self.f2 setFrame:CGRectMake(10, ((10*2)+img.size.height), img.size.width, img.size.height)];
+        [self.f2 setFrame:CGRectMake(10, ((4*2)+img.size.height), img.size.width, img.size.height)];
         self.f2.tag = kTagFace2;
         [self addSubview:self.f2];
 
         self.f3= [[UIView alloc]init];
         img = [UIImage imageNamed:@"F3.png"];
         [self.f3 setBackgroundColor:[UIColor colorWithPatternImage:img]];
-        [self.f3 setFrame:CGRectMake(10, ((10*3)+img.size.height*2), img.size.width, img.size.height)];
+        [self.f3 setFrame:CGRectMake(10, ((4*3)+img.size.height*2), img.size.width, img.size.height)];
         self.f3.tag = kTagFace3;
         [self addSubview:self.f3];
 
         self.f4= [[UIView alloc]init];
         img = [UIImage imageNamed:@"F4.png"];
         [self.f4 setBackgroundColor:[UIColor colorWithPatternImage:img]];
-        [self.f4 setFrame:CGRectMake(10, ((10*4)+img.size.height*3), img.size.width, img.size.height)];
+        [self.f4 setFrame:CGRectMake(10, ((4*4)+img.size.height*3), img.size.width, img.size.height)];
         self.f4.tag = kTagFace4;
         [self addSubview:self.f4];
         
         self.f5= [[UIView alloc]init];
         img = [UIImage imageNamed:@"F5.png"];
         [self.f5 setBackgroundColor:[UIColor colorWithPatternImage:img]];
-        [self.f5 setFrame:CGRectMake(10, ((10*5)+img.size.height*4), img.size.width, img.size.height)];
+        [self.f5 setFrame:CGRectMake(10, ((4*5)+img.size.height*4), img.size.width, img.size.height)];
         self.f5.tag = kTagFace5;
         [self addSubview:self.f5];
         
         self.f6= [[UIView alloc]init];
         img = [UIImage imageNamed:@"F6.png"];
         [self.f6 setBackgroundColor:[UIColor colorWithPatternImage:img]];
-        [self.f6 setFrame:CGRectMake(10, ((10*6)+img.size.height*5), img.size.width, img.size.height)];
+        [self.f6 setFrame:CGRectMake(10, ((4*6)+img.size.height*5), img.size.width, img.size.height)];
         self.f6.tag = kTagFace6;
         [self addSubview:self.f6];
         
@@ -154,8 +156,11 @@
             
             if (self.viewToDrag) {
             
+                [delegate checkForBodyIntersectionWithLocalPoint:endTouchLoc AndPainLvl:self.viewToDrag.tag];
+
                 [self putBackPainFace:self.viewToDrag];
                 self.viewToDrag = nil;
+
             }
         }  
     }
@@ -187,7 +192,7 @@
 
     if (face) {
     
-        CGPoint pointToMove = CGPointMake(10, 10*face.tag + face.bounds.size.height *(face.tag -1));
+        CGPoint pointToMove = CGPointMake(10, 4*face.tag + face.bounds.size.height *(face.tag -1));
         
         [face setFrame:CGRectMake(pointToMove.x, pointToMove.y, face.bounds.size.width, face.bounds.size.height)];
         face = nil;

@@ -19,9 +19,16 @@ typedef enum{
 }
 kFaceTags;
 
+@protocol PainFaceDelegate <NSObject>
+
+-(void)checkForBodyIntersectionWithLocalPoint:(CGPoint)locPoint AndPainLvl:(int)painLvl;
+
+@end
+
 @interface PainFaceView : UIView<UIGestureRecognizerDelegate>
 
 @property (nonatomic, retain)UIView *viewToDrag;
+@property (nonatomic, assign)id <PainFaceDelegate> delegate;
 
 -(void)reduceVisibility;
 -(void)increaseVisibility;

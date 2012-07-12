@@ -21,5 +21,5 @@
 }
 
 
--(void)renderPainForBodyPartPath:(UIBezierPath *)path;
+-(void)renderPainForBodyPartPath:(UIBezierPath *)path WithColor:(UIColor *)fillColor;
 @end

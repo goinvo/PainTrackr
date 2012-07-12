@@ -68,20 +68,20 @@
     self.scrollView.backgroundColor = [UIColor clearColor];
     
    self.bodyView.frame = CGRectMake(0,0,BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT);
-    self.scrollView.minimumZoomScale = 0.0265;
+    self.scrollView.minimumZoomScale = 0.024;
 //    self.scrollView.zoomScale = 0.25;
-    self.scrollView.zoomScale = 0.0265;
+    self.scrollView.zoomScale = 0.024;
     self.scrollView.maximumZoomScale = 1.0;
     
-    if (self.scrollView.zoomScale < 0.4) {
+    if (self.scrollView.zoomScale < 0.04) {
         
-        self.scrollView.frame = CGRectMake(50, self.scrollView.frame.origin.y, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+        self.scrollView.frame = CGRectMake(70, self.scrollView.frame.origin.y, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
     }
-
 
 // Add the Face button View
     
     self.painFace = [[PainFaceView alloc] init];
+    self.painFace.delegate = self;
     [self.view insertSubview:self.painFace atIndex:10];
    
 //Init TapGesture Recognizer    
@@ -119,7 +119,7 @@
     NSLog(@"The point with Respect to Global body Coordinates is x:%f y:%f",bodyOffset.x,bodyOffset.y);
 
 // Point is inside the Belly circle  
-
+/*
     if (YES == [self.bodyGeometry containsPoint:bodyOffset]) {
         
         [self.bodyView renderPainForBodyPartPath:self.bodyGeometry.bezierPath];
@@ -127,24 +127,8 @@
         // create new pain entry
         // bring up buttons for pain entry
         // set new pain entry to instance variable
-        
-        
-/*
-        if (self.bodyPartView) {
-            [self.bodyPartView removeFromSuperview];    
-            self.bodyPartView = nil;
-            return;
-        }
-        
-        self.bodyPartView = [[BodyPartView alloc] initWithShape:self.bodyGeometry.bezierPath];
-        
-//        [self.bodyPartView setFrame:self.bodyView.frame];
-          [self.bodyPartView setFrame:CGRectMake(0, 0, 1024*8, 1024*8)];
-        
-        [self.bodyView insertSubview:self.bodyPartView atIndex:1];
- */
     }
-    
+  */  
 }
 
 -(int)tileAtTouchLocation:(CGPoint)touchPt{
@@ -218,14 +202,15 @@
    
     NSLog(@"Scale is %f",scale);
     
-    if (self.scrollView.zoomScale < 0.4) {
+    
+    if (self.scrollView.zoomScale < 0.04) {
         
-        self.scrollView.frame = CGRectMake(50, self.scrollView.frame.origin.y, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+        self.scrollView.frame = CGRectMake(70, self.scrollView.frame.origin.y, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
     }
     else {
         self.scrollView.frame = CGRectMake(0, self.scrollView.frame.origin.y, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
     }
-    
+     
     [self.painFace increaseVisibility];
 
 }
@@ -258,7 +243,6 @@
    
     self.scrollView.frame = CGRectMake(0, self.scrollView.frame.origin.y, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
     
-    
     [self.painFace reduceVisibility];
 }
 
@@ -274,5 +258,55 @@
     return self.bodyView;
 }
 
+#pragma mark -
+
+#pragma mark PainFaceDel Method
+
+-(void)checkForBodyIntersectionWithLocalPoint:(CGPoint)locPoint AndPainLvl:(int)painLvl{
+
+    CGPoint convPoint = CGPointZero;
+    
+    convPoint = [self.view convertPoint:locPoint toView:self.scrollView];
+
+    NSLog(@"conv point is %@", NSStringFromCGPoint(convPoint));
+
+    convPoint = CGPointMake(convPoint.x/(BODY_VIEW_WIDTH*self.scrollView.zoomScale),convPoint.y/( BODY_VIEW_HEIGHT*self.scrollView.zoomScale));
+
+// Point is inside the Belly circle  
+
+    if (YES == [self.bodyGeometry containsPoint:convPoint]) {
+        
+        UIColor *colorToFill;
+        
+        switch (painLvl) {
+            case 1:
+                colorToFill = [UIColor colorWithRed:1.00f green:0.89f blue:0.70f alpha:1.00f];
+                break;
+            case 2:
+                colorToFill = [UIColor colorWithRed:0.99f green:0.71f blue:0.51f alpha:1.00f];               
+                break;
+            case 3:
+                colorToFill = [UIColor colorWithRed:0.98f green:0.57f blue:0.26f alpha:1.00f];
+                break;
+            case 4:
+                colorToFill = [UIColor colorWithRed:0.92 green:0.41 blue:0.42 alpha:1.0];
+                break;
+            case 5:
+                colorToFill = [UIColor colorWithRed:0.95 green:0.15 blue:0.21 alpha:1.0];
+                break;
+            case 6:
+                colorToFill = [UIColor colorWithRed:0.8 green:0.15 blue:0.24 alpha:1.0];
+                break;
+                
+            default:
+                break;
+        }
+    
+        [self.bodyView renderPainForBodyPartPath:self.bodyGeometry.bezierPath WithColor:colorToFill];
+    }
+   
+}
+
+#pragma mark -
 
 @end

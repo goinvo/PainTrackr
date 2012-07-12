@@ -20,6 +20,7 @@
 +(PainEntry *)painEntryWithTime:(NSDate *)time Location:(NSData *)location PainLevel:(int16_t)level ExtraNotes:(NSString *)extraNotes{
 
     PainEntry *entryFound;
+   
     InvoAppDelegate *appDel = (InvoAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     NSManagedObjectContext *mangObjContext = [appDel managedObjectContext];
@@ -29,8 +30,9 @@
     NSFetchRequest *req = [[NSFetchRequest alloc] init];
     [req setEntity:entDesc];
     
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"location == %@", location];
-    [req setPredicate:pred];
+//    NSPredicate *pred = [NSPredicate predicateWithFormat:@"location == %@", location];
+//    
+//    [req setPredicate:pred];
     
     NSError *error = nil;
     NSArray *resultArray = [mangObjContext executeFetchRequest:req error:&error];
