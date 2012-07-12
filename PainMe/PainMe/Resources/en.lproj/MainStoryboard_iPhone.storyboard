@@ -70,25 +70,31 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nsC-l6-yud" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Yo3-Z7-ePf" customClass="InvoBodySelectionViewControllerViewController" sceneMemberID="viewController">
-                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.10000000000000001" maximumZoomScale="4" id="OmR-Y8-i2j">
+                    <view key="view" contentMode="scaleToFill" id="81h-8G-V63">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="Pmi-e7-WzI" customClass="BodyView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="c8j-aa-t6T">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="W3V-hI-nmq" customClass="BodyView">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <connections>
+                                    <outlet property="delegate" destination="Yo3-Z7-ePf" id="ZF5-1e-m4B"/>
+                                </connections>
+                            </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="0.97959183670000005" green="0.97959183670000005" blue="0.97959183670000005" alpha="1" colorSpace="calibratedRGB"/>
-                        <connections>
-                            <outlet property="delegate" destination="Yo3-Z7-ePf" id="NZT-2C-jjt"/>
-                        </connections>
-                    </scrollView>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
                     <navigationItem key="navigationItem" id="Olw-fE-IH3"/>
                     <connections>
-                        <outlet property="bodyView" destination="Pmi-e7-WzI" id="vqY-kN-XRm"/>
-                        <outlet property="scrollView" destination="OmR-Y8-i2j" id="HIz-wX-UJZ"/>
+                        <outlet property="bodyView" destination="W3V-hI-nmq" id="4eG-FW-kEP"/>
+                        <outlet property="scrollView" destination="c8j-aa-t6T" id="6by-tb-6by"/>
                     </connections>
                 </viewController>
             </objects>

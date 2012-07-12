@@ -8,8 +8,10 @@
 
 #import "InvoBodySelectionViewControllerViewController.h"
 #import "BodyView.h"
-#import "BodyPartView.h"
+//#import "BodyPartView.h"
 #import "BodyPartGeometry.h"
+
+#import "PainFaceView.h"
 
 @interface InvoBodySelectionViewControllerViewController () {
    
@@ -19,9 +21,9 @@
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet BodyView *bodyView;
 @property (nonatomic, retain) UITapGestureRecognizer *tapGesture;
-@property (nonatomic, retain) BodyPartView *bodyPartView;
+//@property (nonatomic, retain) BodyPartView *bodyPartView;
 @property (nonatomic, retain) BodyPartGeometry *bodyGeometry;
-
+@property (nonatomic, retain) PainFaceView *painFace;
 
 -(void)initTapGesture;
 -(int)tileAtTouchLocation:(CGPoint)touchPt;
@@ -32,8 +34,9 @@
 
 @synthesize scrollView = _scrollView, bodyView = _bodyView;
 @synthesize tapGesture = _tapGesture;
-@synthesize bodyPartView = _bodyPartView;
+//@synthesize bodyPartView = _bodyPartView;
 @synthesize bodyGeometry = _bodyGeometry;
+@synthesize painFace = _painFace;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,7 +51,9 @@
 -(void)viewWillAppear:(BOOL)animated{
 
     [self.navigationController setNavigationBarHidden:YES];
+    
     [super viewWillAppear:animated];
+    
 }
 
 - (void)viewDidLoad
@@ -59,14 +64,19 @@
     bodyOffset = CGPointZero;
 
     self.scrollView.contentSize = CGSizeMake(BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT );
-   
+    self.scrollView.backgroundColor = [UIColor clearColor];
+    
    self.bodyView.frame = CGRectMake(0,0,BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT);
-    self.scrollView.minimumZoomScale = 0.038;
+    self.scrollView.minimumZoomScale = 0.0265;
 //    self.scrollView.zoomScale = 0.25;
-    self.scrollView.zoomScale = 0.038;
+    self.scrollView.zoomScale = 0.0265;
     self.scrollView.maximumZoomScale = 1.0;
+
+// Add the Face button View
     
-    
+    self.painFace = [[PainFaceView alloc] init];
+    [self.view insertSubview:self.painFace atIndex:10];
+   
 //Init TapGesture Recognizer    
     [self initTapGesture];
     
@@ -80,6 +90,7 @@
     self.tapGesture.delegate = self;
     self.tapGesture.numberOfTapsRequired = 1;
     [self.scrollView addGestureRecognizer:self.tapGesture];
+    [self.tapGesture setCancelsTouchesInView:NO];
 }
 
 // button handler:
@@ -104,14 +115,14 @@
 
     if (YES == [self.bodyGeometry containsPoint:bodyOffset]) {
         
-//        [self.bodyView renderPainForBodyPartPath:self.bodyGeometry.bezierPath];
-         
+        [self.bodyView renderPainForBodyPartPath:self.bodyGeometry.bezierPath];
+        
         // create new pain entry
         // bring up buttons for pain entry
         // set new pain entry to instance variable
         
         
-
+/*
         if (self.bodyPartView) {
             [self.bodyPartView removeFromSuperview];    
             self.bodyPartView = nil;
@@ -124,7 +135,7 @@
           [self.bodyPartView setFrame:CGRectMake(0, 0, 1024*8, 1024*8)];
         
         [self.bodyView insertSubview:self.bodyPartView atIndex:1];
- 
+ */
     }
     
 }
@@ -188,7 +199,8 @@
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-   
+ 
+    [self.painFace increaseVisibility];
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
@@ -198,6 +210,9 @@
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale {
    
     NSLog(@"Scale is %f",scale);
+    
+    [self.painFace increaseVisibility];
+
 }
 
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
@@ -214,14 +229,25 @@
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
    
+    [self.painFace reduceVisibility];
+    
 }
 
 - (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view {
    
+     NSLog(@"Scale while beginning zooming is %f",scrollView.zoomScale);
+
+    if (scrollView.zoomScale <=0.04  ) {
+        scrollView.zoomScale = 0.04;
+    }
+    
+    [self.painFace reduceVisibility];
 }
 
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView {
    
+    NSLog(@"ScrollView zoom scale is %f", scrollView.zoomScale);
+    
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {

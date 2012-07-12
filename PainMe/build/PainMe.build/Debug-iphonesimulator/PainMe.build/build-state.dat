@@ -5,16 +5,17 @@ cCheck dependencies
 cProcessInfoPlistFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/Info.plist PainMe/Resources/PainMe-Info.plist
 cDataModelVersionCompile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/PainMe.momd "/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/Core Data/PainMe.xcdatamodeld"
 cProcessPCH /var/folders/32/bywrtr0125q2lllcgflsttq40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/PainMe-Prefix-ecgazekxpqrwpcdioefrltdevhlq/PainMe-Prefix.pch.pth PainMe/Classes/Helpers/PainMe-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-cCompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyPartGeometry.o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Model/BodyPartGeometry.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-cCompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyView.o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/BodyView.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/InvoAppDelegate.o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoAppDelegate.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/InvoDetailViewController.o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoDetailViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/InvoMasterViewController.o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoMasterViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/main.o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Helpers/main.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/PainEntry.o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Model/PainEntry.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyPartGeometry.o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Model/BodyPartGeometry.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyView.o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/BodyView.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/InvoBodySelectionViewControllerViewController.o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/PainLocation.o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Model/PainLocation.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyPartView.o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/BodyPartView.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/PainFaceView.o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/PainFaceView.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 cLd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/PainMe normal i386
 cGenerateDSYMFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app.dSYM /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/PainMe
 cCompileStoryboard /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/en.lproj/MainStoryboard_iPad.storyboard
@@ -177,8 +178,8 @@ cCpResource PainMe/Resources/images/body_large_11_512@2x.png build/Debug-iphones
 cCpResource PainMe/Resources/images/body_large_12_512@2x.png build/Debug-iphonesimulator/PainMe.app/body_large_12_512@2x.png
 cCpResource PainMe/Resources/images/body_large_13_512@2x.png build/Debug-iphonesimulator/PainMe.app/body_large_13_512@2x.png
 cCpResource PainMe/Resources/images/body_large_14_512@2x.png build/Debug-iphonesimulator/PainMe.app/body_large_14_512@2x.png
-cCpResource PainMe/Resources/images/body_large_16_512@2x.png build/Debug-iphonesimulator/PainMe.app/body_large_16_512@2x.png
 cCpResource PainMe/Resources/images/body_large_15_512@2x.png build/Debug-iphonesimulator/PainMe.app/body_large_15_512@2x.png
+cCpResource PainMe/Resources/images/body_large_16_512@2x.png build/Debug-iphonesimulator/PainMe.app/body_large_16_512@2x.png
 cCpResource PainMe/Resources/images/body_large_17_512@2x.png build/Debug-iphonesimulator/PainMe.app/body_large_17_512@2x.png
 cCpResource PainMe/Resources/images/body_large_18_512@2x.png build/Debug-iphonesimulator/PainMe.app/body_large_18_512@2x.png
 cCpResource PainMe/Resources/images/body_large_19_512@2x.png build/Debug-iphonesimulator/PainMe.app/body_large_19_512@2x.png
@@ -734,8 +735,8 @@ cCpResource PainMe/Resources/images/body_large_24_256.png build/Debug-iphonesimu
 cCpResource PainMe/Resources/images/body_large_25_256.png build/Debug-iphonesimulator/PainMe.app/body_large_25_256.png
 cCpResource PainMe/Resources/images/body_large_26_256.png build/Debug-iphonesimulator/PainMe.app/body_large_26_256.png
 cCpResource PainMe/Resources/images/body_large_27_256.png build/Debug-iphonesimulator/PainMe.app/body_large_27_256.png
-cCpResource PainMe/Resources/images/body_large_28_256.png build/Debug-iphonesimulator/PainMe.app/body_large_28_256.png
 cCpResource PainMe/Resources/images/body_large_29_256.png build/Debug-iphonesimulator/PainMe.app/body_large_29_256.png
+cCpResource PainMe/Resources/images/body_large_28_256.png build/Debug-iphonesimulator/PainMe.app/body_large_28_256.png
 cCpResource PainMe/Resources/images/body_large_30_256.png build/Debug-iphonesimulator/PainMe.app/body_large_30_256.png
 cCpResource PainMe/Resources/images/body_large_31_256.png build/Debug-iphonesimulator/PainMe.app/body_large_31_256.png
 cCpResource PainMe/Resources/images/body_large_32_256.png build/Debug-iphonesimulator/PainMe.app/body_large_32_256.png
@@ -808,8 +809,8 @@ cCpResource PainMe/Resources/images/body_large_98_256.png build/Debug-iphonesimu
 cCpResource PainMe/Resources/images/body_large_99_256.png build/Debug-iphonesimulator/PainMe.app/body_large_99_256.png
 cCpResource PainMe/Resources/images/body_large_100_256.png build/Debug-iphonesimulator/PainMe.app/body_large_100_256.png
 cCpResource PainMe/Resources/images/body_large_101_256.png build/Debug-iphonesimulator/PainMe.app/body_large_101_256.png
-cCpResource PainMe/Resources/images/body_large_103_256.png build/Debug-iphonesimulator/PainMe.app/body_large_103_256.png
 cCpResource PainMe/Resources/images/body_large_102_256.png build/Debug-iphonesimulator/PainMe.app/body_large_102_256.png
+cCpResource PainMe/Resources/images/body_large_103_256.png build/Debug-iphonesimulator/PainMe.app/body_large_103_256.png
 cCpResource PainMe/Resources/images/body_large_104_256.png build/Debug-iphonesimulator/PainMe.app/body_large_104_256.png
 cCpResource PainMe/Resources/images/body_large_105_256.png build/Debug-iphonesimulator/PainMe.app/body_large_105_256.png
 cCpResource PainMe/Resources/images/body_large_106_256.png build/Debug-iphonesimulator/PainMe.app/body_large_106_256.png
@@ -844,6 +845,18 @@ cCpResource PainMe/Resources/images/body_large_134_256.png build/Debug-iphonesim
 cCpResource PainMe/Resources/images/body_large_135_256.png build/Debug-iphonesimulator/PainMe.app/body_large_135_256.png
 cCpResource PainMe/Resources/images/body_large_136_256.png build/Debug-iphonesimulator/PainMe.app/body_large_136_256.png
 cCpResource PainMe/Resources/Icon.png build/Debug-iphonesimulator/PainMe.app/Icon.png
+cCpResource PainMe/Resources/images/F1@2x.png build/Debug-iphonesimulator/PainMe.app/F1@2x.png
+cCpResource PainMe/Resources/images/F2@2x.png build/Debug-iphonesimulator/PainMe.app/F2@2x.png
+cCpResource PainMe/Resources/images/F3@2x.png build/Debug-iphonesimulator/PainMe.app/F3@2x.png
+cCpResource PainMe/Resources/images/F4@2x.png build/Debug-iphonesimulator/PainMe.app/F4@2x.png
+cCpResource PainMe/Resources/images/F5@2x.png build/Debug-iphonesimulator/PainMe.app/F5@2x.png
+cCpResource PainMe/Resources/images/F6@2x.png build/Debug-iphonesimulator/PainMe.app/F6@2x.png
+cCpResource PainMe/Resources/images/F1.png build/Debug-iphonesimulator/PainMe.app/F1.png
+cCpResource PainMe/Resources/images/F2.png build/Debug-iphonesimulator/PainMe.app/F2.png
+cCpResource PainMe/Resources/images/F3.png build/Debug-iphonesimulator/PainMe.app/F3.png
+cCpResource PainMe/Resources/images/F4.png build/Debug-iphonesimulator/PainMe.app/F4.png
+cCpResource PainMe/Resources/images/F5.png build/Debug-iphonesimulator/PainMe.app/F5.png
+cCpResource PainMe/Resources/images/F6.png build/Debug-iphonesimulator/PainMe.app/F6.png
 cTouch /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app
 
 N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.1.sdk
@@ -892,14 +905,14 @@ t1340904072
 s341
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.m
-c000000004FFCAD2300000000000018FE
-t1341959459
-s6398
+c000000004FFDEB460000000000001C01
+t1342040902
+s7169
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.xib
-c000000004FFC78B80000000000001949
-t1341946040
-s6473
+c000000004FFDCC37000000000000197E
+t1342032951
+s6526
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoDetailViewController.h
 c000000004FE080BB000000000000018D
@@ -967,19 +980,29 @@ t1341256797
 s305
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/BodyPartView.m
-c000000004FFD82990000000000000744
-t1342014105
-s1860
+c000000004FFD857400000000000007D6
+t1342014836
+s2006
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/BodyView.h
-c000000004FFCA80300000000000001E4
-t1341958147
-s484
+c000000004FFD962900000000000001D4
+t1342019113
+s468
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/BodyView.m
-c000000004FFCA9920000000000001227
-t1341958546
-s4647
+c000000004FFD9D1300000000000012CD
+t1342020883
+s4813
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/PainFaceView.h
+c000000004FFEDBFE00000000000001E7
+t1342102526
+s487
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/PainFaceView.m
+c000000004FFEDBFB0000000000001AA0
+t1342102523
+s6816
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/Core Data/PainMe.xcdatamodeld
 c000000004FEDBF2500000000000000AA
@@ -1027,9 +1050,69 @@ t1340113083
 s9164
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/en.lproj/MainStoryboard_iPhone.storyboard
-c000000004FEB548D0000000000002B31
-t1340822669
-s11057
+c000000004FFDCE000000000000002CA1
+t1342033408
+s11425
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/images/F1.png
+c000000004FFDE72B0000000000001D13
+t1342039851
+s7443
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/images/F1@2x.png
+c000000004FFDD6F00000000000003AB0
+t1342035696
+s15024
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/images/F2.png
+c000000004FFDE72C0000000000001C7D
+t1342039852
+s7293
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/images/F2@2x.png
+c000000004FFDD6F90000000000003889
+t1342035705
+s14473
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/images/F3.png
+c000000004FFDE72D0000000000001D8D
+t1342039853
+s7565
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/images/F3@2x.png
+c000000004FFDD701000000000000413B
+t1342035713
+s16699
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/images/F4.png
+c000000004FFDE72D0000000000001D7F
+t1342039853
+s7551
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/images/F4@2x.png
+c000000004FFDD7090000000000004124
+t1342035721
+s16676
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/images/F5.png
+c000000004FFDE72E0000000000001DD6
+t1342039854
+s7638
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/images/F5@2x.png
+c000000004FFDD7110000000000003BB4
+t1342035729
+s15284
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/images/F6.png
+c000000004FFDE72E0000000000001FD7
+t1342039854
+s8151
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/images/F6@2x.png
+c000000004FFDD7190000000000004B03
+t1342035737
+s19203
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/images/body_large_01_1024.png
 c000000004FEB3CAE0000000000000EFC
@@ -5117,12 +5200,60 @@ t1341945879
 s112041
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app
-t1341959461
-s28288
+t1342102091
+s28696
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app.dSYM
-t1341959461
+t1342102090
 s102
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/F1.png
+t1342040030
+s7443
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/F1@2x.png
+t1342040030
+s15024
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/F2.png
+t1342040030
+s7293
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/F2@2x.png
+t1342040030
+s14473
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/F3.png
+t1342040030
+s7565
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/F3@2x.png
+t1342040030
+s16699
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/F4.png
+t1342040030
+s7551
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/F4@2x.png
+t1342040030
+s16676
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/F5.png
+t1342040030
+s7638
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/F5@2x.png
+t1342040030
+s15284
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/F6.png
+t1342040030
+s8151
+
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/F6@2x.png
+t1342040030
+s19203
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/Icon-72.png
 t1341945951
@@ -5157,12 +5288,12 @@ t1341945946
 s1237
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/InvoBodySelectionViewControllerViewController.nib
-t1341946041
+t1342033000
 s870
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/PainMe
-t1341959461
-s94128
+t1342102090
+s110732
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/PainMe.momd
 t1341945947
@@ -8441,7 +8572,7 @@ t1341945951
 s272
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/en.lproj/MainStoryboard_iPhone.storyboardc
-t1341945951
+t1342033411
 s170
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/zoomed_out_body.png
@@ -8453,20 +8584,20 @@ t1341958874
 s22492
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyPartView.o
-t1341959187
-s52776
+t1342019113
+s52800
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyView.o
-t1341958547
-s58848
+t1342020884
+s59680
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/InvoAppDelegate.o
 t1341945948
 s77312
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/InvoBodySelectionViewControllerViewController.o
-t1341959461
-s79040
+t1342044910
+s80364
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/InvoDetailViewController.o
 t1341945948
@@ -8480,14 +8611,18 @@ N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug
 t1341945948
 s3108
 
+N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/PainFaceView.o
+t1342102090
+s80040
+
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/PainLocation.o
 t1341945948
 s3124
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/PainMe.LinkFileList
-c000000004FFC785A00000000000005D1
-t1341945946
-s1489
+c000000004FFDBFEB0000000000000661
+t1342029803
+s1633
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/main.o
 t1341945948
@@ -8532,9 +8667,12 @@ r0
 CBuild AST from /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/BodyView.m
 r0
 
+CBuild AST from /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/PainFaceView.m
+r0
+
 CCheck dependencies
 r0
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies65e05419baadb541^0b475819baadb541^---0#1#0#--18"Check dependencies36"4906CAFD-0876-4C3B-A3B3-645675049599-
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies06bcb47e13afb541^3b1cb57e13afb541^---0#1#0#--18"Check dependencies36"AEC370A4-25A2-41B9-925B-75927426546D-
 
 CCompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyPartGeometry.o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Model/BodyPartGeometry.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s363651674.041850
@@ -8550,8 +8688,8 @@ xcom.apple.compilers.llvm.clang.1_0.compiler
 lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection102"Compile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Model/BodyPartGeometry.m9dd50a5ae2acb541^57402d5ae2acb541^---0#0#0#-19%DVTDocumentLocation2@110"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Model/BodyPartGeometry.m0000000000000000^3473"CompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyPartGeometry.o PainMe/Classes/Model/BodyPartGeometry.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-sign-compare -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.1.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.6 -g -Wno-conversion -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -D__IPHONE_OS_VERSION_MIN_REQUIRED=50100 -iquote /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-generated-files.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-own-target-headers.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-all-target-headers.hmap -iquote /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-project-headers.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/include -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/DerivedSources/i386 -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/DerivedSources -F/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator -include /var/folders/32/bywrtr0125q2lllcgflsttq40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/PainMe-Prefix-ecgazekxpqrwpcdioefrltdevhlq/PainMe-Prefix.pch -MMD -MT dependencies -MF /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyPartGeometry.d --serialize-diagnostics /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyPartGeometry.dia -c /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Model/BodyPartGeometry.m -o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyPartGeometry.o36"D3B9EA1B-91FA-4A82-AE80-B1E08C5B9045-
 
 CCompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyPartView.o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/BodyPartView.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s363706905.592699
-e363706905.750317
+s363711913.903933
+e363711913.986471
 r1
 xCompileC
 xbuild/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyPartView.o
@@ -8560,11 +8698,11 @@ xnormal
 xi386
 xobjective-c
 xcom.apple.compilers.llvm.clang.1_0.compiler
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection98"Compile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/BodyPartView.m59fb9719baadb541^0c20c019baadb541^---0#0#0#-19%DVTDocumentLocation2@106"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/BodyPartView.m0000000000000000^3449"CompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyPartView.o PainMe/Classes/Views/BodyPartView.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-sign-compare -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.1.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.6 -g -Wno-conversion -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -D__IPHONE_OS_VERSION_MIN_REQUIRED=50100 -iquote /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-generated-files.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-own-target-headers.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-all-target-headers.hmap -iquote /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-project-headers.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/include -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/DerivedSources/i386 -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/DerivedSources -F/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator -include /var/folders/32/bywrtr0125q2lllcgflsttq40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/PainMe-Prefix-ecgazekxpqrwpcdioefrltdevhlq/PainMe-Prefix.pch -MMD -MT dependencies -MF /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyPartView.d --serialize-diagnostics /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyPartView.dia -c /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/BodyPartView.m -o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyPartView.o36"8E2CF867-9EA1-43C7-801E-F68931A979B4-
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection98"Compile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/BodyPartView.m1288e7a9cdadb541^c494fca9cdadb541^---0#0#0#-19%DVTDocumentLocation2@106"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/BodyPartView.m0000000000000000^3449"CompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyPartView.o PainMe/Classes/Views/BodyPartView.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-sign-compare -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.1.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.6 -g -Wno-conversion -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -D__IPHONE_OS_VERSION_MIN_REQUIRED=50100 -iquote /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-generated-files.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-own-target-headers.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-all-target-headers.hmap -iquote /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-project-headers.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/include -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/DerivedSources/i386 -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/DerivedSources -F/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator -include /var/folders/32/bywrtr0125q2lllcgflsttq40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/PainMe-Prefix-ecgazekxpqrwpcdioefrltdevhlq/PainMe-Prefix.pch -MMD -MT dependencies -MF /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyPartView.d --serialize-diagnostics /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyPartView.dia -c /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/BodyPartView.m -o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyPartView.o36"BB36FE0C-035C-4A23-AD81-BE8A25853B74-
 
 CCompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyView.o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/BodyView.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s363651346.931977
-e363651347.168069
+s363713684.671852
+e363713684.783816
 r1
 xCompileC
 xbuild/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyView.o
@@ -8573,7 +8711,7 @@ xnormal
 xi386
 xobjective-c
 xcom.apple.compilers.llvm.clang.1_0.compiler
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection94"Compile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/BodyView.m20b8ee12e1acb541^30112b13e1acb541^---0#0#0#-19%DVTDocumentLocation2@102"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/BodyView.m0000000000000000^3425"CompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyView.o PainMe/Classes/Views/BodyView.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-sign-compare -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.1.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.6 -g -Wno-conversion -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -D__IPHONE_OS_VERSION_MIN_REQUIRED=50100 -iquote /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-generated-files.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-own-target-headers.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-all-target-headers.hmap -iquote /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-project-headers.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/include -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/DerivedSources/i386 -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/DerivedSources -F/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator -include /var/folders/32/bywrtr0125q2lllcgflsttq40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/PainMe-Prefix-ecgazekxpqrwpcdioefrltdevhlq/PainMe-Prefix.pch -MMD -MT dependencies -MF /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyView.d --serialize-diagnostics /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyView.dia -c /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/BodyView.m -o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyView.o36"541DD079-84D1-4841-8683-255EA7BD8D16-
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection94"Compile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/BodyView.m8f1dac94d4adb541^9984cb94d4adb541^---0#0#0#-19%DVTDocumentLocation2@102"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/BodyView.m0000000000000000^3425"CompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyView.o PainMe/Classes/Views/BodyView.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-sign-compare -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.1.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.6 -g -Wno-conversion -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -D__IPHONE_OS_VERSION_MIN_REQUIRED=50100 -iquote /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-generated-files.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-own-target-headers.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-all-target-headers.hmap -iquote /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-project-headers.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/include -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/DerivedSources/i386 -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/DerivedSources -F/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator -include /var/folders/32/bywrtr0125q2lllcgflsttq40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/PainMe-Prefix-ecgazekxpqrwpcdioefrltdevhlq/PainMe-Prefix.pch -MMD -MT dependencies -MF /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyView.d --serialize-diagnostics /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyView.dia -c /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/BodyView.m -o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/BodyView.o36"6D17F97C-E4C7-48B3-9F9D-4F19B22E094A-
 
 CCompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/InvoAppDelegate.o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoAppDelegate.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s363638748.024446
@@ -8589,8 +8727,8 @@ xcom.apple.compilers.llvm.clang.1_0.compiler
 lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection107"Compile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoAppDelegate.mc26c06dcafacb541^970331dcafacb541^---0#0#0#-19%DVTDocumentLocation2@115"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoAppDelegate.m0000000000000000^3479"CompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/InvoAppDelegate.o PainMe/Classes/Controllers/InvoAppDelegate.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-sign-compare -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.1.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.6 -g -Wno-conversion -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -D__IPHONE_OS_VERSION_MIN_REQUIRED=50100 -iquote /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-generated-files.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-own-target-headers.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-all-target-headers.hmap -iquote /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-project-headers.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/include -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/DerivedSources/i386 -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/DerivedSources -F/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator -include /var/folders/32/bywrtr0125q2lllcgflsttq40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/PainMe-Prefix-ecgazekxpqrwpcdioefrltdevhlq/PainMe-Prefix.pch -MMD -MT dependencies -MF /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/InvoAppDelegate.d --serialize-diagnostics /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/InvoAppDelegate.dia -c /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoAppDelegate.m -o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/InvoAppDelegate.o36"91C678C6-F222-4B77-9A51-BC6E9A227A65-
 
 CCompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/InvoBodySelectionViewControllerViewController.o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s363652260.489120
-e363652261.025475
+s363795326.850913
+e363795327.132000
 r1
 xCompileC
 xbuild/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/InvoBodySelectionViewControllerViewController.o
@@ -8599,7 +8737,7 @@ xnormal
 xi386
 xobjective-c
 xcom.apple.compilers.llvm.clang.1_0.compiler
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection137"Compile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.m7e567da4e4acb541^219106a5e4acb541^---0#0#0#-19%DVTDocumentLocation2@145"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.m0000000000000000^3659"CompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/InvoBodySelectionViewControllerViewController.o PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-sign-compare -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.1.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.6 -g -Wno-conversion -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -D__IPHONE_OS_VERSION_MIN_REQUIRED=50100 -iquote /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-generated-files.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-own-target-headers.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-all-target-headers.hmap -iquote /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-project-headers.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/include -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/DerivedSources/i386 -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/DerivedSources -F/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator -include /var/folders/32/bywrtr0125q2lllcgflsttq40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/PainMe-Prefix-ecgazekxpqrwpcdioefrltdevhlq/PainMe-Prefix.pch -MMD -MT dependencies -MF /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/InvoBodySelectionViewControllerViewController.d --serialize-diagnostics /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/InvoBodySelectionViewControllerViewController.dia -c /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.m -o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/InvoBodySelectionViewControllerViewController.o36"5A24C499-C6B5-4007-8B5E-A8B0D9E42BDA-
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection137"Compile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.m5b08da7e13afb541^edd3217f13afb541^---0#0#0#-19%DVTDocumentLocation2@145"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.m0000000000000000^3659"CompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/InvoBodySelectionViewControllerViewController.o PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-sign-compare -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.1.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.6 -g -Wno-conversion -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -D__IPHONE_OS_VERSION_MIN_REQUIRED=50100 -iquote /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-generated-files.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-own-target-headers.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-all-target-headers.hmap -iquote /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-project-headers.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/include -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/DerivedSources/i386 -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/DerivedSources -F/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator -include /var/folders/32/bywrtr0125q2lllcgflsttq40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/PainMe-Prefix-ecgazekxpqrwpcdioefrltdevhlq/PainMe-Prefix.pch -MMD -MT dependencies -MF /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/InvoBodySelectionViewControllerViewController.d --serialize-diagnostics /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/InvoBodySelectionViewControllerViewController.dia -c /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.m -o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/InvoBodySelectionViewControllerViewController.o36"1B04D9EF-188A-4CBF-A288-AAF98F58AEF0-
 
 CCompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/InvoDetailViewController.o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoDetailViewController.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s363638748.025336
@@ -8640,6 +8778,19 @@ xobjective-c
 xcom.apple.compilers.llvm.clang.1_0.compiler
 lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection95"Compile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Model/PainEntry.m38f74bdcafacb541^4a405cdcafacb541^---0#0#0#-19%DVTDocumentLocation2@103"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Model/PainEntry.m0000000000000000^3431"CompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/PainEntry.o PainMe/Classes/Model/PainEntry.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-sign-compare -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.1.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.6 -g -Wno-conversion -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -D__IPHONE_OS_VERSION_MIN_REQUIRED=50100 -iquote /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-generated-files.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-own-target-headers.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-all-target-headers.hmap -iquote /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-project-headers.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/include -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/DerivedSources/i386 -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/DerivedSources -F/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator -include /var/folders/32/bywrtr0125q2lllcgflsttq40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/PainMe-Prefix-ecgazekxpqrwpcdioefrltdevhlq/PainMe-Prefix.pch -MMD -MT dependencies -MF /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/PainEntry.d --serialize-diagnostics /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/PainEntry.dia -c /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Model/PainEntry.m -o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/PainEntry.o36"65B30CB4-AA25-43E2-AE74-AD27C061E653-
 
+CCompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/PainFaceView.o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/PainFaceView.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s363795326.856591
+e363795327.118784
+r1
+xCompileC
+xbuild/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/PainFaceView.o
+x/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/PainFaceView.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection98"Compile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/PainFaceView.m0668db7e13afb541^e57b1e7f13afb541^---0#0#0#-19%DVTDocumentLocation2@106"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/PainFaceView.m0000000000000000^3449"CompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/PainFaceView.o PainMe/Classes/Views/PainFaceView.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-sign-compare -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.1.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.6 -g -Wno-conversion -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -D__IPHONE_OS_VERSION_MIN_REQUIRED=50100 -iquote /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-generated-files.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-own-target-headers.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-all-target-headers.hmap -iquote /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-project-headers.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/include -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/DerivedSources/i386 -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/DerivedSources -F/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator -include /var/folders/32/bywrtr0125q2lllcgflsttq40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/PainMe-Prefix-ecgazekxpqrwpcdioefrltdevhlq/PainMe-Prefix.pch -MMD -MT dependencies -MF /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/PainFaceView.d --serialize-diagnostics /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/PainFaceView.dia -c /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/PainFaceView.m -o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/PainFaceView.o36"BDD44C04-5054-4486-B125-D55D17B517C4-
+
 CCompileC build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/PainLocation.o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Model/PainLocation.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s363638748.901780
 e363638748.951704
@@ -8675,22 +8826,22 @@ x/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/en.lpro
 lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection74"CompileStoryboard PainMe/Resources/en.lproj/MainStoryboard_iPad.storyboard651c1bddafacb541^1a31bfdfafacb541^---0#0#0#-19%DVTDocumentLocation2@127"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/en.lproj/MainStoryboard_iPad.storyboard0000000000000000^979"CompileStoryboard PainMe/Resources/en.lproj/MainStoryboard_iPad.storyboard    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv IBSC_MINIMUM_COMPATIBILITY_VERSION 5.1    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    setenv XCODE_DEVELOPER_USR_PATH /Applications/Xcode.app/Contents/Developer/usr/bin/..    /Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/en.lproj/MainStoryboard_iPad.storyboardc /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/en.lproj/MainStoryboard_iPad.storyboard --sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.1.sdk36"0772553C-AFCF-4173-B07D-EE0FBE924B32-
 
 CCompileStoryboard /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/en.lproj/MainStoryboard_iPhone.storyboard
-s363638749.106099
-e363638751.392774
+s363726208.437617
+e363726211.241292
 r1
 xCompileStoryboard
 x/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/en.lproj/MainStoryboard_iPhone.storyboard
 o/* com.apple.ibtool.document.warnings */
 o/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/en.lproj/MainStoryboard_iPhone.storyboard:12: warning: Scene is unreachable due to lack of entry points and does not have an identifier for runtime access via -instantiateViewControllerWithIdentifier:. [9]
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection76"CompileStoryboard PainMe/Resources/en.lproj/MainStoryboard_iPhone.storyboard003b1bddafacb541^e2cb64dfafacb541^-319"/* com.apple.ibtool.document.warnings *//Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/en.lproj/MainStoryboard_iPhone.storyboard:12: warning: Scene is unreachable due to lack of entry points and does not have an identifier for runtime access via -instantiateViewControllerWithIdentifier:. [9]1(21%IDEActivityLogMessage2@146"Scene is unreachable due to lack of entry points and does not have an identifier for runtime access via -instantiateViewControllerWithIdentifier:.-363638751#18446744073709551615#0#-1#-23%DVTTextDocumentLocation3@129"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/en.lproj/MainStoryboard_iPhone.storyboard0000000000000000^11#18446744073709551615#11#18446744073709551615#18446744073709551615#0#25"Unsupported Configuration--0#0#0#-19%DVTDocumentLocation4@129"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/en.lproj/MainStoryboard_iPhone.storyboard0000000000000000^985"CompileStoryboard PainMe/Resources/en.lproj/MainStoryboard_iPhone.storyboard    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv IBSC_MINIMUM_COMPATIBILITY_VERSION 5.1    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    setenv XCODE_DEVELOPER_USR_PATH /Applications/Xcode.app/Contents/Developer/usr/bin/..    /Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/en.lproj/MainStoryboard_iPhone.storyboardc /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/en.lproj/MainStoryboard_iPhone.storyboard --sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.1.sdk36"11174071-9699-469E-A647-1B45323930D5-
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection76"CompileStoryboard PainMe/Resources/en.lproj/MainStoryboard_iPhone.storyboard331b708005aeb541^06653e8305aeb541^-319"/* com.apple.ibtool.document.warnings *//Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/en.lproj/MainStoryboard_iPhone.storyboard:12: warning: Scene is unreachable due to lack of entry points and does not have an identifier for runtime access via -instantiateViewControllerWithIdentifier:. [9]1(21%IDEActivityLogMessage2@146"Scene is unreachable due to lack of entry points and does not have an identifier for runtime access via -instantiateViewControllerWithIdentifier:.-363726211#18446744073709551615#0#-1#-23%DVTTextDocumentLocation3@129"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/en.lproj/MainStoryboard_iPhone.storyboard0000000000000000^11#18446744073709551615#11#18446744073709551615#18446744073709551615#0#25"Unsupported Configuration--0#0#0#-19%DVTDocumentLocation4@129"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/en.lproj/MainStoryboard_iPhone.storyboard0000000000000000^985"CompileStoryboard PainMe/Resources/en.lproj/MainStoryboard_iPhone.storyboard    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv IBSC_MINIMUM_COMPATIBILITY_VERSION 5.1    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    setenv XCODE_DEVELOPER_USR_PATH /Applications/Xcode.app/Contents/Developer/usr/bin/..    /Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/en.lproj/MainStoryboard_iPhone.storyboardc /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/en.lproj/MainStoryboard_iPhone.storyboard --sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.1.sdk36"5436EEA5-EF57-4F9F-9EC9-ED7397AF703A-
 
 CCompileXIB /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.xib
-s363638841.285295
-e363638841.317545
+s363725800.570342
+e363725800.706388
 r1
 xCompileXIB
 x/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.xib
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection141"Compiling /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.xib2e1b4939b0acb541^fc545139b0acb541^---0#0#0#-19%DVTDocumentLocation2@147"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.xib0000000000000000^1020"CompileXIB PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.xib    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 5.1    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    setenv XCODE_DEVELOPER_USR_PATH /Applications/Xcode.app/Contents/Developer/usr/bin/..    /Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/InvoBodySelectionViewControllerViewController.nib /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.xib --sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.1.sdk36"741E1A7B-F2D8-4617-9855-D62D0F5B9734-
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection141"Compiling /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.xib7a1892e803aeb541^c1e2b4e803aeb541^---0#0#0#-19%DVTDocumentLocation2@147"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.xib0000000000000000^1020"CompileXIB PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.xib    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 5.1    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    setenv XCODE_DEVELOPER_USR_PATH /Applications/Xcode.app/Contents/Developer/usr/bin/..    /Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/InvoBodySelectionViewControllerViewController.nib /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.xib --sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.1.sdk36"6C3454B5-ABF6-4A0A-A531-C89868F56085-
 
 CCpResource PainMe/Resources/Icon-72.png build/Debug-iphonesimulator/PainMe.app/Icon-72.png
 s363638751.562491
@@ -8754,6 +8905,114 @@ xCpResource
 xPainMe/Resources/Icon@2x.png
 xbuild/Debug-iphonesimulator/PainMe.app/Icon@2x.png
 lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection55"Copy build/Debug-iphonesimulator/PainMe.app/Icon@2x.pngad4ba5dfafacb541^cb47a6dfafacb541^---0#0#0#-19%DVTDocumentLocation2@121"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/Icon@2x.png000000000080d041^749"CpResource "PainMe/Resources/Icon@2x.png" "build/Debug-iphonesimulator/PainMe.app/Icon@2x.png"    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip "/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/Icon@2x.png" /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app36"4972C8F6-04D4-4325-A66A-C2D9A2BE008F-
+
+CCpResource PainMe/Resources/images/F1.png build/Debug-iphonesimulator/PainMe.app/F1.png
+s363732830.156547
+e363732830.166134
+r1
+xCpResource
+xPainMe/Resources/images/F1.png
+xbuild/Debug-iphonesimulator/PainMe.app/F1.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection50"Copy build/Debug-iphonesimulator/PainMe.app/F1.png7a35285e1faeb541^ce882a5e1faeb541^---0#0#0#-19%DVTDocumentLocation2@116"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/F1.png0000000000000000^742"CpResource PainMe/Resources/images/F1.png build/Debug-iphonesimulator/PainMe.app/F1.png    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/images/F1.png /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app36"B7CC5111-AEEB-4D12-9787-452690AEAACB-
+
+CCpResource PainMe/Resources/images/F1@2x.png build/Debug-iphonesimulator/PainMe.app/F1@2x.png
+s363732830.133929
+e363732830.142510
+r1
+xCpResource
+xPainMe/Resources/images/F1@2x.png
+xbuild/Debug-iphonesimulator/PainMe.app/F1@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection53"Copy build/Debug-iphonesimulator/PainMe.app/F1@2x.png9a5e225e1faeb541^658b245e1faeb541^---0#0#0#-19%DVTDocumentLocation2@119"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/F1@2x.png000000000080d041^757"CpResource "PainMe/Resources/images/F1@2x.png" "build/Debug-iphonesimulator/PainMe.app/F1@2x.png"    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip "/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/images/F1@2x.png" /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app36"7D9EC1BD-5F77-435E-ABBE-2B818B555556-
+
+CCpResource PainMe/Resources/images/F2.png build/Debug-iphonesimulator/PainMe.app/F2.png
+s363732830.157965
+e363732830.166311
+r1
+xCpResource
+xPainMe/Resources/images/F2.png
+xbuild/Debug-iphonesimulator/PainMe.app/F2.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection50"Copy build/Debug-iphonesimulator/PainMe.app/F2.png698a285e1faeb541^f2972a5e1faeb541^---0#0#0#-19%DVTDocumentLocation2@116"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/F2.png0000000000000000^742"CpResource PainMe/Resources/images/F2.png build/Debug-iphonesimulator/PainMe.app/F2.png    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/images/F2.png /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app36"2B3E3A3E-F7DB-4334-A5E0-1AE56808F977-
+
+CCpResource PainMe/Resources/images/F2@2x.png build/Debug-iphonesimulator/PainMe.app/F2@2x.png
+s363732830.135026
+e363732830.142925
+r1
+xCpResource
+xPainMe/Resources/images/F2@2x.png
+xbuild/Debug-iphonesimulator/PainMe.app/F2@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection53"Copy build/Debug-iphonesimulator/PainMe.app/F2@2x.png6ea2225e1faeb541^aa9e245e1faeb541^---0#0#0#-19%DVTDocumentLocation2@119"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/F2@2x.png000000000080d041^757"CpResource "PainMe/Resources/images/F2@2x.png" "build/Debug-iphonesimulator/PainMe.app/F2@2x.png"    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip "/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/images/F2@2x.png" /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app36"C93B7957-03B5-4C1E-A0CB-D0A63ACD5483-
+
+CCpResource PainMe/Resources/images/F3.png build/Debug-iphonesimulator/PainMe.app/F3.png
+s363732830.167397
+e363732830.170857
+r1
+xCpResource
+xPainMe/Resources/images/F3.png
+xbuild/Debug-iphonesimulator/PainMe.app/F3.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection50"Copy build/Debug-iphonesimulator/PainMe.app/F3.png28f02a5e1faeb541^76fc2b5e1faeb541^---0#0#0#-19%DVTDocumentLocation2@116"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/F3.png0000000000000000^742"CpResource PainMe/Resources/images/F3.png build/Debug-iphonesimulator/PainMe.app/F3.png    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/images/F3.png /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app36"2C151F3A-6437-4F3E-BE7A-931CDB8C971A-
+
+CCpResource PainMe/Resources/images/F3@2x.png build/Debug-iphonesimulator/PainMe.app/F3@2x.png
+s363732830.143730
+e363732830.148824
+r1
+xCpResource
+xPainMe/Resources/images/F3@2x.png
+xbuild/Debug-iphonesimulator/PainMe.app/F3@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection53"Copy build/Debug-iphonesimulator/PainMe.app/F3@2x.png7adf245e1faeb541^0437265e1faeb541^---0#0#0#-19%DVTDocumentLocation2@119"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/F3@2x.png000000000080d041^757"CpResource "PainMe/Resources/images/F3@2x.png" "build/Debug-iphonesimulator/PainMe.app/F3@2x.png"    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip "/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/images/F3@2x.png" /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app36"678E1183-5952-4356-9DE8-F154F99E9D87-
+
+CCpResource PainMe/Resources/images/F4.png build/Debug-iphonesimulator/PainMe.app/F4.png
+s363732830.167939
+e363732830.171535
+r1
+xCpResource
+xPainMe/Resources/images/F4.png
+xbuild/Debug-iphonesimulator/PainMe.app/F4.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection50"Copy build/Debug-iphonesimulator/PainMe.app/F4.png490f2b5e1faeb541^86042c5e1faeb541^---0#0#0#-19%DVTDocumentLocation2@116"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/F4.png0000000000000000^742"CpResource PainMe/Resources/images/F4.png build/Debug-iphonesimulator/PainMe.app/F4.png    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/images/F4.png /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app36"C48F232F-FDB8-4E0B-A8C6-C8748A9FBDB0-
+
+CCpResource PainMe/Resources/images/F4@2x.png build/Debug-iphonesimulator/PainMe.app/F4@2x.png
+s363732830.146080
+e363732830.149848
+r1
+xCpResource
+xPainMe/Resources/images/F4@2x.png
+xbuild/Debug-iphonesimulator/PainMe.app/F4@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection53"Copy build/Debug-iphonesimulator/PainMe.app/F4@2x.png1b84255e1faeb541^739d265e1faeb541^---0#0#0#-19%DVTDocumentLocation2@119"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/F4@2x.png000000000080d041^757"CpResource "PainMe/Resources/images/F4@2x.png" "build/Debug-iphonesimulator/PainMe.app/F4@2x.png"    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip "/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/images/F4@2x.png" /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app36"1800F2F4-23DC-4F34-82CF-9ABEA58F3118-
+
+CCpResource PainMe/Resources/images/F5.png build/Debug-iphonesimulator/PainMe.app/F5.png
+s363732830.172172
+e363732830.178323
+r1
+xCpResource
+xPainMe/Resources/images/F5.png
+xbuild/Debug-iphonesimulator/PainMe.app/F5.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection50"Copy build/Debug-iphonesimulator/PainMe.app/F5.png74272c5e1faeb541^a2b22d5e1faeb541^---0#0#0#-19%DVTDocumentLocation2@116"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/F5.png0000000000000000^742"CpResource PainMe/Resources/images/F5.png build/Debug-iphonesimulator/PainMe.app/F5.png    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/images/F5.png /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app36"7D753F25-47B1-4970-B031-DF7860D69644-
+
+CCpResource PainMe/Resources/images/F5@2x.png build/Debug-iphonesimulator/PainMe.app/F5@2x.png
+s363732830.152263
+e363732830.154715
+r1
+xCpResource
+xPainMe/Resources/images/F5@2x.png
+xbuild/Debug-iphonesimulator/PainMe.app/F5@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection53"Copy build/Debug-iphonesimulator/PainMe.app/F5@2x.png5e12275e1faeb541^bb9b275e1faeb541^---0#0#0#-19%DVTDocumentLocation2@119"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/F5@2x.png000000000080d041^757"CpResource "PainMe/Resources/images/F5@2x.png" "build/Debug-iphonesimulator/PainMe.app/F5@2x.png"    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip "/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/images/F5@2x.png" /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app36"D6D1B869-47AD-445C-883B-844A5F2B8794-
+
+CCpResource PainMe/Resources/images/F6.png build/Debug-iphonesimulator/PainMe.app/F6.png
+s363732830.172780
+e363732830.179541
+r1
+xCpResource
+xPainMe/Resources/images/F6.png
+xbuild/Debug-iphonesimulator/PainMe.app/F6.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection50"Copy build/Debug-iphonesimulator/PainMe.app/F6.pngb4002d5e1faeb541^32022e5e1faeb541^---0#0#0#-19%DVTDocumentLocation2@116"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/F6.png0000000000000000^742"CpResource PainMe/Resources/images/F6.png build/Debug-iphonesimulator/PainMe.app/F6.png    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/images/F6.png /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app36"3CD88996-AED8-4636-A849-84951D46A036-
+
+CCpResource PainMe/Resources/images/F6@2x.png build/Debug-iphonesimulator/PainMe.app/F6@2x.png
+s363732830.152970
+e363732830.156754
+r1
+xCpResource
+xPainMe/Resources/images/F6@2x.png
+xbuild/Debug-iphonesimulator/PainMe.app/F6@2x.png
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection53"Copy build/Debug-iphonesimulator/PainMe.app/F6@2x.pngf838275e1faeb541^8d29285e1faeb541^---0#0#0#-19%DVTDocumentLocation2@119"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/F6@2x.png000000000080d041^757"CpResource "PainMe/Resources/images/F6@2x.png" "build/Debug-iphonesimulator/PainMe.app/F6@2x.png"    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip "/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/images/F6@2x.png" /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app36"BF768E41-E712-48BA-895F-BE8379381636-
 
 CCpResource PainMe/Resources/images/body_large_01_1024.png build/Debug-iphonesimulator/PainMe.app/body_large_01_1024.png
 s363638753.973769
@@ -16119,23 +16378,23 @@ o/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/Core Da
 lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection123"DataModelVersionCompile build/Debug-iphonesimulator/PainMe.app/PainMe.momd "PainMe/Resources/Core Data/PainMe.xcdatamodeld"ca176cdaafacb541^b69e5ddbafacb541^-196"/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/Core Data/PainMe.xcdatamodeld/PainMe.xcdatamodel:PainEntry.location: warning: PainEntry.location should have an inverse [2]1(21%IDEActivityLogMessage2@41"PainEntry.location should have an inverse-363638747#18446744073709551615#0#-1#-23%DVTTextDocumentLocation3@139"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/Core%20Data/PainMe.xcdatamodeld/PainMe.xcdatamodel/0000000000000000^18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#0#22"Misconfigured Property--0#0#0#-19%DVTDocumentLocation4@120"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/Core%20Data/PainMe.xcdatamodeld/0000000000000000^902"DataModelVersionCompile build/Debug-iphonesimulator/PainMe.app/PainMe.momd "PainMe/Resources/Core Data/PainMe.xcdatamodeld"    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/usr/bin/momc -XD_MOMC_SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.1.sdk -XD_MOMC_IOS_TARGET_VERSION=5.1 -MOMC_PLATFORMS iphonesimulator -MOMC_PLATFORMS iphoneos -XD_MOMC_TARGET_VERSION=10.6 "/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/Core Data/PainMe.xcdatamodeld" /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/PainMe.momd36"285443DF-325C-4DAF-A45A-D3F06FC4198F-
 
 CGenerateDSYMFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app.dSYM /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/PainMe
-s363706905.866503
-e363706905.904058
+s363795327.191769
+e363795327.241318
 r1
 xGenerateDSYMFile
 x/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app.dSYM
 x/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/PainMe
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection109"Generating /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app.dSYM4fe8dd19baadb541^b16fe719baadb541^---0#0#0#-19%DVTDocumentLocation2@115"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app.dSYM/0000000000000000^676"GenerateDSYMFile build/Debug-iphonesimulator/PainMe.app.dSYM build/Debug-iphonesimulator/PainMe.app/PainMe    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/dsymutil /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/PainMe -o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app.dSYM36"424ADB49-1783-488C-86FA-EB86F0B023F2-
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection109"Generating /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app.dSYM5f27317f13afb541^3fe03d7f13afb541^---0#0#0#-19%DVTDocumentLocation2@115"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app.dSYM/0000000000000000^676"GenerateDSYMFile build/Debug-iphonesimulator/PainMe.app.dSYM build/Debug-iphonesimulator/PainMe.app/PainMe    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/dsymutil /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/PainMe -o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app.dSYM36"8B56A10A-307F-4A1E-A333-A10324F18B40-
 
 CLd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/PainMe normal i386
-s363706905.757316
-e363706905.859784
+s363795327.139451
+e363795327.184777
 r1
 xLd
 x/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/PainMe
 xnormal
 xi386
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection105"Link /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/PainMe27f9c119baadb541^e0bade19baadb541^---0#0#0#--1276"Ld build/Debug-iphonesimulator/PainMe.app/PainMe normal i386    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv MACOSX_DEPLOYMENT_TARGET 10.6    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.1.sdk -L/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator -F/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator -filelist /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/PainMe.LinkFileList -mmacosx-version-min=10.6 -Xlinker -objc_abi_version -Xlinker 2 -fobjc-arc -Xlinker -no_implicit_dylibs -D__IPHONE_OS_VERSION_MIN_REQUIRED=50100 -framework QuartzCore -framework UIKit -framework Foundation -framework CoreGraphics -framework CoreData -o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/PainMe36"4E07E4F6-1EFF-4648-A47E-5690A3013C25-
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection105"Link /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/PainMee7c7237f13afb541^f1642f7f13afb541^---0#0#0#--1276"Ld build/Debug-iphonesimulator/PainMe.app/PainMe normal i386    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv MACOSX_DEPLOYMENT_TARGET 10.6    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.1.sdk -L/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator -F/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator -filelist /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/Objects-normal/i386/PainMe.LinkFileList -mmacosx-version-min=10.6 -Xlinker -objc_abi_version -Xlinker 2 -fobjc-arc -Xlinker -no_implicit_dylibs -D__IPHONE_OS_VERSION_MIN_REQUIRED=50100 -framework QuartzCore -framework UIKit -framework Foundation -framework CoreGraphics -framework CoreData -o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/PainMe36"FCA3EDA2-B375-41C9-B2A3-185005D1979E-
 
 CProcessInfoPlistFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app/Info.plist PainMe/Resources/PainMe-Info.plist
 s363638746.404761
@@ -16163,10 +16422,10 @@ xcom.apple.compilers.llvm.clang.1_0.compiler
 lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection51"Precompile PainMe/Classes/Helpers/PainMe-Prefix.pcha1476cdaafacb541^da7004dcafacb541^---0#0#0#-19%DVTDocumentLocation2@111"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Helpers/PainMe-Prefix.pch0000000000000000^3415"ProcessPCH /var/folders/32/bywrtr0125q2lllcgflsttq40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/PainMe-Prefix-ecgazekxpqrwpcdioefrltdevhlq/PainMe-Prefix.pch.pth PainMe/Classes/Helpers/PainMe-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c-header -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-sign-compare -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.1.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -mmacosx-version-min=10.6 -g -Wno-conversion -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -D__IPHONE_OS_VERSION_MIN_REQUIRED=50100 -iquote /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-generated-files.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-own-target-headers.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-all-target-headers.hmap -iquote /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/PainMe-project-headers.hmap -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/include -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/DerivedSources/i386 -I/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphonesimulator/PainMe.build/DerivedSources -F/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator --serialize-diagnostics /var/folders/32/bywrtr0125q2lllcgflsttq40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/PainMe-Prefix-ecgazekxpqrwpcdioefrltdevhlq/PainMe-Prefix.pch.dia -c /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Helpers/PainMe-Prefix.pch -o /var/folders/32/bywrtr0125q2lllcgflsttq40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/PainMe-Prefix-ecgazekxpqrwpcdioefrltdevhlq/PainMe-Prefix.pch.pth -MMD -MT dependencies -MF /var/folders/32/bywrtr0125q2lllcgflsttq40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/PainMe-Prefix-ecgazekxpqrwpcdioefrltdevhlq/PainMe-Prefix.pch.d36"01207B15-2968-4560-98C3-8E1BC3799E46-
 
 CTouch /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app
-s363706906.573954
-e363706906.582993
+s363795328.200062
+e363795328.207106
 r1
 xTouch
 x/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection99"Touch /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.appaf0b931abaadb541^a052951abaadb541^---0#0#0#--418"Touch build/Debug-iphonesimulator/PainMe.app    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/touch -c /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app36"5098C9D5-5C1E-4054-945C-E854942E894C-
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection99"Touch /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app3d48338013afb541^df8c368013afb541^---0#0#0#--418"Touch build/Debug-iphonesimulator/PainMe.app    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/touch -c /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphonesimulator/PainMe.app36"6A924F3C-DEE4-41B1-B134-3F5787C7CA9C-
 

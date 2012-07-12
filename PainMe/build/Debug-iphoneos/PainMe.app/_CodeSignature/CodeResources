@@ -4,6 +4,54 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>F1.png</key>
+		<data>
+		5WyFbtsglESgJgREGaFAZGOTGvw=
+		</data>
+		<key>F1@2x.png</key>
+		<data>
+		1TlmpK3XoU8Y90b8J3GeM5dfF+Q=
+		</data>
+		<key>F2.png</key>
+		<data>
+		43eiq26nBtl6l1+EWBEDl+6rAy8=
+		</data>
+		<key>F2@2x.png</key>
+		<data>
+		Lh4nEmWqZAp25L+u3JlQUJTK/tc=
+		</data>
+		<key>F3.png</key>
+		<data>
+		/V7pmjLkxap1NWYeHzf61bbU24Y=
+		</data>
+		<key>F3@2x.png</key>
+		<data>
+		4xk3kB9x1+n09pzfvqGWG+Uo87s=
+		</data>
+		<key>F4.png</key>
+		<data>
+		hnqQmwVye0paTAnFxiKVXNp29lM=
+		</data>
+		<key>F4@2x.png</key>
+		<data>
+		NJ4FocogZKHTPSSdSvbxxknp7xE=
+		</data>
+		<key>F5.png</key>
+		<data>
+		N4FTvq2Z2mUAqvPNNipXJNm6ylY=
+		</data>
+		<key>F5@2x.png</key>
+		<data>
+		le6DhnBhVySuz6Yddxb3Y+C3Wfc=
+		</data>
+		<key>F6.png</key>
+		<data>
+		lyCJ5U1RlfKHuyaq+G8AUReP1Mk=
+		</data>
+		<key>F6@2x.png</key>
+		<data>
+		wPdxtDRqbao9F3CRVG2h+oWSgjY=
+		</data>
 		<key>Icon-72.png</key>
 		<data>
 		FtCLR+nyF2BKfYfJOFqBI5xYtm4=
@@ -34,7 +82,7 @@
 		</data>
 		<key>InvoBodySelectionViewControllerViewController.nib</key>
 		<data>
-		9A7N2ikx+2AMPuNpWzFprZbrCcQ=
+		clFUB+uvZwbgViIO9BVSRV3W9eM=
 		</data>
 		<key>PainMe.momd/1.0.mom</key>
 		<data>
@@ -3342,15 +3390,15 @@
 		</data>
 		<key>en.lproj/MainStoryboard_iPhone.storyboardc/UIViewController-3.nib</key>
 		<data>
-		j/q41YShc8it1OKm7E+DOSHX72g=
+		My8cWSAj5wliwP8//3lxAYjQyK0=
 		</data>
-		<key>en.lproj/MainStoryboard_iPhone.storyboardc/Yo3-Z7-ePf-view-OmR-Y8-i2j.nib</key>
+		<key>en.lproj/MainStoryboard_iPhone.storyboardc/Yo3-Z7-ePf-view-81h-8G-V63.nib</key>
 		<data>
-		WLFjYnXiNLIErHJq8lGgTClwPMY=
+		ouSgrlZGfFZ7L0Jpwsye0wDn8HY=
 		</data>
 		<key>zoomed_out_body.png</key>
 		<data>
-		QMNho8ioeA5Kkb9AFjzXWF0BXHA=
+		aWd7fbAiomVCf8G8qFmTnhE4piI=
 		</data>
 	</dict>
 	<key>rules</key>

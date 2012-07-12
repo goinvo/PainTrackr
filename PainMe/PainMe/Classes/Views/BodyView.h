@@ -17,7 +17,7 @@
 
 @interface BodyView : UIView{
 
-    BOOL notdrawn; 
+   
 }
 
 
