@@ -32,6 +32,19 @@
        //UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
        //InvoBodySelectionViewControllerViewController *controller = (InvoBodySelectionViewControllerViewController *)navigationController.topViewController;
    }
+    
+    NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainLocation" inManagedObjectContext:self.managedObjectContext];
+    
+    NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
+    [fetReq setEntity:descript];
+    [fetReq setResultType:NSDictionaryResultType];
+    
+    NSError *error;
+    NSArray *CrDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
+    NSLog(@"value in COreData PainEntry is %@", CrDta);
+    
+    
+    
     return YES;
 }
 							

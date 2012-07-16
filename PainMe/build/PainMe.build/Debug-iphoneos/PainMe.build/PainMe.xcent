@@ -3,12 +3,12 @@
 <plist version="1.0">
 <dict>
 	<key>application-identifier</key>
-	<string>B99624GP32.Involution-Studios.PainMe</string>
+	<string>B99624GP32.com.InvoStudios.PainMe</string>
 	<key>get-task-allow</key>
 	<true/>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>B99624GP32.Involution-Studios.PainMe</string>
+		<string>B99624GP32.com.InvoStudios.PainMe</string>
 	</array>
 </dict>
 </plist>

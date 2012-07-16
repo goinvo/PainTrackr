@@ -17,42 +17,30 @@
 @dynamic timestamp;
 @dynamic location;
 
-+(PainEntry *)painEntryWithTime:(NSDate *)time Location:(NSData *)location PainLevel:(int16_t)level ExtraNotes:(NSString *)extraNotes{
++(void)painEntryWithTime:(NSDate *)time Location:(UIBezierPath *)location PainLevel:(int16_t)level ExtraNotes:(NSString *)extraNotes{
 
-    PainEntry *entryFound;
+    PainEntry *newEntry;
    
     InvoAppDelegate *appDel = (InvoAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     NSManagedObjectContext *mangObjContext = [appDel managedObjectContext];
+            
+    newEntry = (PainEntry *)[NSEntityDescription insertNewObjectForEntityForName:@"PainEntry" inManagedObjectContext:mangObjContext];
     
-    NSEntityDescription *entDesc = [NSEntityDescription entityForName:@"PainEntry" inManagedObjectContext:mangObjContext];
+    newEntry.painLevel = level;
+    newEntry.notes = extraNotes;
+    newEntry.timestamp = [time timeIntervalSinceNow];
     
-    NSFetchRequest *req = [[NSFetchRequest alloc] init];
-    [req setEntity:entDesc];
-    
-//    NSPredicate *pred = [NSPredicate predicateWithFormat:@"location == %@", location];
-//    
-//    [req setPredicate:pred];
-    
-    NSError *error = nil;
-    NSArray *resultArray = [mangObjContext executeFetchRequest:req error:&error];
-    
-    if (error) {
-        NSLog(@"Fetch req had an error :%@",[error localizedDescription]);
-    }
-    if (resultArray && [resultArray count]>0) {
-        entryFound = [resultArray objectAtIndex:0];
-    }
-    else {
-        entryFound = (PainEntry *)[NSEntityDescription insertNewObjectForEntityForName:@"PainEntry" inManagedObjectContext:mangObjContext];
+    PainLocation *newPainLoc = (PainLocation *)[NSEntityDescription insertNewObjectForEntityForName:@"PainLocation" inManagedObjectContext:mangObjContext];
+   
+    newPainLoc.zoomLevel = 1;
+    newPainLoc.name = @"Belly Button";
+    newPainLoc.shape = location;
+                                    
         
-        //entryFound.location = location;
-        //entryFound.timestamp = time;
-        entryFound.painLevel = level;
-        entryFound.notes = extraNotes;
-        [appDel saveContext];
-    }
+    [appDel saveContext];
+//    }
     
-    return entryFound;
+ //   return entryFound;
 }
 @end
