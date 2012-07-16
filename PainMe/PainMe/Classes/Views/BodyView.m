@@ -75,7 +75,6 @@
     self.pathShape.lineJoinStyle = kCGLineJoinRound;
     
     self.shapeFillColor = fillColor;
-//    [self.pathShape applyTransform:CGAffineTransformMakeScale(1024, 1024)];
    
     [self setNeedsDisplayInRect:[self.pathShape bounds]];
    
@@ -101,13 +100,21 @@
             UIImage *tile = [self tileAtCol:col row:row withScale:scale];
             
             if (tile) {
-                CGRect tileRect = CGRectMake(tileSize.width * col, 
-                                             tileSize.height * row,
-                                             tileSize.width, tileSize.height);
+                
+                CGRect tileRect;
+                  
+                tileRect = CGRectMake(tileSize.width * col, 
+                                          tileSize.height * row,
+                                          tileSize.width, tileSize.height);    
                 
                 tileRect = CGRectIntersection(self.bounds, tileRect);
                 
-                [tile drawInRect:tileRect];
+//                if (scale<0.25) {
+//                    [tile drawInRect:CGRectMake(tileRect.origin.x +1024*3, tileRect.origin.y, tileRect.size.width, tileRect.size.height)];  
+//                }
+//                else{
+                    [tile drawInRect:tileRect];
+//                }
                 
                 // Draw a white line around the tile border so 
                 // we can see it
@@ -137,18 +144,6 @@
 {
     int numFrmScale = 256;
     
-//    if (scale == 1.0) {
-//        numFrmScale = 1024;
-//    }
-//    else if (scale == 0.5) {
-//        numFrmScale = 512;
-//    }
-//    else if(scale == 0.25) {
-//        numFrmScale = 256;
-//    }
-//    else {
-//        numFrmScale =0;
-//    }
     
     if (scale <0.25) {
         numFrmScale = 0;
@@ -173,11 +168,9 @@
        }
        else {
            
-           filename = [NSString stringWithFormat:@"body_out_%02d.png", (col+1) + (row) * BODY_TILE_COLUMNS];
+           filename = [NSString stringWithFormat:@"body_slices_%02d.png", (col+1) + (row) * BODY_TILE_COLUMNS];
        }
-       
-
-       
+    
 //       NSLog(@"Body Image name is %@",filename );
        
       NSString *path = [[NSBundle mainBundle] pathForResource: filename ofType: nil];

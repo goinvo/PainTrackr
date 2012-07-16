@@ -69,16 +69,17 @@
     self.scrollView.contentSize = CGSizeMake(BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT );
     self.scrollView.backgroundColor = [UIColor clearColor];
     
-   self.bodyView.frame = CGRectMake(0,0,BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT);
+    self.bodyView.frame = CGRectMake(0,0,BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT);
+    
     self.scrollView.minimumZoomScale = 0.024;
 //    self.scrollView.zoomScale = 0.25;
     self.scrollView.zoomScale = 0.024;
     self.scrollView.maximumZoomScale = 1.0;
     
-    if (self.scrollView.zoomScale < 0.04) {
-        
-        self.scrollView.frame = CGRectMake(70, self.scrollView.frame.origin.y, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
-    }
+//    if (self.scrollView.zoomScale < 0.04) {
+//        
+//        self.scrollView.frame = CGRectMake(70, self.scrollView.frame.origin.y, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+//    }
 
 // Add the Face button View
     
@@ -204,7 +205,7 @@
    
     NSLog(@"Scale is %f",scale);
     
-    
+    /*
     if (self.scrollView.zoomScale < 0.04) {
         
         self.scrollView.frame = CGRectMake(70, self.scrollView.frame.origin.y, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
@@ -212,7 +213,7 @@
     else {
         self.scrollView.frame = CGRectMake(0, self.scrollView.frame.origin.y, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
     }
-     
+     */
     [self.painFace increaseVisibility];
 
 }
@@ -243,7 +244,7 @@
         scrollView.zoomScale = 0.04;
     }
    
-    self.scrollView.frame = CGRectMake(0, self.scrollView.frame.origin.y, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+//    self.scrollView.frame = CGRectMake(0, self.scrollView.frame.origin.y, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
     
     [self.painFace reduceVisibility];
 }
@@ -256,7 +257,6 @@
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
     
-
     return self.bodyView;
 }
 
