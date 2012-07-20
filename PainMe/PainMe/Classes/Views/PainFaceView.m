@@ -19,7 +19,6 @@
 @property (nonatomic, retain)UIView *f6;
 
 
-
 -(void)handleFaceDrag:(UIPanGestureRecognizer *) gestReco;
 -(UIView*)getViewToDragAtTouchLoc:(CGPoint)touchPt;
 
@@ -122,24 +121,24 @@
             NSLog(@"sragging strted");
             
             CGPoint strtTouchLoc = [gestReco locationInView:self];
-            NSLog(@"Strt drag loc is %@", NSStringFromCGPoint(strtTouchLoc));
+//            NSLog(@"Strt drag loc is %@", NSStringFromCGPoint(strtTouchLoc));
             
             self.viewToDrag = [self getViewToDragAtTouchLoc:strtTouchLoc];
         }
         
         if (gestReco.state== UIGestureRecognizerStateChanged) {
             
-            NSLog(@"view State changed");
+//            NSLog(@"view State changed");
             
             if (self.viewToDrag) {
                 newPoint = [gestReco translationInView:self];
-                NSLog(@"new Point is %@", NSStringFromCGPoint(newPoint));
+  //              NSLog(@"new Point is %@", NSStringFromCGPoint(newPoint));
                 
-                NSLog(@"view to drag curr frame origin is %@",NSStringFromCGPoint(self.viewToDrag.frame.origin));
+//                NSLog(@"view to drag curr frame origin is %@",NSStringFromCGPoint(self.viewToDrag.frame.origin));
                 
                 CGPoint newFacePt = CGPointMake(self.viewToDrag.frame.origin.x + newPoint.x, self.viewToDrag.frame.origin.y +newPoint.y);
   
-                NSLog(@"newFacePt is %@", NSStringFromCGPoint(newFacePt));
+//                NSLog(@"newFacePt is %@", NSStringFromCGPoint(newFacePt));
                 
                 [self.viewToDrag setFrame:CGRectMake(newFacePt.x, newFacePt.y, self.viewToDrag.frame.size.width, self.viewToDrag.frame.size.height)];
             
@@ -151,7 +150,7 @@
         if(gestReco.state == UIGestureRecognizerStateEnded){
             
             CGPoint endTouchLoc = [gestReco locationInView:[gestReco view]];
-            NSLog(@"end drag loc is %@", NSStringFromCGPoint(endTouchLoc));
+//            NSLog(@"end drag loc is %@", NSStringFromCGPoint(endTouchLoc));
             NSLog(@"sragging ended");
             
             if (self.viewToDrag) {
@@ -174,7 +173,7 @@
     
     for (UIView *view in self.subviews) {
 
-        NSLog(@"view frame is %@", NSStringFromCGRect(view.frame));
+//        NSLog(@"view frame is %@", NSStringFromCGRect(view.frame));
 
         if (CGRectContainsPoint(view.frame, touchPt)) {
             return view;

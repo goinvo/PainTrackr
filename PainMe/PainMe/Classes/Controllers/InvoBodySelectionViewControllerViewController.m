@@ -65,22 +65,18 @@
     // Do any additional setup after loading the view from its nib.
     
     bodyOffset = CGPointZero;
-
+    
     self.scrollView.contentSize = CGSizeMake(BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT );
+    
     self.scrollView.backgroundColor = [UIColor clearColor];
     
-    self.bodyView.frame = CGRectMake(0,0,BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT);
+    self.bodyView.frame = CGRectMake(70,0,BODY_VIEW_WIDTH*1.17, BODY_VIEW_HEIGHT);
     
+    NSLog(@"bodyview frame is %@", NSStringFromCGRect(self.bodyView.frame));
     self.scrollView.minimumZoomScale = 0.024;
-//    self.scrollView.zoomScale = 0.25;
     self.scrollView.zoomScale = 0.024;
     self.scrollView.maximumZoomScale = 1.0;
     
-//    if (self.scrollView.zoomScale < 0.04) {
-//        
-//        self.scrollView.frame = CGRectMake(70, self.scrollView.frame.origin.y, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
-//    }
-
 // Add the Face button View
     
     self.painFace = [[PainFaceView alloc] init];
@@ -121,17 +117,6 @@
     
     NSLog(@"The point with Respect to Global body Coordinates is x:%f y:%f",bodyOffset.x,bodyOffset.y);
 
-// Point is inside the Belly circle  
-/*
-    if (YES == [self.bodyGeometry containsPoint:bodyOffset]) {
-        
-        [self.bodyView renderPainForBodyPartPath:self.bodyGeometry.bezierPath];
-        
-        // create new pain entry
-        // bring up buttons for pain entry
-        // set new pain entry to instance variable
-    }
-  */  
 }
 
 -(int)tileAtTouchLocation:(CGPoint)touchPt{
@@ -205,15 +190,6 @@
    
     NSLog(@"Scale is %f",scale);
     
-    /*
-    if (self.scrollView.zoomScale < 0.04) {
-        
-        self.scrollView.frame = CGRectMake(70, self.scrollView.frame.origin.y, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
-    }
-    else {
-        self.scrollView.frame = CGRectMake(0, self.scrollView.frame.origin.y, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
-    }
-     */
     [self.painFace increaseVisibility];
 
 }
@@ -239,12 +215,6 @@
 - (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view {
    
      NSLog(@"Scale while beginning zooming is %f",scrollView.zoomScale);
-
-    if (scrollView.zoomScale <=0.04  ) {
-        scrollView.zoomScale = 0.04;
-    }
-   
-//    self.scrollView.frame = CGRectMake(0, self.scrollView.frame.origin.y, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
     
     [self.painFace reduceVisibility];
 }
@@ -256,6 +226,8 @@
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    
+    NSLog(@"bodyview frame is %@", NSStringFromCGRect(self.bodyView.frame));
     
     return self.bodyView;
 }
@@ -272,7 +244,7 @@
 
     NSLog(@"conv point is %@", NSStringFromCGPoint(convPoint));
 
-    convPoint = CGPointMake(convPoint.x/(BODY_VIEW_WIDTH*self.scrollView.zoomScale),convPoint.y/( BODY_VIEW_HEIGHT*self.scrollView.zoomScale));
+    convPoint = CGPointMake((convPoint.x -70)/(BODY_VIEW_WIDTH*self.scrollView.zoomScale),convPoint.y/( BODY_VIEW_HEIGHT*self.scrollView.zoomScale));
 
 // Point is inside the Belly circle  
 

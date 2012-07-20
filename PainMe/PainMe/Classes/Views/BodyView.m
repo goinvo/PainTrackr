@@ -51,10 +51,9 @@
    CATiledLayer *tiledLayer = (CATiledLayer *) self.layer;
    
    //CGFloat scale = [UIScreen mainScreen].scale;
-   tiledLayer.tileSize = CGSizeMake(BODY_TILE_SIZE, BODY_TILE_SIZE);
+    tiledLayer.tileSize = CGSizeMake(BODY_TILE_SIZE, BODY_TILE_SIZE);
    
-      
-    tiledLayer.levelsOfDetail = 4;
+    tiledLayer.levelsOfDetail = 6;
 //    tiledLayer.levelsOfDetailBias = 1;
     
    self.contentScaleFactor = 1.0;
@@ -77,6 +76,8 @@
     self.shapeFillColor = fillColor;
    
     [self setNeedsDisplayInRect:[self.pathShape bounds]];
+    
+    NSLog(@"path bounds are %@", NSStringFromCGRect([self.pathShape bounds]));
    
 }
 
@@ -84,7 +85,7 @@
         
  	CGContextRef context = UIGraphicsGetCurrentContext();
    
-   CGSize tileSize = (CGSize){BODY_TILE_SIZE, BODY_TILE_SIZE};
+    CGSize tileSize = (CGSize){BODY_TILE_SIZE, BODY_TILE_SIZE};
    
     CGFloat scale = CGContextGetCTM(context).a;
   
@@ -109,12 +110,7 @@
                 
                 tileRect = CGRectIntersection(self.bounds, tileRect);
                 
-//                if (scale<0.25) {
-//                    [tile drawInRect:CGRectMake(tileRect.origin.x +1024*3, tileRect.origin.y, tileRect.size.width, tileRect.size.height)];  
-//                }
-//                else{
-                    [tile drawInRect:tileRect];
-//                }
+                [tile drawInRect:tileRect];
                 
                 // Draw a white line around the tile border so 
                 // we can see it
@@ -130,6 +126,10 @@
     }
     // iterate over pain entries
     // if pain entry's body part is inside rect, draw it
+    
+    NSDate *date =[[NSDate alloc] init];
+    NSLog(@"Bezier path start %@",[NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterFullStyle]);
+    
     if (self.pathShape) {
         
         [[UIColor blackColor] setStroke];
@@ -137,7 +137,10 @@
         
         [self.pathShape fill];
         [self.pathShape stroke];
+        
+        NSLog(@"Bezier end %lf",[[[NSDate alloc] init] timeIntervalSinceDate:date]);
     }
+    
 }
 
 - (UIImage*)tileAtCol:(int)col row:(int)row withScale:(CGFloat)scale
@@ -145,10 +148,10 @@
     int numFrmScale = 256;
     
     
-    if (scale <0.25) {
+    if (scale <0.0625) {
         numFrmScale = 0;
     }
-    else if (scale >=0.25 && scale <0.5) {
+    else if (scale >=0.0625 && scale <0.5) {
         numFrmScale = 256;
     }
     else if (scale >=0.5 && scale <0.9) {

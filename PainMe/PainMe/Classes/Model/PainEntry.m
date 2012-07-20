@@ -8,7 +8,9 @@
 
 #import "PainEntry.h"
 #import "PainLocation.h"
-#import "InvoAppDelegate.h"
+//#import "InvoAppDelegate.h"
+
+#import "InvoDataManager.h"
 
 @implementation PainEntry
 
@@ -21,24 +23,27 @@
 
     PainEntry *newEntry;
    
-    InvoAppDelegate *appDel = (InvoAppDelegate *)[[UIApplication sharedApplication] delegate];
+  //  InvoAppDelegate *appDel = (InvoAppDelegate *)[[UIApplication sharedApplication] delegate];
+    InvoDataManager *dataManager = [InvoDataManager sharedDataManager];
     
-    NSManagedObjectContext *mangObjContext = [appDel managedObjectContext];
+    
+    NSManagedObjectContext *mangObjContext = [dataManager managedObjectContext];
             
     newEntry = (PainEntry *)[NSEntityDescription insertNewObjectForEntityForName:@"PainEntry" inManagedObjectContext:mangObjContext];
     
     newEntry.painLevel = level;
     newEntry.notes = extraNotes;
-    newEntry.timestamp = [time timeIntervalSinceNow];
+
+    NSLog(@"Time stamp is %lf",[time timeIntervalSinceNow]) ;
+    newEntry.timestamp = [time timeIntervalSinceReferenceDate];
     
     PainLocation *newPainLoc = (PainLocation *)[NSEntityDescription insertNewObjectForEntityForName:@"PainLocation" inManagedObjectContext:mangObjContext];
    
     newPainLoc.zoomLevel = 1;
     newPainLoc.name = @"Belly Button";
     newPainLoc.shape = location;
-                                    
         
-    [appDel saveContext];
+    [dataManager saveContext];
 //    }
     
  //   return entryFound;
