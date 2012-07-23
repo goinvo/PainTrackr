@@ -144,13 +144,15 @@
             
                 [gestReco setTranslation:CGPointZero inView:self];
                 newFacePt = CGPointZero;
+                
+                [delegate changeStrokeWithPoint:[gestReco locationInView:[gestReco view]] painLvl:self.viewToDrag.tag];
             }
         }
         
         if(gestReco.state == UIGestureRecognizerStateEnded){
             
             CGPoint endTouchLoc = [gestReco locationInView:[gestReco view]];
-//            NSLog(@"end drag loc is %@", NSStringFromCGPoint(endTouchLoc));
+
             NSLog(@"sragging ended");
             
             if (self.viewToDrag) {
@@ -160,6 +162,7 @@
                 [self putBackPainFace:self.viewToDrag];
                 self.viewToDrag = nil;
 
+                [delegate blackStrokeForBody];
             }
         }  
     }

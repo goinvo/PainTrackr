@@ -23,6 +23,10 @@ kFaceTags;
 
 -(void)checkForBodyIntersectionWithLocalPoint:(CGPoint)locPoint AndPainLvl:(int)painLvl;
 
+-(void)changeStrokeWithPoint:(CGPoint)dragPoint painLvl:(int)painLvl;
+
+-(void)blackStrokeForBody;
+
 @end
 
 @interface PainFaceView : UIView<UIGestureRecognizerDelegate>

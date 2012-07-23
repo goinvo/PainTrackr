@@ -23,12 +23,14 @@
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet BodyView *bodyView;
 @property (nonatomic, retain) UITapGestureRecognizer *tapGesture;
-//@property (nonatomic, retain) BodyPartView *bodyPartView;
+
+
 @property (nonatomic, retain) BodyPartGeometry *bodyGeometry;
 @property (nonatomic, retain) PainFaceView *painFace;
 
 -(void)initTapGesture;
 -(int)tileAtTouchLocation:(CGPoint)touchPt;
+-(UIColor *)colorfromPain:(int)painLvl;
 
 @end
 
@@ -70,7 +72,7 @@
     
     self.scrollView.backgroundColor = [UIColor clearColor];
     
-    self.bodyView.frame = CGRectMake(70,0,BODY_VIEW_WIDTH*1.17, BODY_VIEW_HEIGHT);
+    self.bodyView.frame = CGRectMake(70,0,BODY_VIEW_WIDTH *1.17, BODY_VIEW_HEIGHT);
     
     NSLog(@"bodyview frame is %@", NSStringFromCGRect(self.bodyView.frame));
     self.scrollView.minimumZoomScale = 0.024;
@@ -249,40 +251,79 @@
 // Point is inside the Belly circle  
 
     if (YES == [self.bodyGeometry containsPoint:convPoint]) {
-        
-        UIColor *colorToFill;
-        
-        switch (painLvl) {
-            case 1:
-                colorToFill = [UIColor colorWithRed:1.00f green:0.89f blue:0.70f alpha:0.9f];
-                break;
-            case 2:
-                colorToFill = [UIColor colorWithRed:0.99f green:0.71f blue:0.51f alpha:0.9f];               
-                break;
-            case 3:
-                colorToFill = [UIColor colorWithRed:0.98f green:0.57f blue:0.26f alpha:0.9f];
-                break;
-            case 4:
-                colorToFill = [UIColor colorWithRed:0.92 green:0.41 blue:0.42 alpha:0.9f];
-                break;
-            case 5:
-                colorToFill = [UIColor colorWithRed:0.95 green:0.15 blue:0.21 alpha:0.9f];
-                break;
-            case 6:
-                colorToFill = [UIColor colorWithRed:0.8 green:0.15 blue:0.24 alpha:0.9f];
-                break;
                 
-            default:
-                break;
-        }
+        UIColor *fillcolor = [self colorfromPain:painLvl];
     
-        [self.bodyView renderPainForBodyPartPath:self.bodyGeometry.bezierPath WithColor:colorToFill];
+        [self.bodyView renderPainForBodyPartPath:self.bodyGeometry.bezierPath WithColor:fillcolor];
         
         NSDate *now = [[NSDate alloc] init];
         
         [PainEntry painEntryWithTime:now Location:self.bodyGeometry.bezierPath  PainLevel:painLvl ExtraNotes:@"NewEntry"];
+        
+        fillcolor = nil;
+        now = nil;
     }
    
+}
+
+-(void)changeStrokeWithPoint:(CGPoint)dragPoint painLvl:(int)painLvl{
+
+    CGPoint convPoint = CGPointZero;
+    
+    convPoint = [self.view convertPoint:dragPoint toView:self.scrollView];
+    
+    NSLog(@"conv point is %@", NSStringFromCGPoint(convPoint));
+    
+    convPoint = CGPointMake((convPoint.x -70)/(BODY_VIEW_WIDTH*self.scrollView.zoomScale),convPoint.y/( BODY_VIEW_HEIGHT*self.scrollView.zoomScale));
+    
+    if (YES == [self.bodyGeometry containsPoint:convPoint] ) {
+    
+         UIColor *fillcolor = [self colorfromPain:painLvl];
+        
+        [self.bodyView maskWithColor:fillcolor];
+        
+     }
+
+}
+
+-(void)blackStrokeForBody{
+
+    [self.bodyView resetStroke];
+}
+
+#pragma mark -
+
+#pragma mark color From pain Level
+
+-(UIColor *)colorfromPain:(int)painLvl{
+
+    UIColor *colorToFill;
+    
+    switch (painLvl) {
+        case 1:
+            colorToFill = [UIColor colorWithRed:1.00f green:0.89f blue:0.70f alpha:0.9f];
+            break;
+        case 2:
+            colorToFill = [UIColor colorWithRed:0.99f green:0.71f blue:0.51f alpha:0.9f];               
+            break;
+        case 3:
+            colorToFill = [UIColor colorWithRed:0.98f green:0.57f blue:0.26f alpha:0.9f];
+            break;
+        case 4:
+            colorToFill = [UIColor colorWithRed:0.92 green:0.41 blue:0.42 alpha:0.9f];
+            break;
+        case 5:
+            colorToFill = [UIColor colorWithRed:0.95 green:0.15 blue:0.21 alpha:0.9f];
+            break;
+        case 6:
+            colorToFill = [UIColor colorWithRed:0.8 green:0.15 blue:0.24 alpha:0.9f];
+            break;
+            
+        default:
+            break;
+    }
+
+    return colorToFill;
 }
 
 #pragma mark -

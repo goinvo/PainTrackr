@@ -15,7 +15,6 @@
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 
 
-
 +(InvoDataManager *)sharedDataManager{
 
     static InvoDataManager *instance = nil;

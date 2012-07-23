@@ -90,6 +90,8 @@
        _points[38] = CGPointMake(numToAddX +(68/NUM_TO_DIVIDEX), numToAddY +(456/NUM_TO_DIVIDEY));
        _points[39] = CGPointMake(numToAddX +(10/NUM_TO_DIVIDEX), numToAddY +(448/NUM_TO_DIVIDEY));
        
+       [self bezierPath];
+       
          }
    return self;
 }

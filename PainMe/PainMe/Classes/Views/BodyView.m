@@ -15,12 +15,27 @@
 }
 @property (nonatomic, retain) UIBezierPath *pathShape;
 @property (nonatomic, retain) UIColor *shapeFillColor;
+
+@property (nonatomic, retain) UIColor *bodyStrokeColor;
+@property (nonatomic, readwrite) BOOL isMask;
+@property (nonatomic, readwrite ) BOOL isNewStroke;
+
+//+(CGColorSpaceRef)genericRGBSpace;
+//+(CGColorRef)redColor;
+//+(CGColorRef)blueColor;
+
++ (UIImage *)imageToMask:(UIImage *)image Withcolor:(UIColor *)color;
+
 @end
 
 @implementation BodyView
 
 @synthesize pathShape = _pathShape;
 @synthesize shapeFillColor = _shapeFillColor;
+
+@synthesize bodyStrokeColor = _bodyStrokeColor;
+@synthesize isMask = _isMask;
+@synthesize isNewStroke = _isNewStroke;
 
 
 +(Class)layerClass
@@ -38,6 +53,36 @@
 }
 
 /*
++(CGColorSpaceRef)genericRGBSpace;{
+
+    static CGColorSpaceRef space = NULL;
+    if (space == NULL) {
+        space = CGColorSpaceCreateDeviceRGB();
+    }
+    return space;
+}
+
++(CGColorRef)redColor;{
+
+    static CGColorRef red = NULL;
+    if (red == NULL) {
+        CGFloat values[4] = {1.0,0.0,0.0,1.0};
+        red = CGColorCreate([self genericRGBSpace], values);
+    }
+    return red;
+}
+
++(CGColorRef)blueColor;{
+    
+    static CGColorRef red = NULL;
+    if (red == NULL) {
+        CGFloat values[4] = {0.0,0.0,1.0,1.0};
+        red = CGColorCreate([self genericRGBSpace], values);
+    }
+    return red;
+}
+*/
+/*
 +(CFTimeInterval)fadeDuration{
 
     return 0.0;
@@ -48,19 +93,34 @@
     
     
    [super awakeFromNib];
-   CATiledLayer *tiledLayer = (CATiledLayer *) self.layer;
    
+    CATiledLayer *tiledLayer = (CATiledLayer *) self.layer;
+    
+//    [self setBackgroundColor:[UIColor blueColor]];
+    
    //CGFloat scale = [UIScreen mainScreen].scale;
+    
+     self.contentScaleFactor = 1.0;
+    
     tiledLayer.tileSize = CGSizeMake(BODY_TILE_SIZE, BODY_TILE_SIZE);
    
-    tiledLayer.levelsOfDetail = 6;
-//    tiledLayer.levelsOfDetailBias = 1;
-    
-   self.contentScaleFactor = 1.0;
+    tiledLayer.levelsOfDetail = 5;
+
     
    _imageCache = [[NSCache alloc] init];
    [_imageCache setCountLimit: 5 * 7];
     
+    self.isMask = NO;
+    self.isNewStroke = NO;
+    
+  /*  
+    NSMutableDictionary *newActions = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSNull null],@"onOrderIn",
+                                       [NSNull null], @"onOrderOut",
+                                       [NSNull null], @"sublayers",
+                                       [NSNull null], @"contents",
+                                        nil];
+    tiledLayer.actions = newActions;
+    */
 }
 
 // handle delegate method
@@ -82,12 +142,13 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-        
+            
+    
  	CGContextRef context = UIGraphicsGetCurrentContext();
    
     CGSize tileSize = (CGSize){BODY_TILE_SIZE, BODY_TILE_SIZE};
    
-    CGFloat scale = CGContextGetCTM(context).a;
+    CGFloat scale = CGContextGetCTM(context).a/self.contentScaleFactor;
   
     NSLog(@"Scale in draw is %f",scale);
     
@@ -104,13 +165,26 @@
                 
                 CGRect tileRect;
                   
+//                tileRect = CGRectMake(1024+(tileSize.width * col), 
+//                                          tileSize.height * row,
+//                                          tileSize.width, tileSize.height);  
+                
                 tileRect = CGRectMake(tileSize.width * col, 
-                                          tileSize.height * row,
-                                          tileSize.width, tileSize.height);    
+                                            tileSize.height * row,
+                                            tileSize.width, tileSize.height);
                 
                 tileRect = CGRectIntersection(self.bounds, tileRect);
                 
+                NSLog(@"tile rect is %@",NSStringFromCGRect(tileRect));
+                
+                if(self.isMask){
+                    
+                    tile = [BodyView imageToMask:tile Withcolor:self.bodyStrokeColor];
+                    
+                }
+            
                 [tile drawInRect:tileRect];
+
                 
                 // Draw a white line around the tile border so 
                 // we can see it
@@ -127,26 +201,27 @@
     // iterate over pain entries
     // if pain entry's body part is inside rect, draw it
     
-    NSDate *date =[[NSDate alloc] init];
-    NSLog(@"Bezier path start %@",[NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterFullStyle]);
+//    NSDate *date =[[NSDate alloc] init];
+//    NSLog(@"Bezier path start %@",[NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterFullStyle]);
     
     if (self.pathShape) {
         
-        [[UIColor blackColor] setStroke];
+//        CGContextSetStrokeColorWithColor(context, [BodyView redColor]);
+//        CGContextSetFillColorWithColor(context, [BodyView blueColor]);
+
+        [[UIColor blackColor] setStroke];        
         [self.shapeFillColor setFill];
         
         [self.pathShape fill];
         [self.pathShape stroke];
         
-        NSLog(@"Bezier end %lf",[[[NSDate alloc] init] timeIntervalSinceDate:date]);
+//        NSLog(@"Bezier end %lf",[[[NSDate alloc] init] timeIntervalSinceDate:date]);
     }
-    
 }
 
 - (UIImage*)tileAtCol:(int)col row:(int)row withScale:(CGFloat)scale
 {
     int numFrmScale = 256;
-    
     
     if (scale <0.0625) {
         numFrmScale = 0;
@@ -188,5 +263,50 @@
       return nil;
    }
 }
+
+#pragma mark mask WIth color for stroke of body
+
+-(void)maskWithColor:(UIColor *)maskFillColor{
+
+    if (self.isNewStroke == NO) {
+     
+        self.isMask = YES;
+        self.bodyStrokeColor = maskFillColor;
+        
+        [self setNeedsDisplay];
+    }
+    
+}
+
+-(void)resetStroke{
+
+    self.isMask = NO;
+    self.isNewStroke = NO;
+    
+    [self setNeedsDisplay];
+}
+#pragma mark -
+
+
++ (UIImage *)imageToMask:(UIImage *)image Withcolor:(UIColor *)color
+{
+
+    CGRect rect = CGRectMake(0, 0, image.size.width, image.size.height);
+    
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, image.scale);
+    
+    CGContextRef ctxRef = UIGraphicsGetCurrentContext();
+    
+    [image drawInRect:rect];
+    
+    CGContextSetFillColorWithColor(ctxRef, [color CGColor]);
+    CGContextSetBlendMode(ctxRef, kCGBlendModeSourceAtop);
+    CGContextFillRect(ctxRef, rect);
+    
+    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return result;
+}
+
 
 @end

@@ -1,0 +1,73 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red92\green38\blue153;\red170\green13\blue145;\red28\green0\blue207;
+\red46\green13\blue110;\red100\green56\blue32;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 UIIMage Drawing helper code\
+\
+\
+\pard\tx560\pardeftab560\pardirnatural
+
+\f1\fs22 \cf0 \CocoaLigature0 -(\cf2 UIImage\cf0  *) getImageWithUnsaturatedPixelsOfImage:(\cf2 UIImage\cf0  *)image \{\
+    \cf3 const\cf0  \cf3 int\cf0  RED = \cf4 1\cf0 , GREEN = \cf4 2\cf0 , BLUE = \cf4 3\cf0 ;\
+    \
+    \cf2 CGRect\cf0  imageRect = \cf5 CGRectMake\cf0 (\cf4 0\cf0 , \cf4 0\cf0 , image.\cf2 size\cf0 .\cf2 width\cf0 *\cf4 2\cf0 , image.\cf2 size\cf0 .\cf2 height\cf0 *\cf4 2\cf0 );\
+    \
+    \cf3 int\cf0  width = imageRect.\cf2 size\cf0 .\cf2 width\cf0 , height = imageRect.\cf2 size\cf0 .\cf2 height\cf0 ;\
+    \
+    \cf2 uint32_t\cf0  * pixels = (\cf2 uint32_t\cf0  *) \cf5 malloc\cf0 (width*height*\cf3 sizeof\cf0 (\cf2 uint32_t\cf0 ));\
+    \cf6 memset\cf0 (pixels, \cf4 0\cf0 , width * height * \cf3 sizeof\cf0 (\cf2 uint32_t\cf0 ));\
+    \
+    \cf2 CGColorSpaceRef\cf0  colorSpace = \cf5 CGColorSpaceCreateDeviceRGB\cf0 ();\
+    \cf2 CGContextRef\cf0  context = \cf5 CGBitmapContextCreate\cf0 (pixels, width, height, \cf4 8\cf0 , width * \cf3 sizeof\cf0 (\cf2 uint32_t\cf0 ), colorSpace, \cf5 kCGBitmapByteOrder32Little\cf0  | \cf5 kCGImageAlphaPremultipliedLast\cf0 );\
+    \
+    \cf5 CGContextDrawImage\cf0 (context, \cf5 CGRectMake\cf0 (\cf4 0\cf0 , \cf4 0\cf0 , width, height), [image \cf5 CGImage\cf0 ]);\
+    \
+    \cf3 for\cf0 (\cf3 int\cf0  y = \cf4 0\cf0 ; y < height; y++) \{\
+        \cf3 for\cf0 (\cf3 int\cf0  x = \cf4 0\cf0 ; x < width; x++) \{\
+            \cf2 uint8_t\cf0  * rgbaPixel = (\cf2 uint8_t\cf0  *) &pixels[y*width+x];\
+            \cf2 uint32_t\cf0  gray = (\cf4 0.3\cf0 *rgbaPixel[RED]+\cf4 0.59\cf0 *rgbaPixel[GREEN]+\cf4 0.11\cf0 *rgbaPixel[BLUE]);\
+            \
+            rgbaPixel[RED] = gray;\
+            rgbaPixel[GREEN] = gray;\
+            rgbaPixel[BLUE] = gray;\
+        \}\
+    \}\
+    \
+    \cf2 CGImageRef\cf0  newImage = \cf5 CGBitmapContextCreateImage\cf0 (context);\
+    \
+    \cf5 CGContextRelease\cf0 (context);\
+    \cf5 CGColorSpaceRelease\cf0 (colorSpace);\
+    \cf5 free\cf0 (pixels);\
+    \
+    \cf2 UIImage\cf0  * resultUIImage = [\cf2 UIImage\cf0  \cf5 imageWithCGImage\cf0 :newImage \cf5 scale\cf0 :\cf4 2\cf0  \cf5 orientation\cf0 :\cf4 0\cf0 ];\
+    \cf5 CGImageRelease\cf0 (newImage);\
+    \
+    \cf3 return\cf0  resultUIImage;\
+\}\
+\
+-(\cf2 UIImage\cf0  *) getImageWithTintedColor:(\cf2 UIImage\cf0  *)image withTint:(\cf2 UIColor\cf0  *)color withIntensity:(\cf3 float\cf0 )alpha \{\
+    \cf2 CGSize\cf0  size = image.\cf2 size\cf0 ;\
+    \
+    \cf5 UIGraphicsBeginImageContextWithOptions\cf0 (size, \cf3 FALSE\cf0 , \cf4 2\cf0 );\
+    \cf2 CGContextRef\cf0  context = \cf5 UIGraphicsGetCurrentContext\cf0 ();\
+    \
+    [image \cf5 drawAtPoint\cf0 :\cf2 CGPointZero\cf0  \cf5 blendMode\cf0 :\cf5 kCGBlendModeNormal\cf0  \cf5 alpha\cf0 :\cf4 1.0\cf0 ];\
+    \
+    \cf5 CGContextSetFillColorWithColor\cf0 (context, color.\cf2 CGColor\cf0 );\
+    \cf5 CGContextSetBlendMode\cf0 (context, \cf5 kCGBlendModeOverlay\cf0 );\
+    \cf5 CGContextSetAlpha\cf0 (context, alpha);\
+    \
+    \cf5 CGContextFillRect\cf0 (\cf5 UIGraphicsGetCurrentContext\cf0 (), \cf5 CGRectMake\cf0 (\cf2 CGPointZero\cf0 .\cf2 x\cf0 , \cf2 CGPointZero\cf0 .\cf2 y\cf0 , image.\cf2 size\cf0 .\cf2 width\cf0 , image.\cf2 size\cf0 .\cf2 height\cf0 ));\
+    \
+    \cf2 UIImage\cf0  * tintedImage = \cf5 UIGraphicsGetImageFromCurrentImageContext\cf0 ();\
+    \cf5 UIGraphicsEndImageContext\cf0 ();\
+    \
+    \cf3 return\cf0  tintedImage;\
+\}\
+\
+\
+\
+}
