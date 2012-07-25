@@ -13,7 +13,7 @@
         <relationship name="painEntries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PainEntry" inverseName="location" inverseEntity="PainEntry" syncable="YES"/>
     </entity>
     <elements>
-        <element name="PainEntry" positionX="16" positionY="225" width="128" height="105"/>
-        <element name="PainLocation" positionX="270" positionY="225" width="128" height="105"/>
+        <element name="PainEntry" positionX="-20072" positionY="-5580" width="128" height="105"/>
+        <element name="PainLocation" positionX="-19820" positionY="-5580" width="128" height="105"/>
     </elements>
 </model>

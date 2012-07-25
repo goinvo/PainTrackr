@@ -13,6 +13,6 @@
     </entity>
     <elements>
         <element name="PainEntry" positionX="16" positionY="225" width="128" height="105"/>
-        <element name="PainLocation" positionX="270" positionY="225" width="128" height="90"/>
+        <element name="PainLocation" positionX="259" positionY="243" width="128" height="90"/>
     </elements>
 </model>
