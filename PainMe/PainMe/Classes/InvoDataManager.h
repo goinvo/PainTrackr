@@ -7,12 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CHCSV.h"
+#import "CHCSVParser.h"
 
 @interface InvoDataManager : NSObject
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
+@property (nonatomic,retain) NSMutableArray *parsedComponents;
+@property (nonatomic, retain) NSMutableArray *vertRange;
+@property (nonatomic, retain) NSArray *nwArrVert;
+
+
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;

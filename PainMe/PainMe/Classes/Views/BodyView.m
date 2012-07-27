@@ -137,7 +137,7 @@
    
     [self setNeedsDisplayInRect:[self.pathShape bounds]];
     
-    NSLog(@"path bounds are %@", NSStringFromCGRect([self.pathShape bounds]));
+//    NSLog(@"path bounds are %@", NSStringFromCGRect([self.pathShape bounds]));
    
 }
 
@@ -175,7 +175,7 @@
                 
                 tileRect = CGRectIntersection(self.bounds, tileRect);
                 
-                NSLog(@"tile rect is %@",NSStringFromCGRect(tileRect));
+//                NSLog(@"tile rect is %@",NSStringFromCGRect(tileRect));
                 
                 if(self.isMask){
                     

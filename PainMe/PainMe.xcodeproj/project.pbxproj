@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		7612E21215A1E94500E8E009 /* BodyPartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7612E21115A1E94500E8E009 /* BodyPartView.m */; };
+		762EC62915C1CCBE00250155 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 762EC62215C1CCBE00250155 /* CHCSVParser.m */; };
+		762EC62A15C1CCBE00250155 /* CHCSVWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 762EC62415C1CCBE00250155 /* CHCSVWriter.m */; };
+		762EC62B15C1CCBE00250155 /* NSArray+CHCSVAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 762EC62615C1CCBE00250155 /* NSArray+CHCSVAdditions.m */; };
+		762EC62C15C1CCBE00250155 /* NSString+CHCSVAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 762EC62815C1CCBE00250155 /* NSString+CHCSVAdditions.m */; };
+		762EC64215C1FBB100250155 /* T2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 762EC64115C1FBB100250155 /* T2.csv */; };
 		764FA3C715BD90EB0018EA80 /* body_slices_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 764FA33F15BD90EB0018EA80 /* body_slices_01.png */; };
 		764FA3C815BD90EB0018EA80 /* body_slices_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 764FA34015BD90EB0018EA80 /* body_slices_02.png */; };
 		764FA3C915BD90EB0018EA80 /* body_slices_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 764FA34115BD90EB0018EA80 /* body_slices_03.png */; };
@@ -1164,6 +1169,16 @@
 /* Begin PBXFileReference section */
 		7612E21015A1E94500E8E009 /* BodyPartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodyPartView.h; sourceTree = "<group>"; };
 		7612E21115A1E94500E8E009 /* BodyPartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyPartView.m; sourceTree = "<group>"; };
+		762EC62015C1CCBE00250155 /* CHCSV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSV.h; sourceTree = "<group>"; };
+		762EC62115C1CCBE00250155 /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
+		762EC62215C1CCBE00250155 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
+		762EC62315C1CCBE00250155 /* CHCSVWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVWriter.h; sourceTree = "<group>"; };
+		762EC62415C1CCBE00250155 /* CHCSVWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVWriter.m; sourceTree = "<group>"; };
+		762EC62515C1CCBE00250155 /* NSArray+CHCSVAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CHCSVAdditions.h"; sourceTree = "<group>"; };
+		762EC62615C1CCBE00250155 /* NSArray+CHCSVAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CHCSVAdditions.m"; sourceTree = "<group>"; };
+		762EC62715C1CCBE00250155 /* NSString+CHCSVAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CHCSVAdditions.h"; sourceTree = "<group>"; };
+		762EC62815C1CCBE00250155 /* NSString+CHCSVAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CHCSVAdditions.m"; sourceTree = "<group>"; };
+		762EC64115C1FBB100250155 /* T2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = T2.csv; sourceTree = "<group>"; };
 		764FA33F15BD90EB0018EA80 /* body_slices_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body_slices_01.png; sourceTree = "<group>"; };
 		764FA34015BD90EB0018EA80 /* body_slices_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body_slices_02.png; sourceTree = "<group>"; };
 		764FA34115BD90EB0018EA80 /* body_slices_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body_slices_03.png; sourceTree = "<group>"; };
@@ -2789,6 +2804,22 @@
 			name = Body_Part_1024;
 			sourceTree = "<group>";
 		};
+		762EC61E15C1CC8D00250155 /* CSVParser */ = {
+			isa = PBXGroup;
+			children = (
+				762EC62015C1CCBE00250155 /* CHCSV.h */,
+				762EC62115C1CCBE00250155 /* CHCSVParser.h */,
+				762EC62215C1CCBE00250155 /* CHCSVParser.m */,
+				762EC62315C1CCBE00250155 /* CHCSVWriter.h */,
+				762EC62415C1CCBE00250155 /* CHCSVWriter.m */,
+				762EC62515C1CCBE00250155 /* NSArray+CHCSVAdditions.h */,
+				762EC62615C1CCBE00250155 /* NSArray+CHCSVAdditions.m */,
+				762EC62715C1CCBE00250155 /* NSString+CHCSVAdditions.h */,
+				762EC62815C1CCBE00250155 /* NSString+CHCSVAdditions.m */,
+			);
+			name = CSVParser;
+			sourceTree = "<group>";
+		};
 		7673B54515AE1AE1006112C2 /* PainFaces */ = {
 			isa = PBXGroup;
 			children = (
@@ -3643,6 +3674,7 @@
 		834C1002158F7255000C5652 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				762EC61E15C1CC8D00250155 /* CSVParser */,
 				76AB5DA115B8909000FEB78B /* Singletons */,
 				834C1003158F7255000C5652 /* Controllers */,
 				834C100A158F7255000C5652 /* Helpers */,
@@ -3706,6 +3738,7 @@
 		834C100F158F7255000C5652 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				762EC64115C1FBB100250155 /* T2.csv */,
 				83C43F071598D6F700F401D2 /* images */,
 				76C711D3159A69BD009832BE /* Icons */,
 				834C1010158F7255000C5652 /* Core Data */,
@@ -4926,6 +4959,7 @@
 				76B4AEE415BDE18B003E6210 /* body_large_134_1024.png in Resources */,
 				76B4AEE515BDE18B003E6210 /* body_large_135_1024.png in Resources */,
 				76B4AEE615BDE18B003E6210 /* body_large_136_1024.png in Resources */,
+				762EC64215C1FBB100250155 /* T2.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4973,6 +5007,10 @@
 				7612E21215A1E94500E8E009 /* BodyPartView.m in Sources */,
 				7673B51315ADD7CD006112C2 /* PainFaceView.m in Sources */,
 				76AB5DA515B890E100FEB78B /* InvoDataManager.m in Sources */,
+				762EC62915C1CCBE00250155 /* CHCSVParser.m in Sources */,
+				762EC62A15C1CCBE00250155 /* CHCSVWriter.m in Sources */,
+				762EC62B15C1CCBE00250155 /* NSArray+CHCSVAdditions.m in Sources */,
+				762EC62C15C1CCBE00250155 /* NSString+CHCSVAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

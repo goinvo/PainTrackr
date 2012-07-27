@@ -8,11 +8,56 @@
 
 #import "InvoDataManager.h"
 
+#define NUM_COLUMNS 8.0
+#define NUM_ROWS 17.0
+#define BODY_WIDTH (1024*NUM_COLUMNS)
+#define BODY_HEIGHT (1024*NUM_ROWS)
+
+
+@interface Delegate : NSObject <CHCSVParserDelegate>
+@end
+
+
+@implementation Delegate
+
+- (void) parser:(CHCSVParser *)parser didStartDocument:(NSString *)csvFile {
+    //	NSLog(@"parser started: %@", csvFile);
+}
+- (void) parser:(CHCSVParser *)parser didStartLine:(NSUInteger)lineNumber {
+    //	NSLog(@"Starting line: %lu", lineNumber);
+}
+- (void) parser:(CHCSVParser *)parser didReadField:(NSString *)field {
+    //	NSLog(@"   field: %@", field);
+}
+- (void) parser:(CHCSVParser *)parser didEndLine:(NSUInteger)lineNumber {
+    //	NSLog(@"Ending line: %lu", lineNumber);
+}
+- (void) parser:(CHCSVParser *)parser didEndDocument:(NSString *)csvFile {
+    //	NSLog(@"parser ended: %@", csvFile);
+}
+- (void) parser:(CHCSVParser *)parser didFailWithError:(NSError *)error {
+	NSLog(@"ERROR: %@", error);
+}
+@end
+
+
+@interface InvoDataManager ()
+
+-(void)getVertxPtsFromString:(NSString *)str;
+-(void)fillVertRangeFrom:(NSArray *)rngArr;
+-(BOOL)painLocationsInDatabase;
+@end
+
+
 @implementation InvoDataManager
 
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
+
+@synthesize vertRange = _vertRange;
+@synthesize nwArrVert = _nwArrVert;
+@synthesize parsedComponents = _parsedComponents;
 
 
 +(InvoDataManager *)sharedDataManager{
@@ -53,6 +98,57 @@
     self = [super init];
     if (self) {
         
+        NSLog(@"Beginning...");
+        
+        
+        if (NO == [self painLocationsInDatabase]) {
+            
+            self.parsedComponents = [NSMutableArray array];
+            
+            NSStringEncoding encoding = 0;
+            // NSString *file = @"/Users/DDKarwa/Desktop/tmpCsvParse/Workbook1.csv";
+            NSString *file = [[NSBundle mainBundle] pathForResource:@"T2" ofType:@"csv"];
+            NSInputStream *stream = [NSInputStream inputStreamWithFileAtPath:file];
+            NSError *error = nil;
+            
+            CHCSVParser * p = [[CHCSVParser alloc] initWithStream:stream usedEncoding:&encoding error:&error];
+            
+            NSLog(@"encoding: %@", CFStringGetNameOfEncoding(CFStringConvertNSStringEncodingToEncoding(encoding)));
+            
+            Delegate * d = [[Delegate alloc] init];
+            [p setParserDelegate:d];
+            
+            NSTimeInterval start = [NSDate timeIntervalSinceReferenceDate];
+            [p parse];
+            NSTimeInterval end = [NSDate timeIntervalSinceReferenceDate];
+            
+            NSLog(@"raw difference: %f", (end-start));
+            
+            NSArray *a = [NSArray arrayWithContentsOfCSVFile:file encoding:encoding error:nil];
+  //        NSLog(@"%@", a);
+            
+            NSString *s = [a CSVString];
+            
+            NSArray *newArr = [s CSVComponents];
+            
+  //        NSLog(@" Array is %d",[newArr count]);
+            
+            for (id obj in newArr) {
+                
+                NSArray *rangeArr = [[obj objectAtIndex:2] componentsSeparatedByString:@"|"];
+                
+                [self fillVertRangeFrom:rangeArr];
+                
+                NSString *vert = [obj objectAtIndex:3];
+                
+                [self getVertxPtsFromString:vert];
+                
+            }
+
+        }
+        
+        
+        /*
          NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainEntry" inManagedObjectContext:self.managedObjectContext];
          
          NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
@@ -63,9 +159,60 @@
          NSArray *CrDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
          NSLog(@"value in COreData PainEntry is %@", CrDta);
 
+         */
     }
     return self;
 }
+
+-(void)getVertxPtsFromString:(NSString *)str{
+    
+    self.nwArrVert = [str componentsSeparatedByString:@"|"];
+    
+    /*
+    int coordCount = [self.nwArrVert count];
+    if(coordCount >0){
+        for (int i=0; i<coordCount; i++) {
+            
+//            if (NSLocationInRange(i, )) {
+//                <#statements#>
+//            }
+        }
+    }
+    */
+    
+    for (NSString *tmp in self.nwArrVert) {
+        
+        NSString  *nTmp = [tmp stringByReplacingOccurrencesOfString:@";" withString:@","];
+        NSLog(@" Coordinates are %@", NSStringFromCGPoint(CGPointFromString(nTmp)));
+    }
+     
+}
+
+-(void)fillVertRangeFrom:(NSArray *)rngArr{
+    
+    NSArray *newArr = [rngArr copy];
+    rngArr = nil;
+    
+    self.vertRange =[NSMutableArray array];
+    
+    for (NSString *tmp in newArr) {
+        
+        NSRange range = NSRangeFromString(tmp);
+        
+        NSLog(@"range is %@", NSStringFromRange(range));
+        
+        NSRange rng = [tmp rangeOfString:@">"];
+        NSString *subTmp = [NSString stringWithString:[tmp substringFromIndex:rng.location+1]];
+        
+        subTmp = [subTmp stringByReplacingOccurrencesOfString:@";" withString:@","];
+        
+        NSLog(@"points for range are %@", NSStringFromCGPoint(CGPointFromString(subTmp)));
+        
+        [self.vertRange addObject:NSStringFromCGPoint(CGPointFromString(subTmp))];
+    }
+    
+}
+
 
 #pragma mark - Core Data stack
 
@@ -156,4 +303,31 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
+#pragma mark -
+
+#pragma mark Check If painLocation Database is filled
+
+-(BOOL)painLocationsInDatabase{
+
+    BOOL toReturn = NO;
+    
+    NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainLocation" inManagedObjectContext:self.managedObjectContext];
+    
+    NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
+    [fetReq setEntity:descript];
+    [fetReq setResultType:NSDictionaryResultType];
+    
+    NSError *error;
+    NSArray *crDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
+    
+    if ([crDta count]>0) {
+
+        NSLog(@"value in COreData PainLocation is %@", crDta);
+        toReturn = YES;
+    }
+    
+    return toReturn;
+}
+
+#pragma mark -
 @end

@@ -74,7 +74,7 @@
     
     self.bodyView.frame = CGRectMake(70,0,BODY_VIEW_WIDTH *1.17, BODY_VIEW_HEIGHT);
     
-    NSLog(@"bodyview frame is %@", NSStringFromCGRect(self.bodyView.frame));
+//    NSLog(@"bodyview frame is %@", NSStringFromCGRect(self.bodyView.frame));
     self.scrollView.minimumZoomScale = 0.024;
     self.scrollView.zoomScale = 0.024;
     self.scrollView.maximumZoomScale = 1.0;
@@ -229,7 +229,7 @@
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
     
-    NSLog(@"bodyview frame is %@", NSStringFromCGRect(self.bodyView.frame));
+//    NSLog(@"bodyview frame is %@", NSStringFromCGRect(self.bodyView.frame));
     
     return self.bodyView;
 }
