@@ -26,4 +26,6 @@
 - (NSURL *)applicationDocumentsDirectory;
 
 +(InvoDataManager *)sharedDataManager;
+-(void)listCoordinates;
+-(void)checkPainLocationDataBase;
 @end

@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 ZWorkbench, Inc. All rights reserved.
 //
 
+#import "InvoDataManager.h"
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
@@ -26,5 +27,7 @@
 - (void)addPainEntries:(NSSet *)values;
 - (void)removePainEntries:(NSSet *)values;
 
-//+(void)LocationEntryWithName:(NSString *)locName Shape:(NSData *)shape ZoomLevel:(int16_t)levZoom;
++(void)LocationEntryWithName:(NSString *)locName Shape:(NSData *)shape ZoomLevel:(int16_t)levZoom;
+
++(NSArray *)painLocations;
 @end

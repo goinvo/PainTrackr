@@ -26,7 +26,6 @@
   //  InvoAppDelegate *appDel = (InvoAppDelegate *)[[UIApplication sharedApplication] delegate];
     InvoDataManager *dataManager = [InvoDataManager sharedDataManager];
     
-    
     NSManagedObjectContext *mangObjContext = [dataManager managedObjectContext];
             
     newEntry = (PainEntry *)[NSEntityDescription insertNewObjectForEntityForName:@"PainEntry" inManagedObjectContext:mangObjContext];

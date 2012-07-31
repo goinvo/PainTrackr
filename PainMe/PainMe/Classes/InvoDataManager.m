@@ -7,6 +7,7 @@
 //
 
 #import "InvoDataManager.h"
+#import "PainLocation.h"
 
 #define NUM_COLUMNS 8.0
 #define NUM_ROWS 17.0
@@ -41,15 +42,25 @@
 @end
 
 
-@interface InvoDataManager ()
+@interface InvoDataManager (){
 
--(void)getVertxPtsFromString:(NSString *)str;
--(void)fillVertRangeFrom:(NSArray *)rngArr;
+    CGPoint *_points;
+}
+
+@property (nonatomic, readonly)NSInteger pointCount;
+@property (nonatomic, retain)NSMutableDictionary *dict;
+
+-(void)getDataFromCSVInDict;
+
 -(BOOL)painLocationsInDatabase;
+-(void) setPointCount: (NSInteger) newPoints;
+
 @end
 
 
 @implementation InvoDataManager
+
+@synthesize pointCount = _pointCount;
 
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
@@ -60,22 +71,31 @@
 @synthesize parsedComponents = _parsedComponents;
 
 
-+(InvoDataManager *)sharedDataManager{
+@synthesize dict =_dict;
 
-    static InvoDataManager *instance = nil;
-    
-    @synchronized([InvoDataManager class]){
-    
-        if (!instance) {
-            instance = [[super allocWithZone:NULL] init];
-        }
-    }
-   return instance;
+-(void)dealloc{
+
+    if (_points) free(_points);
 }
 
-+(id)allocWithZone:(NSZone *)zone{
+ static InvoDataManager *instance = nil;
 
-   return [self sharedDataManager];
+
++(InvoDataManager *)sharedDataManager{
+
+	static dispatch_once_t predicate;
+	dispatch_once(&predicate, ^{
+        instance = [[self alloc] init];
+    });
+	return instance;
+}
+
++(id)alloc{
+
+    @synchronized([InvoDataManager class]){
+        instance = [super alloc];
+    }
+    return instance;
 }
 
 
@@ -99,57 +119,8 @@
     if (self) {
         
         NSLog(@"Beginning...");
-        
-        
-        if (NO == [self painLocationsInDatabase]) {
-            
-            self.parsedComponents = [NSMutableArray array];
-            
-            NSStringEncoding encoding = 0;
-            // NSString *file = @"/Users/DDKarwa/Desktop/tmpCsvParse/Workbook1.csv";
-            NSString *file = [[NSBundle mainBundle] pathForResource:@"T2" ofType:@"csv"];
-            NSInputStream *stream = [NSInputStream inputStreamWithFileAtPath:file];
-            NSError *error = nil;
-            
-            CHCSVParser * p = [[CHCSVParser alloc] initWithStream:stream usedEncoding:&encoding error:&error];
-            
-            NSLog(@"encoding: %@", CFStringGetNameOfEncoding(CFStringConvertNSStringEncodingToEncoding(encoding)));
-            
-            Delegate * d = [[Delegate alloc] init];
-            [p setParserDelegate:d];
-            
-            NSTimeInterval start = [NSDate timeIntervalSinceReferenceDate];
-            [p parse];
-            NSTimeInterval end = [NSDate timeIntervalSinceReferenceDate];
-            
-            NSLog(@"raw difference: %f", (end-start));
-            
-            NSArray *a = [NSArray arrayWithContentsOfCSVFile:file encoding:encoding error:nil];
-  //        NSLog(@"%@", a);
-            
-            NSString *s = [a CSVString];
-            
-            NSArray *newArr = [s CSVComponents];
-            
-  //        NSLog(@" Array is %d",[newArr count]);
-            
-            for (id obj in newArr) {
-                
-                NSArray *rangeArr = [[obj objectAtIndex:2] componentsSeparatedByString:@"|"];
-                
-                [self fillVertRangeFrom:rangeArr];
-                
-                NSString *vert = [obj objectAtIndex:3];
-                
-                [self getVertxPtsFromString:vert];
-                
-            }
-
-        }
-        
-        
-        /*
-         NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainEntry" inManagedObjectContext:self.managedObjectContext];
+/*
+         NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainLocation" inManagedObjectContext:self.managedObjectContext];
          
          NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
          [fetReq setEntity:descript];
@@ -157,62 +128,140 @@
          
          NSError *error;
          NSArray *CrDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
-         NSLog(@"value in COreData PainEntry is %@", CrDta);
-
-         */
+         NSLog(@"value in COreData PainLocation is %@", CrDta);
+*/
+        
     }
     return self;
 }
 
--(void)getVertxPtsFromString:(NSString *)str{
+-(void)checkPainLocationDataBase{
+
+    if (NO == [self painLocationsInDatabase]) {
+        
+        [self getDataFromCSVInDict];
+        [self listCoordinates];
+    }
+
+}
+
+
+
+-(void)getDataFromCSVInDict{
     
-    self.nwArrVert = [str componentsSeparatedByString:@"|"];
+    NSLog(@"Beginning...");
+	NSStringEncoding encoding = 0;
+    // NSString *file = @"/Users/DDKarwa/Desktop/tmpCsvParse/Workbook1.csv";
+    NSString *file = [[NSBundle mainBundle] pathForResource:@"NewData" ofType:@"csv"];
+    NSInputStream *stream = [NSInputStream inputStreamWithFileAtPath:file];
+    NSError *error = nil;
     
-    /*
-    int coordCount = [self.nwArrVert count];
-    if(coordCount >0){
-        for (int i=0; i<coordCount; i++) {
+	CHCSVParser * p = [[CHCSVParser alloc] initWithStream:stream usedEncoding:&encoding error:&error];
+	
+	NSLog(@"encoding: %@", CFStringGetNameOfEncoding(CFStringConvertNSStringEncodingToEncoding(encoding)));
+	
+	Delegate * d = [[Delegate alloc] init];
+	[p setParserDelegate:d];
+	
+	NSTimeInterval start = [NSDate timeIntervalSinceReferenceDate];
+	[p parse];
+	NSTimeInterval end = [NSDate timeIntervalSinceReferenceDate];
+	
+	NSLog(@"raw difference: %f", (end-start));
+    
+    
+    NSArray *a = [NSArray arrayWithContentsOfCSVFile:file encoding:encoding error:nil];
+    //    NSLog(@"%@", a);
+    NSString *s = [a CSVString];
+    
+    //    NSLog(@"s is %@",s);
+    
+    NSArray *csvArray = [s CSVComponents];
+//    NSLog(@" Array is %d",[csvArray count]);
+    
+    self.dict = [NSMutableDictionary dictionary];
+    
+    NSMutableArray *dictValueArray =[[NSMutableArray alloc] init];
+    
+    
+    NSString *prevString =[[csvArray objectAtIndex:0] objectAtIndex:0];
+    
+    for (int i=0;i<[csvArray count];i++) {
+        
+        NSArray *obj = [csvArray objectAtIndex:i];
+        NSString *keyString = [obj objectAtIndex:0];
+        
+        if ([keyString isEqualToString:prevString]) {
             
-//            if (NSLocationInRange(i, )) {
-//                <#statements#>
-//            }
+            [dictValueArray addObject:obj];
+        }
+        else{
+            
+            [self.dict setValue:[dictValueArray copy] forKey:[prevString copy]];
+            dictValueArray = [NSMutableArray array];
+            
+            prevString = [keyString copy];
+            [dictValueArray addObject:obj];
+        }
+        
+        if (i==[csvArray count]-1) {
+            
+            [self.dict setValue:[dictValueArray copy] forKey:[prevString copy]];
         }
     }
-    */
     
-    for (NSString *tmp in self.nwArrVert) {
-        
-        NSString  *nTmp = [tmp stringByReplacingOccurrencesOfString:@";" withString:@","];
-        NSLog(@" Coordinates are %@", NSStringFromCGPoint(CGPointFromString(nTmp)));
-    }
-     
-}
-
--(void)fillVertRangeFrom:(NSArray *)rngArr{
-    
-    NSArray *newArr = [rngArr copy];
-    rngArr = nil;
-    
-    self.vertRange =[NSMutableArray array];
-    
-    for (NSString *tmp in newArr) {
-        
-        NSRange range = NSRangeFromString(tmp);
-        
-        NSLog(@"range is %@", NSStringFromRange(range));
-        
-        NSRange rng = [tmp rangeOfString:@">"];
-        NSString *subTmp = [NSString stringWithString:[tmp substringFromIndex:rng.location+1]];
-        
-        subTmp = [subTmp stringByReplacingOccurrencesOfString:@";" withString:@","];
-        
-        NSLog(@"points for range are %@", NSStringFromCGPoint(CGPointFromString(subTmp)));
-        
-        [self.vertRange addObject:NSStringFromCGPoint(CGPointFromString(subTmp))];
-    }
+//        NSLog(@"DICTIONARY VALUES  for key Left up :%@",[self.dict valueForKey:@"Left up Leg"]);
     
 }
 
+-(void)listCoordinates{
+    
+   // NSArray *neckValues = [self.dict valueForKey:@"Left up Leg"];
+    
+    NSArray *dictKeys = [self.dict allKeys];
+    
+    for (NSString *ky in dictKeys) {
+        
+        NSArray *valArray = [self.dict valueForKey:ky];
+        
+        int itmCount = [valArray count];
+      
+        [self setPointCount:itmCount];
+
+        int i=0;
+        
+        for (NSArray *arr in valArray) {
+
+            float xadd = [[arr objectAtIndex:2] floatValue];
+            float yadd = [[arr objectAtIndex:3] floatValue];
+            float xCoor = [[arr objectAtIndex:4] floatValue];
+            float yCoor = [[arr objectAtIndex:5] floatValue];
+            
+//            CGPoint newPt = CGPointMake((xadd/NUM_COLUMNS) + (xCoor/BODY_WIDTH), (yadd/NUM_ROWS) +(yCoor/BODY_HEIGHT));
+//            
+//            NSLog(@"newPt for key:%@ is :%@", ky,NSStringFromCGPoint(newPt));
+            _points[i]=CGPointMake((xadd/NUM_COLUMNS) + (xCoor/BODY_WIDTH), (yadd/NUM_ROWS) +(yCoor/BODY_HEIGHT));
+            i++;
+        }
+    
+    NSData *shapeVertices = [NSData dataWithBytes:_points length:sizeof(CGPoint)*itmCount];
+
+    int zoomLvl = [[[valArray objectAtIndex:0] objectAtIndex:1] integerValue];
+    
+    [PainLocation LocationEntryWithName:[ky copy] Shape:shapeVertices ZoomLevel:zoomLvl];
+       
+    valArray = nil;
+    
+    }
+}
+
+-(void)setPointCount:(NSInteger)newPoints{
+
+    if (_points) free(_points);
+    _points = calloc(sizeof(CGPoint), newPoints);
+    _pointCount = newPoints;
+    
+}
 
 #pragma mark - Core Data stack
 
@@ -322,10 +371,11 @@
     
     if ([crDta count]>0) {
 
-        NSLog(@"value in COreData PainLocation is %@", crDta);
+//        NSLog(@"value in COreData PainLocation is %@", crDta);
         toReturn = YES;
     }
     
+    fetReq = nil;
     return toReturn;
 }
 

@@ -286,6 +286,7 @@
 		764FA55D15BD923D0018EA80 /* body_slices_135@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 764FA4D515BD923D0018EA80 /* body_slices_135@2x.png */; };
 		764FA55E15BD923D0018EA80 /* body_slices_136@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 764FA4D615BD923D0018EA80 /* body_slices_136@2x.png */; };
 		7673B51315ADD7CD006112C2 /* PainFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7673B51215ADD7CD006112C2 /* PainFaceView.m */; };
+		7699C8B715C3FB50000CCD1E /* NewData.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7699C8B615C3FB50000CCD1E /* NewData.csv */; };
 		76AB5DA515B890E100FEB78B /* InvoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AB5DA415B890E100FEB78B /* InvoDataManager.m */; };
 		76B4A90F15BDDF92003E6210 /* body_large_01_1024@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76B4A88715BDDF92003E6210 /* body_large_01_1024@2x.png */; };
 		76B4A91015BDDF92003E6210 /* body_large_02_1024@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76B4A88815BDDF92003E6210 /* body_large_02_1024@2x.png */; };
@@ -1453,6 +1454,7 @@
 		764FA4D615BD923D0018EA80 /* body_slices_136@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "body_slices_136@2x.png"; sourceTree = "<group>"; };
 		7673B51115ADD7CD006112C2 /* PainFaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PainFaceView.h; sourceTree = "<group>"; };
 		7673B51215ADD7CD006112C2 /* PainFaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PainFaceView.m; sourceTree = "<group>"; };
+		7699C8B615C3FB50000CCD1E /* NewData.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NewData.csv; sourceTree = "<group>"; };
 		76AB5DA315B890E100FEB78B /* InvoDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoDataManager.h; sourceTree = "<group>"; };
 		76AB5DA415B890E100FEB78B /* InvoDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoDataManager.m; sourceTree = "<group>"; };
 		76B4A88715BDDF92003E6210 /* body_large_01_1024@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "body_large_01_1024@2x.png"; sourceTree = "<group>"; };
@@ -3738,6 +3740,7 @@
 		834C100F158F7255000C5652 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7699C8B615C3FB50000CCD1E /* NewData.csv */,
 				762EC64115C1FBB100250155 /* T2.csv */,
 				83C43F071598D6F700F401D2 /* images */,
 				76C711D3159A69BD009832BE /* Icons */,
@@ -4960,6 +4963,7 @@
 				76B4AEE515BDE18B003E6210 /* body_large_135_1024.png in Resources */,
 				76B4AEE615BDE18B003E6210 /* body_large_136_1024.png in Resources */,
 				762EC64215C1FBB100250155 /* T2.csv in Resources */,
+				7699C8B715C3FB50000CCD1E /* NewData.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

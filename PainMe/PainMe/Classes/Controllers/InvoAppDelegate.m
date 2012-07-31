@@ -32,7 +32,8 @@
        //InvoBodySelectionViewControllerViewController *controller = (InvoBodySelectionViewControllerViewController *)navigationController.topViewController;
    }
     
-    [InvoDataManager sharedDataManager];
+    InvoDataManager *dtaMgr = [InvoDataManager sharedDataManager];
+    [dtaMgr checkPainLocationDataBase];
 
        
     return YES;

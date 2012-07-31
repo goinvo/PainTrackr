@@ -7,6 +7,7 @@
 //
 
 #import "BodyPartGeometry.h"
+#import "PainLocation.h"
 
 @interface BodyPartGeometry() {
    CGPoint *_points;
@@ -14,6 +15,9 @@
 
 @property (nonatomic, readonly) NSInteger pointCount;
 @property (nonatomic, retain) UIBezierPath *bezierPath;
+
+@property (nonatomic, retain) NSArray *painLocDetails;
+@property (nonatomic, retain) NSMutableArray *painShapes;
 
 
 @end
@@ -24,10 +28,31 @@
 @implementation BodyPartGeometry
 
 @synthesize pointCount = _pointCount, bezierPath = _bezierPath;
+@synthesize painLocDetails = painLocDetails;
+
+
 
 - (id) init {
    self = [super init];
    if (self) {
+       
+       self.painLocDetails = [[PainLocation painLocations]copy];
+       self.painShapes = [NSMutableArray array];
+       
+       for (int i=0; i<[self.painLocDetails count]; i++) {
+           
+           NSDictionary *obj = [self.painLocDetails objectAtIndex:i];
+           NSData *vertices = [obj valueForKey:@"shape"];
+          
+           int count = ([vertices length])/sizeof(CGPoint);
+           
+           [self setPointCount:count];
+           _points = (CGPoint *)[vertices bytes];
+           
+           [self.painShapes addObject:[self bezierPath]];
+       }
+       
+       
       // set point count
        
        /*
@@ -457,7 +482,7 @@
          
         */
        
-       
+/*
        float numToAddX = 3.0/8; // column -1
        float numToAddY = 2.0/17; // row -1
        
@@ -586,7 +611,7 @@
 
        
        [self bezierPath];
-       
+  */     
          }
    return self;
 }
@@ -605,7 +630,7 @@
 
           for (int i=1; i<_pointCount; i++) {
              
-//             NSLog(@"Point is x:%f y:%f",_points[i].x, _points[i].y);
+             NSLog(@"Point is x:%f y:%f",_points[i].x, _points[i].y);
              
 //            [_bezierPath addLineToPoint: _points[i]];
               [_bezierPath addLineToPoint:CGPointMake(_points[i].x*NUM_TO_DIVIDEX,_points[i].y*NUM_TO_DIVIDEY )];
@@ -617,7 +642,8 @@
 }
 
 - (void) setPointCount: (NSInteger) newPoints {
-   if (_points) free(_points);
+   
+    if (_points) {free(_points);}
    _points = calloc(sizeof(CGPoint), newPoints);
    _pointCount = newPoints;
    self.bezierPath = nil;
