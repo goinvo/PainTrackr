@@ -28,4 +28,5 @@
 +(InvoDataManager *)sharedDataManager;
 -(void)listCoordinates;
 -(void)checkPainLocationDataBase;
++(void)painEntryForLocation:(NSDictionary *)locDetails LevelPain:(int)painLvl notes:(NSString *)nots;
 @end

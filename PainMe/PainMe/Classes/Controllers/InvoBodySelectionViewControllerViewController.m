@@ -8,12 +8,13 @@
 
 #import "InvoBodySelectionViewControllerViewController.h"
 #import "BodyView.h"
+#import "InvoDataManager.h"
 //#import "BodyPartView.h"
 #import "BodyPartGeometry.h"
 
 //#import "PainFaceView.h"
 
-#import "PainEntry.h"
+//#import "PainEntry.h"
 
 @interface InvoBodySelectionViewControllerViewController () {
    
@@ -238,7 +239,7 @@
 
 #pragma mark PainFaceDel Method
 
--(void)checkForBodyIntersectionWithLocalPoint:(CGPoint)locPoint AndPainLvl:(int)painLvl{
+-(void)checkForBodyIntersectionWithLocalPoint:(CGPoint)locPoint AndPainLvl:(int)painLvl {
 
     CGPoint convPoint = CGPointZero;
     
@@ -247,21 +248,28 @@
     NSLog(@"conv point is %@", NSStringFromCGPoint(convPoint));
 
     convPoint = CGPointMake((convPoint.x -70)/(BODY_VIEW_WIDTH*self.scrollView.zoomScale),convPoint.y/( BODY_VIEW_HEIGHT*self.scrollView.zoomScale));
+    
+    int zoomLVL = (self.scrollView.zoomScale >=0.062) ? 2 :1;
 
 // Point is inside the Belly circle  
 
-    if (YES == [self.bodyGeometry containsPoint:convPoint]) {
+    NSDictionary *pathContainingPoint = nil;
+    pathContainingPoint = [self.bodyGeometry containsPoint:convPoint withZoomLVL:zoomLVL];
+    
+    if (pathContainingPoint) {
                 
         UIColor *fillcolor = [self colorfromPain:painLvl];
     
-        [self.bodyView renderPainForBodyPartPath:self.bodyGeometry.bezierPath WithColor:fillcolor];
+        [self.bodyView renderPainForBodyPartPath:[[pathContainingPoint allValues] objectAtIndex:0] WithColor:fillcolor];
         
-        NSDate *now = [[NSDate alloc] init];
+        [InvoDataManager painEntryForLocation:[pathContainingPoint copy] LevelPain:painLvl notes:nil];
         
-        [PainEntry painEntryWithTime:now Location:self.bodyGeometry.bezierPath  PainLevel:painLvl ExtraNotes:@"NewEntry"];
+//        NSDate *now = [[NSDate alloc] init];
+        
+//        [PainEntry painEntryWithTime:now Location:self.bodyGeometry.bezierPath  PainLevel:painLvl ExtraNotes:@"NewEntry"];
         
         fillcolor = nil;
-        now = nil;
+//        now = nil;
     }
    
 }
@@ -276,7 +284,9 @@
     
     convPoint = CGPointMake((convPoint.x -70)/(BODY_VIEW_WIDTH*self.scrollView.zoomScale),convPoint.y/( BODY_VIEW_HEIGHT*self.scrollView.zoomScale));
     
-    if (YES == [self.bodyGeometry containsPoint:convPoint] ) {
+     int zoomLVL = (self.scrollView.zoomScale >=0.062) ? 2 :1;
+    
+    if ( [self.bodyGeometry containsPoint:convPoint withZoomLVL:zoomLVL] ) {
     
          UIColor *fillcolor = [self colorfromPain:painLvl];
         

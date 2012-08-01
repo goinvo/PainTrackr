@@ -8,8 +8,6 @@
 
 #import "PainEntry.h"
 #import "PainLocation.h"
-//#import "InvoAppDelegate.h"
-
 #import "InvoDataManager.h"
 
 @implementation PainEntry
@@ -19,11 +17,10 @@
 @dynamic timestamp;
 @dynamic location;
 
-+(void)painEntryWithTime:(NSDate *)time Location:(UIBezierPath *)location PainLevel:(int16_t)level ExtraNotes:(NSString *)extraNotes{
++(void )painEntryWithTime:(NSDate *)time PainLevel:(int16_t)level ExtraNotes:(NSString *)extraNotes Location:(PainLocation *)painLoc{
 
     PainEntry *newEntry;
    
-  //  InvoAppDelegate *appDel = (InvoAppDelegate *)[[UIApplication sharedApplication] delegate];
     InvoDataManager *dataManager = [InvoDataManager sharedDataManager];
     
     NSManagedObjectContext *mangObjContext = [dataManager managedObjectContext];
@@ -36,15 +33,9 @@
     NSLog(@"Time stamp is %lf",[time timeIntervalSinceNow]) ;
     newEntry.timestamp = [time timeIntervalSinceReferenceDate];
     
-    PainLocation *newPainLoc = (PainLocation *)[NSEntityDescription insertNewObjectForEntityForName:@"PainLocation" inManagedObjectContext:mangObjContext];
-   
-    newPainLoc.zoomLevel = 1;
-    newPainLoc.name = @"Belly Button";
-    newPainLoc.shape = location;
+    newEntry.location = painLoc ;
         
     [dataManager saveContext];
-//    }
     
- //   return entryFound;
 }
 @end

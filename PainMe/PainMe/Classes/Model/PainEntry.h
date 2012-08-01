@@ -18,6 +18,6 @@
 @property (nonatomic) NSTimeInterval timestamp;
 @property (nonatomic, retain) PainLocation *location;
 
-+(void )painEntryWithTime:(NSDate *)time Location:(UIBezierPath *)location PainLevel:(int16_t)level ExtraNotes:(NSString *)extraNotes;
++(void )painEntryWithTime:(NSDate *)time PainLevel:(int16_t)level ExtraNotes:(NSString *)extraNotes Location:(PainLocation *)painLoc;
 
 @end

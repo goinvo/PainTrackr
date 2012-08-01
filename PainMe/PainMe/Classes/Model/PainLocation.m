@@ -19,6 +19,39 @@
 @dynamic painEntries;
 
 
++(void)enterPainEntryForLocation:(NSDictionary *)locdict LevelPain:(int)painLvl notes:(NSString *)notes{
+
+    
+    PainLocation *locFound  = nil;
+    
+    InvoDataManager *dtaMgr = [InvoDataManager sharedDataManager];
+    
+    NSManagedObjectContext *moc = [dtaMgr managedObjectContext];
+    NSEntityDescription *entyDescrip = [NSEntityDescription  entityForName:@"PainLocation" inManagedObjectContext:moc];
+    
+    NSFetchRequest *fetchreq = [[NSFetchRequest alloc] init];
+    [fetchreq setEntity:entyDescrip];
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"name == %@",[[locdict allKeys] objectAtIndex:0]];
+    [fetchreq setPredicate:pred];
+    
+    NSError *error = nil;
+    NSArray *result = [moc executeFetchRequest:fetchreq error:&error];
+    
+    if (result && [result count]>0) {
+
+        locFound = (PainLocation *)[result objectAtIndex:0];
+        NSLog(@"PainLocation found is %@", locFound.name);
+    }
+    
+    NSDate *now = [[NSDate alloc] init];
+    
+    [PainEntry painEntryWithTime:now PainLevel:painLvl ExtraNotes:[notes copy] Location:locFound];
+
+    
+}
+
+
 +(void)LocationEntryWithName:(NSString *)locName Shape:(NSData *)shape ZoomLevel:(int16_t)levZoom {
 
     PainLocation *locFound;
@@ -62,7 +95,7 @@
     
     NSError *error;
     NSArray *CrDta = [dtaMgr.managedObjectContext executeFetchRequest:fetchreq error:&error];
-    NSLog(@"value in PainLocation is %@", CrDta);
+//    NSLog(@"value in PainLocation is %@", CrDta);
     
     return CrDta;
 }

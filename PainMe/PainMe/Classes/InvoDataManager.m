@@ -44,7 +44,7 @@
 
 @interface InvoDataManager (){
 
-    CGPoint *_points;
+    CGPoint *_pts;
 }
 
 @property (nonatomic, readonly)NSInteger pointCount;
@@ -75,7 +75,7 @@
 
 -(void)dealloc{
 
-    if (_points) free(_points);
+    if (_pts) free(_pts);
 }
 
  static InvoDataManager *instance = nil;
@@ -119,17 +119,21 @@
     if (self) {
         
         NSLog(@"Beginning...");
-/*
-         NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainLocation" inManagedObjectContext:self.managedObjectContext];
+
+         NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainEntry" inManagedObjectContext:self.managedObjectContext];
          
          NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
          [fetReq setEntity:descript];
-         [fetReq setResultType:NSDictionaryResultType];
-         
+        
+ //        NSPredicate *pred = [NSPredicate predicateWithFormat:@"name == %@",@"face"];
+//        [fetReq setPredicate:pred];
+        
+        [fetReq setResultType:NSDictionaryResultType];
+        
          NSError *error;
          NSArray *CrDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
-         NSLog(@"value in COreData PainLocation is %@", CrDta);
-*/
+         NSLog(@"value in COreData PainEntry is %@", CrDta);
+
         
     }
     return self;
@@ -240,11 +244,11 @@
 //            CGPoint newPt = CGPointMake((xadd/NUM_COLUMNS) + (xCoor/BODY_WIDTH), (yadd/NUM_ROWS) +(yCoor/BODY_HEIGHT));
 //            
 //            NSLog(@"newPt for key:%@ is :%@", ky,NSStringFromCGPoint(newPt));
-            _points[i]=CGPointMake((xadd/NUM_COLUMNS) + (xCoor/BODY_WIDTH), (yadd/NUM_ROWS) +(yCoor/BODY_HEIGHT));
+            _pts[i]=CGPointMake((xadd/NUM_COLUMNS) + (xCoor/BODY_WIDTH), (yadd/NUM_ROWS) +(yCoor/BODY_HEIGHT));
             i++;
         }
     
-    NSData *shapeVertices = [NSData dataWithBytes:_points length:sizeof(CGPoint)*itmCount];
+    NSData *shapeVertices = [NSData dataWithBytes:_pts length:sizeof(CGPoint)*itmCount];
 
     int zoomLvl = [[[valArray objectAtIndex:0] objectAtIndex:1] integerValue];
     
@@ -257,8 +261,8 @@
 
 -(void)setPointCount:(NSInteger)newPoints{
 
-    if (_points) free(_points);
-    _points = calloc(sizeof(CGPoint), newPoints);
+    if (_pts) free(_pts);
+    _pts = calloc(sizeof(CGPoint), newPoints);
     _pointCount = newPoints;
     
 }
@@ -377,6 +381,15 @@
     
     fetReq = nil;
     return toReturn;
+}
+
+#pragma mark -
+
+#pragma mark pain location enrty
+
++(void)painEntryForLocation:(NSDictionary *)locDetails LevelPain:(int)painLvl notes:(NSString *)nots{
+
+    [PainLocation enterPainEntryForLocation:[locDetails copy] LevelPain:painLvl notes:[nots copy]];
 }
 
 #pragma mark -

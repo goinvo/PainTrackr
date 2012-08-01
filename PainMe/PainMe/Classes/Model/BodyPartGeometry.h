@@ -12,7 +12,7 @@
 
 - (void) setPointCount: (NSInteger) newPoints;
 
-- (BOOL) containsPoint: (CGPoint) point;
+- (NSDictionary *) containsPoint: (CGPoint) point withZoomLVL:(int)zmLVL;
 - (CGPoint *)getPoints;
 - (UIBezierPath *) bezierPath;
 @end
