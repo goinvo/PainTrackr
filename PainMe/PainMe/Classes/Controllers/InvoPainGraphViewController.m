@@ -125,18 +125,25 @@
     
     CPTColor *painColor = [CPTColor redColor];
     [graph addPlot:painPlot toPlotSpace:plotSpc];
+        
+    CGFloat xmin = 0.0;
+    CGFloat xmax = 24.0;
     
-    [plotSpc scaleToFitPlots:[NSArray arrayWithObject:painPlot]];
+    plotSpc.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromCGFloat(xmin) length:CPTDecimalFromCGFloat(xmax)];
     
-    CPTMutablePlotRange *xRange = [plotSpc.xRange mutableCopy];
-    [xRange expandRangeByFactor:CPTDecimalFromInt(1.1)];
-    plotSpc.xRange = xRange;
+    CGFloat ymin = 0.0;
+    CGFloat ymax = 7.0;
     
-    CPTMutablePlotRange *yRange = [plotSpc.yRange mutableCopy];
-    [yRange expandRangeByFactor:CPTDecimalFromInt(1.1)];
-    plotSpc.yRange = yRange;
+    plotSpc.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromCGFloat(ymin) length:CPTDecimalFromCGFloat(ymax)];
     
+    NSLog(@"plot x range is %@",plotSpc.xRange);
+    NSLog(@"plot x range is %@",plotSpc.yRange);
     
+    [plotSpc scaleToFitPlots:[NSArray arrayWithObjects:painPlot,nil]];
+    
+    NSLog(@"plot x range is %@",plotSpc.xRange);
+    NSLog(@"plot x range is %@",plotSpc.yRange);
+
     
     CPTMutableLineStyle *painLineStyle = [painPlot.dataLineStyle mutableCopy];
     painLineStyle.lineWidth = 2.0f;

@@ -19,8 +19,10 @@
 
 @interface BodyView : UIView{
 
-   
+
 }
+@property (nonatomic, readwrite)BOOL strokeChanged;
+
 
 -(void)renderPainForBodyPartPath:(UIBezierPath *)path WithColor:(UIColor *)fillColor;
 

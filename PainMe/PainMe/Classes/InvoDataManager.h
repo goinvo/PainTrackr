@@ -20,6 +20,7 @@
 @property (nonatomic, retain) NSMutableArray *vertRange;
 @property (nonatomic, retain) NSArray *nwArrVert;
 
+@property (nonatomic, retain) NSFetchedResultsController *fetCtrl;
 
 
 - (void)saveContext;

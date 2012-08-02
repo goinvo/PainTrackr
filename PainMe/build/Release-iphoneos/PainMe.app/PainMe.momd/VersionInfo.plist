@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSManagedObjectModel_CurrentVersionName</key>
+	<string>1.0</string>
+	<key>NSManagedObjectModel_VersionHashes</key>
+	<dict>
+		<key>1.0</key>
+		<dict>
+			<key>PainEntry</key>
+			<data>
+			aaBG75xz4QzgbJl5EvxTTv03wUJ5W4kkijFdoLQqIK0=
+			</data>
+			<key>PainLocation</key>
+			<data>
+			Gju671v6I9eCtiTBstFZk82sut6v/Gsq+snT+aT8mrQ=
+			</data>
+		</dict>
+		<key>PainMe</key>
+		<dict>
+			<key>PainEntry</key>
+			<data>
+			lT3WKllV/JvEZtv23dQKyVE7pSJ/wz0zIBdU20rRU9w=
+			</data>
+			<key>PainLocation</key>
+			<data>
+			0rDxRWks6pwZGl3LrdEXD7fxyq1qHsH82DOBJ+Wi+Cg=
+			</data>
+		</dict>
+	</dict>
+</dict>
+</plist>

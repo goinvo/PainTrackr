@@ -224,7 +224,7 @@
 
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView {
    
-    NSLog(@"ScrollView zoom scale is %f", scrollView.zoomScale);
+//    NSLog(@"ScrollView zoom scale is %f", scrollView.zoomScale);
     
 }
 
@@ -245,7 +245,7 @@
     
     convPoint = [self.view convertPoint:locPoint toView:self.scrollView];
 
-    NSLog(@"conv point is %@", NSStringFromCGPoint(convPoint));
+//    NSLog(@"conv point is %@", NSStringFromCGPoint(convPoint));
 
     convPoint = CGPointMake((convPoint.x -70)/(BODY_VIEW_WIDTH*self.scrollView.zoomScale),convPoint.y/( BODY_VIEW_HEIGHT*self.scrollView.zoomScale));
     
@@ -280,7 +280,7 @@
     
     convPoint = [self.view convertPoint:dragPoint toView:self.scrollView];
     
-    NSLog(@"conv point is %@", NSStringFromCGPoint(convPoint));
+//    NSLog(@"conv point is %@", NSStringFromCGPoint(convPoint));
     
     convPoint = CGPointMake((convPoint.x -70)/(BODY_VIEW_WIDTH*self.scrollView.zoomScale),convPoint.y/( BODY_VIEW_HEIGHT*self.scrollView.zoomScale));
     
@@ -293,6 +293,10 @@
         [self.bodyView maskWithColor:fillcolor];
         
      }
+    else{
+    
+        [self.bodyView resetStroke];
+    }
 
 }
 

@@ -37,6 +37,7 @@
 @synthesize isMask = _isMask;
 @synthesize isNewStroke = _isNewStroke;
 
+@synthesize strokeChanged;
 
 +(Class)layerClass
 {
@@ -91,7 +92,6 @@
 
 - (void) awakeFromNib {
     
-    
    [super awakeFromNib];
    
     CATiledLayer *tiledLayer = (CATiledLayer *) self.layer;
@@ -112,6 +112,7 @@
     
     self.isMask = NO;
     self.isNewStroke = NO;
+    self.strokeChanged = NO;
     
   /*  
     NSMutableDictionary *newActions = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSNull null],@"onOrderIn",
@@ -141,8 +142,10 @@
    
 }
 
+int drawNum = 0;
 - (void)drawRect:(CGRect)rect {
-            
+    
+    drawNum ++;
     
  	CGContextRef context = UIGraphicsGetCurrentContext();
    
@@ -180,12 +183,10 @@
                 if(self.isMask){
                     
                     tile = [BodyView imageToMask:tile Withcolor:self.bodyStrokeColor];
-                    
                 }
-            
+                                
                 [tile drawInRect:tileRect];
 
-                
                 // Draw a white line around the tile border so 
                 // we can see it
 //                
@@ -200,10 +201,7 @@
     }
     // iterate over pain entries
     // if pain entry's body part is inside rect, draw it
-    
-//    NSDate *date =[[NSDate alloc] init];
-//    NSLog(@"Bezier path start %@",[NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterFullStyle]);
-    
+        
     if (self.pathShape) {
         
 //        CGContextSetStrokeColorWithColor(context, [BodyView redColor]);
@@ -214,9 +212,9 @@
         
         [self.pathShape fill];
         [self.pathShape stroke];
-        
-//        NSLog(@"Bezier end %lf",[[[NSDate alloc] init] timeIntervalSinceDate:date]);
     }
+    
+NSLog(@"draw was called %d",drawNum);
 }
 
 - (UIImage*)tileAtCol:(int)col row:(int)row withScale:(CGFloat)scale
@@ -268,22 +266,41 @@
 
 -(void)maskWithColor:(UIColor *)maskFillColor{
 
+    
     if (self.isNewStroke == NO) {
      
         self.isMask = YES;
+        self.isNewStroke = YES;
         self.bodyStrokeColor = maskFillColor;
         
         [self setNeedsDisplay];
     }
+     
+    /*
     
+    CALayer* maskLayer = [[CALayer alloc] init];
+    maskLayer.opacity = 0.2f;
+    maskLayer.borderWidth = 4;
+    maskLayer.borderColor = [UIColor blueColor].CGColor;
+    maskLayer.backgroundColor = maskFillColor.CGColor;
+    maskLayer.bounds = self.bounds;
+    maskLayer.position = CGPointMake(self.bounds.size.width*0.5 , self.bounds.size.height*0.5);
+    self.layer.mask = maskLayer;
+
+    */
 }
 
 -(void)resetStroke{
 
-    self.isMask = NO;
-    self.isNewStroke = NO;
     
-    [self setNeedsDisplay];
+    if (self.isNewStroke) {
+        self.isMask = NO;
+        self.isNewStroke = NO;
+        
+        [self setNeedsDisplay];
+    }
+
+    
 }
 #pragma mark -
 
@@ -306,6 +323,7 @@
     UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return result;
+    
 }
 
 

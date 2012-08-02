@@ -72,6 +72,7 @@
 
 
 @synthesize dict =_dict;
+@synthesize fetCtrl;
 
 -(void)dealloc{
 
@@ -380,19 +381,41 @@
 
 -(int)totalPainEntries{
 
+    
+    /*
     NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainEntry" inManagedObjectContext:self.managedObjectContext];
     
     NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
     [fetReq setEntity:descript];
     
+//    NSPredicate *pred = [NSPredicate predicateWithFormat:@"location.name like face "];
+//    [fetReq setPredicate:pred];
+    
     [fetReq setResultType:NSDictionaryResultType];
     
     NSError *error;
     NSArray *CrDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
-//    NSLog(@"value in COreData PainEntry is %@", CrDta);
+
+    NSLog(@"value in COreData PainEntry is %d", [CrDta count]);
     
     return [CrDta count];
- 
+ */
+    
+    NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainEntry" inManagedObjectContext:self.managedObjectContext];
+    
+    NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
+    [fetReq setEntity:descript];
+
+    NSPredicate *predictae = [NSPredicate predicateWithFormat:@"Any location.name Like[c] %@",@"face"];
+    [fetReq setPredicate:predictae];
+    [fetReq setResultType:NSDictionaryResultType];
+    
+    NSError *error = nil;
+    NSArray *CrDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
+    
+    NSLog(@"value in COreData PainEntry is %d", [CrDta count]);
+    
+    return [CrDta count];
 }
 
 -(NSArray *)painLevelsForAllEntries{
