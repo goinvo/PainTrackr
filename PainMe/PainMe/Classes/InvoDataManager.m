@@ -114,30 +114,17 @@
     }
 }
 
-
+/*
 -(id)init{
 
     self = [super init];
     if (self) {
         
         NSLog(@"Beginning...");
-
-//         NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainEntry" inManagedObjectContext:self.managedObjectContext];
-//         
-//         NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
-//         [fetReq setEntity:descript];
-//        
-//        [fetReq setResultType:NSDictionaryResultType];
-//        
-//         NSError *error;
-//         NSArray *CrDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
-//         NSLog(@"value in COreData PainEntry is %@", CrDta);
-
-        
     }
     return self;
 }
-
+*/
  
 -(void)checkPainLocationDataBase{
 
@@ -172,7 +159,6 @@
 	NSTimeInterval end = [NSDate timeIntervalSinceReferenceDate];
 	
 	NSLog(@"raw difference: %f", (end-start));
-    
     
     NSArray *a = [NSArray arrayWithContentsOfCSVFile:file encoding:encoding error:nil];
     //    NSLog(@"%@", a);
@@ -403,7 +389,7 @@
     
     NSError *error;
     NSArray *CrDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
-    NSLog(@"value in COreData PainEntry is %@", CrDta);
+//    NSLog(@"value in COreData PainEntry is %@", CrDta);
     
     return [CrDta count];
  
@@ -429,12 +415,39 @@
         [painLevelArr addObject:[dict valueForKey:@"painLevel"]];
     }
     
-    NSLog(@"value in COreData PainEntry is %@", CrDta);
+//    NSLog(@"value in COreData PainEntry is %@", CrDta);
     
     return [painLevelArr copy];
 }
-#pragma mark -
 
+-(NSArray *)timeStampsForPainEntries{
+
+    NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainEntry" inManagedObjectContext:self.managedObjectContext];
+    
+    NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
+    [fetReq setEntity:descript];
+    
+    [fetReq setResultType:NSDictionaryResultType];
+    
+    NSError *error;
+    NSArray *CrDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
+    
+    NSMutableArray *painTimeArr = [NSMutableArray array];
+    
+    for (int i=0; i<[CrDta count];i++) {
+        
+        NSDictionary *dict = [CrDta objectAtIndex:i];
+        NSDate *stmp = [dict valueForKey:@"timestamp"];
+        
+        [painTimeArr addObject:stmp];
+    }
+    
+//    NSLog(@"value in COreData PainEntry is %@", CrDta);
+    
+    return [painTimeArr copy];
+
+}
+#pragma mark -
 
 
 @end

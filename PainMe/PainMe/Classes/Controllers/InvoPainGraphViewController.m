@@ -127,6 +127,7 @@
     [graph addPlot:painPlot toPlotSpace:plotSpc];
     
     [plotSpc scaleToFitPlots:[NSArray arrayWithObject:painPlot]];
+    
     CPTMutablePlotRange *xRange = [plotSpc.xRange mutableCopy];
     [xRange expandRangeByFactor:CPTDecimalFromInt(1.1)];
     plotSpc.xRange = xRange;
@@ -155,6 +156,102 @@
 
 -(void)configureAxis{
 
+//Setting up axis styles
+    
+    CPTMutableTextStyle *axisTitlStyle = [CPTMutableTextStyle textStyle];
+    axisTitlStyle.color = [CPTColor whiteColor];
+    axisTitlStyle.fontName = @"Helvetica";
+    axisTitlStyle.fontSize = 14.0f;
+
+    CPTMutableLineStyle *axisLineStyle = [CPTMutableLineStyle lineStyle];
+    axisLineStyle.lineColor =[CPTColor whiteColor];
+    axisLineStyle.lineWidth = 2.0f;
+
+    CPTMutableTextStyle *axisTextStyle = [[CPTMutableTextStyle alloc]init];
+    axisTextStyle.color = [CPTColor blueColor];
+    axisTextStyle.fontName = @"Helvetica";
+    axisTextStyle.fontSize = 12.0f;
+    
+    CPTMutableLineStyle *tickLineStyl = [CPTMutableLineStyle lineStyle];
+    tickLineStyl.lineColor = [CPTColor redColor];
+    tickLineStyl.lineWidth = 2.0f;
+    
+    CPTMutableLineStyle *gridLineStyle = [CPTMutableLineStyle lineStyle];
+    gridLineStyle.lineColor = [CPTColor blackColor];
+    gridLineStyle.lineWidth = 1.0f;
+    
+//Axis setup
+    CPTXYAxisSet *axisSet = (CPTXYAxisSet*)self.hostView.hostedGraph.axisSet;
+    
+    CPTXYAxis *xAxis = axisSet.xAxis;
+    xAxis.title = @" Hour of the day ";
+    xAxis.titleTextStyle = axisTitlStyle;
+    xAxis.timeOffset = 10.0F;
+    xAxis.axisLineStyle = axisLineStyle;
+    xAxis.labelingPolicy = CPTAxisLabelingPolicyNone;
+    xAxis.labelTextStyle = axisTextStyle;
+    xAxis.majorTickLineStyle = axisLineStyle;
+    xAxis.majorTickLength = 5.0f;
+    xAxis.minorTickLength = 2.0f;
+    xAxis.tickDirection = CPTSignNegative;
+    
+    CGFloat timeCount = [[InvoDataManager sharedDataManager] totalPainEntries];
+    NSMutableSet *xLabels = [NSMutableSet setWithCapacity:timeCount];
+    NSMutableSet *xLocations =[NSMutableSet setWithCapacity:timeCount];
+    
+
+    for (int i=1; i<=24; i++) {
+        
+        CPTAxisLabel *label = [[CPTAxisLabel alloc] initWithText:[NSString stringWithFormat:@"%d",i] textStyle:xAxis.labelTextStyle];
+        
+       // CGFloat location = i;
+        label.tickLocation = CPTDecimalFromInt(i);
+        label.offset = xAxis.majorTickLength;
+        if (label) {
+            [xLabels addObject:label];
+            [xLocations addObject:[NSNumber numberWithInt:i]];
+        }
+    }
+    xAxis.axisLabels = xLabels;
+    xAxis.majorTickLocations = xLocations;
+
+// YAxis setup
+    
+    CPTXYAxis *yAxis = axisSet.yAxis;
+    yAxis.title = @" Pain Level ";
+    yAxis.titleTextStyle = axisTitlStyle;
+    yAxis.titleOffset = -40.0F;
+    yAxis.axisLineStyle = axisLineStyle;
+    yAxis.majorGridLineStyle = gridLineStyle;
+
+    yAxis.labelingPolicy = CPTAxisLabelingPolicyNone;
+    yAxis.labelTextStyle = axisTextStyle;
+    yAxis.labelOffset = 10.0f;
+    xAxis.majorTickLineStyle = axisLineStyle;
+    yAxis.minorTickLength = 2.0f;
+    yAxis.majorTickLength = 5.0f;
+    yAxis.tickDirection = CPTSignPositive;
+    
+    
+    
+    NSMutableSet *yLabels = [NSMutableSet setWithCapacity:timeCount];
+    NSMutableSet *yLocations =[NSMutableSet setWithCapacity:timeCount];
+    
+    
+    for (int i=1; i<=7; i++) {
+        
+        CPTAxisLabel *label = [[CPTAxisLabel alloc] initWithText:[NSString stringWithFormat:@"%d",i] textStyle:yAxis.labelTextStyle];
+        
+        // CGFloat location = i;
+        label.tickLocation = CPTDecimalFromInt(i);
+        label.offset = -yAxis.majorTickLength - yAxis.labelOffset;
+        if (label) {
+            [yLabels addObject:label];
+            [yLocations addObject:[NSNumber numberWithInt:i]];
+        }
+    }
+    yAxis.axisLabels = yLabels;
+    yAxis.majorTickLocations = yLocations;
     
 }
 
@@ -169,14 +266,20 @@
 
 -(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index{
 
-    int painEntries = [[InvoDataManager sharedDataManager] totalPainEntries];
+ //	   int painEntries = [[InvoDataManager sharedDataManager] totalPainEntries];
     
     switch (fieldEnum) {
         case CPTScatterPlotFieldX:
+        {
+            NSDate *dte = [[[InvoDataManager sharedDataManager] timeStampsForPainEntries] objectAtIndex:index];
             
-            if (index < painEntries) {
-                return [NSNumber numberWithUnsignedInteger:index];
-            }
+            NSCalendar *cal = [NSCalendar currentCalendar];
+            
+            NSDateComponents *comp = [cal components:(NSHourCalendarUnit|NSMinuteCalendarUnit) fromDate:dte];
+            NSInteger hour = [comp hour];
+            NSLog(@"hour is %d", hour);
+            return [NSNumber numberWithInteger:hour];
+        }
             break;
             
         case CPTScatterPlotFieldY:
