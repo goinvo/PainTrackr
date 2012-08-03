@@ -12,6 +12,6 @@
 
 @interface InvoBodySelectionViewControllerViewController : UIViewController <UIScrollViewDelegate,UIGestureRecognizerDelegate,PainFaceDelegate>
 
-
+@property (nonatomic, retain)IBOutlet UILabel *partNameLabel;
 
 @end

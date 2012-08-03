@@ -19,7 +19,7 @@
 
 @interface BodyView : UIView{
 
-
+   // CALayer* maskLayer;
 }
 @property (nonatomic, readwrite)BOOL strokeChanged;
 

@@ -125,8 +125,8 @@
     }
     return self;
 }
-*/
- 
+
+ */
 -(void)checkPainLocationDataBase{
 
     if (NO == [self painLocationsInDatabase]) {
@@ -470,6 +470,28 @@
     return [painTimeArr copy];
 
 }
+
+-(id)lastPainEntryToRender{
+
+    NSEntityDescription *ent = [NSEntityDescription entityForName:@"PainEntry" inManagedObjectContext:self.managedObjectContext];
+    
+    NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
+    [fetReq setEntity:ent];
+    
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO];
+    [fetReq setSortDescriptors:[NSArray arrayWithObject:sort]];
+    
+    [fetReq setResultType:NSDictionaryResultType];
+    
+    NSError *error;
+    NSArray *CrDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
+    
+    if ([CrDta count] >0) {
+        return CrDta;
+    }
+    return nil;
+}
+
 #pragma mark -
 
 

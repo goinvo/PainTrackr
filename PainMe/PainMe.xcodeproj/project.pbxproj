@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		760D738B15CC54A300404C10 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 760D738A15CC54A300404C10 /* CoreImage.framework */; };
 		7612E21215A1E94500E8E009 /* BodyPartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7612E21115A1E94500E8E009 /* BodyPartView.m */; };
 		762EC62915C1CCBE00250155 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 762EC62215C1CCBE00250155 /* CHCSVParser.m */; };
 		762EC62A15C1CCBE00250155 /* CHCSVWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 762EC62415C1CCBE00250155 /* CHCSVWriter.m */; };
@@ -1171,6 +1172,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		760D738A15CC54A300404C10 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		7612E21015A1E94500E8E009 /* BodyPartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodyPartView.h; sourceTree = "<group>"; };
 		7612E21115A1E94500E8E009 /* BodyPartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyPartView.m; sourceTree = "<group>"; };
 		762EC62015C1CCBE00250155 /* CHCSV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSV.h; sourceTree = "<group>"; };
@@ -2430,6 +2432,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				760D738B15CC54A300404C10 /* CoreImage.framework in Frameworks */,
 				83C440271598D96800F401D2 /* QuartzCore.framework in Frameworks */,
 				834C0FC2158F7121000C5652 /* UIKit.framework in Frameworks */,
 				834C0FC4158F7121000C5652 /* Foundation.framework in Frameworks */,
@@ -3798,6 +3801,7 @@
 		834C0FB2158F7121000C5652 = {
 			isa = PBXGroup;
 			children = (
+				760D738A15CC54A300404C10 /* CoreImage.framework */,
 				834C0FC9158F7121000C5652 /* PainMe */,
 				834C0FF1158F7121000C5652 /* PainMeTests */,
 				834C0FC0158F7121000C5652 /* Frameworks */,

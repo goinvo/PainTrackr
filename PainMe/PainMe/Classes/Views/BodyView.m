@@ -105,6 +105,7 @@
     tiledLayer.tileSize = CGSizeMake(BODY_TILE_SIZE, BODY_TILE_SIZE);
    
     tiledLayer.levelsOfDetail = 5;
+    tiledLayer.masksToBounds = YES;
 
     
    _imageCache = [[NSCache alloc] init];
@@ -114,14 +115,8 @@
     self.isNewStroke = NO;
     self.strokeChanged = NO;
     
-  /*  
-    NSMutableDictionary *newActions = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[NSNull null],@"onOrderIn",
-                                       [NSNull null], @"onOrderOut",
-                                       [NSNull null], @"sublayers",
-                                       [NSNull null], @"contents",
-                                        nil];
-    tiledLayer.actions = newActions;
-    */
+    
+    
 }
 
 // handle delegate method
@@ -148,7 +143,7 @@ int drawNum = 0;
     drawNum ++;
     
  	CGContextRef context = UIGraphicsGetCurrentContext();
-   
+    
     CGSize tileSize = (CGSize){BODY_TILE_SIZE, BODY_TILE_SIZE};
    
     CGFloat scale = CGContextGetCTM(context).a/self.contentScaleFactor;
@@ -179,12 +174,12 @@ int drawNum = 0;
                 tileRect = CGRectIntersection(self.bounds, tileRect);
                 
 //                NSLog(@"tile rect is %@",NSStringFromCGRect(tileRect));
-                
+               
                 if(self.isMask){
                     
                     tile = [BodyView imageToMask:tile Withcolor:self.bodyStrokeColor];
                 }
-                                
+                
                 [tile drawInRect:tileRect];
 
                 // Draw a white line around the tile border so 
@@ -266,7 +261,6 @@ NSLog(@"draw was called %d",drawNum);
 
 -(void)maskWithColor:(UIColor *)maskFillColor{
 
-    
     if (self.isNewStroke == NO) {
      
         self.isMask = YES;
@@ -275,23 +269,9 @@ NSLog(@"draw was called %d",drawNum);
         
         [self setNeedsDisplay];
     }
-     
-    /*
-    
-    CALayer* maskLayer = [[CALayer alloc] init];
-    maskLayer.opacity = 0.2f;
-    maskLayer.borderWidth = 4;
-    maskLayer.borderColor = [UIColor blueColor].CGColor;
-    maskLayer.backgroundColor = maskFillColor.CGColor;
-    maskLayer.bounds = self.bounds;
-    maskLayer.position = CGPointMake(self.bounds.size.width*0.5 , self.bounds.size.height*0.5);
-    self.layer.mask = maskLayer;
-
-    */
 }
 
 -(void)resetStroke{
-
     
     if (self.isNewStroke) {
         self.isMask = NO;
@@ -299,11 +279,9 @@ NSLog(@"draw was called %d",drawNum);
         
         [self setNeedsDisplay];
     }
-
-    
 }
-#pragma mark -
 
+#pragma mark -
 
 + (UIImage *)imageToMask:(UIImage *)image Withcolor:(UIColor *)color
 {

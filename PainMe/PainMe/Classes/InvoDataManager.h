@@ -34,4 +34,6 @@
 
 -(NSArray *)painLevelsForAllEntries;
 -(NSArray *)timeStampsForPainEntries;
+
+-(id)lastPainEntryToRender;
 @end

@@ -43,6 +43,8 @@
 @synthesize bodyGeometry = _bodyGeometry;
 @synthesize painFace = _painFace;
 
+@synthesize partNameLabel = _partNameLabel;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -90,6 +92,12 @@
     [self initTapGesture];
     
     self.bodyGeometry = [[BodyPartGeometry alloc] init];
+    
+    id entryToRender =   [[InvoDataManager sharedDataManager] lastPainEntryToRender];
+
+    if (entryToRender) {
+        NSLog(@"entry to render is %@",entryToRender);
+    }
     
 }
 
@@ -262,14 +270,12 @@
     
         [self.bodyView renderPainForBodyPartPath:[[pathContainingPoint allValues] objectAtIndex:0] WithColor:fillcolor];
         
+        [self.partNameLabel setText:[[pathContainingPoint allKeys] objectAtIndex:0]];
+        
         [InvoDataManager painEntryForLocation:[pathContainingPoint copy] LevelPain:painLvl notes:nil];
-        
-//        NSDate *now = [[NSDate alloc] init];
-        
-//        [PainEntry painEntryWithTime:now Location:self.bodyGeometry.bezierPath  PainLevel:painLvl ExtraNotes:@"NewEntry"];
-        
+                
         fillcolor = nil;
-//        now = nil;
+
     }
    
 }
