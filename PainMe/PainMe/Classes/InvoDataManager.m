@@ -8,6 +8,7 @@
 
 #import "InvoDataManager.h"
 #import "PainLocation.h"
+#import "PainEntry.h"
 
 #define NUM_COLUMNS 8.0
 #define NUM_ROWS 17.0
@@ -473,6 +474,7 @@
 
 -(id)lastPainEntryToRender{
 
+    
     NSEntityDescription *ent = [NSEntityDescription entityForName:@"PainEntry" inManagedObjectContext:self.managedObjectContext];
     
     NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
@@ -480,14 +482,16 @@
     
     NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO];
     [fetReq setSortDescriptors:[NSArray arrayWithObject:sort]];
-    
+        
     [fetReq setResultType:NSDictionaryResultType];
     
     NSError *error;
     NSArray *CrDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
     
     if ([CrDta count] >0) {
-        return CrDta;
+        
+        return [CrDta objectAtIndex:0];
+        
     }
     return nil;
 }

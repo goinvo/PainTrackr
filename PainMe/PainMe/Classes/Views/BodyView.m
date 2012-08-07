@@ -44,6 +44,7 @@
    return [CATiledLayer class];
 }
 
+/*
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -53,7 +54,8 @@
     return self;
 }
 
-/*
+ */
+
 +(CGColorSpaceRef)genericRGBSpace;{
 
     static CGColorSpaceRef space = NULL;
@@ -82,13 +84,14 @@
     }
     return red;
 }
-*/
+
 /*
 +(CFTimeInterval)fadeDuration{
 
     return 0.0;
 }
 */
+
 
 - (void) awakeFromNib {
     
@@ -115,8 +118,6 @@
     self.isNewStroke = NO;
     self.strokeChanged = NO;
     
-    
-    
 }
 
 // handle delegate method
@@ -138,17 +139,18 @@
 }
 
 int drawNum = 0;
+
 - (void)drawRect:(CGRect)rect {
-    
+        
     drawNum ++;
     
- 	CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextRef context = UIGraphicsGetCurrentContext();
     
     CGSize tileSize = (CGSize){BODY_TILE_SIZE, BODY_TILE_SIZE};
-   
+    
     CGFloat scale = CGContextGetCTM(context).a/self.contentScaleFactor;
-  
-    NSLog(@"Scale in draw is %f",scale);
+    
+    //    NSLog(@"Scale in draw is %f",scale);
     
     int firstCol = floorf(CGRectGetMinX(rect) / tileSize.width);
     int lastCol = floorf((CGRectGetMaxX(rect)-1) / tileSize.width);
@@ -157,59 +159,54 @@ int drawNum = 0;
     
     for (int row = firstRow; row <= lastRow; row++) {
         for (int col = firstCol; col <= lastCol; col++) {
+            
             UIImage *tile = [self tileAtCol:col row:row withScale:scale];
             
             if (tile) {
                 
                 CGRect tileRect;
-                  
-//                tileRect = CGRectMake(1024+(tileSize.width * col), 
-//                                          tileSize.height * row,
-//                                          tileSize.width, tileSize.height);  
                 
-                tileRect = CGRectMake(tileSize.width * col, 
-                                            tileSize.height * row,
-                                            tileSize.width, tileSize.height);
+                tileRect = CGRectMake(tileSize.width * col,
+                                      tileSize.height * row,
+                                      tileSize.width, tileSize.height);
                 
                 tileRect = CGRectIntersection(self.bounds, tileRect);
                 
-//                NSLog(@"tile rect is %@",NSStringFromCGRect(tileRect));
-               
                 if(self.isMask){
                     
                     tile = [BodyView imageToMask:tile Withcolor:self.bodyStrokeColor];
                 }
                 
                 [tile drawInRect:tileRect];
-
-                // Draw a white line around the tile border so 
-                // we can see it
-//                
-//                [[UIColor redColor] set];
-//                CGContextSetLineWidth(context, 6.0);
-//                CGContextStrokeRect(context, tileRect);
                 
-//                CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
-//                CGContextFillEllipseInRect(context, CGRectMake(0, 0, rect.size.width*0.25*scale, rect.size.height*0.25*scale));
+                // Draw a white line around the tile border so
+                // we can see it
+                //
+                //                [[UIColor redColor] set];
+                //                CGContextSetLineWidth(context, 6.0);
+                //                CGContextStrokeRect(context, tileRect);
+                
+                //                CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
+                //                CGContextFillEllipseInRect(context, CGRectMake(0, 0, rect.size.width*0.25*scale, rect.size.height*0.25*scale));
             }
         }
     }
     // iterate over pain entries
     // if pain entry's body part is inside rect, draw it
+    
+    if (self.pathShape && CGRectIntersectsRect([self.pathShape bounds], rect)) {
         
-    if (self.pathShape) {
+        CGContextSetStrokeColorWithColor(context, [BodyView redColor]);
+        CGContextSetFillColorWithColor(context, [self.shapeFillColor CGColor]);
         
-//        CGContextSetStrokeColorWithColor(context, [BodyView redColor]);
-//        CGContextSetFillColorWithColor(context, [BodyView blueColor]);
-
-        [[UIColor blackColor] setStroke];        
-        [self.shapeFillColor setFill];
+//        [[UIColor blackColor] setStroke];
+//        [self.shapeFillColor setFill];
         
         [self.pathShape fill];
         [self.pathShape stroke];
     }
     
-NSLog(@"draw was called %d",drawNum);
+    NSLog(@"draw was called %d",drawNum);
 }
 
 - (UIImage*)tileAtCol:(int)col row:(int)row withScale:(CGFloat)scale

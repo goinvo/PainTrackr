@@ -74,7 +74,7 @@
 
           for (int i=1; i<_pointCount; i++) {
              
-              NSLog(@"Point is x:%f y:%f",_points[i].x, _points[i].y);
+//              NSLog(@"Point is x:%f y:%f",_points[i].x, _points[i].y);
             
               [_bezierPath addLineToPoint:CGPointMake(_points[i].x*NUM_TO_DIVIDEX,_points[i].y*NUM_TO_DIVIDEY )];
          }

@@ -48,7 +48,6 @@
     
     [PainEntry painEntryWithTime:now PainLevel:painLvl ExtraNotes:[notes copy] Location:locFound];
 
-    
 }
 
 
