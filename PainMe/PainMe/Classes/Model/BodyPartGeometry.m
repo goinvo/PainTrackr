@@ -3,7 +3,7 @@
 //  PainMe
 //
 //  Created by Garrett Christopher on 6/21/12.
-//  Copyright (c) 2012 ZWorkbench, Inc. All rights reserved.
+//  Copyright (c) 2012 Involution Studios, Inc. All rights reserved.
 //
 
 #import "BodyPartGeometry.h"
@@ -128,6 +128,15 @@
         }
     }
     return toRet;
+}
+
+-(UIBezierPath *)dictFrBodyLocation:(NSString *)locName{
+
+    if (locName) {
+        
+       return [ [self.painShapes valueForKey:locName]copy];
+    }
+    return nil;
 }
 
 -(CGPoint *)getPoints{

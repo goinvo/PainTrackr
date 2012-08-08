@@ -3,7 +3,7 @@
 //  PainMe
 //
 //  Created by Dhaval Karwa on 7/2/12.
-//  Copyright (c) 2012 ZWorkbench, Inc. All rights reserved.
+//  Copyright (c) 2012 Involution Studios, Inc. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

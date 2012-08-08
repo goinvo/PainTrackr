@@ -3,7 +3,7 @@
 //  PainMe
 //
 //  Created by Dhaval Karwa on 7/19/12.
-//  Copyright (c) 2012 ZWorkbench, Inc. All rights reserved.
+//  Copyright (c) 2012 Involution Studios, Inc. All rights reserved.
 //
 
 #import "InvoDataManager.h"
@@ -474,7 +474,6 @@
 
 -(id)lastPainEntryToRender{
 
-    
     NSEntityDescription *ent = [NSEntityDescription entityForName:@"PainEntry" inManagedObjectContext:self.managedObjectContext];
     
     NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
@@ -483,19 +482,50 @@
     NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO];
     [fetReq setSortDescriptors:[NSArray arrayWithObject:sort]];
         
-    [fetReq setResultType:NSDictionaryResultType];
+//    [fetReq setResultType:NSDictionaryResultType];
+    [fetReq setPropertiesToFetch:[NSArray arrayWithObjects:@"location",@"notes",@"painLevel",@"timestamp", nil]];
     
     NSError *error;
     NSArray *CrDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
     
     if ([CrDta count] >0) {
         
-        return [CrDta objectAtIndex:0];
+        //NSLog(@" location is %@",[[CrDta objectAtIndex:0] valueForKey:@"location"]);
         
+//        PainLocation *loc = (PainLocation *)[[CrDta objectAtIndex:0] valueForKey:@"location"];
+//        NSLog(@"Location Name is %@",[loc valueForKey:@"name"]);
+//        
+//        return [[loc valueForKey:@"name"] copy];
+        return [CrDta objectAtIndex:0];
     }
     return nil;
 }
 
+
+-(NSArray *)namesOfBodyParts{
+
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"PainLocation" inManagedObjectContext:self.managedObjectContext];
+    
+    NSFetchRequest *fetreq = [[NSFetchRequest alloc] init];
+    [fetreq setEntity:entity];
+    [fetreq setResultType:NSDictionaryResultType];
+    
+    NSMutableArray *arrtoRet = [NSMutableArray array];
+    NSError *error = nil;
+    
+    NSArray *data = [self.managedObjectContext executeFetchRequest:fetreq error:&error];
+    
+    if ([data count] >0) {
+        
+        for (NSDictionary *arr in data) {
+            
+            [arrtoRet addObject:[[arr valueForKey:@"name"] copy]];
+        }
+        return [arrtoRet copy];
+    }
+    return nil;
+    
+}
 #pragma mark -
 
 

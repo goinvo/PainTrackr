@@ -3,7 +3,7 @@
 //  PainMe
 //
 //  Created by Dhaval Karwa on 7/19/12.
-//  Copyright (c) 2012 ZWorkbench, Inc. All rights reserved.
+//  Copyright (c) 2012 Involution Studios, Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -36,4 +36,6 @@
 -(NSArray *)timeStampsForPainEntries;
 
 -(id)lastPainEntryToRender;
+
+-(NSArray *)namesOfBodyParts;
 @end

@@ -4009,7 +4009,7 @@
 			attributes = {
 				CLASSPREFIX = Invo;
 				LastUpgradeCheck = 0430;
-				ORGANIZATIONNAME = "ZWorkbench, Inc.";
+				ORGANIZATIONNAME = InvolutionStudios;
 			};
 			buildConfigurationList = 834C0FB7158F7121000C5652 /* Build configuration list for PBXProject "PainMe" */;
 			compatibilityVersion = "Xcode 3.2";

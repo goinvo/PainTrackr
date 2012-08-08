@@ -3,18 +3,15 @@
 //  PainMe
 //
 //  Created by Garrett Christopher on 6/25/12.
-//  Copyright (c) 2012 ZWorkbench, Inc. All rights reserved.
+//  Copyright (c) 2012 Involution Studios, Inc. All rights reserved.
 //
 
 #import "InvoBodySelectionViewControllerViewController.h"
 #import "BodyView.h"
 #import "InvoDataManager.h"
-//#import "BodyPartView.h"
 #import "BodyPartGeometry.h"
-
-//#import "PainFaceView.h"
-
-//#import "PainEntry.h"
+#import "PainEntry.h"
+#import "PainLocation.h"
 
 @interface InvoBodySelectionViewControllerViewController () {
    
@@ -97,7 +94,17 @@
     id entryToRender =   [[InvoDataManager sharedDataManager] lastPainEntryToRender];
 
     if (entryToRender) {
-        NSLog(@"entry to render is %@",entryToRender);
+    //    NSLog(@"entry to render is %@",entryToRender);
+        
+        UIColor *fillColor = [self colorfromPain:[[(PainEntry *)entryToRender valueForKey:@"painLevel"] integerValue]];
+    
+        PainLocation *loc = (PainLocation *)[entryToRender valueForKey:@"location"];
+        
+        UIBezierPath *locpath = [self.bodyGeometry dictFrBodyLocation:[ [loc valueForKey:@"name"] copy]];
+        
+        [self.bodyView renderPainForBodyPartPath:locpath WithColor:fillColor];
+        
+         [self.partNameLabel setText:[loc valueForKey:@"name"]];
     }
 }
 

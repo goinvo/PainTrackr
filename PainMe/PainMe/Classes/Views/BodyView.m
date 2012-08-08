@@ -3,7 +3,7 @@
 //  PainMe
 //
 //  Created by Garrett Christopher on 6/25/12.
-//  Copyright (c) 2012 ZWorkbench, Inc. All rights reserved.
+//  Copyright (c) 2012 Involution Studios, Inc. All rights reserved.
 //
 
 #import "BodyView.h"
@@ -85,12 +85,12 @@
     return red;
 }
 
-/*
+
 +(CFTimeInterval)fadeDuration{
 
-    return 0.0;
+    return 0.2;
 }
-*/
+
 
 
 - (void) awakeFromNib {
@@ -156,7 +156,7 @@ int drawNum = 0;
     int lastCol = floorf((CGRectGetMaxX(rect)-1) / tileSize.width);
     int firstRow = floorf(CGRectGetMinY(rect) / tileSize.height);
     int lastRow = floorf((CGRectGetMaxY(rect)-1) / tileSize.height);
-    
+        
     for (int row = firstRow; row <= lastRow; row++) {
         for (int col = firstCol; col <= lastCol; col++) {
             
@@ -178,6 +178,7 @@ int drawNum = 0;
                 }
                 
                 [tile drawInRect:tileRect];
+                
                 
                 // Draw a white line around the tile border so
                 // we can see it
@@ -282,7 +283,7 @@ int drawNum = 0;
 
 + (UIImage *)imageToMask:(UIImage *)image Withcolor:(UIColor *)color
 {
-
+    
     CGRect rect = CGRectMake(0, 0, image.size.width, image.size.height);
     
     UIGraphicsBeginImageContextWithOptions(rect.size, NO, image.scale);

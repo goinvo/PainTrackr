@@ -163,6 +163,34 @@
             <point key="canvasLocation" x="902" y="64"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="BodyView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BodyView.h"/>
+        </class>
+        <class className="InvoBodySelectionViewControllerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InvoBodySelectionViewControllerViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bodyView" candidateClass="BodyView"/>
+                <relationship kind="outlet" name="partNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="InvoDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InvoDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="detailDescriptionLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="InvoMasterViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InvoMasterViewController.h"/>
+        </class>
+        <class className="InvoPainGraphViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InvoPainGraphViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="pickerBttonTapped:"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

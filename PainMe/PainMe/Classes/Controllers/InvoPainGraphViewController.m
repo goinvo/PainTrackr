@@ -3,7 +3,7 @@
 //  PainMe
 //
 //  Created by Dhaval Karwa on 8/1/12.
-//  Copyright (c) 2012 ZWorkbench, Inc. All rights reserved.
+//  Copyright (c) 2012 Involution Studios, Inc. All rights reserved.
 //
 
 #import "InvoPainGraphViewController.h"
@@ -40,9 +40,20 @@
 -(void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
+//    [self.view setUserInteractionEnabled:YES];
     
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:YES];
+
+    UIButton *newBtn  = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [newBtn setFrame:CGRectMake(220, 150, 80, 40)];
+    [newBtn addTarget:self action:@selector(pickerBttonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [newBtn setTitle:@"New Part" forState:UIControlStateNormal];
+
+    UIBarButtonItem *newBtnItm = [[UIBarButtonItem alloc]initWithCustomView:newBtn];
+      [self.navigationItem setRightBarButtonItem:newBtnItm];
+//    [self.view addSubview:newBtn];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -297,5 +308,63 @@
 
     return [NSDecimalNumber zero];
 }
+
+-(void)pickerBttonTapped:(id)sender{
+
+    NSLog(@"Tapped");
+    
+    UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 200, 320, 200)];
+    
+    pickerView.delegate = self;
+    
+    pickerView.showsSelectionIndicator = YES;
+        
+    pickerView.tag = 1;
+    
+    [self.view addSubview:pickerView];
+
+}
+#pragma mark -
+
+#pragma mark PickerView Del Methods
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+
+    UIPickerView *pick =nil;
+    for (UIView *view in self.view.subviews) {
+        
+        if (view.tag ==1) {
+            
+            pick = (UIPickerView *)view;
+            [pick removeFromSuperview];
+            break;
+        }
+    }
+}
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+
+    NSArray *arr = [[InvoDataManager sharedDataManager] namesOfBodyParts];
+    NSUInteger numROws = [arr count];
+    return numROws;
+}
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+
+    return 1;
+}
+
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    
+    NSArray *arr = [[InvoDataManager sharedDataManager] namesOfBodyParts];
+    NSString *title = [NSString stringWithFormat:@" %@ ",[arr objectAtIndex:row] ];
+    return [title copy];
+    
+}
+-(CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
+
+    return 200;
+}
+
 #pragma mark -
 @end
