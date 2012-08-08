@@ -31,10 +31,10 @@ cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-
 cCompileXIB /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.xib
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/F1.png PainMe/Resources/images/F1.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/F2.png PainMe/Resources/images/F2.png
-cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/F4.png PainMe/Resources/images/F4.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/F3.png PainMe/Resources/images/F3.png
-cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/F6.png PainMe/Resources/images/F6.png
+cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/F4.png PainMe/Resources/images/F4.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/F5.png PainMe/Resources/images/F5.png
+cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/F6.png PainMe/Resources/images/F6.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/F1@2x.png PainMe/Resources/images/F1@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/F2@2x.png PainMe/Resources/images/F2@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/F3@2x.png PainMe/Resources/images/F3@2x.png
@@ -83,8 +83,8 @@ cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_26.png PainMe/Resources/images/body_slices_26.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_27.png PainMe/Resources/images/body_slices_27.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_28.png PainMe/Resources/images/body_slices_28.png
-cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_29.png PainMe/Resources/images/body_slices_29.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_30.png PainMe/Resources/images/body_slices_30.png
+cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_29.png PainMe/Resources/images/body_slices_29.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_31.png PainMe/Resources/images/body_slices_31.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_32.png PainMe/Resources/images/body_slices_32.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_33.png PainMe/Resources/images/body_slices_33.png
@@ -119,8 +119,8 @@ cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_62.png PainMe/Resources/images/body_slices_62.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_63.png PainMe/Resources/images/body_slices_63.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_64.png PainMe/Resources/images/body_slices_64.png
-cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_65.png PainMe/Resources/images/body_slices_65.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_66.png PainMe/Resources/images/body_slices_66.png
+cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_65.png PainMe/Resources/images/body_slices_65.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_67.png PainMe/Resources/images/body_slices_67.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_68.png PainMe/Resources/images/body_slices_68.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_69.png PainMe/Resources/images/body_slices_69.png
@@ -131,8 +131,8 @@ cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_74.png PainMe/Resources/images/body_slices_74.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_75.png PainMe/Resources/images/body_slices_75.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_76.png PainMe/Resources/images/body_slices_76.png
-cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_78.png PainMe/Resources/images/body_slices_78.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_77.png PainMe/Resources/images/body_slices_77.png
+cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_78.png PainMe/Resources/images/body_slices_78.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_79.png PainMe/Resources/images/body_slices_79.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_80.png PainMe/Resources/images/body_slices_80.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_81.png PainMe/Resources/images/body_slices_81.png
@@ -189,8 +189,8 @@ cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_132.png PainMe/Resources/images/body_slices_132.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_133.png PainMe/Resources/images/body_slices_133.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_134.png PainMe/Resources/images/body_slices_134.png
-cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_136.png PainMe/Resources/images/body_slices_136.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_135.png PainMe/Resources/images/body_slices_135.png
+cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_136.png PainMe/Resources/images/body_slices_136.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_01@2x.png PainMe/Resources/images/body_slices_01@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_02@2x.png PainMe/Resources/images/body_slices_02@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_slices_03@2x.png PainMe/Resources/images/body_slices_03@2x.png
@@ -388,8 +388,8 @@ cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_59_1024@2x.png PainMe/Resources/images/body_large_59_1024@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_60_1024@2x.png PainMe/Resources/images/body_large_60_1024@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_61_1024@2x.png PainMe/Resources/images/body_large_61_1024@2x.png
-cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_63_1024@2x.png PainMe/Resources/images/body_large_63_1024@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_62_1024@2x.png PainMe/Resources/images/body_large_62_1024@2x.png
+cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_63_1024@2x.png PainMe/Resources/images/body_large_63_1024@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_64_1024@2x.png PainMe/Resources/images/body_large_64_1024@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_65_1024@2x.png PainMe/Resources/images/body_large_65_1024@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_66_1024@2x.png PainMe/Resources/images/body_large_66_1024@2x.png
@@ -404,8 +404,8 @@ cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_75_1024@2x.png PainMe/Resources/images/body_large_75_1024@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_76_1024@2x.png PainMe/Resources/images/body_large_76_1024@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_77_1024@2x.png PainMe/Resources/images/body_large_77_1024@2x.png
-cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_79_1024@2x.png PainMe/Resources/images/body_large_79_1024@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_78_1024@2x.png PainMe/Resources/images/body_large_78_1024@2x.png
+cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_79_1024@2x.png PainMe/Resources/images/body_large_79_1024@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_80_1024@2x.png PainMe/Resources/images/body_large_80_1024@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_81_1024@2x.png PainMe/Resources/images/body_large_81_1024@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_82_1024@2x.png PainMe/Resources/images/body_large_82_1024@2x.png
@@ -424,10 +424,10 @@ cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_95_1024@2x.png PainMe/Resources/images/body_large_95_1024@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_96_1024@2x.png PainMe/Resources/images/body_large_96_1024@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_97_1024@2x.png PainMe/Resources/images/body_large_97_1024@2x.png
-cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_99_1024@2x.png PainMe/Resources/images/body_large_99_1024@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_98_1024@2x.png PainMe/Resources/images/body_large_98_1024@2x.png
-cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_101_1024@2x.png PainMe/Resources/images/body_large_101_1024@2x.png
+cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_99_1024@2x.png PainMe/Resources/images/body_large_99_1024@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_100_1024@2x.png PainMe/Resources/images/body_large_100_1024@2x.png
+cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_101_1024@2x.png PainMe/Resources/images/body_large_101_1024@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_102_1024@2x.png PainMe/Resources/images/body_large_102_1024@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_103_1024@2x.png PainMe/Resources/images/body_large_103_1024@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_104_1024@2x.png PainMe/Resources/images/body_large_104_1024@2x.png
@@ -544,8 +544,8 @@ cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_79_512@2x.png PainMe/Resources/images/body_large_79_512@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_80_512@2x.png PainMe/Resources/images/body_large_80_512@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_81_512@2x.png PainMe/Resources/images/body_large_81_512@2x.png
-cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_82_512@2x.png PainMe/Resources/images/body_large_82_512@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_83_512@2x.png PainMe/Resources/images/body_large_83_512@2x.png
+cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_82_512@2x.png PainMe/Resources/images/body_large_82_512@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_84_512@2x.png PainMe/Resources/images/body_large_84_512@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_85_512@2x.png PainMe/Resources/images/body_large_85_512@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_86_512@2x.png PainMe/Resources/images/body_large_86_512@2x.png
@@ -574,8 +574,8 @@ cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_109_512@2x.png PainMe/Resources/images/body_large_109_512@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_110_512@2x.png PainMe/Resources/images/body_large_110_512@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_111_512@2x.png PainMe/Resources/images/body_large_111_512@2x.png
-cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_113_512@2x.png PainMe/Resources/images/body_large_113_512@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_112_512@2x.png PainMe/Resources/images/body_large_112_512@2x.png
+cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_113_512@2x.png PainMe/Resources/images/body_large_113_512@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_114_512@2x.png PainMe/Resources/images/body_large_114_512@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_115_512@2x.png PainMe/Resources/images/body_large_115_512@2x.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_116_512@2x.png PainMe/Resources/images/body_large_116_512@2x.png
@@ -1004,9 +1004,9 @@ cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_131_512.png PainMe/Resources/images/body_large_131_512.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_132_512.png PainMe/Resources/images/body_large_132_512.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_133_512.png PainMe/Resources/images/body_large_133_512.png
+cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_134_512.png PainMe/Resources/images/body_large_134_512.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_135_512.png PainMe/Resources/images/body_large_135_512.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_136_512.png PainMe/Resources/images/body_large_136_512.png
-cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_134_512.png PainMe/Resources/images/body_large_134_512.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_01_1024.png PainMe/Resources/images/body_large_01_1024.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_02_1024.png PainMe/Resources/images/body_large_02_1024.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_03_1024.png PainMe/Resources/images/body_large_03_1024.png
@@ -1022,8 +1022,8 @@ cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_13_1024.png PainMe/Resources/images/body_large_13_1024.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_14_1024.png PainMe/Resources/images/body_large_14_1024.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_15_1024.png PainMe/Resources/images/body_large_15_1024.png
-cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_17_1024.png PainMe/Resources/images/body_large_17_1024.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_16_1024.png PainMe/Resources/images/body_large_16_1024.png
+cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_17_1024.png PainMe/Resources/images/body_large_17_1024.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_18_1024.png PainMe/Resources/images/body_large_18_1024.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_19_1024.png PainMe/Resources/images/body_large_19_1024.png
 cCopyPNGFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/body_large_20_1024.png PainMe/Resources/images/body_large_20_1024.png
@@ -1223,23 +1223,23 @@ t1343252308
 s6020
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoAppDelegate.h
-c00000000502271350000000000000130
-t1344434485
+c0000000050227C240000000000000130
+t1344437284
 s304
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoAppDelegate.m
-c00000000502271330000000000000CC2
-t1344434483
+c0000000050227C240000000000000CC2
+t1344437284
 s3266
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.h
-c000000005022713100000000000001C5
-t1344434481
+c0000000050227C2400000000000001C5
+t1344437284
 s453
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.m
-c0000000050227130000000000000281B
-t1344434480
+c0000000050227C24000000000000281B
+t1344437284
 s10267
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoBodySelectionViewControllerViewController.xib
@@ -1248,38 +1248,38 @@ t1344026274
 s6526
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoDetailViewController.h
-c00000000502271310000000000000195
-t1344434481
+c0000000050227C240000000000000195
+t1344437284
 s405
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoDetailViewController.m
-c00000000502271340000000000000A32
-t1344434484
+c0000000050227C240000000000000A32
+t1344437284
 s2610
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoMasterViewController.h
-c00000000502271300000000000000259
-t1344434480
+c0000000050227C240000000000000259
+t1344437284
 s601
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoMasterViewController.m
-c000000005022713200000000000027CF
-t1344434482
+c0000000050227C2400000000000027CF
+t1344437284
 s10191
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoPainGraphViewController.h
-c000000005022712F000000000000016E
-t1344434479
+c0000000050227C24000000000000016E
+t1344437284
 s366
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoPainGraphViewController.m
-c00000000502271340000000000002C23
-t1344434484
+c0000000050227C240000000000002C23
+t1344437284
 s11299
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoPainGraphViewController.xib
-c000000005021636F000000000000180C
-t1344365423
+c0000000050227C24000000000000180C
+t1344437284
 s6156
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Helpers/PainMe-Prefix.pch
@@ -1288,48 +1288,48 @@ t1343841074
 s383
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Helpers/main.m
-c00000000502271350000000000000168
-t1344434485
+c0000000050227C240000000000000168
+t1344437284
 s360
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/InvoDataManager.h
-c000000005022713300000000000004B3
-t1344434483
+c0000000050227C2400000000000004B3
+t1344437284
 s1203
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/InvoDataManager.m
-c000000005022712D000000000000422B
-t1344434477
+c0000000050227C24000000000000422B
+t1344437284
 s16939
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Model/BodyPartGeometry.h
-c000000005022713500000000000001DC
-t1344434485
+c0000000050227C2400000000000001DC
+t1344437284
 s476
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Model/BodyPartGeometry.m
-c00000000502271320000000000000ED6
-t1344434482
+c0000000050227C240000000000000ED6
+t1344437284
 s3798
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Model/PainEntry.h
-c00000000502271320000000000000264
-t1344434482
+c0000000050227C240000000000000264
+t1344437284
 s612
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Model/PainEntry.m
-c00000000502271320000000000000441
-t1344434482
+c0000000050227C240000000000000441
+t1344437284
 s1089
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Model/PainLocation.h
-c000000005022713600000000000003CF
-t1344434486
+c0000000050227C2400000000000003CF
+t1344437284
 s975
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Model/PainLocation.m
-c000000005022712F0000000000000C15
-t1344434479
+c0000000050227C240000000000000C15
+t1344437284
 s3093
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/NSArray+CHCSVAdditions.h
@@ -1353,33 +1353,33 @@ t1340631726
 s1328
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/BodyPartView.h
-c00000000502271310000000000000139
-t1344434481
+c0000000050227C240000000000000139
+t1344437284
 s313
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/BodyPartView.m
-c000000005022713100000000000007DE
-t1344434481
+c0000000050227C2400000000000007DE
+t1344437284
 s2014
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/BodyView.h
-c00000000502271330000000000000270
-t1344434483
+c0000000050227C240000000000000270
+t1344437284
 s624
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/BodyView.m
-c000000005022712F0000000000001EEB
-t1344434479
+c0000000050227C240000000000001EEB
+t1344437284
 s7915
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/PainFaceView.h
-c00000000502271350000000000000316
-t1344434485
+c0000000050227C240000000000000316
+t1344437284
 s790
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Views/PainFaceView.m
-c00000000502271350000000000001AB2
-t1344434485
+c0000000050227C240000000000001AB2
+t1344437284
 s6834
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/CorePlotHeaders/CPTAnnotation.h
@@ -1743,8 +1743,8 @@ t1340113083
 s9164
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/en.lproj/MainStoryboard_iPhone.storyboard
-c00000000502163E70000000000003906
-t1344365543
+c0000000050227C240000000000003906
+t1344437284
 s14598
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/iTunesArtwork
@@ -7293,11 +7293,11 @@ t1329777180
 s4865968
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app
-t1344434492
+t1344437284
 s38386
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app.dSYM
-t1344434491
+t1344434496
 s102
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/F1.png
@@ -7377,15 +7377,15 @@ t1344434032
 s7990
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/Info.plist
-t1344434023
+t1344437284
 s1512
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/InvoBodySelectionViewControllerViewController.nib
-t1344434030
+t1344437284
 s870
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/InvoPainGraphViewController.nib
-t1344434102
+t1344437284
 s792
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/NewData.csv
@@ -7393,11 +7393,11 @@ t1344434102
 s9264
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/PainMe
-t1344434492
+t1344437284
 s870912
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/PainMe.momd
-t1344434024
+t1344437284
 s204
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/PkgInfo
@@ -11769,11 +11769,11 @@ t1344434103
 s7718
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/en.lproj/MainStoryboard_iPad.storyboardc
-t1344434030
+t1344437284
 s272
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/en.lproj/MainStoryboard_iPhone.storyboardc
-t1344434030
+t1344437285
 s238
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/iTunesArtwork
@@ -11809,67 +11809,67 @@ t1344434033
 s121037
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/Objects-normal/armv7/BodyPartGeometry.o
-t1344434489
+t1344437285
 s23556
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/Objects-normal/armv7/BodyPartView.o
-t1344434490
+t1344437285
 s73652
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/Objects-normal/armv7/BodyView.o
-t1344434490
+t1344437285
 s92548
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/Objects-normal/armv7/CHCSVParser.o
-t1344434026
+t1344437285
 s58404
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/Objects-normal/armv7/CHCSVWriter.o
-t1344434026
+t1344437285
 s31044
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/Objects-normal/armv7/InvoAppDelegate.o
-t1344434488
+t1344437285
 s89188
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/Objects-normal/armv7/InvoBodySelectionViewControllerViewController.o
-t1344434490
+t1344437285
 s111356
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/Objects-normal/armv7/InvoDataManager.o
-t1344434490
+t1344437285
 s70808
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/Objects-normal/armv7/InvoDetailViewController.o
-t1344434488
+t1344437285
 s75916
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/Objects-normal/armv7/InvoMasterViewController.o
-t1344434489
+t1344437285
 s104232
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/Objects-normal/armv7/InvoPainGraphViewController.o
-t1344434490
+t1344437285
 s132516
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/Objects-normal/armv7/NSArray+CHCSVAdditions.o
-t1344434026
+t1344437285
 s38296
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/Objects-normal/armv7/NSString+CHCSVAdditions.o
-t1344434026
+t1344437285
 s4588
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/Objects-normal/armv7/PainEntry.o
-t1344434489
+t1344437285
 s18488
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/Objects-normal/armv7/PainFaceView.o
-t1344434490
+t1344437285
 s101584
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/Objects-normal/armv7/PainLocation.o
-t1344434490
+t1344437285
 s24708
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/Objects-normal/armv7/PainMe.LinkFileList
@@ -11878,7 +11878,7 @@ t1344434023
 s2432
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/Objects-normal/armv7/main.o
-t1344434489
+t1344437285
 s3364
 
 N/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/PainMe.xcent
@@ -11895,9 +11895,9 @@ t1344434024
 s4248480
 
 NPainMe/Resources/PainMe-Info.plist
-c000000005003373900000000000007B8
-t1342388025
-s1976
+c0000000050227F2200000000000007B4
+t1344438050
+s1972
 
 CBuild AST from /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/CHCSVParser.m
 r0
@@ -11952,15 +11952,15 @@ r0
 
 CCheck dependencies
 r0
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies0ce980c0a8d2b541^e0d685c0a8d2b541^---0#1#0#--18"Check dependencies36"CD4E2603-0A9E-4317-B171-14286D9730FB-
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies8f000ea3b6d2b541^f04c9ca5b6d2b541^---0#1#0#--18"Check dependencies36"1125B42E-B4C3-42A1-B8EA-CAE1C3CFC88E-
 
 CCodeSign /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app
-s366127292.565755
-e366127292.947150
+s366130855.427001
+e366130858.702599
 r1
 xCodeSign
 x/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection40"CodeSign build/Debug-iphoneos/PainMe.app9aeb90bca8d2b541^4581f2bca8d2b541^---0#0#0#-19%DVTDocumentLocation2@103"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/0000000000000000^846"CodeSign build/Debug-iphoneos/PainMe.app    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv CODESIGN_ALLOCATE /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/codesign --force --sign 528affd81a24f528e7c966767a1b2803cf3c5e41 --resource-rules=/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/ResourceRules.plist --entitlements /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/PainMe.xcent /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app36"483AB3A6-1ED8-4016-9540-5B31022DF608-
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection40"CodeSign build/Debug-iphoneos/PainMe.appc5706da7b6d2b541^72deb3aab6d2b541^---0#0#0#-19%DVTDocumentLocation2@103"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/0000000000000000^846"CodeSign build/Debug-iphoneos/PainMe.app    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv CODESIGN_ALLOCATE /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/codesign --force --sign 528affd81a24f528e7c966767a1b2803cf3c5e41 --resource-rules=/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/ResourceRules.plist --entitlements /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/PainMe.xcent /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app36"10066611-14F6-46A9-84B7-CB858A5AAAC0-
 
 CCompileC build/PainMe.build/Debug-iphoneos/PainMe.build/Objects-normal/armv7/BodyPartGeometry.o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Model/BodyPartGeometry.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s366127289.373391
@@ -22301,32 +22301,32 @@ x/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/Core Da
 lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection116"DataModelVersionCompile build/Debug-iphoneos/PainMe.app/PainMe.momd "PainMe/Resources/Core Data/PainMe.xcdatamodeld"9cbf85e7a6d2b541^1a8948e8a6d2b541^---0#0#0#-19%DVTDocumentLocation2@120"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/Core%20Data/PainMe.xcdatamodeld/0000000000000000^806"DataModelVersionCompile build/Debug-iphoneos/PainMe.app/PainMe.momd "PainMe/Resources/Core Data/PainMe.xcdatamodeld"    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/usr/bin/momc -XD_MOMC_SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk -MOMC_PLATFORMS iphonesimulator -MOMC_PLATFORMS iphoneos "/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/Core Data/PainMe.xcdatamodeld" /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/PainMe.momd36"6802044B-482A-4B73-8091-B6B7000ABF21-
 
 CGenerateDSYMFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app.dSYM /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/PainMe
-s366127296.733523
-e366127296.898286
+s366130854.043961
+e366130854.313450
 r1
 xGenerateDSYMFile
 x/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app.dSYM
 x/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/PainMe
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection102"Generating /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app.dSYM26e0bbc0a8d2b541^ac01e6c0a8d2b541^---0#0#0#-19%DVTDocumentLocation2@108"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app.dSYM/0000000000000000^632"GenerateDSYMFile build/Debug-iphoneos/PainMe.app.dSYM build/Debug-iphoneos/PainMe.app/PainMe    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/PainMe -o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app.dSYM36"ABF60B1A-EB30-4A58-9A0F-F9C997AE22AE-
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection102"Generating /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app.dSYM215a0ba6b6d2b541^984d50a6b6d2b541^---0#0#0#-19%DVTDocumentLocation2@108"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app.dSYM/0000000000000000^632"GenerateDSYMFile build/Debug-iphoneos/PainMe.app.dSYM build/Debug-iphoneos/PainMe.app/PainMe    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/PainMe -o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app.dSYM36"7562B5E5-7914-4934-B430-82087783F49A-
 
 CLd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/PainMe normal armv7
-s366127290.729759
-e366127290.918556
+s366130853.857832
+e366130854.012086
 r1
 xLd
 x/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/PainMe
 xnormal
 xarmv7
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection98"Link /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/PainMe24edbabaa8d2b541^fa43ebbaa8d2b541^---0#0#0#--1262"Ld build/Debug-iphoneos/PainMe.app/PainMe normal armv7    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv IPHONEOS_DEPLOYMENT_TARGET 5.1    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch armv7 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk -L/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos -L/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe -F/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos -filelist /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/Objects-normal/armv7/PainMe.LinkFileList -dead_strip -ObjC -fobjc-arc -fobjc-link-runtime -miphoneos-version-min=5.1 -framework CoreImage -framework QuartzCore -framework UIKit -framework Foundation -framework CoreGraphics -framework CoreData -lCorePlot-CocoaTouch -o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/PainMe36"3D4B2D0B-CEBB-41AD-9FD3-FD48706A860C-
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection98"Link /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/PainMe31b7dba5b6d2b541^83f804a6b6d2b541^---0#0#0#--1262"Ld build/Debug-iphoneos/PainMe.app/PainMe normal armv7    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv IPHONEOS_DEPLOYMENT_TARGET 5.1    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch armv7 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk -L/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos -L/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe -F/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos -filelist /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/Objects-normal/armv7/PainMe.LinkFileList -dead_strip -ObjC -fobjc-arc -fobjc-link-runtime -miphoneos-version-min=5.1 -framework CoreImage -framework QuartzCore -framework UIKit -framework Foundation -framework CoreGraphics -framework CoreData -lCorePlot-CocoaTouch -o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/PainMe36"57BD467F-84FF-4711-AB84-D7732B2AD1F1-
 
 CProcessInfoPlistFile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/Info.plist PainMe/Resources/PainMe-Info.plist
-s366126823.505459
-e366126823.513173
+s366130853.803916
+e366130853.822018
 r1
 xProcessInfoPlistFile
 x/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/Info.plist
 xPainMe/Resources/PainMe-Info.plist
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection42"Process PainMe/Resources/PainMe-Info.plist317b81e7a6d2b541^915f83e7a6d2b541^---0#0#0#-19%DVTDocumentLocation2@105"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/PainMe-Info.plist0000000000000000^802"ProcessInfoPlistFile build/Debug-iphoneos/PainMe.app/Info.plist PainMe/Resources/PainMe-Info.plist    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-infoPlistUtility PainMe/Resources/PainMe-Info.plist -genpkginfo /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/PkgInfo -expandbuildsettings -format binary -platform iphoneos -resourcerulesfile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/ResourceRules.plist -o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/Info.plist36"D01D8A97-FBFE-4E0F-A15E-C7582408B1F4-
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection42"Process PainMe/Resources/PainMe-Info.plisteae7cda5b6d2b541^0c77d2a5b6d2b541^---0#0#0#-19%DVTDocumentLocation2@105"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Resources/PainMe-Info.plist0000000000000000^802"ProcessInfoPlistFile build/Debug-iphoneos/PainMe.app/Info.plist PainMe/Resources/PainMe-Info.plist    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-infoPlistUtility PainMe/Resources/PainMe-Info.plist -genpkginfo /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/PkgInfo -expandbuildsettings -format binary -platform iphoneos -resourcerulesfile /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/ResourceRules.plist -o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/Info.plist36"FC3CF777-5D6E-4ABE-80EF-E2B843C42240-
 
 CProcessPCH /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/DerivedData/PainMe/Index/PrecompiledHeaders/PainMe-Prefix-bqxxsiolhzerhtcysfdywausnbko_ast/PainMe-Prefix.pch.pth PainMe/Classes/Helpers/PainMe-Prefix.pch normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.astbuilder
 r0
@@ -22354,19 +22354,19 @@ x/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/Pai
 lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection193"ProcessProductPackaging "/Users/DDKarwa/Library/MobileDevice/Provisioning Profiles/8F186933-9DC1-4E20-AC92-183642B61E92.mobileprovision" build/Debug-iphoneos/PainMe.app/embedded.mobileprovisionde050637a7d2b541^fce20637a7d2b541^---0#0#0#-19%DVTDocumentLocation2@127"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/embedded.mobileprovision0000000000000000^708"ProcessProductPackaging "/Users/DDKarwa/Library/MobileDevice/Provisioning Profiles/8F186933-9DC1-4E20-AC92-183642B61E92.mobileprovision" build/Debug-iphoneos/PainMe.app/embedded.mobileprovision    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-productPackagingUtility "/Users/DDKarwa/Library/MobileDevice/Provisioning Profiles/8F186933-9DC1-4E20-AC92-183642B61E92.mobileprovision" -o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app/embedded.mobileprovision36"B520FBE0-BE05-4E73-B8C5-858B44117C06-
 
 CProcessProductPackaging /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/Entitlements.plist /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/PainMe.xcent
-s366126903.052930
-e366126903.057373
+s366130855.303508
+e366130855.417815
 r1
 xProcessProductPackaging
 x/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/Entitlements.plist
 x/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/PainMe.xcent
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection204"ProcessProductPackaging /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/Entitlements.plist build/PainMe.build/Debug-iphoneos/PainMe.build/PainMe.xcentf3c60d37a7d2b541^f5bd0e37a7d2b541^---0#0#0#-19%DVTDocumentLocation2@130"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/PainMe.xcent000000000080d041^756"ProcessProductPackaging /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/Entitlements.plist build/PainMe.build/Debug-iphoneos/PainMe.build/PainMe.xcent    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-productPackagingUtility /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/Entitlements.plist -entitlements -format xml -o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/PainMe.xcent36"BA937381-B390-4308-84DA-42C356114599-
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection204"ProcessProductPackaging /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/Entitlements.plist build/PainMe.build/Debug-iphoneos/PainMe.build/PainMe.xcent36cb4da7b6d2b541^ba146ba7b6d2b541^---0#0#0#-19%DVTDocumentLocation2@130"file://localhost/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/PainMe.xcent0000000000000000^756"ProcessProductPackaging /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/Entitlements.plist build/PainMe.build/Debug-iphoneos/PainMe.build/PainMe.xcent    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-productPackagingUtility /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/Entitlements.plist -entitlements -format xml -o /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/PainMe.build/Debug-iphoneos/PainMe.build/PainMe.xcent36"BCD7D5F7-DE54-4846-B24E-090F28281CF3-
 
 CTouch /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app
-s366127292.542839
-e366127292.549597
+s366130855.287664
+e366130855.294324
 r1
 xTouch
 x/Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection92"Touch /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app6b0b8bbca8d2b541^7fbf8cbca8d2b541^---0#0#0#--397"Touch build/Debug-iphoneos/PainMe.app    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/touch -c /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app36"E19E1AF0-0A60-41DF-8D77-2FB20337522C-
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection92"Touch /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.appd4ba49a7b6d2b541^425a4ba7b6d2b541^---0#0#0#--397"Touch build/Debug-iphoneos/PainMe.app    cd /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/touch -c /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/build/Debug-iphoneos/PainMe.app36"2C686EE0-8816-429E-8017-88C63E1A9D91-
 
