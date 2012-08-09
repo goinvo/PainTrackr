@@ -73,7 +73,7 @@
     
     self.scrollView.backgroundColor = [UIColor clearColor];
     
-    self.bodyView.frame = CGRectMake(70,0,BODY_VIEW_WIDTH *1.1, BODY_VIEW_HEIGHT);
+    self.bodyView.frame = CGRectMake(70,0,BODY_VIEW_WIDTH *1.17, BODY_VIEW_HEIGHT);
     
 //    NSLog(@"bodyview frame is %@", NSStringFromCGRect(self.bodyView.frame));
     self.scrollView.minimumZoomScale = 0.045;
