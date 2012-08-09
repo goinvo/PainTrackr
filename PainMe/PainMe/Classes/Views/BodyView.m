@@ -149,6 +149,8 @@ int drawNum = 0;
     CGSize tileSize = (CGSize){BODY_TILE_SIZE, BODY_TILE_SIZE};
     
     CGFloat scale = CGContextGetCTM(context).a/self.contentScaleFactor;
+
+    scale = (self.contentScaleFactor ==2)?scale/2:scale;
     
     //    NSLog(@"Scale in draw is %f",scale);
     
@@ -212,19 +214,19 @@ int drawNum = 0;
 
 - (UIImage*)tileAtCol:(int)col row:(int)row withScale:(CGFloat)scale
 {
-    int numFrmScale = 256;
+    int numFrmScale = 128;
     
     if (scale <0.0625) {
         numFrmScale = 0;
     }
-    else if (scale >=0.0625 && scale <0.5) {
+    else if (scale >=0.0625 && scale <0.25) {
+        numFrmScale = 128;
+    }
+    else if (scale >=0.25 && scale <0.5) {
         numFrmScale = 256;
     }
-    else if (scale >=0.5 && scale <0.9) {
+    else if (scale >= 0.5) {
         numFrmScale = 512;
-    }
-    else if (scale >= 0.9) {
-        numFrmScale = 1024;
     }
     
    if (col>= 0 && col < BODY_TILE_COLUMNS && row >= 0 && row < BODY_TILE_ROWS) {
@@ -233,11 +235,13 @@ int drawNum = 0;
        
        if (numFrmScale !=0) {
 
-           filename = [NSString stringWithFormat:@"body_large_%02d_%d.png", (col+1) + (row) * BODY_TILE_COLUMNS,numFrmScale];           
+//           filename = [NSString stringWithFormat:@"body_large_%02d_%d.png", (col+1) + (row) * BODY_TILE_COLUMNS,numFrmScale];
+            filename = [NSString stringWithFormat:@"body_slices_%02d_%d.png", (col+1) + (row) * BODY_TILE_COLUMNS,numFrmScale];           
        }
        else {
            
-           filename = [NSString stringWithFormat:@"body_slices_%02d.png", (col+1) + (row) * BODY_TILE_COLUMNS];
+//           filename = [NSString stringWithFormat:@"body_slices_%02d.png", (col+1) + (row) * BODY_TILE_COLUMNS];
+            filename = [NSString stringWithFormat:@"untitled-1_%02d.png", (col+1) + (row) * BODY_TILE_COLUMNS];
        }
     
 //       NSLog(@"Body Image name is %@",filename );

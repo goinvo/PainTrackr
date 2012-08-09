@@ -10,8 +10,8 @@
 #import "PainLocation.h"
 #import "PainEntry.h"
 
-#define NUM_COLUMNS 8.0
-#define NUM_ROWS 17.0
+#define NUM_COLUMNS 4.0
+#define NUM_ROWS 9.0
 #define BODY_WIDTH (1024*NUM_COLUMNS)
 #define BODY_HEIGHT (1024*NUM_ROWS)
 
@@ -145,7 +145,7 @@
     NSLog(@"Beginning...");
 	NSStringEncoding encoding = 0;
     // NSString *file = @"/Users/DDKarwa/Desktop/tmpCsvParse/Workbook1.csv";
-    NSString *file = [[NSBundle mainBundle] pathForResource:@"NewData" ofType:@"csv"];
+    NSString *file = [[NSBundle mainBundle] pathForResource:@"BodyPartData" ofType:@"csv"];
     NSInputStream *stream = [NSInputStream inputStreamWithFileAtPath:file];
     NSError *error = nil;
     

@@ -22,8 +22,8 @@
 
 @end
 
-#define NUM_TO_DIVIDEX (1024.0*8)
-#define NUM_TO_DIVIDEY (1024.0*17)
+#define NUM_TO_DIVIDEX (1024.0*4)
+#define NUM_TO_DIVIDEY (1024.0*9)
 
 @implementation BodyPartGeometry
 

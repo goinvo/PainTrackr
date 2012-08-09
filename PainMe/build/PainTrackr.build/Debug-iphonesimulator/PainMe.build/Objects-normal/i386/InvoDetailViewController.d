@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoDetailViewController.m \
-  /Users/DDKarwa/Desktop/PainMe/PainMeTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoDetailViewController.h
+  /Users/DDKarwa/Desktop/PainMe/PainTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoDetailViewController.m \
+  /Users/DDKarwa/Desktop/PainMe/PainTrackerRepo/PainMe/PainMe/Classes/Controllers/InvoDetailViewController.h
