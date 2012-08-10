@@ -357,6 +357,8 @@
     pickerView.showsSelectionIndicator = YES;
         
     pickerView.tag = 1;
+    NSUInteger index = [self.bodyPartsNames indexOfObject:self.painEntryName];
+    [pickerView selectRow:index inComponent:0 animated:YES];
     
     [self.view addSubview:pickerView];
 
@@ -407,6 +409,7 @@
 
     return 200;
 }
+
 
 -(void)donePressed:(id)sender{
 
