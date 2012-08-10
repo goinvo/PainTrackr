@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		760D738B15CC54A300404C10 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 760D738A15CC54A300404C10 /* CoreImage.framework */; };
+		76111ED515D547BF007C1FC9 /* InvoBodyPartDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 76111ED415D547BF007C1FC9 /* InvoBodyPartDetails.m */; };
 		7612E21215A1E94500E8E009 /* BodyPartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7612E21115A1E94500E8E009 /* BodyPartView.m */; };
 		762EC62915C1CCBE00250155 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 762EC62215C1CCBE00250155 /* CHCSVParser.m */; };
 		762EC62A15C1CCBE00250155 /* CHCSVWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 762EC62415C1CCBE00250155 /* CHCSVWriter.m */; };
@@ -580,7 +581,7 @@
 		76B127E315D441480000286A /* body_slices_34_512@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76B127BF15D441480000286A /* body_slices_34_512@2x.png */; };
 		76B127E415D441480000286A /* body_slices_35_512@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76B127C015D441480000286A /* body_slices_35_512@2x.png */; };
 		76B127E515D441480000286A /* body_slices_36_512@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76B127C115D441480000286A /* body_slices_36_512@2x.png */; };
-		76B127F315D45AAB0000286A /* BodyPartData.csv in Resources */ = {isa = PBXBuildFile; fileRef = 76B127F215D45AAB0000286A /* BodyPartData.csv */; };
+		76B127F515D4718D0000286A /* BodyPartData.csv in Resources */ = {isa = PBXBuildFile; fileRef = 76B127F415D4718D0000286A /* BodyPartData.csv */; };
 		76B4A90F15BDDF92003E6210 /* body_large_01_1024@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76B4A88715BDDF92003E6210 /* body_large_01_1024@2x.png */; };
 		76B4A91015BDDF92003E6210 /* body_large_02_1024@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76B4A88815BDDF92003E6210 /* body_large_02_1024@2x.png */; };
 		76B4A91115BDDF92003E6210 /* body_large_03_1024@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76B4A88915BDDF92003E6210 /* body_large_03_1024@2x.png */; };
@@ -1462,6 +1463,8 @@
 
 /* Begin PBXFileReference section */
 		760D738A15CC54A300404C10 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		76111ED315D547BF007C1FC9 /* InvoBodyPartDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoBodyPartDetails.h; sourceTree = "<group>"; };
+		76111ED415D547BF007C1FC9 /* InvoBodyPartDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoBodyPartDetails.m; sourceTree = "<group>"; };
 		7612E21015A1E94500E8E009 /* BodyPartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodyPartView.h; sourceTree = "<group>"; };
 		7612E21115A1E94500E8E009 /* BodyPartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyPartView.m; sourceTree = "<group>"; };
 		762EC62015C1CCBE00250155 /* CHCSV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSV.h; sourceTree = "<group>"; };
@@ -2122,7 +2125,7 @@
 		76B127BF15D441480000286A /* body_slices_34_512@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "body_slices_34_512@2x.png"; sourceTree = "<group>"; };
 		76B127C015D441480000286A /* body_slices_35_512@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "body_slices_35_512@2x.png"; sourceTree = "<group>"; };
 		76B127C115D441480000286A /* body_slices_36_512@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "body_slices_36_512@2x.png"; sourceTree = "<group>"; };
-		76B127F215D45AAB0000286A /* BodyPartData.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BodyPartData.csv; sourceTree = "<group>"; };
+		76B127F415D4718D0000286A /* BodyPartData.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BodyPartData.csv; sourceTree = "<group>"; };
 		76B4A88715BDDF92003E6210 /* body_large_01_1024@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "body_large_01_1024@2x.png"; sourceTree = "<group>"; };
 		76B4A88815BDDF92003E6210 /* body_large_02_1024@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "body_large_02_1024@2x.png"; sourceTree = "<group>"; };
 		76B4A88915BDDF92003E6210 /* body_large_03_1024@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "body_large_03_1024@2x.png"; sourceTree = "<group>"; };
@@ -4847,6 +4850,8 @@
 				83A3BE361593B8D0008EB148 /* PainEntry.m */,
 				83A3BE381593B955008EB148 /* BodyPartGeometry.h */,
 				83A3BE391593B955008EB148 /* BodyPartGeometry.m */,
+				76111ED315D547BF007C1FC9 /* InvoBodyPartDetails.h */,
+				76111ED415D547BF007C1FC9 /* InvoBodyPartDetails.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4867,7 +4872,7 @@
 		834C100F158F7255000C5652 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				76B127F215D45AAB0000286A /* BodyPartData.csv */,
+				76B127F415D4718D0000286A /* BodyPartData.csv */,
 				76594F9615C87FFD004F2D2A /* NewData.csv */,
 				762EC64115C1FBB100250155 /* T2.csv */,
 				83C43F071598D6F700F401D2 /* images */,
@@ -6382,7 +6387,7 @@
 				76B127E315D441480000286A /* body_slices_34_512@2x.png in Resources */,
 				76B127E415D441480000286A /* body_slices_35_512@2x.png in Resources */,
 				76B127E515D441480000286A /* body_slices_36_512@2x.png in Resources */,
-				76B127F315D45AAB0000286A /* BodyPartData.csv in Resources */,
+				76B127F515D4718D0000286A /* BodyPartData.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6435,6 +6440,7 @@
 				762EC62B15C1CCBE00250155 /* NSArray+CHCSVAdditions.m in Sources */,
 				762EC62C15C1CCBE00250155 /* NSString+CHCSVAdditions.m in Sources */,
 				767B08D015C9A0F3001EA228 /* InvoPainGraphViewController.m in Sources */,
+				76111ED515D547BF007C1FC9 /* InvoBodyPartDetails.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6524,7 +6530,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Involution Studios Boston LLC";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -6533,7 +6539,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E4FDC244-0330-4352-99F4-100AF2DBD71E";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

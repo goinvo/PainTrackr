@@ -8,7 +8,7 @@
 
 #import "BodyView.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "InvoBodyPartDetails.h"
 
 @interface BodyView() {
    NSCache *_imageCache;
@@ -19,6 +19,8 @@
 @property (nonatomic, retain) UIColor *bodyStrokeColor;
 @property (nonatomic, readwrite) BOOL isMask;
 @property (nonatomic, readwrite ) BOOL isNewStroke;
+
+@property (nonatomic, retain) NSMutableArray *shapesArray;
 
 //+(CGColorSpaceRef)genericRGBSpace;
 //+(CGColorRef)redColor;
@@ -77,12 +79,12 @@
 
 +(CGColorRef)blueColor;{
     
-    static CGColorRef red = NULL;
-    if (red == NULL) {
+    static CGColorRef blue = NULL;
+    if (blue == NULL) {
         CGFloat values[4] = {0.0,0.0,1.0,1.0};
-        red = CGColorCreate([self genericRGBSpace], values);
+        blue = CGColorCreate([self genericRGBSpace], values);
     }
-    return red;
+    return blue;
 }
 
 
@@ -103,7 +105,9 @@
     
    //CGFloat scale = [UIScreen mainScreen].scale;
     
-     self.contentScaleFactor = 1.0;
+    self.contentScaleFactor = 1.0;
+    
+//    [self setUserInteractionEnabled:YES];
     
     tiledLayer.tileSize = CGSizeMake(BODY_TILE_SIZE, BODY_TILE_SIZE);
    
@@ -118,6 +122,7 @@
     self.isNewStroke = NO;
     self.strokeChanged = NO;
     
+    self.shapesArray = [NSMutableArray array];
 }
 
 // handle delegate method
@@ -125,17 +130,34 @@
 // [self setNeedsDisplayInRect: ...]
 
 
--(void)renderPainForBodyPartPath:(UIBezierPath *)path WithColor:(UIColor *)fillColor{
+-(void)renderPainForBodyPartPath:(UIBezierPath *)path WithColor:(UIColor *)fillColor detailLevel:(int)level{
 
-    self.pathShape = [path copy];
-    self.pathShape.lineJoinStyle = kCGLineJoinRound;
+    //self.pathShape = [path copy];
     
-    self.shapeFillColor = fillColor;
+    for (InvoBodyPartDetails *partDetail in self.shapesArray) {
+        
+        if ([path isEqual:partDetail.partShapePoints]) {
+            
+            if (![fillColor isEqual:partDetail.shapeColor]) {
+                
+                partDetail.shapeColor = fillColor;
+                [self setNeedsDisplayInRect:[path bounds]];
+            }
+            return;
+        }
+    }
+    
+    InvoBodyPartDetails *partDetail = [InvoBodyPartDetails InvoBodyPartWithShape:[path copy] COlor:fillColor ZoomLevel:level];
+    
+    [self.shapesArray addObject:partDetail];
+    
+//    self.pathShape.lineJoinStyle = kCGLineJoinRound;
+//    
+//    self.shapeFillColor = fillColor;
    
     [self setNeedsDisplayInRect:[self.pathShape bounds]];
     
 //    NSLog(@"path bounds are %@", NSStringFromCGRect([self.pathShape bounds]));
-   
 }
 
 int drawNum = 0;
@@ -181,7 +203,6 @@ int drawNum = 0;
                 
                 [tile drawInRect:tileRect];
                 
-                
                 // Draw a white line around the tile border so
                 // we can see it
                 //
@@ -196,7 +217,8 @@ int drawNum = 0;
     }
     // iterate over pain entries
     // if pain entry's body part is inside rect, draw it
-    
+  
+    /*
     if (self.pathShape && CGRectIntersectsRect([self.pathShape bounds], rect)) {
         
         CGContextSetStrokeColorWithColor(context, [BodyView redColor]);
@@ -207,6 +229,21 @@ int drawNum = 0;
         
         [self.pathShape fill];
         [self.pathShape stroke];
+    }
+     
+     */
+    int zoom = (scale <0.0625)?1:2;
+    
+    for (InvoBodyPartDetails *part in self.shapesArray) {
+        
+        if (part.partShapePoints && CGRectIntersectsRect(rect, [part.partShapePoints bounds]) && zoom == part.zoomLevel) {
+            
+            CGContextSetStrokeColorWithColor(context,[BodyView blueColor]);
+            CGContextSetFillColorWithColor(context, [part.shapeColor CGColor]);
+            
+            [part.partShapePoints fill];
+            [part.partShapePoints stroke];
+        }
     }
     
     NSLog(@"draw was called %d",drawNum);
@@ -306,5 +343,32 @@ int drawNum = 0;
     
 }
 
+#pragma mark removing Pain At given point
+-(void)removePainAtLocation:(CGPoint)touch{
+
+    for (InvoBodyPartDetails *part in self.shapesArray) {
+        
+        if ([part.partShapePoints containsPoint:touch]) {
+            
+            CGRect shapeRemoveRect = [part.partShapePoints bounds];
+            [self.shapesArray removeObject:part];
+            [self setNeedsDisplayInRect:shapeRemoveRect];
+            break;
+        }
+    }
+}
+
+#pragma mark TOuchDelegate methods
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+
+    NSLog(@"touches began inside body view");
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+
+    NSLog(@"Touches ended inside body View");
+}
+#pragma mark -
 
 @end

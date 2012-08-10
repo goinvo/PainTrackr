@@ -99,10 +99,11 @@
         UIColor *fillColor = [self colorfromPain:[[(PainEntry *)entryToRender valueForKey:@"painLevel"] integerValue]];
     
         PainLocation *loc = (PainLocation *)[entryToRender valueForKey:@"location"];
+        int zoom = [[loc valueForKey:@"zoomLevel"] intValue];
         
         UIBezierPath *locpath = [self.bodyGeometry dictFrBodyLocation:[ [loc valueForKey:@"name"] copy]];
         
-        [self.bodyView renderPainForBodyPartPath:locpath WithColor:fillColor];
+        [self.bodyView renderPainForBodyPartPath:locpath WithColor:fillColor detailLevel:zoom];
         
          [self.partNameLabel setText:[loc valueForKey:@"name"]];
     }
@@ -127,14 +128,20 @@
 
     CGPoint touchLocation = [gestureReco locationInView:self.scrollView];
     NSLog(@"Tapped inside scrollView at x:%f y:%f",touchLocation.x, touchLocation.y);
+  
+    CGPoint newPt = [self.bodyView convertPoint:touchLocation fromView:self.scrollView];
+    NSLog(@"New Point is %@", NSStringFromCGPoint(newPt));
     
+    [self.bodyView removePainAtLocation:newPt];
+    
+    /*
     int tileNum = [self tileAtTouchLocation:touchLocation];
     NSLog(@"Tile which was tapped was %d",tileNum);
 
     bodyOffset = CGPointMake(touchLocation.x/(BODY_VIEW_WIDTH*self.scrollView.zoomScale),touchLocation.y/( BODY_VIEW_HEIGHT*self.scrollView.zoomScale));
     
     NSLog(@"The point with Respect to Global body Coordinates is x:%f y:%f",bodyOffset.x,bodyOffset.y);
-
+*/
 }
 
 -(int)tileAtTouchLocation:(CGPoint)touchPt{
@@ -158,7 +165,7 @@
 //     NSLog(@"Column is :%f",floorf(ceilf(column)));
     column = floorf(ceilf(column));
     
-    int numtoRet = (column <= 7 && row >=2)? (8*(row-1) + column): (row * column) ;
+    int numtoRet = (column <= 3 && row >=2)? (4*(row-1) + column): (row * column) ;
     
 //    CGFloat bodyOffsetX = touchPt.x/(divideNum*BODY_TILE_COLUMNS);
 //    CGFloat bodyOffsetY = touchPt.y/(divideNum*BODY_TILE_ROWS);
@@ -275,16 +282,14 @@
                 
         UIColor *fillcolor = [self colorfromPain:painLvl];
     
-        [self.bodyView renderPainForBodyPartPath:[[pathContainingPoint allValues] objectAtIndex:0] WithColor:fillcolor];
+        [self.bodyView renderPainForBodyPartPath:[[pathContainingPoint allValues] objectAtIndex:0] WithColor:fillcolor detailLevel:zoomLVL];
         
         [self.partNameLabel setText:[[pathContainingPoint allKeys] objectAtIndex:0]];
         
         [InvoDataManager painEntryForLocation:[pathContainingPoint copy] LevelPain:painLvl notes:nil];
                 
         fillcolor = nil;
-
     }
-   
 }
 
 -(void)changeStrokeWithPoint:(CGPoint)dragPoint painLvl:(int)painLvl{

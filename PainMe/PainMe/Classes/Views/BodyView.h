@@ -22,8 +22,10 @@
 @property (nonatomic, readwrite)BOOL strokeChanged;
 
 
--(void)renderPainForBodyPartPath:(UIBezierPath *)path WithColor:(UIColor *)fillColor;
+-(void)renderPainForBodyPartPath:(UIBezierPath *)path WithColor:(UIColor *)fillColor detailLevel:(int)level;
 
 -(void)maskWithColor:(UIColor *)maskFillColor;
 -(void)resetStroke;
+
+-(void)removePainAtLocation:(CGPoint)touch;
 @end
