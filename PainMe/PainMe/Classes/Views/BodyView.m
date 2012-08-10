@@ -13,8 +13,7 @@
 @interface BodyView() {
    NSCache *_imageCache;
 }
-@property (nonatomic, retain) UIBezierPath *pathShape;
-@property (nonatomic, retain) UIColor *shapeFillColor;
+
 
 @property (nonatomic, retain) UIColor *bodyStrokeColor;
 @property (nonatomic, readwrite) BOOL isMask;
@@ -22,9 +21,9 @@
 
 @property (nonatomic, retain) NSMutableArray *shapesArray;
 
-//+(CGColorSpaceRef)genericRGBSpace;
-//+(CGColorRef)redColor;
-//+(CGColorRef)blueColor;
++(CGColorSpaceRef)genericRGBSpace;
++(CGColorRef)redColor;
++(CGColorRef)blueColor;
 
 + (UIImage *)imageToMask:(UIImage *)image Withcolor:(UIColor *)color;
 
@@ -32,8 +31,6 @@
 
 @implementation BodyView
 
-@synthesize pathShape = _pathShape;
-@synthesize shapeFillColor = _shapeFillColor;
 
 @synthesize bodyStrokeColor = _bodyStrokeColor;
 @synthesize isMask = _isMask;
@@ -101,13 +98,7 @@
    
     CATiledLayer *tiledLayer = (CATiledLayer *) self.layer;
     
-//    [self setBackgroundColor:[UIColor blueColor]];
-    
-   //CGFloat scale = [UIScreen mainScreen].scale;
-    
     self.contentScaleFactor = 1.0;
-    
-//    [self setUserInteractionEnabled:YES];
     
     tiledLayer.tileSize = CGSizeMake(BODY_TILE_SIZE, BODY_TILE_SIZE);
    
@@ -150,14 +141,8 @@
     InvoBodyPartDetails *partDetail = [InvoBodyPartDetails InvoBodyPartWithShape:[path copy] COlor:fillColor ZoomLevel:level];
     
     [self.shapesArray addObject:partDetail];
-    
-//    self.pathShape.lineJoinStyle = kCGLineJoinRound;
-//    
-//    self.shapeFillColor = fillColor;
-   
-    [self setNeedsDisplayInRect:[self.pathShape bounds]];
-    
-//    NSLog(@"path bounds are %@", NSStringFromCGRect([self.pathShape bounds]));
+       
+    [self setNeedsDisplayInRect:[path bounds]];
 }
 
 int drawNum = 0;
@@ -218,20 +203,6 @@ int drawNum = 0;
     // iterate over pain entries
     // if pain entry's body part is inside rect, draw it
   
-    /*
-    if (self.pathShape && CGRectIntersectsRect([self.pathShape bounds], rect)) {
-        
-        CGContextSetStrokeColorWithColor(context, [BodyView redColor]);
-        CGContextSetFillColorWithColor(context, [self.shapeFillColor CGColor]);
-        
-//        [[UIColor blackColor] setStroke];
-//        [self.shapeFillColor setFill];
-        
-        [self.pathShape fill];
-        [self.pathShape stroke];
-    }
-     
-     */
     int zoom = (scale <0.0625)?1:2;
     
     for (InvoBodyPartDetails *part in self.shapesArray) {
@@ -357,18 +328,5 @@ int drawNum = 0;
         }
     }
 }
-
-#pragma mark TOuchDelegate methods
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-
-    NSLog(@"touches began inside body view");
-}
-
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-
-    NSLog(@"Touches ended inside body View");
-}
-#pragma mark -
 
 @end
