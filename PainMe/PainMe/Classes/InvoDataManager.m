@@ -380,97 +380,32 @@
     [PainLocation enterPainEntryForLocation:[locDetails copy] LevelPain:painLvl notes:[nots copy]];
 }
 
--(int)totalPainEntries{
+-(NSArray *)totalPainEntriesForPart:(NSString *)pName{
 
+     NSArray *CrDta;
     
-    /*
-    NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainEntry" inManagedObjectContext:self.managedObjectContext];
-    
-    NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
-    [fetReq setEntity:descript];
-    
-//    NSPredicate *pred = [NSPredicate predicateWithFormat:@"location.name like face "];
-//    [fetReq setPredicate:pred];
-    
-    [fetReq setResultType:NSDictionaryResultType];
-    
-    NSError *error;
-    NSArray *CrDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
-
-    NSLog(@"value in COreData PainEntry is %d", [CrDta count]);
-    
-    return [CrDta count];
- */
+    if (pName && ![pName isEqualToString:@""]) {
     
     NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainEntry" inManagedObjectContext:self.managedObjectContext];
     
     NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
     [fetReq setEntity:descript];
 
-    NSPredicate *predictae = [NSPredicate predicateWithFormat:@"Any location.name Like[c] %@",@"face"];
+    NSPredicate *predictae = [NSPredicate predicateWithFormat:@"Any location.name Like[c] %@",pName];
     [fetReq setPredicate:predictae];
     [fetReq setResultType:NSDictionaryResultType];
     
     NSError *error = nil;
-    NSArray *CrDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
-    
+    CrDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
+//    count = [CrDta count];
+        
     NSLog(@"value in COreData PainEntry is %d", [CrDta count]);
-    
-    return [CrDta count];
-}
-
--(NSArray *)painLevelsForAllEntries{
-
-    NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainEntry" inManagedObjectContext:self.managedObjectContext];
-    
-    NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
-    [fetReq setEntity:descript];
-    
-    [fetReq setResultType:NSDictionaryResultType];
-    
-    NSError *error;
-    NSArray *CrDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
-    
-    NSMutableArray *painLevelArr = [NSMutableArray array];
-    
-    for (int i=0; i<[CrDta count];i++) {
         
-        NSDictionary *dict = [CrDta objectAtIndex:i];
-        [painLevelArr addObject:[dict valueForKey:@"painLevel"]];
     }
     
-//    NSLog(@"value in COreData PainEntry is %@", CrDta);
-    
-    return [painLevelArr copy];
+    return [CrDta copy];
 }
 
--(NSArray *)timeStampsForPainEntries{
-
-    NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainEntry" inManagedObjectContext:self.managedObjectContext];
-    
-    NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
-    [fetReq setEntity:descript];
-    
-    [fetReq setResultType:NSDictionaryResultType];
-    
-    NSError *error;
-    NSArray *CrDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
-    
-    NSMutableArray *painTimeArr = [NSMutableArray array];
-    
-    for (int i=0; i<[CrDta count];i++) {
-        
-        NSDictionary *dict = [CrDta objectAtIndex:i];
-        NSDate *stmp = [dict valueForKey:@"timestamp"];
-        
-        [painTimeArr addObject:stmp];
-    }
-    
-//    NSLog(@"value in COreData PainEntry is %@", CrDta);
-    
-    return [painTimeArr copy];
-
-}
 
 -(id)lastPainEntryToRender{
 
@@ -490,12 +425,6 @@
     
     if ([CrDta count] >0) {
         
-        //NSLog(@" location is %@",[[CrDta objectAtIndex:0] valueForKey:@"location"]);
-        
-//        PainLocation *loc = (PainLocation *)[[CrDta objectAtIndex:0] valueForKey:@"location"];
-//        NSLog(@"Location Name is %@",[loc valueForKey:@"name"]);
-//        
-//        return [[loc valueForKey:@"name"] copy];
         return [CrDta objectAtIndex:0];
     }
     return nil;

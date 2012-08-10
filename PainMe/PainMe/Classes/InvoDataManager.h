@@ -27,10 +27,13 @@
 - (NSURL *)applicationDocumentsDirectory;
 
 +(InvoDataManager *)sharedDataManager;
+
++(void)painEntryForLocation:(NSDictionary *)locDetails LevelPain:(int)painLvl notes:(NSString *)nots;
+
 -(void)listCoordinates;
 -(void)checkPainLocationDataBase;
-+(void)painEntryForLocation:(NSDictionary *)locDetails LevelPain:(int)painLvl notes:(NSString *)nots;
--(int)totalPainEntries;
+
+-(NSArray *)totalPainEntriesForPart:(NSString *)pName;
 
 -(NSArray *)painLevelsForAllEntries;
 -(NSArray *)timeStampsForPainEntries;

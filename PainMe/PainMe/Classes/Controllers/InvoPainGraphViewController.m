@@ -13,6 +13,11 @@
 
 @property (nonatomic, strong) CPTGraphHostingView *hostView;
 @property (nonatomic, strong) CPTTheme *selectedTheme;
+@property (nonatomic, strong) CPTGraph *graph;
+
+@property (nonatomic, retain) NSMutableArray *PainEntriesArr;
+@property (nonatomic, retain) NSString * painEntryName;
+@property (nonatomic, retain) NSArray *bodyPartsNames;
 
 -(void)initPlot;
 -(void)configureHost;
@@ -44,16 +49,25 @@
     
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationController setToolbarHidden:YES];
+    
+    self.painEntryName = @"Face";
+    
+    self.PainEntriesArr =[NSMutableArray arrayWithArray:[[InvoDataManager sharedDataManager] totalPainEntriesForPart:self.painEntryName]];
 
-    UIButton *newBtn  = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.bodyPartsNames = [[InvoDataManager sharedDataManager]namesOfBodyParts];
+    
+    newBtn  = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [newBtn setFrame:CGRectMake(220, 150, 80, 40)];
     [newBtn addTarget:self action:@selector(pickerBttonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [newBtn setTitle:@"New Part" forState:UIControlStateNormal];
 
     UIBarButtonItem *newBtnItm = [[UIBarButtonItem alloc]initWithCustomView:newBtn];
       [self.navigationItem setRightBarButtonItem:newBtnItm];
-//    [self.view addSubview:newBtn];
     
+    done = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [done setFrame:CGRectMake(220, 150, 80, 40)];
+    [done setTitle:@"Done" forState:UIControlStateNormal];
+    [done addTarget:self action:@selector(donePressed:) forControlEvents:UIControlEventTouchUpInside];    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -101,27 +115,27 @@
 }
 -(void)configureGraph{
 
-    CPTGraph *graph = [[CPTXYGraph alloc] initWithFrame:self.hostView.bounds];
+    self.graph = [[CPTXYGraph alloc] initWithFrame:self.hostView.bounds];
     self.selectedTheme = [CPTTheme themeNamed:kCPTDarkGradientTheme];
-    [graph applyTheme:self.selectedTheme];
-    self.hostView.hostedGraph = graph;
+    [self.graph applyTheme:self.selectedTheme];
+    self.hostView.hostedGraph = self.graph;
     
     NSString *grphTitle = @"Pain-Time Graph";
-    graph.title = grphTitle;
+    self.graph.title = grphTitle;
 
     CPTMutableTextStyle *txtStyle = [CPTMutableTextStyle textStyle];
     txtStyle.color = [CPTColor whiteColor];
     txtStyle.fontName = @"Helvetica";
     txtStyle.fontSize = 16.0f;
     
-    graph.titleTextStyle = txtStyle;
-    graph.titlePlotAreaFrameAnchor = CPTRectAnchorTop;
-    graph.titleDisplacement = CGPointMake(0.0f, 10.0f);
+    self.graph.titleTextStyle = txtStyle;
+    self.graph.titlePlotAreaFrameAnchor = CPTRectAnchorTop;
+    self.graph.titleDisplacement = CGPointMake(0.0f, 10.0f);
     
-    [graph.plotAreaFrame setPaddingLeft:30.0f];
-    [graph.plotAreaFrame setPaddingBottom:30.0f];
+    [self.graph.plotAreaFrame setPaddingLeft:30.0f];
+    [self.graph.plotAreaFrame setPaddingBottom:30.0f];
 
-    CPTXYPlotSpace *plotSpc = (CPTXYPlotSpace *)graph.defaultPlotSpace;
+    CPTXYPlotSpace *plotSpc = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;
     plotSpc.allowsUserInteraction = YES;
 }
 
@@ -213,7 +227,7 @@
     xAxis.minorTickLength = 2.0f;
     xAxis.tickDirection = CPTSignNegative;
     
-    CGFloat timeCount = [[InvoDataManager sharedDataManager] totalPainEntries];
+    CGFloat timeCount = [self.PainEntriesArr count];
     NSMutableSet *xLabels = [NSMutableSet setWithCapacity:timeCount];
     NSMutableSet *xLocations =[NSMutableSet setWithCapacity:timeCount];
     
@@ -255,7 +269,6 @@
     NSMutableSet *yLabels = [NSMutableSet setWithCapacity:timeCount];
     NSMutableSet *yLocations =[NSMutableSet setWithCapacity:timeCount];
     
-    
     for (int i=1; i<=7; i++) {
         
         CPTAxisLabel *label = [[CPTAxisLabel alloc] initWithText:[NSString stringWithFormat:@"%d",i] textStyle:yAxis.labelTextStyle];
@@ -277,19 +290,23 @@
 #pragma mark Coreplot DataSource delegate methods
 -(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot{
 
-    int painEntries = [[InvoDataManager sharedDataManager] totalPainEntries];
+    int painEntries = [self.PainEntriesArr count];
     NSLog(@"Total Pain Entries are %d", painEntries);
+    if (painEntries ==0) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Pain Entries" message:@"No entries were found for the selected body part" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }
     return painEntries;
 }
 
 -(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index{
-
- //	   int painEntries = [[InvoDataManager sharedDataManager] totalPainEntries];
     
     switch (fieldEnum) {
         case CPTScatterPlotFieldX:
         {
-            NSDate *dte = [[[InvoDataManager sharedDataManager] timeStampsForPainEntries] objectAtIndex:index];
+            
+            NSDate *dte = [self dateFromEntriesAtIndex:index];
             
             NSCalendar *cal = [NSCalendar currentCalendar];
             
@@ -302,11 +319,31 @@
             
         case CPTScatterPlotFieldY:
             
-            return [[[InvoDataManager sharedDataManager] painLevelsForAllEntries] objectAtIndex:index];
+            return [self painLevelFromENtriesAtIndex:index];
+            
             break;
     }
 
     return [NSDecimalNumber zero];
+}
+
+-(NSDate *)dateFromEntriesAtIndex:(int)index{
+
+    NSDate *date =nil;
+        
+    NSDictionary *dict = [self.PainEntriesArr objectAtIndex:index];
+      date = [dict valueForKey:@"timestamp"];
+
+    return date;
+}
+
+-(NSNumber*) painLevelFromENtriesAtIndex:(int)index{
+
+    NSNumber *levelToReturn = [NSNumber numberWithInt:0];
+
+    NSDictionary *dict = [self.PainEntriesArr objectAtIndex:index];
+    levelToReturn = [dict valueForKey:@"painLevel"];
+    return levelToReturn;
 }
 
 -(void)pickerBttonTapped:(id)sender{
@@ -330,22 +367,28 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
 
-    UIPickerView *pick =nil;
-    for (UIView *view in self.view.subviews) {
-        
-        if (view.tag ==1) {
+    self.painEntryName = [self.bodyPartsNames objectAtIndex:row];
+    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc]initWithCustomView:done]];
+//    UIPickerView *pick =nil;
+//    for (UIView *view in self.view.subviews) {
+//        
+//        if (view.tag ==1) {
+//            
+//            pick = (UIPickerView *)view;
+//            NSString *name = [self.bodyPartsNames objectAtIndex:row];
+//            self.PainEntriesArr = [NSMutableArray array];
+//            self.PainEntriesArr =[NSMutableArray arrayWithArray:[[InvoDataManager sharedDataManager] totalPainEntriesForPart:[name copy]]];
+//            [self.graph reloadData];
             
-            pick = (UIPickerView *)view;
-            [pick removeFromSuperview];
-            break;
-        }
-    }
+//            [pick removeFromSuperview];
+//            break;
+//        }
+//    }
 }
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
 
-    NSArray *arr = [[InvoDataManager sharedDataManager] namesOfBodyParts];
-    NSUInteger numROws = [arr count];
+    NSUInteger numROws = [self.bodyPartsNames count];
     return numROws;
 }
 
@@ -356,8 +399,7 @@
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     
-    NSArray *arr = [[InvoDataManager sharedDataManager] namesOfBodyParts];
-    NSString *title = [NSString stringWithFormat:@" %@ ",[arr objectAtIndex:row] ];
+    NSString *title = [NSString stringWithFormat:@" %@ ",[self.bodyPartsNames objectAtIndex:row] ];
     return [title copy];
     
 }
@@ -366,5 +408,27 @@
     return 200;
 }
 
+-(void)donePressed:(id)sender{
+
+    self.PainEntriesArr = [NSMutableArray array];
+    UIPickerView *pick =nil;
+    
+    for (UIView *view in self.view.subviews) {
+
+        if (view.tag ==1) {
+    
+            pick = (UIPickerView *)view;
+    
+            self.PainEntriesArr = [NSMutableArray array];
+            self.PainEntriesArr =[NSMutableArray arrayWithArray:[[InvoDataManager sharedDataManager] totalPainEntriesForPart:[self.painEntryName copy]]];
+
+            [pick removeFromSuperview];
+            [self.graph reloadData];
+            [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc]initWithCustomView:newBtn]];
+            
+            break;
+        }
+    }
+}
 #pragma mark -
 @end

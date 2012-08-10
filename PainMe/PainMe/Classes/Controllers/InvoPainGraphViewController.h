@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "CorePlot-CocoaTouch.h"
 
-@interface InvoPainGraphViewController : UIViewController<CPTPlotDataSource,UIPickerViewDelegate>
+@interface InvoPainGraphViewController : UIViewController<CPTPlotDataSource,UIPickerViewDelegate>{
+
+    UIButton *done;
+    UIButton *newBtn;
+}
 
 -(IBAction)pickerBttonTapped:(id)sender;
-
+-(void)donePressed:(id)sender;
 @end
