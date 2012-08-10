@@ -120,7 +120,7 @@
     [self.graph applyTheme:self.selectedTheme];
     self.hostView.hostedGraph = self.graph;
     
-    NSString *grphTitle = @"Pain-Time Graph";
+    NSString *grphTitle = [NSString stringWithFormat:@"%@-Time graph",self.painEntryName];
     self.graph.title = grphTitle;
 
     CPTMutableTextStyle *txtStyle = [CPTMutableTextStyle textStyle];
@@ -418,7 +418,7 @@
         if (view.tag ==1) {
     
             pick = (UIPickerView *)view;
-    
+            self.graph.title = [NSString stringWithFormat:@"%@-Time graph",self.painEntryName];
             self.PainEntriesArr = [NSMutableArray array];
             self.PainEntriesArr =[NSMutableArray arrayWithArray:[[InvoDataManager sharedDataManager] totalPainEntriesForPart:[self.painEntryName copy]]];
 
