@@ -164,12 +164,6 @@
     NSLog(@"plot x range is %@",plotSpc.xRange);
     NSLog(@"plot x range is %@",plotSpc.yRange);
     
-    [plotSpc scaleToFitPlots:[NSArray arrayWithObjects:painPlot,nil]];
-    
-    NSLog(@"plot x range is %@",plotSpc.xRange);
-    NSLog(@"plot x range is %@",plotSpc.yRange);
-
-    
     CPTMutableLineStyle *painLineStyle = [painPlot.dataLineStyle mutableCopy];
     painLineStyle.lineWidth = 2.0f;
     painLineStyle.lineColor = painColor;
@@ -182,7 +176,6 @@
     painPlotSymbol.lineStyle = painSymbolLineStly;
     painPlotSymbol.size = CGSizeMake(6.0, 6.0);
     painPlot.plotSymbol = painPlotSymbol;
-    
     
 }
 
