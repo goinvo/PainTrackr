@@ -13,9 +13,10 @@
 @property (nonatomic, retain) UIBezierPath *partShapePoints;
 @property (nonatomic, retain) UIColor *shapeColor;
 @property (nonatomic, readwrite) int zoomLevel;
+@property (nonatomic, retain) NSString *partName;
 
 
 +(InvoBodyPartDetails *)InvoBodyPartWithShape:(UIBezierPath *)shape COlor:(UIColor *)color ZoomLevel:(int)zmLevel;
 
-
++(InvoBodyPartDetails *)InvoBodyPartWithShape:(UIBezierPath *)shape Name:(NSString *)name ZoomLevel:(int)zmLevel;
 @end

@@ -222,6 +222,10 @@
 
         int i=0;
         
+        if ([ky isEqualToString:@"ForeHead"]) {
+            NSLog(@"here");
+        }
+        
         for (NSArray *arr in valArray) {
 
             float xadd = [[arr objectAtIndex:2] floatValue];
@@ -232,6 +236,7 @@
 //            CGPoint newPt = CGPointMake((xadd/NUM_COLUMNS) + (xCoor/BODY_WIDTH), (yadd/NUM_ROWS) +(yCoor/BODY_HEIGHT));
 //            
 //            NSLog(@"newPt for key:%@ is :%@", ky,NSStringFromCGPoint(newPt));
+
             _pts[i]=CGPointMake((xadd/NUM_COLUMNS) + (xCoor/BODY_WIDTH), (yadd/NUM_ROWS) +(yCoor/BODY_HEIGHT));
             i++;
         }

@@ -8,6 +8,8 @@
 
 #import "BodyPartGeometry.h"
 #import "PainLocation.h"
+#import "InvoBodyPartDetails.h"
+
 
 @interface BodyPartGeometry() {
    CGPoint *_points;
@@ -17,7 +19,9 @@
 @property (nonatomic, retain) UIBezierPath *bezierPath;
 
 @property (nonatomic, retain) NSArray *painLocDetails;
-@property (nonatomic, retain) NSMutableDictionary *painShapes;
+//@property (nonatomic, retain) NSMutableDictionary *painShapes;
+
+@property (nonatomic, retain)NSMutableArray *painShapeDetailsArr;
 
 
 @end
@@ -37,9 +41,9 @@
    if (self) {
        
        self.painLocDetails = [[PainLocation painLocations]copy];
-       self.painShapes = [NSMutableDictionary dictionary];
+       self.painShapeDetailsArr = [NSMutableArray array];
+      
        _points = NULL;
-       
        
        for (int i=0; i<[self.painLocDetails count]; i++) {
            
@@ -54,9 +58,11 @@
            [vertices getBytes:(CGPoint *)_points length:[vertices length]];
            
            NSString *pName = [obj valueForKey:@"name"];
-    
-           [self.painShapes setValue:[self bezierPath] forKey:pName];
-    
+           NSInteger zmLvl = [[obj valueForKey:@"zoomLevel"]integerValue];
+           
+           InvoBodyPartDetails *part = [InvoBodyPartDetails InvoBodyPartWithShape:[self bezierPath] Name:[pName copy] ZoomLevel:zmLvl];
+           
+           [self.painShapeDetailsArr addObject:part];
        }
     }
    return self;
@@ -73,9 +79,7 @@
            [_bezierPath moveToPoint: CGPointMake(_points[0].x*NUM_TO_DIVIDEX,_points[0].y*NUM_TO_DIVIDEY ) ];
 
           for (int i=1; i<_pointCount; i++) {
-             
-//              NSLog(@"Point is x:%f y:%f",_points[i].x, _points[i].y);
-            
+                         
               [_bezierPath addLineToPoint:CGPointMake(_points[i].x*NUM_TO_DIVIDEX,_points[i].y*NUM_TO_DIVIDEY )];
          }
          [_bezierPath closePath];
@@ -101,44 +105,39 @@
    // TODO:  Find an algorithm for quickly determining whether a polygon contains a point
         
     NSDictionary * toRet = nil;
-    
-    NSArray *painShapeArr = [self.painShapes allValues];
-
-    for (NSObject *obj in painShapeArr) {
-
-        if ([(UIBezierPath *)obj containsPoint:CGPointMake(point.x*NUM_TO_DIVIDEX, point.y*NUM_TO_DIVIDEY)]) {
+    CGPoint pointToCheck = CGPointMake(point.x*NUM_TO_DIVIDEX, point.y*NUM_TO_DIVIDEY);
+    for (InvoBodyPartDetails *part in self.painShapeDetailsArr) {
+        
+        if (part.zoomLevel == zmLVL) {
             
-            NSArray *tmp = [self.painShapes allKeysForObject:obj];
-            NSString *key = [tmp objectAtIndex:0];
-            int keyVlue = 0;
-            
-            for (NSDictionary *diction in self.painLocDetails) {
+            if ([part.partShapePoints containsPoint:pointToCheck]) {
                 
-                if ([[diction valueForKey:@"name"] isEqualToString:key]) {
-                    
-                    keyVlue = [[diction valueForKey:@"zoomLevel"]intValue];
-                    break;
-                }
+                toRet = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObject:part.partShapePoints] forKeys:[NSArray arrayWithObject:part.partName]];
             }
-            
-            if (keyVlue == zmLVL) {
-                toRet = [NSDictionary dictionaryWithObject:[obj copy] forKey:[key copy]];
-            }
-            break;
         }
     }
+    
     return toRet;
 }
 
+
 -(UIBezierPath *)dictFrBodyLocation:(NSString *)locName{
 
+    UIBezierPath *path;
     if (locName) {
+        for (InvoBodyPartDetails *part in self.painShapeDetailsArr) {
+            
+            if ([part.partName isEqualToString:locName]) {
+                path = [part.partShapePoints copy];
+            }
+        }
         
-       return [ [self.painShapes valueForKey:locName]copy];
+       return path;
     }
     return nil;
 }
 
+ 
 -(CGPoint *)getPoints{
     return _points;   
 }
