@@ -113,6 +113,7 @@
             if ([part.partShapePoints containsPoint:pointToCheck]) {
                 
                 toRet = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObject:part.partShapePoints] forKeys:[NSArray arrayWithObject:part.partName]];
+                break;
             }
         }
     }

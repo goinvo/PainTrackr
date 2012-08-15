@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		760D738B15CC54A300404C10 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 760D738A15CC54A300404C10 /* CoreImage.framework */; };
+		76110CEA15DC4FC9008E5F0E /* BodyPartData.csv in Resources */ = {isa = PBXBuildFile; fileRef = 76110CE915DC4FC9008E5F0E /* BodyPartData.csv */; };
 		76111ED515D547BF007C1FC9 /* InvoBodyPartDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 76111ED415D547BF007C1FC9 /* InvoBodyPartDetails.m */; };
 		7612E21215A1E94500E8E009 /* BodyPartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7612E21115A1E94500E8E009 /* BodyPartView.m */; };
 		762EC62915C1CCBE00250155 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 762EC62215C1CCBE00250155 /* CHCSVParser.m */; };
@@ -286,7 +287,6 @@
 		764FA55C15BD923D0018EA80 /* body_slices_134@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 764FA4D415BD923D0018EA80 /* body_slices_134@2x.png */; };
 		764FA55D15BD923D0018EA80 /* body_slices_135@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 764FA4D515BD923D0018EA80 /* body_slices_135@2x.png */; };
 		764FA55E15BD923D0018EA80 /* body_slices_136@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 764FA4D615BD923D0018EA80 /* body_slices_136@2x.png */; };
-		7666838315D9826E00A07410 /* BodyPartData.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7666838215D9826E00A07410 /* BodyPartData.csv */; };
 		7673B51315ADD7CD006112C2 /* PainFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7673B51215ADD7CD006112C2 /* PainFaceView.m */; };
 		767B08D015C9A0F3001EA228 /* InvoPainGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 767B08CE15C9A0F3001EA228 /* InvoPainGraphViewController.m */; };
 		767B08D115C9A0F3001EA228 /* InvoPainGraphViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 767B08CF15C9A0F3001EA228 /* InvoPainGraphViewController.xib */; };
@@ -1465,6 +1465,7 @@
 
 /* Begin PBXFileReference section */
 		760D738A15CC54A300404C10 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		76110CE915DC4FC9008E5F0E /* BodyPartData.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BodyPartData.csv; sourceTree = "<group>"; };
 		76111ED315D547BF007C1FC9 /* InvoBodyPartDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoBodyPartDetails.h; sourceTree = "<group>"; };
 		76111ED415D547BF007C1FC9 /* InvoBodyPartDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoBodyPartDetails.m; sourceTree = "<group>"; };
 		7612E21015A1E94500E8E009 /* BodyPartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodyPartView.h; sourceTree = "<group>"; };
@@ -1750,7 +1751,6 @@
 		764FA4D415BD923D0018EA80 /* body_slices_134@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "body_slices_134@2x.png"; sourceTree = "<group>"; };
 		764FA4D515BD923D0018EA80 /* body_slices_135@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "body_slices_135@2x.png"; sourceTree = "<group>"; };
 		764FA4D615BD923D0018EA80 /* body_slices_136@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "body_slices_136@2x.png"; sourceTree = "<group>"; };
-		7666838215D9826E00A07410 /* BodyPartData.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BodyPartData.csv; sourceTree = "<group>"; };
 		7673B51115ADD7CD006112C2 /* PainFaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PainFaceView.h; sourceTree = "<group>"; };
 		7673B51215ADD7CD006112C2 /* PainFaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PainFaceView.m; sourceTree = "<group>"; };
 		767B08CD15C9A0F3001EA228 /* InvoPainGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoPainGraphViewController.h; sourceTree = "<group>"; };
@@ -4892,7 +4892,7 @@
 		834C100F158F7255000C5652 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				7666838215D9826E00A07410 /* BodyPartData.csv */,
+				76110CE915DC4FC9008E5F0E /* BodyPartData.csv */,
 				83C43F071598D6F700F401D2 /* images */,
 				76C711D3159A69BD009832BE /* Icons */,
 				834C1010158F7255000C5652 /* Core Data */,
@@ -6405,7 +6405,7 @@
 				76B127E515D441480000286A /* body_slices_36_512@2x.png in Resources */,
 				76D3E50715D5977A0095C553 /* README.txt in Resources */,
 				76D3E50815D5977A0095C553 /* release_notes.txt in Resources */,
-				7666838315D9826E00A07410 /* BodyPartData.csv in Resources */,
+				76110CEA15DC4FC9008E5F0E /* BodyPartData.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
