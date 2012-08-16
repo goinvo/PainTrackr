@@ -28,4 +28,5 @@
 -(void)resetStroke;
 
 -(void)removePainAtLocation:(CGPoint)touch;
+-(void)addObjToSHapesArrayWithShape:(UIBezierPath *)shape color:(UIColor *)fillColor detail:(int)levDet;
 @end

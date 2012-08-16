@@ -9,6 +9,7 @@
 #import "BodyView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "InvoBodyPartDetails.h"
+#import "InvoDataManager.h"
 
 @interface BodyView() {
    NSCache *_imageCache;
@@ -114,42 +115,61 @@
     self.strokeChanged = NO;
     
     self.shapesArray = [NSMutableArray array];
+
 }
 
 // handle delegate method
 // body pain level changed
 // [self setNeedsDisplayInRect: ...]
 
+-(void)addObjToSHapesArrayWithShape:(UIBezierPath *)shape color:(UIColor *)fillColor detail:(int)levDet{
+
+    InvoBodyPartDetails *partDetail = [InvoBodyPartDetails InvoBodyPartWithShape:[shape copy] COlor:fillColor ZoomLevel:levDet];
+    
+    [self.shapesArray addObject:partDetail];
+
+}
 
 -(void)renderPainForBodyPartPath:(UIBezierPath *)path WithColor:(UIColor *)fillColor detailLevel:(int)level{
-
-    //self.pathShape = [path copy];
+    
+    BOOL found = NO;
+ 
+    InvoBodyPartDetails *newPart = nil;
     
     for (InvoBodyPartDetails *partDetail in self.shapesArray) {
         
-        if ([path isEqual:partDetail.partShapePoints]) {
+        if (CGPathEqualToPath(path.CGPath, partDetail.partShapePoints.CGPath)) {
             
             if (![fillColor isEqual:partDetail.shapeColor]) {
-                
-                partDetail.shapeColor = fillColor;
-                [self setNeedsDisplayInRect:[path bounds]];
+                NSLog(@"Found to change color");
+                found = YES;
+                newPart = partDetail;
+                break;
             }
-            return;
         }
     }
     
-    InvoBodyPartDetails *partDetail = [InvoBodyPartDetails InvoBodyPartWithShape:[path copy] COlor:fillColor ZoomLevel:level];
+    if(newPart){
+        NSLog(@"Was changing color");
+        newPart.shapeColor = fillColor;
+    }
+
+    if (!found) {
+        
+        [self addObjToSHapesArrayWithShape:[path copy] color:fillColor detail:level];
+    }
+        [self setNeedsDisplayInRect:[path bounds]];
     
-    [self.shapesArray addObject:partDetail];
-       
-    [self setNeedsDisplayInRect:[path bounds]];
 }
 
-int drawNum = 0;
+
+//int drawNum = 0;
 
 - (void)drawRect:(CGRect)rect {
         
-    drawNum ++;
+//    drawNum ++;
+    
+    NSLog(@"the draw rect in BodyView draw is %@", NSStringFromCGRect(rect));
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -216,7 +236,6 @@ int drawNum = 0;
             [part.partShapePoints stroke];
         }
     }
-    
 //    NSLog(@"draw was called %d",drawNum);
 }
 
@@ -243,26 +262,23 @@ int drawNum = 0;
        
        if (numFrmScale !=0) {
 
-//           filename = [NSString stringWithFormat:@"body_large_%02d_%d.png", (col+1) + (row) * BODY_TILE_COLUMNS,numFrmScale];
             filename = [NSString stringWithFormat:@"body_slices_%02d_%d.png", (col+1) + (row) * BODY_TILE_COLUMNS,numFrmScale];           
        }
        else {
            
-//           filename = [NSString stringWithFormat:@"body_slices_%02d.png", (col+1) + (row) * BODY_TILE_COLUMNS];
             filename = [NSString stringWithFormat:@"untitled-1_%02d.png", (col+1) + (row) * BODY_TILE_COLUMNS];
        }
-    
-//       NSLog(@"Body Image name is %@",filename );
-       
+           
       NSString *path = [[NSBundle mainBundle] pathForResource: filename ofType: nil];
       UIImage *image = [_imageCache objectForKey: path];
-      if (!image) {
-         //image = [UIImage imageNamed: filename];  
+
+       if (!image) {
          image = [UIImage imageWithContentsOfFile:path];  
          [_imageCache setObject: image forKey: path];
       }
       return image;
-   } else {
+   }
+   else {
       return nil;
    }
 }
@@ -317,16 +333,24 @@ int drawNum = 0;
 #pragma mark removing Pain At given point
 -(void)removePainAtLocation:(CGPoint)touch{
 
+    CGRect shapeRemoveRect = CGRectZero;
+    InvoBodyPartDetails *PartToRem =nil;
     for (InvoBodyPartDetails *part in self.shapesArray) {
         
         if ([part.partShapePoints containsPoint:touch]) {
             
-            CGRect shapeRemoveRect = [part.partShapePoints bounds];
-            [self.shapesArray removeObject:part];
-            [self setNeedsDisplayInRect:shapeRemoveRect];
+            shapeRemoveRect = [part.partShapePoints bounds];
+
+            PartToRem = part ;
             break;
         }
     }
+    
+    if(PartToRem){
+        [self.shapesArray removeObject:PartToRem];
+    }
+    
+    [self setNeedsDisplayInRect:shapeRemoveRect];
 }
 
 @end

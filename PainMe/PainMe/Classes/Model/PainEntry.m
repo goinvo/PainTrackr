@@ -34,8 +34,10 @@
     newEntry.timestamp = [time timeIntervalSinceReferenceDate];
     
     newEntry.location = painLoc ;
-        
+    NSLog(@"was entering new pain Entry");
+    
     [dataManager saveContext];
     
+     NSLog(@"Entered new pain Entry");
 }
 @end

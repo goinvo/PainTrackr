@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "CHCSV.h"
 #import "CHCSVParser.h"
+#import "PainLocation.h"
+#import "PainEntry.h"
 
 @interface InvoDataManager : NSObject
 

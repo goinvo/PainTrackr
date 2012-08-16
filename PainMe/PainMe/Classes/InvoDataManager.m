@@ -7,8 +7,7 @@
 //
 
 #import "InvoDataManager.h"
-#import "PainLocation.h"
-#import "PainEntry.h"
+
 
 #define NUM_COLUMNS 4.0
 #define NUM_ROWS 9.0
@@ -104,10 +103,17 @@
 
 - (void)saveContext
 {
+    NSLog(@"Saving COntext");
+    
     NSError *error = nil;
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    
     if (managedObjectContext != nil) {
+        
+        NSLog(@" managedObjectContext is not nil");
+        
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+            
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);

@@ -29,6 +29,7 @@
 -(void)initTapGesture;
 -(int)tileAtTouchLocation:(CGPoint)touchPt;
 -(UIColor *)colorfromPain:(int)painLvl;
+-(void)checkAndAddLastEntryToView;
 
 @end
 
@@ -91,24 +92,32 @@
     
     self.bodyGeometry = [[BodyPartGeometry alloc] init];
     
-    id entryToRender =   [[InvoDataManager sharedDataManager] lastPainEntryToRender];
+    [self checkAndAddLastEntryToView];
+}
 
+
+#pragma mark Draw last entry if it exists
+-(void)checkAndAddLastEntryToView{
+
+    id entryToRender =   [[InvoDataManager sharedDataManager] lastPainEntryToRender];
+        
     if (entryToRender) {
-    //    NSLog(@"entry to render is %@",entryToRender);
+        //    NSLog(@"entry to render is %@",entryToRender);
         
         UIColor *fillColor = [self colorfromPain:[[(PainEntry *)entryToRender valueForKey:@"painLevel"] integerValue]];
-    
+        
         PainLocation *loc = (PainLocation *)[entryToRender valueForKey:@"location"];
         int zoom = [[loc valueForKey:@"zoomLevel"] intValue];
         
         UIBezierPath *locpath = [self.bodyGeometry dictFrBodyLocation:[ [loc valueForKey:@"name"] copy]];
         
-        [self.bodyView renderPainForBodyPartPath:locpath WithColor:fillColor detailLevel:zoom];
+        [self.bodyView addObjToSHapesArrayWithShape:locpath color:fillColor detail:zoom];
         
-         [self.partNameLabel setText:[loc valueForKey:@"name"]];
+        [self.partNameLabel setText:[loc valueForKey:@"name"]];
     }
 }
 
+#pragma mark Init tap Gesture
 -(void)initTapGesture{
 
     self.tapGesture   =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
@@ -304,7 +313,7 @@
     
      int zoomLVL = (self.scrollView.zoomScale >=0.062) ? 2 :1;
     
-    if ( [self.bodyGeometry containsPoint:convPoint withZoomLVL:zoomLVL] ) {
+    if ( [self.bodyGeometry containsPoint:convPoint withZoomLVL:zoomLVL]) {
     
          UIColor *fillcolor = [self colorfromPain:painLvl];
         
@@ -315,7 +324,6 @@
     
         [self.bodyView resetStroke];
     }
-
 }
 
 -(void)blackStrokeForBody{
