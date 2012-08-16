@@ -217,7 +217,7 @@ int drawNum = 0;
         }
     }
     
-    NSLog(@"draw was called %d",drawNum);
+//    NSLog(@"draw was called %d",drawNum);
 }
 
 - (UIImage*)tileAtCol:(int)col row:(int)row withScale:(CGFloat)scale
