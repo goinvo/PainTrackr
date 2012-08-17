@@ -22,6 +22,7 @@
 @property (nonatomic, readwrite)BOOL strokeChanged;
 
 
+
 -(void)renderPainForBodyPartPath:(UIBezierPath *)path WithColor:(UIColor *)fillColor detailLevel:(int)level name:(NSString *)pName;
 
 -(void)maskWithColor:(UIColor *)maskFillColor;
@@ -29,4 +30,6 @@
 
 -(NSString *)removePainAtLocation:(CGPoint)touch;
 -(void)addObjToSHapesArrayWithShape:(UIBezierPath *)shape color:(UIColor *)fillColor detail:(int)levDet name:(NSString *)partName;
+
+-(BOOL)doesEntryExist:(NSString *)name;
 @end

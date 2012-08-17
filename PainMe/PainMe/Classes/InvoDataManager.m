@@ -129,11 +129,20 @@
     if (self) {
         
         NSLog(@"Beginning...");
+        
+        NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainEntry" inManagedObjectContext:self.managedObjectContext];
+        
+        NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
+        [fetReq setEntity:descript];
+
+        NSError *error = nil;
+        NSArray *CrDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
+        NSLog(@"Entries ");
     }
     return self;
 }
-
- */
+*/
+ 
 -(void)checkPainLocationDataBase{
 
     if (NO == [self painLocationsInDatabase]) {

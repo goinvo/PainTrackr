@@ -106,15 +106,17 @@
         
         UIColor *fillColor = [self colorfromPain:[[(PainEntry *)entryToRender valueForKey:@"painLevel"] integerValue]];
         
-        PainLocation *loc = (PainLocation *)[entryToRender valueForKey:@"location"];
-        int zoom = [[loc valueForKey:@"zoomLevel"] intValue];
-        
-        UIBezierPath *locpath = [self.bodyGeometry dictFrBodyLocation:[ [loc valueForKey:@"name"] copy]];
-        
-        [self.bodyView addObjToSHapesArrayWithShape:locpath color:fillColor detail:zoom name:[[loc valueForKey:@"name"] copy]];
-        
-        [self.partNameLabel setText:[loc valueForKey:@"name"]];
-        [self.partNameLabel setTextColor:fillColor];
+        if (fillColor) {
+            PainLocation *loc = (PainLocation *)[entryToRender valueForKey:@"location"];
+            int zoom = [[loc valueForKey:@"zoomLevel"] intValue];
+            
+            UIBezierPath *locpath = [self.bodyGeometry dictFrBodyLocation:[ [loc valueForKey:@"name"] copy]];
+            
+            [self.bodyView addObjToSHapesArrayWithShape:locpath color:fillColor detail:zoom name:[[loc valueForKey:@"name"] copy]];
+            
+            [self.partNameLabel setText:[loc valueForKey:@"name"]];
+            [self.partNameLabel setTextColor:fillColor];
+        }
     }
 }
 
@@ -141,8 +143,24 @@
   
     CGPoint newPt = [self.bodyView convertPoint:touchLocation fromView:self.scrollView];
     NSLog(@"New Point is %@", NSStringFromCGPoint(newPt));
+
+//Creating a zero Pain Entry
+    NSDictionary *locDict = nil;
     
-   NSString *name =  [self.bodyView removePainAtLocation:newPt];
+    int zmLvl = (self.scrollView.zoomScale <0.06)?1:2;
+    
+    locDict = [self.bodyGeometry containsPoint:CGPointMake(newPt.x/BODY_VIEW_WIDTH, newPt.y/BODY_VIEW_HEIGHT) withZoomLVL:zmLvl];
+       
+    if (locDict) {
+
+        if([self.bodyView doesEntryExist:[[[locDict allKeys]objectAtIndex:0]copy]]){
+            [InvoDataManager painEntryForLocation:[locDict copy] LevelPain:0 notes:nil];
+        }
+    }
+
+
+//Making changes to the text label
+    NSString *name =  [self.bodyView removePainAtLocation:newPt];
     
     if (name) {
         if ([name isEqualToString:self.partNameLabel.text]) {
@@ -269,7 +287,7 @@
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
     
 //    NSLog(@"bodyview frame is %@", NSStringFromCGRect(self.bodyView.frame));
-    NSLog(@"returned bodyView");
+//    NSLog(@"returned bodyView");
     return self.bodyView;
 }
 

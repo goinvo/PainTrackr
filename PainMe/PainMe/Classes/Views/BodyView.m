@@ -185,8 +185,7 @@
         
 //    drawNum ++;
     
-    
-    NSLog(@"the draw rect in BodyView draw is %@", NSStringFromCGRect(rect));
+//    NSLog(@"the draw rect in BodyView draw is %@", NSStringFromCGRect(rect));
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -390,6 +389,17 @@
     [self setNeedsDisplayInRect:shapeRemoveRect];
     
     return strToRet;
+}
+
+-(BOOL)doesEntryExist:(NSString *)name{
+
+    for (InvoBodyPartDetails *part in self.shapesArray) {
+    
+        if ([part.partName isEqualToString:name]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 @end
