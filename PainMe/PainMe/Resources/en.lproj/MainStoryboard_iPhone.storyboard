@@ -109,11 +109,7 @@
                         <outlet property="scrollView" destination="c8j-aa-t6T" id="6by-tb-6by"/>
                     </connections>
                 </viewController>
-                <swipeGestureRecognizer direction="left" id="ztP-wr-ac0">
-                    <connections>
-                        <segue destination="kKB-AA-inu" kind="push" id="RhC-S1-FbA"/>
-                    </connections>
-                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="ztP-wr-ac0"/>
             </objects>
             <point key="canvasLocation" x="221" y="661"/>
         </scene>
@@ -123,7 +119,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mtW-Bw-n6b" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="kKB-AA-inu" customClass="InvoPainGraphViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l1X-wK-Sdl">
-                        <rect key="frame" x="0.0" y="44" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.41129225130000002" green="0.2065406082" blue="0.00085065706629999999" alpha="0.83999999999999997" colorSpace="calibratedRGB"/>
                     </view>

@@ -114,6 +114,7 @@
         [self.bodyView addObjToSHapesArrayWithShape:locpath color:fillColor detail:zoom name:[[loc valueForKey:@"name"] copy]];
         
         [self.partNameLabel setText:[loc valueForKey:@"name"]];
+        [self.partNameLabel setTextColor:fillColor];
     }
 }
 
@@ -146,6 +147,7 @@
     if (name) {
         if ([name isEqualToString:self.partNameLabel.text]) {
             [self.partNameLabel setText:@"NONE"];
+            [self.partNameLabel setTextColor:[UIColor blackColor]];
         }
     }
     /*
@@ -299,6 +301,7 @@
         [self.bodyView renderPainForBodyPartPath:[[pathContainingPoint allValues] objectAtIndex:0] WithColor:fillcolor detailLevel:zoomLVL name:[[pathContainingPoint allKeys] objectAtIndex:0]];
         
         [self.partNameLabel setText:[[pathContainingPoint allKeys] objectAtIndex:0]];
+        [self.partNameLabel setTextColor:fillcolor];
         
         [InvoDataManager painEntryForLocation:[pathContainingPoint copy] LevelPain:painLvl notes:nil];
                 
