@@ -22,11 +22,11 @@
 @property (nonatomic, readwrite)BOOL strokeChanged;
 
 
--(void)renderPainForBodyPartPath:(UIBezierPath *)path WithColor:(UIColor *)fillColor detailLevel:(int)level;
+-(void)renderPainForBodyPartPath:(UIBezierPath *)path WithColor:(UIColor *)fillColor detailLevel:(int)level name:(NSString *)pName;
 
 -(void)maskWithColor:(UIColor *)maskFillColor;
 -(void)resetStroke;
 
--(void)removePainAtLocation:(CGPoint)touch;
--(void)addObjToSHapesArrayWithShape:(UIBezierPath *)shape color:(UIColor *)fillColor detail:(int)levDet;
+-(NSString *)removePainAtLocation:(CGPoint)touch;
+-(void)addObjToSHapesArrayWithShape:(UIBezierPath *)shape color:(UIColor *)fillColor detail:(int)levDet name:(NSString *)partName;
 @end

@@ -111,7 +111,7 @@
         
         UIBezierPath *locpath = [self.bodyGeometry dictFrBodyLocation:[ [loc valueForKey:@"name"] copy]];
         
-        [self.bodyView addObjToSHapesArrayWithShape:locpath color:fillColor detail:zoom];
+        [self.bodyView addObjToSHapesArrayWithShape:locpath color:fillColor detail:zoom name:[[loc valueForKey:@"name"] copy]];
         
         [self.partNameLabel setText:[loc valueForKey:@"name"]];
     }
@@ -141,8 +141,13 @@
     CGPoint newPt = [self.bodyView convertPoint:touchLocation fromView:self.scrollView];
     NSLog(@"New Point is %@", NSStringFromCGPoint(newPt));
     
-    [self.bodyView removePainAtLocation:newPt];
+   NSString *name =  [self.bodyView removePainAtLocation:newPt];
     
+    if (name) {
+        if ([name isEqualToString:self.partNameLabel.text]) {
+            [self.partNameLabel setText:@"NONE"];
+        }
+    }
     /*
     int tileNum = [self tileAtTouchLocation:touchLocation];
     NSLog(@"Tile which was tapped was %d",tileNum);
@@ -262,7 +267,7 @@
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
     
 //    NSLog(@"bodyview frame is %@", NSStringFromCGRect(self.bodyView.frame));
-    
+    NSLog(@"returned bodyView");
     return self.bodyView;
 }
 
@@ -291,7 +296,7 @@
                 
         UIColor *fillcolor = [self colorfromPain:painLvl];
     
-        [self.bodyView renderPainForBodyPartPath:[[pathContainingPoint allValues] objectAtIndex:0] WithColor:fillcolor detailLevel:zoomLVL];
+        [self.bodyView renderPainForBodyPartPath:[[pathContainingPoint allValues] objectAtIndex:0] WithColor:fillcolor detailLevel:zoomLVL name:[[pathContainingPoint allKeys] objectAtIndex:0]];
         
         [self.partNameLabel setText:[[pathContainingPoint allKeys] objectAtIndex:0]];
         

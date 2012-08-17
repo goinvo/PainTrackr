@@ -104,7 +104,7 @@
     tiledLayer.tileSize = CGSizeMake(BODY_TILE_SIZE, BODY_TILE_SIZE);
    
     tiledLayer.levelsOfDetail = 5;
-    tiledLayer.masksToBounds = YES;
+//    tiledLayer.masksToBounds = YES;
 
     
    _imageCache = [[NSCache alloc] init];
@@ -122,15 +122,15 @@
 // body pain level changed
 // [self setNeedsDisplayInRect: ...]
 
--(void)addObjToSHapesArrayWithShape:(UIBezierPath *)shape color:(UIColor *)fillColor detail:(int)levDet{
+-(void)addObjToSHapesArrayWithShape:(UIBezierPath *)shape color:(UIColor *)fillColor detail:(int)levDet name:(NSString *)partName{
 
-    InvoBodyPartDetails *partDetail = [InvoBodyPartDetails InvoBodyPartWithShape:[shape copy] COlor:fillColor ZoomLevel:levDet];
+    InvoBodyPartDetails *partDetail = [InvoBodyPartDetails InvoBodyPartWithShape:[shape copy] COlor:fillColor ZoomLevel:levDet Name:[partName copy]];
     
     [self.shapesArray addObject:partDetail];
 
 }
 
--(void)renderPainForBodyPartPath:(UIBezierPath *)path WithColor:(UIColor *)fillColor detailLevel:(int)level{
+-(void)renderPainForBodyPartPath:(UIBezierPath *)path WithColor:(UIColor *)fillColor detailLevel:(int)level name:(NSString *)pName{
     
     BOOL found = NO;
  
@@ -138,7 +138,8 @@
     
     for (InvoBodyPartDetails *partDetail in self.shapesArray) {
         
-        if (CGPathEqualToPath(path.CGPath, partDetail.partShapePoints.CGPath)) {
+        //if (CGPathEqualToPath(path.CGPath, partDetail.partShapePoints.CGPath)) {
+        if([pName isEqualToString:partDetail.partName]){
             
             if (![fillColor isEqual:partDetail.shapeColor]) {
                 NSLog(@"Found to change color");
@@ -156,18 +157,34 @@
 
     if (!found) {
         
-        [self addObjToSHapesArrayWithShape:[path copy] color:fillColor detail:level];
+        [self addObjToSHapesArrayWithShape:[path copy] color:fillColor detail:level name:[pName copy]];
     }
         [self setNeedsDisplayInRect:[path bounds]];
     
 }
 
+#pragma mark Calculate center of a uiBezierPath
+
+-(CGPoint)midPoinfOfBezierPath:(UIBezierPath *)bezier{
+
+    if(bezier){
+        CGRect bezierRect = [bezier bounds];
+        float xPoint =bezierRect.origin.x + bezier.bounds.size.width *0.5;
+        float yPoint =bezierRect.origin.y + bezier.bounds.size.height *0.5;
+        CGPoint pointToReturn = CGPointMake(xPoint , yPoint);
+        
+        return pointToReturn;
+    }
+    return CGPointZero;
+}
 
 //int drawNum = 0;
+#pragma makr Custom-Drawing code
 
 - (void)drawRect:(CGRect)rect {
         
 //    drawNum ++;
+    
     
     NSLog(@"the draw rect in BodyView draw is %@", NSStringFromCGRect(rect));
     
@@ -179,7 +196,7 @@
 
     scale = (self.contentScaleFactor ==2)?scale/2:scale;
     
-    //    NSLog(@"Scale in draw is %f",scale);
+//        NSLog(@"Scale in draw is %f",scale);
     
     int firstCol = floorf(CGRectGetMinX(rect) / tileSize.width);
     int lastCol = floorf((CGRectGetMaxX(rect)-1) / tileSize.width);
@@ -227,17 +244,33 @@
     
     for (InvoBodyPartDetails *part in self.shapesArray) {
         
-        if (part.partShapePoints && CGRectIntersectsRect(rect, [part.partShapePoints bounds]) && zoom == part.zoomLevel) {
+        if (part.partShapePoints && CGRectIntersectsRect(rect, [part.partShapePoints bounds])) {
             
-            CGContextSetStrokeColorWithColor(context,[BodyView blueColor]);
-            CGContextSetFillColorWithColor(context, [part.shapeColor CGColor]);
-            
-            [part.partShapePoints fill];
-            [part.partShapePoints stroke];
+            if(zoom == part.zoomLevel){
+                CGContextSetStrokeColorWithColor(context,[BodyView blueColor]);
+                CGContextSetFillColorWithColor(context, [part.shapeColor CGColor]);
+                
+                [part.partShapePoints fill];
+                [part.partShapePoints stroke];
+            }
+            else{
+                
+                CGPoint centPoint = [self midPoinfOfBezierPath:part.partShapePoints];
+  //              [part.shapeColor set];
+                CGContextSetLineWidth(context, 4.0f);
+                CGContextSetStrokeColorWithColor(context, part.shapeColor.CGColor);
+                CGContextSetFillColorWithColor(context, part.shapeColor.CGColor);
+                CGContextSetAlpha(context, 0.5f);
+                CGContextFillEllipseInRect(context, CGRectMake(centPoint.x-150 , centPoint.y-150 , 300, 300));
+                CGContextSetAlpha(context, 1.0f);
+                CGContextFillEllipseInRect(context, CGRectMake(centPoint.x-50, centPoint.y-50, 100, 100));
+                 
+            }
         }
     }
 //    NSLog(@"draw was called %d",drawNum);
 }
+
 
 - (UIImage*)tileAtCol:(int)col row:(int)row withScale:(CGFloat)scale
 {
@@ -331,10 +364,11 @@
 }
 
 #pragma mark removing Pain At given point
--(void)removePainAtLocation:(CGPoint)touch{
+-(NSString *)removePainAtLocation:(CGPoint)touch{
 
     CGRect shapeRemoveRect = CGRectZero;
     InvoBodyPartDetails *PartToRem =nil;
+    NSString *strToRet = nil;
     for (InvoBodyPartDetails *part in self.shapesArray) {
         
         if ([part.partShapePoints containsPoint:touch]) {
@@ -342,15 +376,20 @@
             shapeRemoveRect = [part.partShapePoints bounds];
 
             PartToRem = part ;
+            
+            strToRet =part.partName;
             break;
         }
     }
     
     if(PartToRem){
         [self.shapesArray removeObject:PartToRem];
+        
     }
     
     [self setNeedsDisplayInRect:shapeRemoveRect];
+    
+    return strToRet;
 }
 
 @end

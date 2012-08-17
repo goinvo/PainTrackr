@@ -10,16 +10,16 @@
 
 @interface InvoBodyPartDetails ()
 
--(id)initWithShape:(UIBezierPath *)shapePts Color:(UIColor *)shpColor ZoomLevel:(int)level;
+-(id)initWithShape:(UIBezierPath *)shapePts Color:(UIColor *)shpColor ZoomLevel:(int)level Name:(NSString *)name;
 -(id)initWithShape:(UIBezierPath *)shapePts name:(NSString *)pName ZoomLevel:(int)level;
 
 @end
 
 @implementation InvoBodyPartDetails
 
-+(InvoBodyPartDetails *)InvoBodyPartWithShape:(UIBezierPath *)shape COlor:(UIColor *)color ZoomLevel:(int)zmLevel{
++(InvoBodyPartDetails *)InvoBodyPartWithShape:(UIBezierPath *)shape COlor:(UIColor *)color ZoomLevel:(int)zmLevel Name:(NSString *)name{
 
-    return [[self alloc] initWithShape:[shape copy] Color:color ZoomLevel:zmLevel];
+    return [[self alloc] initWithShape:[shape copy] Color:color ZoomLevel:zmLevel Name:[name copy]];
 }
 
 
@@ -29,7 +29,7 @@
 }
 
 
--(id)initWithShape:(UIBezierPath *)shapePts Color:(UIColor *)shpColor ZoomLevel:(int)level{
+-(id)initWithShape:(UIBezierPath *)shapePts Color:(UIColor *)shpColor ZoomLevel:(int)level Name:(NSString *)name{
 
     self = [super init];
     if (self) {
@@ -39,6 +39,7 @@
         
         self.shapeColor = shpColor;
         self.zoomLevel = level;
+        self.partName = [name copy];
     }
     return self;
 }

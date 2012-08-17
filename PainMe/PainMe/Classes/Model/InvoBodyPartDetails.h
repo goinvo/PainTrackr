@@ -16,7 +16,7 @@
 @property (nonatomic, retain) NSString *partName;
 
 
-+(InvoBodyPartDetails *)InvoBodyPartWithShape:(UIBezierPath *)shape COlor:(UIColor *)color ZoomLevel:(int)zmLevel;
++(InvoBodyPartDetails *)InvoBodyPartWithShape:(UIBezierPath *)shape COlor:(UIColor *)color ZoomLevel:(int)zmLevel Name:(NSString *)name;
 
 +(InvoBodyPartDetails *)InvoBodyPartWithShape:(UIBezierPath *)shape Name:(NSString *)name ZoomLevel:(int)zmLevel;
 @end
