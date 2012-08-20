@@ -18,3 +18,4 @@ build/*
 *.xcworkspace
 xcuserdata
 DerivedData
+build

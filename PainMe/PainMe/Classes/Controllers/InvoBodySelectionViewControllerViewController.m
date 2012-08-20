@@ -158,7 +158,6 @@
         }
     }
 
-
 //Making changes to the text label
     NSString *name =  [self.bodyView removePainAtLocation:newPt];
     
@@ -313,42 +312,62 @@
     pathContainingPoint = [self.bodyGeometry containsPoint:convPoint withZoomLVL:zoomLVL];
     
     if (pathContainingPoint) {
-                
-        UIColor *fillcolor = [self colorfromPain:painLvl];
-    
-        [self.bodyView renderPainForBodyPartPath:[[pathContainingPoint allValues] objectAtIndex:0] WithColor:fillcolor detailLevel:zoomLVL name:[[pathContainingPoint allKeys] objectAtIndex:0]];
         
-        [self.partNameLabel setText:[[pathContainingPoint allKeys] objectAtIndex:0]];
-        [self.partNameLabel setTextColor:fillcolor];
+        if(painLvl ==0){
         
-        [InvoDataManager painEntryForLocation:[pathContainingPoint copy] LevelPain:painLvl notes:nil];
-                
-        fillcolor = nil;
+            if([self.bodyView doesEntryExist:[[[pathContainingPoint allKeys]objectAtIndex:0]copy]]){
+                [InvoDataManager painEntryForLocation:[pathContainingPoint copy] LevelPain:0 notes:nil];
+            }
+            
+            //Making changes to the text label
+            NSString *name =  [self.bodyView removePainAtLocation:CGPointMake(convPoint.x*BODY_VIEW_WIDTH, convPoint.y*BODY_VIEW_HEIGHT)];
+            
+            if (name) {
+                if ([name isEqualToString:self.partNameLabel.text]) {
+                    [self.partNameLabel setText:@"NONE"];
+                    [self.partNameLabel setTextColor:[UIColor blackColor]];
+                }
+            }
+        }
+        else{
+            UIColor *fillcolor = [self colorfromPain:painLvl];
+            
+            [self.bodyView renderPainForBodyPartPath:[[pathContainingPoint allValues] objectAtIndex:0] WithColor:fillcolor detailLevel:zoomLVL name:[[pathContainingPoint allKeys] objectAtIndex:0]];
+            
+            [self.partNameLabel setText:[[pathContainingPoint allKeys] objectAtIndex:0]];
+            [self.partNameLabel setTextColor:fillcolor];
+            
+            [InvoDataManager painEntryForLocation:[pathContainingPoint copy] LevelPain:painLvl notes:nil];
+            
+            fillcolor = nil;
+        }
     }
 }
 
 -(void)changeStrokeWithPoint:(CGPoint)dragPoint painLvl:(int)painLvl{
 
-    CGPoint convPoint = CGPointZero;
-    
-    convPoint = [self.view convertPoint:dragPoint toView:self.scrollView];
-    
-//    NSLog(@"conv point is %@", NSStringFromCGPoint(convPoint));
-    
-    convPoint = CGPointMake((convPoint.x -70)/(BODY_VIEW_WIDTH*self.scrollView.zoomScale),convPoint.y/( BODY_VIEW_HEIGHT*self.scrollView.zoomScale));
-    
-     int zoomLVL = (self.scrollView.zoomScale >=0.062) ? 2 :1;
-    
-    if ( [self.bodyGeometry containsPoint:convPoint withZoomLVL:zoomLVL]) {
-    
-         UIColor *fillcolor = [self colorfromPain:painLvl];
+    if(painLvl!= 0){
+        CGPoint convPoint = CGPointZero;
         
-        [self.bodyView maskWithColor:fillcolor];
+        convPoint = [self.view convertPoint:dragPoint toView:self.scrollView];
         
-     }
-    else{
-    
-        [self.bodyView resetStroke];
+        //    NSLog(@"conv point is %@", NSStringFromCGPoint(convPoint));
+        
+        convPoint = CGPointMake((convPoint.x -70)/(BODY_VIEW_WIDTH*self.scrollView.zoomScale),convPoint.y/( BODY_VIEW_HEIGHT*self.scrollView.zoomScale));
+        
+        int zoomLVL = (self.scrollView.zoomScale >=0.062) ? 2 :1;
+        
+        if ( [self.bodyGeometry containsPoint:convPoint withZoomLVL:zoomLVL]) {
+            
+            UIColor *fillcolor = [self colorfromPain:painLvl];
+            
+            [self.bodyView maskWithColor:fillcolor];
+            
+        }
+        else{
+            
+            [self.bodyView resetStroke];
+        }
     }
 }
 
@@ -363,25 +382,25 @@
 
 -(UIColor *)colorfromPain:(int)painLvl{
 
-    UIColor *colorToFill;
+    UIColor *colorToFill = nil;
     
     switch (painLvl) {
-        case 1:
-            colorToFill = [UIColor colorWithRed:1.00f green:0.89f blue:0.70f alpha:0.9f];
+        case 0:
+            //colorToFill = [UIColor colorWithRed:0.00f green:0.00f blue:0.00f alpha:1.0f];
             break;
-        case 2:
+        case 1:
             colorToFill = [UIColor colorWithRed:0.99f green:0.71f blue:0.51f alpha:0.9f];               
             break;
-        case 3:
+        case 2:
             colorToFill = [UIColor colorWithRed:0.98f green:0.57f blue:0.26f alpha:0.9f];
             break;
-        case 4:
+        case 3:
             colorToFill = [UIColor colorWithRed:0.92 green:0.41 blue:0.42 alpha:0.9f];
             break;
-        case 5:
+        case 4:
             colorToFill = [UIColor colorWithRed:0.95 green:0.15 blue:0.21 alpha:0.9f];
             break;
-        case 6:
+        case 5:
             colorToFill = [UIColor colorWithRed:0.8 green:0.15 blue:0.24 alpha:0.9f];
             break;
             

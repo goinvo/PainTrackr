@@ -49,12 +49,13 @@
 
 @property (nonatomic, readonly)NSInteger pointCount;
 @property (nonatomic, retain)NSMutableDictionary *dict;
+@property (nonatomic, retain)NSMutableArray *keysFromStoredLocData;
 
 -(void)getDataFromCSVInDict;
 
--(BOOL)painLocationsInDatabase;
+-(void)painLocationsInDatabase;
 -(void) setPointCount: (NSInteger) newPoints;
-
+-(BOOL)painLocationExists:(NSString*)locName;
 @end
 
 
@@ -69,6 +70,7 @@
 @synthesize vertRange = _vertRange;
 @synthesize nwArrVert = _nwArrVert;
 @synthesize parsedComponents = _parsedComponents;
+@synthesize keysFromStoredLocData = _keysFromStoredLocData;
 
 
 @synthesize dict =_dict;
@@ -145,16 +147,61 @@
  
 -(void)checkPainLocationDataBase{
 
-    if (NO == [self painLocationsInDatabase]) {
-        
-        [self getDataFromCSVInDict];
-        [self listCoordinates];
-    }
+//    if (NO == [self painLocationsInDatabase]) {
+    [self painLocationsInDatabase];
+    [self getDataFromCSVInDict];
+    [self listCoordinates];
+//    }
 
 }
 
+#pragma mark get painLocation Data from database
 
+-(void)painLocationsInDatabase{
+    /*
+     BOOL toReturn = NO;
+     
+     NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainLocation" inManagedObjectContext:self.managedObjectContext];
+     
+     NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
+     [fetReq setEntity:descript];
+     [fetReq setResultType:NSDictionaryResultType];
+     
+     NSError *error;
+     NSArray *crDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
+     
+     if ([crDta count]>0) {
+     
+     //        NSLog(@"value in COreData PainLocation is %@", crDta);
+     toReturn = YES;
+     }
+     
+     fetReq = nil;
+     return toReturn;
+     
+     */
+    
+    NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainLocation" inManagedObjectContext:self.managedObjectContext];
+    
+    NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
+    [fetReq setEntity:descript];
+    [fetReq setResultType:NSDictionaryResultType];
+    
+    NSError *error = nil;
+    NSArray *locData = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
+    
+    //    NSLog(@"Entries are %@ with count %d", locData,[locData count]);
+    self.keysFromStoredLocData = [NSMutableArray array];
+    
+    for (NSDictionary *dicti in locData) {
+        //getting all names
+        [self.keysFromStoredLocData addObject:[[dicti allValues]objectAtIndex:0]];
+    }
+}
 
+#pragma mark -
+
+#pragma mark Get data from CSV file
 -(void)getDataFromCSVInDict{
     
     NSLog(@"Beginning...");
@@ -216,54 +263,61 @@
             [self.dict setValue:[dictValueArray copy] forKey:[prevString copy]];
         }
     }
-    
-//        NSLog(@"DICTIONARY VALUES  for key Left up :%@",[self.dict valueForKey:@"Left up Leg"]);
-    
 }
 
+#pragma mark check if location exists in database
+-(BOOL)painLocationExists:(NSString*)locName{
+
+    for (NSString *str in self.keysFromStoredLocData) {
+        
+        if ([locName isEqualToString:str]) {
+            
+            return YES;
+        }
+    }
+    return NO;
+}
+
+#pragma mark create location entries into PainLocation database
 -(void)listCoordinates{
     
-   // NSArray *neckValues = [self.dict valueForKey:@"Left up Leg"];
     
     NSArray *dictKeys = [self.dict allKeys];
     
     for (NSString *ky in dictKeys) {
         
-        NSArray *valArray = [self.dict valueForKey:ky];
+        if ([dictKeys count]!=[self.keysFromStoredLocData count]) {
         
-        int itmCount = [valArray count];
-      
-        [self setPointCount:itmCount];
-
-        int i=0;
-        
-        if ([ky isEqualToString:@"ForeHead"]) {
-            NSLog(@"here");
+            if (![self painLocationExists:[ky copy]])
+            {
+                NSArray *valArray = [self.dict valueForKey:ky];
+                
+                int itmCount = [valArray count];
+                
+                [self setPointCount:itmCount];
+                
+                int i=0;
+                
+                for (NSArray *arr in valArray) {
+                    
+                    float xadd = [[arr objectAtIndex:2] floatValue];
+                    float yadd = [[arr objectAtIndex:3] floatValue];
+                    float xCoor = [[arr objectAtIndex:4] floatValue];
+                    float yCoor = [[arr objectAtIndex:5] floatValue];
+                    
+                    _pts[i]=CGPointMake((xadd/NUM_COLUMNS) + (xCoor/BODY_WIDTH), (yadd/NUM_ROWS) +(yCoor/BODY_HEIGHT));
+                    i++;
+                }
+                
+                NSData *shapeVertices = [NSData dataWithBytes:_pts length:sizeof(CGPoint)*itmCount];
+                
+                int zoomLvl = [[[valArray objectAtIndex:0] objectAtIndex:1] integerValue];
+                
+                [PainLocation LocationEntryWithName:[ky copy] Shape:shapeVertices ZoomLevel:zoomLvl];
+                
+                valArray = nil;
+            }
         }
-        
-        for (NSArray *arr in valArray) {
-
-            float xadd = [[arr objectAtIndex:2] floatValue];
-            float yadd = [[arr objectAtIndex:3] floatValue];
-            float xCoor = [[arr objectAtIndex:4] floatValue];
-            float yCoor = [[arr objectAtIndex:5] floatValue];
-            
-//            CGPoint newPt = CGPointMake((xadd/NUM_COLUMNS) + (xCoor/BODY_WIDTH), (yadd/NUM_ROWS) +(yCoor/BODY_HEIGHT));
-//            
-//            NSLog(@"newPt for key:%@ is :%@", ky,NSStringFromCGPoint(newPt));
-
-            _pts[i]=CGPointMake((xadd/NUM_COLUMNS) + (xCoor/BODY_WIDTH), (yadd/NUM_ROWS) +(yCoor/BODY_HEIGHT));
-            i++;
-        }
-    
-    NSData *shapeVertices = [NSData dataWithBytes:_pts length:sizeof(CGPoint)*itmCount];
-
-    int zoomLvl = [[[valArray objectAtIndex:0] objectAtIndex:1] integerValue];
-    
-    [PainLocation LocationEntryWithName:[ky copy] Shape:shapeVertices ZoomLevel:zoomLvl];
-       
-    valArray = nil;
-    
     }
 }
 
@@ -366,32 +420,6 @@
 
 #pragma mark -
 
-#pragma mark Check If painLocation Database is filled
-
--(BOOL)painLocationsInDatabase{
-
-    BOOL toReturn = NO;
-    
-    NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainLocation" inManagedObjectContext:self.managedObjectContext];
-    
-    NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
-    [fetReq setEntity:descript];
-    [fetReq setResultType:NSDictionaryResultType];
-    
-    NSError *error;
-    NSArray *crDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
-    
-    if ([crDta count]>0) {
-
-//        NSLog(@"value in COreData PainLocation is %@", crDta);
-        toReturn = YES;
-    }
-    
-    fetReq = nil;
-    return toReturn;
-}
-
-#pragma mark -
 
 #pragma mark pain location enrty
 

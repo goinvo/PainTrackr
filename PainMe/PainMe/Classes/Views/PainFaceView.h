@@ -10,7 +10,7 @@
 
 typedef enum{
 
-    kTagFace1=1,
+    kTagFace1=0,
     kTagFace2,
     kTagFace3,
     kTagFace4,

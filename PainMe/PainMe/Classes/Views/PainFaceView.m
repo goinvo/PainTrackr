@@ -24,6 +24,8 @@
 
 -(void)putBackPainFace:(UIView *)face;
 
+-(void)addLabels;
+
 @property (nonatomic, retain)UIPanGestureRecognizer *dragGesture;
 @end
 
@@ -55,14 +57,14 @@
         [self.f1 setFrame:CGRectMake(10, 5, img.size.width, img.size.height)];
         self.f1.tag = kTagFace1;
         [self addSubview:self.f1];
-        
+                
         self.f2= [[UIView alloc]init];
         img = [UIImage imageNamed:@"F2.png"];
         [self.f2 setBackgroundColor:[UIColor colorWithPatternImage:img]];
         [self.f2 setFrame:CGRectMake(10, ((4*2)+img.size.height), img.size.width, img.size.height)];
         self.f2.tag = kTagFace2;
         [self addSubview:self.f2];
-
+        
         self.f3= [[UIView alloc]init];
         img = [UIImage imageNamed:@"F3.png"];
         [self.f3 setBackgroundColor:[UIColor colorWithPatternImage:img]];
@@ -93,9 +95,39 @@
         
         self.viewToDrag = [[UIView alloc] init];
 
+        [self addLabels];
     }
     return self;
 }
+#pragma mark addLabels
+
+-(void)addLabels{
+
+    float width = self.f1.frame.size.width;
+    float height = self.f1.frame.size.height;
+    
+    for (int i=0; i<6; i++) {
+
+        UILabel *l1 = [[UILabel alloc] initWithFrame:CGRectMake(width*0.5 -12 , height-12, 25, 10)];
+//        [l1 setCenter:CGPointMake(10+ width*0.5, height + height*i +4*i)];
+        
+        (i==0)?[l1 setText:@"0"]:[l1 setText:[NSString stringWithFormat:@"%d - %d",(i*2 -1),i*2]];
+        
+        [l1 setBackgroundColor:[UIColor colorWithWhite:1.0f alpha:0.5f]];
+        
+        [l1 setTextAlignment:UITextAlignmentCenter];
+        [l1 setFont:[UIFont fontWithName:@"Helvetica" size:9]];
+        
+        for(UIView *view in self.subviews){
+        
+            if (view.tag == i) {
+                [view addSubview:l1];
+                break;
+            }
+        }
+    }
+}
+#pragma mark -
 
 #pragma mark touches
 
@@ -194,7 +226,7 @@
 
     if (face) {
     
-        CGPoint pointToMove = CGPointMake(10, 4*face.tag + face.bounds.size.height *(face.tag -1));
+        CGPoint pointToMove = CGPointMake(10, 4*face.tag + face.bounds.size.height *(face.tag ));
         
         [face setFrame:CGRectMake(pointToMove.x, pointToMove.y, face.bounds.size.width, face.bounds.size.height)];
         face = nil;

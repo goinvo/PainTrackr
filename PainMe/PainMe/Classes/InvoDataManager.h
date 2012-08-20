@@ -43,4 +43,5 @@
 -(id)lastPainEntryToRender;
 
 -(NSArray *)namesOfBodyParts;
+
 @end
