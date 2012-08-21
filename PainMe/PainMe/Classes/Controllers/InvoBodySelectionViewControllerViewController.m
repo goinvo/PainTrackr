@@ -431,23 +431,31 @@
 
 //Image data of body
     NSData *img = [self.bodyView imageToAttachToReport];
-    NSArray *entries = [PainEntry Last50PainEntries];
+    NSArray *entries = [PainEntry last50PainEntries];
     
     NSString *str = @"";
+    int num=1;
     for(NSDictionary *dict in entries){
     
         PainLocation *loc = [dict valueForKey:@"location"];
-        NSString *newStr = [NSString stringWithFormat:@"%@ hurts %d",[loc valueForKey:@"name"],[[dict valueForKey:@"painLevel"] integerValue]];
+        NSDate *dte= [dict valueForKey:@"timestamp"];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateStyle:NSDateFormatterShortStyle];
+        [formatter setTimeStyle:NSDateFormatterShortStyle];
+
+        NSString *newStr = [NSString stringWithFormat:@"%@ %@ PainLevel %d",[formatter stringFromDate:dte],[loc valueForKey:@"name"],[[dict valueForKey:@"painLevel"] integerValue]];
         
-        str = [str stringByAppendingString:[NSString stringWithFormat:@"\n %@",newStr]];
+        str = [str stringByAppendingString:[NSString stringWithFormat:@"\n%d) %@",num,newStr]];
+        num++;
     }
+    num=0;
 
     MFMailComposeViewController *mailComp = [[MFMailComposeViewController alloc] init];
     
     [mailComp setSubject:[[self timeForReport] copy]];
     [mailComp setToRecipients:[NSArray arrayWithObject:@"dhaval@goinvo.com"]];
     [mailComp addAttachmentData:img mimeType:@"image/png" fileName:@"BodyReport"];
-   // [mailComp setMessageBody:[[self timeForReport] copy] isHTML:NO];
+  
     [mailComp setMessageBody:str isHTML:NO];
     
     mailComp.mailComposeDelegate = self;
@@ -465,64 +473,16 @@
 
 #pragma mark Time For Report
 
--(NSString *)monthFromMnth:(NSInteger)day{
-
-    NSString *mnthFromMnth = nil;
-    switch (day) {
-        case 1:
-            mnthFromMnth = @"Jan";
-            break;
-        case 2:
-            mnthFromMnth = @"Feb";
-            break;
-        case 3:
-            mnthFromMnth = @"Mar";
-            break;
-        case 4:
-            mnthFromMnth = @"Apr";
-            break;
-        case 5:
-            mnthFromMnth = @"May";
-            break;
-        case 6:
-            mnthFromMnth = @"Jun";
-            break;
-        case 7:
-            mnthFromMnth = @"Jul";
-            break;
-        case 8:
-            mnthFromMnth = @"Aug";
-            break;
-        case 9:
-            mnthFromMnth = @"Sep";
-            break;
-        case 10:
-            mnthFromMnth = @"Oct";
-            break;
-        case 11:
-            mnthFromMnth = @"Nov";
-            break;
-        case 12:
-            mnthFromMnth = @"Dec";
-            break;
-        default:
-            break;
-    }
-    return [mnthFromMnth copy];
-}
 -(NSString *)timeForReport{
 
     NSDate *date = [NSDate date];
-    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSString *title;
     
-    NSDateComponents *comp = [cal components:(NSHourCalendarUnit|NSMinuteCalendarUnit|NSDayCalendarUnit|NSMonthCalendarUnit) fromDate:date];
-    NSInteger hour = [comp hour];
-    NSInteger day = [comp day];
-    NSInteger mnth = [comp month];
-    NSInteger min = [comp minute];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateStyle:NSDateFormatterLongStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
 
-    NSString *month = [self monthFromMnth:mnth];
-    NSString *title = [NSString stringWithFormat:@"PainTrackr Report for: %@ %d at %02d:%02d hours",month,day,hour,min ];
+    title = [NSString stringWithFormat:@"PainTrackr Report on %@",[formatter stringFromDate:date]];
 
     return [title copy];
 }

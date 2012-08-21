@@ -407,7 +407,7 @@
 -(NSData *)imageToAttachToReport{
 
 
-    UIGraphicsBeginImageContext(CGSizeMake(320, 480));
+    UIGraphicsBeginImageContext(CGSizeMake(320, 432));
     CGContextRef ctxRef = UIGraphicsGetCurrentContext();
     
     [self.window.layer renderInContext:ctxRef];
@@ -430,6 +430,11 @@
 -(void)saved{
 
     NSLog(@"Image was saved");
+    
+//    [self drawRect: imageBounds inContext: ctx zoomLevel: zoom];
+//     (void) drawRect: (CGRect) rect { [self drawRect: self.bounds inContext: currentContext zoomLevel: zoom]}
+//    typedef void(^ErrorBlock)(NSError *);
+//    last50PainEntriesIfError: (ErrorBlock) errorBlock;
 }
 #pragma mark -
 

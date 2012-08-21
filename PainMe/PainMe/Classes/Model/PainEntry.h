@@ -20,5 +20,5 @@
 
 +(void )painEntryWithTime:(NSDate *)time PainLevel:(int16_t)level ExtraNotes:(NSString *)extraNotes Location:(PainLocation *)painLoc;
 
-+(NSArray *)Last50PainEntries;
++(NSArray *)last50PainEntries;
 @end

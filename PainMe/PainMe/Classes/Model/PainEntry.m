@@ -41,7 +41,7 @@
 //     NSLog(@"Entered new pain Entry");
 }
 
-+(NSArray *)Last50PainEntries{
++(NSArray *)last50PainEntries{
 
     InvoDataManager *dataManager = [InvoDataManager sharedDataManager];
     NSManagedObjectContext *mangObjContext = [dataManager managedObjectContext];
@@ -50,27 +50,25 @@
     
     NSFetchRequest *fetchReq =[[NSFetchRequest alloc] init];
     [fetchReq setEntity:entityDesc];
+    [fetchReq setFetchLimit:50];
 
     NSSortDescriptor *desc = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO];
     [fetchReq setSortDescriptors:[NSArray arrayWithObject:desc]];
     
     NSError *error = nil;
     NSArray *result = [mangObjContext executeFetchRequest:fetchReq error:&error];
-    NSMutableArray *arrToRet = [NSMutableArray array];
-    
-    if (result &&[result count]>0) {
-        int recordNum = 1;
-        for (NSArray *arr in result) {
 
-            if(recordNum <=50){
-                [arrToRet addObject:arr];
-                recordNum ++;
-            }else{
+    if (!error) {
+
+        if (result &&[result count]>0) {
             
-                break;
-            }
+            return result;
         }
     }
-    return [arrToRet copy];
+    else{
+    
+    }
+    
+    return nil;
 }
 @end
