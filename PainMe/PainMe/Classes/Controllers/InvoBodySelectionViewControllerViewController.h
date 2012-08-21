@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "PainFaceView.h"
+#import <MessageUI/MessageUI.h>
+#import <MessageUi/MFMailComposeViewController.h>
 
-
-@interface InvoBodySelectionViewControllerViewController : UIViewController <UIScrollViewDelegate,UIGestureRecognizerDelegate,PainFaceDelegate>
+@interface InvoBodySelectionViewControllerViewController : UIViewController <UIScrollViewDelegate,UIGestureRecognizerDelegate,PainFaceDelegate,MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, retain)IBOutlet UILabel *partNameLabel;
 

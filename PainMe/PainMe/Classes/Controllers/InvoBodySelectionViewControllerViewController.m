@@ -31,6 +31,9 @@
 -(UIColor *)colorfromPain:(int)painLvl;
 -(void)checkAndAddLastEntryToView;
 
+-(IBAction)sendPresed:(id)sender;
+-(NSString *)timeForReport;
+
 @end
 
 @implementation InvoBodySelectionViewControllerViewController
@@ -409,6 +412,119 @@
     }
 
     return colorToFill;
+}
+
+#pragma mark -
+
+#pragma mark Send Pressed
+
+-(IBAction)sendPresed:(id)sender{
+
+    NSLog(@"Send was pressed");
+    if (![MFMailComposeViewController canSendMail]) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!" message:NSLocalizedString(@"Your device is not able to send mail.", @"") delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+       
+        return;
+    }
+
+//Image data of body
+    NSData *img = [self.bodyView imageToAttachToReport];
+    NSArray *entries = [PainEntry Last50PainEntries];
+    
+    NSString *str = @"";
+    for(NSDictionary *dict in entries){
+    
+        PainLocation *loc = [dict valueForKey:@"location"];
+        NSString *newStr = [NSString stringWithFormat:@"%@ hurts %d",[loc valueForKey:@"name"],[[dict valueForKey:@"painLevel"] integerValue]];
+        
+        str = [str stringByAppendingString:[NSString stringWithFormat:@"\n %@",newStr]];
+    }
+
+    MFMailComposeViewController *mailComp = [[MFMailComposeViewController alloc] init];
+    
+    [mailComp setSubject:[[self timeForReport] copy]];
+    [mailComp setToRecipients:[NSArray arrayWithObject:@"dhaval@goinvo.com"]];
+    [mailComp addAttachmentData:img mimeType:@"image/png" fileName:@"BodyReport"];
+   // [mailComp setMessageBody:[[self timeForReport] copy] isHTML:NO];
+    [mailComp setMessageBody:str isHTML:NO];
+    
+    mailComp.mailComposeDelegate = self;
+    
+    [self presentModalViewController:mailComp animated:YES];
+    
+}
+
+#pragma mark -
+-(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+    
+    [self dismissModalViewControllerAnimated:YES];
+}
+#pragma mark -
+
+#pragma mark Time For Report
+
+-(NSString *)monthFromMnth:(NSInteger)day{
+
+    NSString *mnthFromMnth = nil;
+    switch (day) {
+        case 1:
+            mnthFromMnth = @"Jan";
+            break;
+        case 2:
+            mnthFromMnth = @"Feb";
+            break;
+        case 3:
+            mnthFromMnth = @"Mar";
+            break;
+        case 4:
+            mnthFromMnth = @"Apr";
+            break;
+        case 5:
+            mnthFromMnth = @"May";
+            break;
+        case 6:
+            mnthFromMnth = @"Jun";
+            break;
+        case 7:
+            mnthFromMnth = @"Jul";
+            break;
+        case 8:
+            mnthFromMnth = @"Aug";
+            break;
+        case 9:
+            mnthFromMnth = @"Sep";
+            break;
+        case 10:
+            mnthFromMnth = @"Oct";
+            break;
+        case 11:
+            mnthFromMnth = @"Nov";
+            break;
+        case 12:
+            mnthFromMnth = @"Dec";
+            break;
+        default:
+            break;
+    }
+    return [mnthFromMnth copy];
+}
+-(NSString *)timeForReport{
+
+    NSDate *date = [NSDate date];
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    
+    NSDateComponents *comp = [cal components:(NSHourCalendarUnit|NSMinuteCalendarUnit|NSDayCalendarUnit|NSMonthCalendarUnit) fromDate:date];
+    NSInteger hour = [comp hour];
+    NSInteger day = [comp day];
+    NSInteger mnth = [comp month];
+    NSInteger min = [comp minute];
+
+    NSString *month = [self monthFromMnth:mnth];
+    NSString *title = [NSString stringWithFormat:@"PainTrackr Report for: %@ %d at %02d:%02d hours",month,day,hour,min ];
+
+    return [title copy];
 }
 
 #pragma mark -

@@ -105,14 +105,14 @@
 
 - (void)saveContext
 {
-    NSLog(@"Saving COntext");
+//    NSLog(@"Saving COntext");
     
     NSError *error = nil;
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
     
     if (managedObjectContext != nil) {
         
-        NSLog(@" managedObjectContext is not nil");
+//        NSLog(@" managedObjectContext is not nil");
         
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
             
@@ -447,7 +447,7 @@
     CrDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
 //    count = [CrDta count];
         
-    NSLog(@"value in COreData PainEntry is %d", [CrDta count]);
+//    NSLog(@"value in COreData PainEntry is %d", [CrDta count]);
         
     }
     

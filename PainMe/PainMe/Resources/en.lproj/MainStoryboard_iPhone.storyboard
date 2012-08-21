@@ -70,11 +70,11 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nsC-l6-yud" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Yo3-Z7-ePf" customClass="InvoBodySelectionViewControllerViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="81h-8G-V63">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="c8j-aa-t6T">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="W3V-hI-nmq" customClass="BodyView">
@@ -102,7 +102,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="ro2-cl-npG"/>
+                        <barButtonItem title="Send" id="gHK-Kg-PFO">
+                            <connections>
+                                <action selector="sendPresed:" destination="Yo3-Z7-ePf" id="PFk-iI-YcU"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="Olw-fE-IH3"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bodyView" destination="W3V-hI-nmq" id="4eG-FW-kEP"/>
                         <outlet property="partNameLabel" destination="HTx-6b-9Wc" id="sLA-FY-Dxc"/>
@@ -166,6 +175,7 @@
         <class className="InvoBodySelectionViewControllerViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/InvoBodySelectionViewControllerViewController.h"/>
             <relationships>
+                <relationship kind="action" name="sendPresed:"/>
                 <relationship kind="outlet" name="bodyView" candidateClass="BodyView"/>
                 <relationship kind="outlet" name="partNameLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>

@@ -32,4 +32,5 @@
 -(void)addObjToSHapesArrayWithShape:(UIBezierPath *)shape color:(UIColor *)fillColor detail:(int)levDet name:(NSString *)partName;
 
 -(BOOL)doesEntryExist:(NSString *)name;
+-(NSData *)imageToAttachToReport;
 @end

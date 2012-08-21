@@ -307,6 +307,7 @@
 		76B127E315D441480000286A /* body_slices_34_512@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76B127BF15D441480000286A /* body_slices_34_512@2x.png */; };
 		76B127E415D441480000286A /* body_slices_35_512@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76B127C015D441480000286A /* body_slices_35_512@2x.png */; };
 		76B127E515D441480000286A /* body_slices_36_512@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76B127C115D441480000286A /* body_slices_36_512@2x.png */; };
+		76C61AF515E3E21E00EDCBFC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76C61AF415E3E21E00EDCBFC /* MessageUI.framework */; };
 		76D3E50715D5977A0095C553 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 76D3E50415D5977A0095C553 /* README.txt */; };
 		76D3E50815D5977A0095C553 /* release_notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 76D3E50515D5977A0095C553 /* release_notes.txt */; };
 		76D3E50A15D597950095C553 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76D3E50915D597950095C553 /* libTestFlight.a */; };
@@ -765,6 +766,7 @@
 		76B127BF15D441480000286A /* body_slices_34_512@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "body_slices_34_512@2x.png"; sourceTree = "<group>"; };
 		76B127C015D441480000286A /* body_slices_35_512@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "body_slices_35_512@2x.png"; sourceTree = "<group>"; };
 		76B127C115D441480000286A /* body_slices_36_512@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "body_slices_36_512@2x.png"; sourceTree = "<group>"; };
+		76C61AF415E3E21E00EDCBFC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		76D3E50415D5977A0095C553 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		76D3E50515D5977A0095C553 /* release_notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
 		76D3E50615D5977A0095C553 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
@@ -842,6 +844,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76C61AF515E3E21E00EDCBFC /* MessageUI.framework in Frameworks */,
 				76D3E50C15D598970095C553 /* libz.dylib in Frameworks */,
 				760D738B15CC54A300404C10 /* CoreImage.framework in Frameworks */,
 				83C440271598D96800F401D2 /* QuartzCore.framework in Frameworks */,
@@ -1417,6 +1420,7 @@
 		834C0FB2158F7121000C5652 = {
 			isa = PBXGroup;
 			children = (
+				76C61AF415E3E21E00EDCBFC /* MessageUI.framework */,
 				76D3E50B15D598970095C553 /* libz.dylib */,
 				760D738A15CC54A300404C10 /* CoreImage.framework */,
 				834C0FC9158F7121000C5652 /* PainMe */,

@@ -30,14 +30,47 @@
     newEntry.painLevel = level;
     newEntry.notes = extraNotes;
 
-    NSLog(@"Time stamp is %lf",[time timeIntervalSinceNow]) ;
+//    NSLog(@"Time stamp is %lf",[time timeIntervalSinceNow]) ;
     newEntry.timestamp = [time timeIntervalSinceReferenceDate];
     
     newEntry.location = painLoc ;
-    NSLog(@"was entering new pain Entry");
+//    NSLog(@"was entering new pain Entry");
     
     [dataManager saveContext];
     
-     NSLog(@"Entered new pain Entry");
+//     NSLog(@"Entered new pain Entry");
+}
+
++(NSArray *)Last50PainEntries{
+
+    InvoDataManager *dataManager = [InvoDataManager sharedDataManager];
+    NSManagedObjectContext *mangObjContext = [dataManager managedObjectContext];
+    
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"PainEntry" inManagedObjectContext:mangObjContext];
+    
+    NSFetchRequest *fetchReq =[[NSFetchRequest alloc] init];
+    [fetchReq setEntity:entityDesc];
+
+    NSSortDescriptor *desc = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO];
+    [fetchReq setSortDescriptors:[NSArray arrayWithObject:desc]];
+    
+    NSError *error = nil;
+    NSArray *result = [mangObjContext executeFetchRequest:fetchReq error:&error];
+    NSMutableArray *arrToRet = [NSMutableArray array];
+    
+    if (result &&[result count]>0) {
+        int recordNum = 1;
+        for (NSArray *arr in result) {
+
+            if(recordNum <=50){
+                [arrToRet addObject:arr];
+                recordNum ++;
+            }else{
+            
+                break;
+            }
+        }
+    }
+    return [arrToRet copy];
 }
 @end

@@ -402,4 +402,35 @@
     return NO;
 }
 
+#pragma mark Image to be returned for Report
+
+-(NSData *)imageToAttachToReport{
+
+
+    UIGraphicsBeginImageContext(CGSizeMake(320, 480));
+    CGContextRef ctxRef = UIGraphicsGetCurrentContext();
+    
+    [self.window.layer renderInContext:ctxRef];
+    
+    UILabel *lbl =[[UILabel alloc]init ];
+    [lbl setText:@"YAY Pain Trackr"];
+    [lbl drawTextInRect:CGRectMake(100, 0, 220, 20)];
+
+    UIImage *imgTRet = UIGraphicsGetImageFromCurrentImageContext();
+    
+       
+    UIGraphicsEndImageContext();
+    
+//    UIImageWriteToSavedPhotosAlbum(imgTRet, nil, nil, nil);
+    NSData *data = UIImagePNGRepresentation(imgTRet);
+
+    return data;
+}
+
+-(void)saved{
+
+    NSLog(@"Image was saved");
+}
+#pragma mark -
+
 @end

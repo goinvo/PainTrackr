@@ -41,7 +41,7 @@
     if (result && [result count]>0) {
 
         locFound = (PainLocation *)[result objectAtIndex:0];
-        NSLog(@"PainLocation found is %@", locFound.name);
+//        NSLog(@"PainLocation found is %@", locFound.name);
     }
     
     NSDate *now = [[NSDate alloc] init];
