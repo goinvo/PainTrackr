@@ -25,6 +25,7 @@
 @property (nonatomic, retain) BodyPartGeometry *bodyGeometry;
 @property (nonatomic, retain) PainFaceView *painFace;
 
+@property (nonatomic, retain) UITapGestureRecognizer *doubleTap;
 
 -(void)initTapGesture;
 -(int)tileAtTouchLocation:(CGPoint)touchPt;
@@ -98,6 +99,14 @@
     self.bodyGeometry = [[BodyPartGeometry alloc] init];
     
     [self checkAndAddLastEntryToView];
+    
+    self.doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
+    self.doubleTap.numberOfTapsRequired = 2;
+    self.doubleTap.numberOfTouchesRequired = 1;
+    self.doubleTap.delegate = self;
+    [self.scrollView addGestureRecognizer:self.doubleTap];
+    
+    [self.tapGesture requireGestureRecognizerToFail:self.doubleTap];
 }
 
 
@@ -133,6 +142,7 @@
     self.tapGesture.numberOfTapsRequired = 1;
     [self.scrollView addGestureRecognizer:self.tapGesture];
     [self.tapGesture setCancelsTouchesInView:NO];
+//    [self.tapGesture requireGestureRecognizerToFail:self.doubleTap];
 }
 
 // button handler:
@@ -181,6 +191,24 @@
     NSLog(@"The point with Respect to Global body Coordinates is x:%f y:%f",bodyOffset.x,bodyOffset.y);
 */
 }
+
+-(void)handleDoubleTap:(UIGestureRecognizer*)gestReco{
+
+    NSLog(@"double tap happened");
+    
+    if (self.scrollView.zoomScale >=0.12) {
+    
+        //self.scrollView.zoomScale = 0.0623;
+        [self.scrollView zoomToRect:CGRectMake(0, 0,BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT) animated:YES];
+
+    }
+    else{
+        [self.scrollView zoomToRect:CGRectMake(0, 0,BODY_VIEW_WIDTH-1024*3, BODY_VIEW_HEIGHT-1024*3) animated:YES];
+//        self.scrollView.zoomScale=0.0125;
+//        [self.bodyView setNeedsDisplay];
+    }
+}
+
 
 -(int)tileAtTouchLocation:(CGPoint)touchPt{
 
