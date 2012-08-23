@@ -27,6 +27,7 @@
 +(CGColorRef)blueColor;
 
 + (UIImage *)imageToMask:(UIImage *)image Withcolor:(UIColor *)color;
+-(void)drawRect:(CGRect)imageBounds inContext:(CGContextRef) ctx zoomLevel:(float)zoom;
 
 @end
 
@@ -178,12 +179,11 @@
     return CGPointZero;
 }
 
-//int drawNum = 0;
+
 #pragma makr Custom-Drawing code
 
 - (void)drawRect:(CGRect)rect {
         
-//    drawNum ++;
     
 //    NSLog(@"the draw rect in BodyView draw is %@", NSStringFromCGRect(rect));
     
@@ -195,7 +195,7 @@
 
     scale = (self.contentScaleFactor ==2)?scale/2:scale;
     
-//        NSLog(@"Scale in draw is %f",scale);
+        NSLog(@"Scale in draw is %f",scale);
     
     int firstCol = floorf(CGRectGetMinX(rect) / tileSize.width);
     int lastCol = floorf((CGRectGetMaxX(rect)-1) / tileSize.width);
@@ -224,6 +224,7 @@
                 
                 [tile drawInRect:tileRect];
                 
+                
                 // Draw a white line around the tile border so
                 // we can see it
                 //
@@ -236,11 +237,10 @@
             }
         }
     }
-    // iterate over pain entries
-    // if pain entry's body part is inside rect, draw it
-  
+      
     int zoom = (scale <0.0625)?1:2;
-    
+    [self colorBodyLocationsInRect:rect WithZoom:zoom InContext:context withOffset:CGPointZero];
+  /*
     for (InvoBodyPartDetails *part in self.shapesArray) {
         
         if (part.partShapePoints && CGRectIntersectsRect(rect, [part.partShapePoints bounds])) {
@@ -255,7 +255,7 @@
             else{
                 
                 CGPoint centPoint = [self midPoinfOfBezierPath:part.partShapePoints];
-  //              [part.shapeColor set];
+
                 CGContextSetLineWidth(context, 4.0f);
                 CGContextSetStrokeColorWithColor(context, part.shapeColor.CGColor);
                 CGContextSetFillColorWithColor(context, part.shapeColor.CGColor);
@@ -267,7 +267,7 @@
             }
         }
     }
-//    NSLog(@"draw was called %d",drawNum);
+   */
 }
 
 
@@ -314,6 +314,47 @@
       return nil;
    }
 }
+
+#pragma mark color location in context
+
+-(void)colorBodyLocationsInRect:(CGRect)rect WithZoom:(int)zm InContext:(CGContextRef)ctx withOffset:(CGPoint)ofst{
+    
+    for (InvoBodyPartDetails *part in self.shapesArray) {
+        
+        if (part.partShapePoints && CGRectIntersectsRect(rect, [part.partShapePoints bounds])) {
+            
+            if(zm == part.zoomLevel){
+                CGContextSetStrokeColorWithColor(ctx,[BodyView blueColor]);
+                CGContextSetFillColorWithColor(ctx, [part.shapeColor CGColor]);
+                
+                if (!CGPointEqualToPoint(ofst, CGPointZero)) {
+                    
+                    [part.partShapePoints applyTransform:CGAffineTransformMakeTranslation(ofst.x, 0)];
+                }
+
+                [part.partShapePoints fill];
+                [part.partShapePoints stroke];
+                 [part.partShapePoints applyTransform:CGAffineTransformMakeTranslation(-ofst.x, 0)];
+                               
+            }
+            else{
+                
+                CGPoint centPoint = [self midPoinfOfBezierPath:part.partShapePoints];
+                
+                CGContextSetLineWidth(ctx, 4.0f);
+                CGContextSetStrokeColorWithColor(ctx, part.shapeColor.CGColor);
+                CGContextSetFillColorWithColor(ctx, part.shapeColor.CGColor);
+                CGContextSetAlpha(ctx, 0.5f);
+                CGContextFillEllipseInRect(ctx, CGRectMake(centPoint.x-150 +ofst.x , centPoint.y-150 , 300, 300));
+                CGContextSetAlpha(ctx, 1.0f);
+                CGContextFillEllipseInRect(ctx, CGRectMake(centPoint.x-50+ofst.x, centPoint.y-50, 100, 100));
+
+            }
+        }
+    }
+
+}
+#pragma mark -
 
 #pragma mark mask WIth color for stroke of body
 
@@ -404,27 +445,66 @@
 
 #pragma mark Image to be returned for Report
 
--(NSData *)imageToAttachToReport{
+-(NSData *)imageToAttachToReportWithZoomLevel:(float)level{
 
-
-    UIGraphicsBeginImageContext(CGSizeMake(320, 432));
-    CGContextRef ctxRef = UIGraphicsGetCurrentContext();
+    //CGFloat scale = 0.0623*2;
     
-    [self.window.layer renderInContext:ctxRef];
+    CGFloat scale = (level<0.0623)?0.0623:0.123;
+        
+   // UIGraphicsBeginImageContext(CGSizeMake(340*2, 580*2));
     
-    UILabel *lbl =[[UILabel alloc]init ];
-    [lbl setText:@"YAY Pain Trackr"];
-    [lbl drawTextInRect:CGRectMake(100, 0, 220, 20)];
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(self.bounds.size.width+1024,self.bounds.size.height), NO, 0.25);
+    
+//    UILabel *lbl =[[UILabel alloc]init ];
+//    [lbl setText:@"YAY Pain Trackr"];
+//    [lbl drawTextInRect:CGRectMake(100, 0, 220, 20)];
+//    lbl.adjustsFontSizeToFitWidth = YES;
+    
+    for(int i=0 ;i<6;i++){
+    
+        NSString *name = [NSString stringWithFormat:@"F%d.png",i+1];
+        NSString *path = [[NSBundle mainBundle]pathForResource:name ofType:nil];
+        UIImage *img = [UIImage imageWithContentsOfFile:path];
+        [img drawInRect:CGRectMake(10, (40*(i+1) + img.size.height*i)*10, img.size.width*15, img.size.height*15)];
+    }
+    
+    CGSize tileSize = (CGSize){BODY_TILE_SIZE, BODY_TILE_SIZE};
 
+    for (int row = 0; row < 9; row++) {
+        for (int col = 0; col < 4; col++) {
+            
+            UIImage *tile = [self tileAtCol:col row:row withScale:scale];
+            
+            if (tile) {
+                
+                CGRect tileRect;
+                
+                tileRect = CGRectMake(1024+tileSize.width * col,
+                                      tileSize.height * row,
+                                      tileSize.width, tileSize.height);
+                                
+                [tile drawInRect:tileRect];
+                
+            }
+        }
+    }
+    
+    int zoom = (scale <0.0625)?1:2;
+    
+    [self colorBodyLocationsInRect:self.bounds WithZoom:zoom InContext:UIGraphicsGetCurrentContext() withOffset:CGPointMake(1024, 0)];
+    
     UIImage *imgTRet = UIGraphicsGetImageFromCurrentImageContext();
     
-       
     UIGraphicsEndImageContext();
     
 //    UIImageWriteToSavedPhotosAlbum(imgTRet, nil, nil, nil);
     NSData *data = UIImagePNGRepresentation(imgTRet);
 
     return data;
+}
+
+-(void)drawRect:(CGRect)imageBounds inContext:(CGContextRef) ctx zoomLevel:(float)zoom{
+
 }
 
 -(void)saved{

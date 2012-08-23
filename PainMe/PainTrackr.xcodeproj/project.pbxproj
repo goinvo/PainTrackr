@@ -391,6 +391,7 @@
 		762EC62615C1CCBE00250155 /* NSArray+CHCSVAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CHCSVAdditions.m"; sourceTree = "<group>"; };
 		762EC62715C1CCBE00250155 /* NSString+CHCSVAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CHCSVAdditions.h"; sourceTree = "<group>"; };
 		762EC62815C1CCBE00250155 /* NSString+CHCSVAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CHCSVAdditions.m"; sourceTree = "<group>"; };
+		766FF8FC15E51EA8000EDCD2 /* ErrorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorHandler.h; sourceTree = "<group>"; };
 		7673B51115ADD7CD006112C2 /* PainFaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PainFaceView.h; sourceTree = "<group>"; };
 		7673B51215ADD7CD006112C2 /* PainFaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PainFaceView.m; sourceTree = "<group>"; };
 		767B08CD15C9A0F3001EA228 /* InvoPainGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoPainGraphViewController.h; sourceTree = "<group>"; };
@@ -1455,6 +1456,7 @@
 		834C0FC9158F7121000C5652 /* PainMe */ = {
 			isa = PBXGroup;
 			children = (
+				766FF8FC15E51EA8000EDCD2 /* ErrorHandler.h */,
 				76D3E50215D597430095C553 /* TestFlight */,
 				76AA478915C9963300A28859 /* CorePlot */,
 				834C1002158F7255000C5652 /* Classes */,

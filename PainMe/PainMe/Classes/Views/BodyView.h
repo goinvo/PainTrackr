@@ -32,5 +32,6 @@
 -(void)addObjToSHapesArrayWithShape:(UIBezierPath *)shape color:(UIColor *)fillColor detail:(int)levDet name:(NSString *)partName;
 
 -(BOOL)doesEntryExist:(NSString *)name;
--(NSData *)imageToAttachToReport;
+-(NSData *)imageToAttachToReportWithZoomLevel:(float)level;
+-(void)colorBodyLocationsInRect:(CGRect)rect WithZoom:(int)zm InContext:(CGContextRef)ctx withOffset:(CGPoint)ofst;
 @end

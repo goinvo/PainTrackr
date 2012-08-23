@@ -37,9 +37,6 @@
 
 -(NSArray *)totalPainEntriesForPart:(NSString *)pName;
 
--(NSArray *)painLevelsForAllEntries;
--(NSArray *)timeStampsForPainEntries;
-
 -(id)lastPainEntryToRender;
 
 -(NSArray *)namesOfBodyParts;

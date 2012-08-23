@@ -22,9 +22,9 @@
 @property (nonatomic, retain) IBOutlet BodyView *bodyView;
 @property (nonatomic, retain) UITapGestureRecognizer *tapGesture;
 
-
 @property (nonatomic, retain) BodyPartGeometry *bodyGeometry;
 @property (nonatomic, retain) PainFaceView *painFace;
+
 
 -(void)initTapGesture;
 -(int)tileAtTouchLocation:(CGPoint)touchPt;
@@ -56,6 +56,8 @@
     return self;
 }
 */
+
+
 
 -(void)viewWillAppear:(BOOL)animated{
 
@@ -421,17 +423,24 @@
 -(IBAction)sendPresed:(id)sender{
 
     NSLog(@"Send was pressed");
+        
     if (![MFMailComposeViewController canSendMail]) {
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!" message:NSLocalizedString(@"Your device is not able to send mail.", @"") delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning!" message:NSLocalizedString(@"Your device is not able to send mail.", @"") delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alert show];
        
         return;
     }
 
 //Image data of body
-    NSData *img = [self.bodyView imageToAttachToReport];
-    NSArray *entries = [PainEntry last50PainEntries];
+    
+    NSData *img = [self.bodyView imageToAttachToReportWithZoomLevel:self.scrollView.zoomScale];
+    
+  //  NSArray *entries = [PainEntry last50PainEntries];
+    NSArray *entries = [PainEntry last50PainEntr:^(NSError *error){
+    
+        NSLog(@"error was %@",[error localizedDescription]);
+    }];
     
     NSString *str = @"";
     int num=1;

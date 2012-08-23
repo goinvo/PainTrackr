@@ -93,15 +93,6 @@
 	return instance;
 }
 
-/*
-+(id)alloc{
-
-    @synchronized([InvoDataManager class]){
-        instance = [super alloc];
-    }
-    return instance;
-}
-*/
 
 - (void)saveContext
 {

@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+//#import "ErrorHandler.h"
+
+typedef void(^ErrorHandler)(NSError *);
 
 @class PainLocation;
 
@@ -20,5 +23,6 @@
 
 +(void )painEntryWithTime:(NSDate *)time PainLevel:(int16_t)level ExtraNotes:(NSString *)extraNotes Location:(PainLocation *)painLoc;
 
-+(NSArray *)last50PainEntries;
+//+(NSArray *)last50PainEntries;
++(NSArray *)last50PainEntr:(ErrorHandler)handler;
 @end
