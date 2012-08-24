@@ -109,7 +109,6 @@
     for (int i=0; i<6; i++) {
 
         UILabel *l1 = [[UILabel alloc] initWithFrame:CGRectMake(width*0.5 -12 , height-12, 25, 10)];
-//        [l1 setCenter:CGPointMake(10+ width*0.5, height + height*i +4*i)];
         
         (i==0)?[l1 setText:@"0"]:[l1 setText:[NSString stringWithFormat:@"%d - %d",(i*2 -1),i*2]];
         

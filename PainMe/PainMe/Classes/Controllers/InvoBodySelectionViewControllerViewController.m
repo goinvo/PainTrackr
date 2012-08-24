@@ -16,6 +16,7 @@
 @interface InvoBodySelectionViewControllerViewController () {
    
     CGPoint bodyOffset;
+    UIActivityIndicatorView *indicator;
 }
 
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
@@ -34,6 +35,7 @@
 
 -(IBAction)sendPresed:(id)sender;
 -(NSString *)timeForReport;
+-(void)showMailToBeSent;
 
 @end
 
@@ -107,6 +109,11 @@
     [self.scrollView addGestureRecognizer:self.doubleTap];
     
     [self.tapGesture requireGestureRecognizerToFail:self.doubleTap];
+    
+    indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [indicator setCenter:CGPointMake(160, 240)];
+    [self.view insertSubview:indicator aboveSubview:self.scrollView];
+  
 }
 
 
@@ -196,16 +203,13 @@
 
     NSLog(@"double tap happened");
     
-    if (self.scrollView.zoomScale >=0.12) {
+    if (self.scrollView.zoomScale >=0.065) {
     
-        //self.scrollView.zoomScale = 0.0623;
         [self.scrollView zoomToRect:CGRectMake(0, 0,BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT) animated:YES];
 
     }
     else{
         [self.scrollView zoomToRect:CGRectMake(0, 0,BODY_VIEW_WIDTH-1024*3, BODY_VIEW_HEIGHT-1024*3) animated:YES];
-//        self.scrollView.zoomScale=0.0125;
-//        [self.bodyView setNeedsDisplay];
     }
 }
 
@@ -450,55 +454,66 @@
 
 -(IBAction)sendPresed:(id)sender{
 
-    NSLog(@"Send was pressed");
-        
+//    NSLog(@"Send was pressed");
+    
+    [indicator startAnimating];
+   
+    [self performSelector:@selector(showMailToBeSent) withObject:nil afterDelay:0.001];
+}
+
+-(void)showMailToBeSent{
+
     if (![MFMailComposeViewController canSendMail]) {
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning!" message:NSLocalizedString(@"Your device is not able to send mail.", @"") delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alert show];
-       
+        
         return;
     }
-
-//Image data of body
+    
+    //Image data of body
     
     NSData *img = [self.bodyView imageToAttachToReportWithZoomLevel:self.scrollView.zoomScale];
     
-  //  NSArray *entries = [PainEntry last50PainEntries];
-    NSArray *entries = [PainEntry last50PainEntr:^(NSError *error){
-    
+    NSArray *entries = [PainEntry last50PainEntriesIfError:^(NSError *error){
+        
         NSLog(@"error was %@",[error localizedDescription]);
     }];
     
     NSString *str = @"";
     int num=1;
     for(NSDictionary *dict in entries){
-    
+        
         PainLocation *loc = [dict valueForKey:@"location"];
         NSDate *dte= [dict valueForKey:@"timestamp"];
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
         [formatter setDateStyle:NSDateFormatterShortStyle];
         [formatter setTimeStyle:NSDateFormatterShortStyle];
-
-        NSString *newStr = [NSString stringWithFormat:@"%@ %@ PainLevel %d",[formatter stringFromDate:dte],[loc valueForKey:@"name"],[[dict valueForKey:@"painLevel"] integerValue]];
+        
+        NSString *newStr = [NSString stringWithFormat:@"%@ %@ Pain Level %d",[formatter stringFromDate:dte],[loc valueForKey:@"name"],[[dict valueForKey:@"painLevel"] integerValue]];
         
         str = [str stringByAppendingString:[NSString stringWithFormat:@"\n%d) %@",num,newStr]];
         num++;
     }
     num=0;
-
+    
     MFMailComposeViewController *mailComp = [[MFMailComposeViewController alloc] init];
     
     [mailComp setSubject:[[self timeForReport] copy]];
-    [mailComp setToRecipients:[NSArray arrayWithObject:@"dhaval@goinvo.com"]];
+    //    [mailComp setToRecipients:[NSArray arrayWithObject:@"dhaval@goinvo.com"]];
     [mailComp addAttachmentData:img mimeType:@"image/png" fileName:@"BodyReport"];
-  
+    
     [mailComp setMessageBody:str isHTML:NO];
     
     mailComp.mailComposeDelegate = self;
     
-    [self presentModalViewController:mailComp animated:YES];
-    
+    //[self presentModalViewController:mailComp animated:YES ];
+    [self presentViewController:mailComp animated:YES completion:^(){
+        
+        [indicator stopAnimating];
+        
+    } ];
+
 }
 
 #pragma mark -

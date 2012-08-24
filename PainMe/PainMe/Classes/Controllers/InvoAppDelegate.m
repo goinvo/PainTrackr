@@ -19,20 +19,20 @@
 @synthesize window = _window;
 
 
--(void)IamPrint:(PrintThis)printing{
-
-    printing(@"me");
-
-}
+//-(void)IamPrint:(PrintThis)printing{
+//
+//    printing(@"me");
+//
+//}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
 
-    [self IamPrint:^(NSString *str){
-    
-        NSLog(@"%@",str);
-    }];
+//    [self IamPrint:^(NSString *str){
+//    
+//        NSLog(@"%@",str);
+//    }];
 
    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
        UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
@@ -47,6 +47,7 @@
    }
     
     InvoDataManager *dtaMgr = [InvoDataManager sharedDataManager];
+    
     [dtaMgr checkPainLocationDataBase];
     
 //    [TestFlight takeOff:@"35de84803bb30da2ded080223940da33_MTEwMDY2MjAxMi0wNy0xMyAxNDo1MTozNi44MDQ4NjU"];

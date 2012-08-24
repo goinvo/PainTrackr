@@ -327,14 +327,13 @@
                 CGContextSetStrokeColorWithColor(ctx,[BodyView blueColor]);
                 CGContextSetFillColorWithColor(ctx, [part.shapeColor CGColor]);
                 
-                if (!CGPointEqualToPoint(ofst, CGPointZero)) {
                     
-                    [part.partShapePoints applyTransform:CGAffineTransformMakeTranslation(ofst.x, 0)];
-                }
+                [part.partShapePoints applyTransform:CGAffineTransformMakeTranslation(ofst.x, ofst.y)];
+              
 
                 [part.partShapePoints fill];
                 [part.partShapePoints stroke];
-                 [part.partShapePoints applyTransform:CGAffineTransformMakeTranslation(-ofst.x, 0)];
+                 [part.partShapePoints applyTransform:CGAffineTransformMakeTranslation(-ofst.x, -ofst.y)];
                                
             }
             else{
@@ -345,9 +344,9 @@
                 CGContextSetStrokeColorWithColor(ctx, part.shapeColor.CGColor);
                 CGContextSetFillColorWithColor(ctx, part.shapeColor.CGColor);
                 CGContextSetAlpha(ctx, 0.5f);
-                CGContextFillEllipseInRect(ctx, CGRectMake(centPoint.x-150 +ofst.x , centPoint.y-150 , 300, 300));
+                CGContextFillEllipseInRect(ctx, CGRectMake(centPoint.x-150 +ofst.x , centPoint.y-150+ofst.y , 300, 300));
                 CGContextSetAlpha(ctx, 1.0f);
-                CGContextFillEllipseInRect(ctx, CGRectMake(centPoint.x-50+ofst.x, centPoint.y-50, 100, 100));
+                CGContextFillEllipseInRect(ctx, CGRectMake(centPoint.x-50+ofst.x, centPoint.y-50+ofst.y, 100, 100));
 
             }
         }
@@ -447,29 +446,34 @@
 
 -(NSData *)imageToAttachToReportWithZoomLevel:(float)level{
 
-    //CGFloat scale = 0.0623*2;
-    
     CGFloat scale = (level<0.0623)?0.0623:0.123;
+    
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(self.bounds.size.width+1024,self.bounds.size.height+500), NO, 0.25);
+
+    CGContextRef ctxRef = UIGraphicsGetCurrentContext();
         
-   // UIGraphicsBeginImageContext(CGSizeMake(340*2, 580*2));
-    
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(self.bounds.size.width+1024,self.bounds.size.height), NO, 0.25);
-    
-//    UILabel *lbl =[[UILabel alloc]init ];
-//    [lbl setText:@"YAY Pain Trackr"];
-//    [lbl drawTextInRect:CGRectMake(100, 0, 220, 20)];
-//    lbl.adjustsFontSizeToFitWidth = YES;
+    [@"Pain Trackr Report" drawInRect:CGRectMake(400, -50, self.bounds.size.width, 300) withFont:[UIFont fontWithName:@"Helvetica" size:300] lineBreakMode:UILineBreakModeWordWrap alignment:UITextAlignmentCenter];
     
     for(int i=0 ;i<6;i++){
-    
+        
         NSString *name = [NSString stringWithFormat:@"F%d.png",i+1];
         NSString *path = [[NSBundle mainBundle]pathForResource:name ofType:nil];
         UIImage *img = [UIImage imageWithContentsOfFile:path];
         [img drawInRect:CGRectMake(10, (40*(i+1) + img.size.height*i)*10, img.size.width*15, img.size.height*15)];
+        
+        CGContextSetFillColorWithColor(ctxRef, [UIColor whiteColor].CGColor);
+        CGContextSetAlpha(ctxRef, 0.4f);
+        CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(img.size.width*0.25*15 +50,(40*(i) + img.size.height*i)*10 + 15*img.size.height +200, 400, 140));
+        
+        CGContextSetAlpha(ctxRef, 1.0f);
+        CGContextSetFillColorWithColor(ctxRef, [UIColor blackColor].CGColor);
+        
+        NSString *tmp = (i==0)? @"0":[NSString stringWithFormat:@"%d-%d",(i*2 -1),i*2];
+        [tmp drawInRect:CGRectMake(img.size.width*0.25*15 +50,(40*(i) + img.size.height*i)*10 + 15*img.size.height +200, 400, 140) withFont:[UIFont fontWithName:@"Helvetica" size:150 ] lineBreakMode:UILineBreakModeCharacterWrap alignment:UITextAlignmentCenter];
     }
     
     CGSize tileSize = (CGSize){BODY_TILE_SIZE, BODY_TILE_SIZE};
-
+    
     for (int row = 0; row < 9; row++) {
         for (int col = 0; col < 4; col++) {
             
@@ -480,9 +484,9 @@
                 CGRect tileRect;
                 
                 tileRect = CGRectMake(1024+tileSize.width * col,
-                                      tileSize.height * row,
+                                      tileSize.height * row+500,
                                       tileSize.width, tileSize.height);
-                                
+                
                 [tile drawInRect:tileRect];
                 
             }
@@ -490,8 +494,8 @@
     }
     
     int zoom = (scale <0.0625)?1:2;
+    [self colorBodyLocationsInRect:self.bounds WithZoom:zoom InContext:UIGraphicsGetCurrentContext() withOffset:CGPointMake(1024, 500)];
     
-    [self colorBodyLocationsInRect:self.bounds WithZoom:zoom InContext:UIGraphicsGetCurrentContext() withOffset:CGPointMake(1024, 0)];
     
     UIImage *imgTRet = UIGraphicsGetImageFromCurrentImageContext();
     

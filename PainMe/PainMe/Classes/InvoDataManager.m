@@ -56,6 +56,7 @@
 -(void)painLocationsInDatabase;
 -(void) setPointCount: (NSInteger) newPoints;
 -(BOOL)painLocationExists:(NSString*)locName;
+-(int)totalLocations;
 @end
 
 
@@ -138,40 +139,19 @@
  
 -(void)checkPainLocationDataBase{
 
-//    if (NO == [self painLocationsInDatabase]) {
     [self painLocationsInDatabase];
-    [self getDataFromCSVInDict];
-    [self listCoordinates];
-//    }
-
+    
+    if(137 != [self totalLocations]){
+            
+        [self getDataFromCSVInDict];
+        [self listCoordinates];
+    }
 }
 
 #pragma mark get painLocation Data from database
 
 -(void)painLocationsInDatabase{
-    /*
-     BOOL toReturn = NO;
-     
-     NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainLocation" inManagedObjectContext:self.managedObjectContext];
-     
-     NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
-     [fetReq setEntity:descript];
-     [fetReq setResultType:NSDictionaryResultType];
-     
-     NSError *error;
-     NSArray *crDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
-     
-     if ([crDta count]>0) {
-     
-     //        NSLog(@"value in COreData PainLocation is %@", crDta);
-     toReturn = YES;
-     }
-     
-     fetReq = nil;
-     return toReturn;
-     
-     */
-    
+      
     NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainLocation" inManagedObjectContext:self.managedObjectContext];
     
     NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
@@ -188,6 +168,28 @@
         //getting all names
         [self.keysFromStoredLocData addObject:[[dicti allValues]objectAtIndex:0]];
     }
+}
+
+
+-(int)totalLocations{
+
+    NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainLocation" inManagedObjectContext:self.managedObjectContext];
+    
+    NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
+    [fetReq setEntity:descript];
+    [fetReq setResultType:NSDictionaryResultType];
+    
+    NSError *error = nil;
+    NSArray *locData = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
+    
+    //    NSLog(@"Entries are %@ with count %d", locData,[locData count]);
+    self.keysFromStoredLocData = [NSMutableArray array];
+    
+    for (NSDictionary *dicti in locData) {
+        //getting all names
+        [self.keysFromStoredLocData addObject:[[dicti allValues]objectAtIndex:0]];
+    }
+    return [locData count];
 }
 
 #pragma mark -

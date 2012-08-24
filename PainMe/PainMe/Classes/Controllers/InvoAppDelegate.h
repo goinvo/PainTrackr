@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^PrintThis)(NSString *);
+//typedef void (^PrintThis)(NSString *);
 
 @interface InvoAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
--(void)IamPrint:(PrintThis)printing;
+//-(void)IamPrint:(PrintThis)printing;
 
 @end
