@@ -141,7 +141,7 @@
 
     [self painLocationsInDatabase];
     
-    if(137 != [self totalLocations]){
+    if(136 != [self totalLocations]){
             
         [self getDataFromCSVInDict];
         [self listCoordinates];

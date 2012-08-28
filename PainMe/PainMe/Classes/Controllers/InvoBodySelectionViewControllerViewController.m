@@ -17,10 +17,12 @@
    
     CGPoint bodyOffset;
     UIActivityIndicatorView *indicator;
+    UIView *grayOverLayView;
 }
 
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet BodyView *bodyView;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *sendButton;
 @property (nonatomic, retain) UITapGestureRecognizer *tapGesture;
 
 @property (nonatomic, retain) BodyPartGeometry *bodyGeometry;
@@ -109,8 +111,10 @@
     [self.scrollView addGestureRecognizer:self.doubleTap];
     
     [self.tapGesture requireGestureRecognizerToFail:self.doubleTap];
-    
-    indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+   
+//Activity indicator
+    indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [indicator setColor:[UIColor grayColor]];
     [indicator setCenter:CGPointMake(160, 240)];
     [self.view insertSubview:indicator aboveSubview:self.scrollView];
   
@@ -457,6 +461,12 @@
 //    NSLog(@"Send was pressed");
     
     [indicator startAnimating];
+    [self.sendButton setEnabled:NO];
+    
+    grayOverLayView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 460)];
+    [grayOverLayView setBackgroundColor:[UIColor blackColor]];
+    [grayOverLayView setAlpha:0.2f];
+    [self.view addSubview:grayOverLayView];
    
     [self performSelector:@selector(showMailToBeSent) withObject:nil afterDelay:0.001];
 }
@@ -477,10 +487,13 @@
     
     NSArray *entries = [PainEntry last50PainEntriesIfError:^(NSError *error){
         
-        NSLog(@"error was %@",[error localizedDescription]);
+       // NSLog(@"error was %@",[error localizedDescription]);
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!" message:NSLocalizedString(@"Error occured while Populating Pain Entries.", @"") delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
     }];
     
-    NSString *str = @"";
+     NSString *str = @"";
     int num=1;
     for(NSDictionary *dict in entries){
         
@@ -496,7 +509,7 @@
         num++;
     }
     num=0;
-    
+        
     MFMailComposeViewController *mailComp = [[MFMailComposeViewController alloc] init];
     
     [mailComp setSubject:[[self timeForReport] copy]];
@@ -509,9 +522,10 @@
     
     //[self presentModalViewController:mailComp animated:YES ];
     [self presentViewController:mailComp animated:YES completion:^(){
-        
+
+        [grayOverLayView removeFromSuperview];
         [indicator stopAnimating];
-        
+
     } ];
 
 }
@@ -520,6 +534,7 @@
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
     
     [self dismissModalViewControllerAnimated:YES];
+    [self.sendButton setEnabled:YES];
 }
 #pragma mark -
 
