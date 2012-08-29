@@ -465,7 +465,7 @@
     
     grayOverLayView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 460)];
     [grayOverLayView setBackgroundColor:[UIColor blackColor]];
-    [grayOverLayView setAlpha:0.2f];
+    [grayOverLayView setAlpha:0.4f];
     [self.view addSubview:grayOverLayView];
    
     [self performSelector:@selector(showMailToBeSent) withObject:nil afterDelay:0.001];

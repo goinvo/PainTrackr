@@ -18,6 +18,7 @@
 @property (nonatomic, retain)UIView *f5;
 @property (nonatomic, retain)UIView *f6;
 
+@property (nonatomic, readwrite)BOOL shouldGetTouch;
 
 -(void)handleFaceDrag:(UIPanGestureRecognizer *) gestReco;
 -(UIView*)getViewToDragAtTouchLoc:(CGPoint)touchPt;
@@ -94,6 +95,7 @@
         [self addSubview:self.f6];
         
         self.viewToDrag = [[UIView alloc] init];
+        self.shouldGetTouch = YES;
 
         [self addLabels];
     }
@@ -198,6 +200,13 @@
         }  
     }
 }
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+
+    if (self.shouldGetTouch && [gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
+        return YES;
+    }
+    return NO;
+}
 #pragma mark -
 
 #pragma mark view to drag
@@ -239,9 +248,11 @@
 -(void)reduceVisibility{
 
     [self.layer setOpacity:0.4];
+    self.shouldGetTouch = NO;
 }
 -(void)increaseVisibility{
     [self.layer setOpacity:1.0];
+    self.shouldGetTouch = YES;
 }
 #pragma mark -
 

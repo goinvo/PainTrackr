@@ -22,12 +22,12 @@
 
 @property (nonatomic, retain) NSMutableArray *shapesArray;
 
-+(CGColorSpaceRef)genericRGBSpace;
-+(CGColorRef)redColor;
-+(CGColorRef)blueColor;
+//+(CGColorSpaceRef)genericRGBSpace;
+//+(CGColorRef)redColor;
+//+(CGColorRef)blueColor;
 
 + (UIImage *)imageToMask:(UIImage *)image Withcolor:(UIColor *)color;
--(void)drawRect:(CGRect)imageBounds inContext:(CGContextRef) ctx zoomLevel:(float)zoom;
+//-(void)drawRect:(CGRect)imageBounds inContext:(CGContextRef) ctx zoomLevel:(float)zoom;
 
 @end
 
@@ -57,6 +57,7 @@
 
  */
 
+/*
 +(CGColorSpaceRef)genericRGBSpace;{
 
     static CGColorSpaceRef space = NULL;
@@ -86,7 +87,7 @@
     return blue;
 }
 
-
+*/
 +(CFTimeInterval)fadeDuration{
 
     return 0.2;
@@ -137,7 +138,13 @@
  
     InvoBodyPartDetails *newPart = nil;
     
-    for (InvoBodyPartDetails *partDetail in self.shapesArray) {
+    NSArray *arrayToIter = nil;
+    
+    //@synchronized(self.shapesArray){
+        arrayToIter = [self.shapesArray copy];
+//    }
+    
+    for (InvoBodyPartDetails *partDetail in arrayToIter) {
         
         //if (CGPathEqualToPath(path.CGPath, partDetail.partShapePoints.CGPath)) {
         if([pName isEqualToString:partDetail.partName]){
@@ -148,6 +155,7 @@
                 newPart = partDetail;
                 break;
             }
+            else return;
         }
     }
     
@@ -161,7 +169,6 @@
         [self addObjToSHapesArrayWithShape:[path copy] color:fillColor detail:level name:[pName copy]];
     }
         [self setNeedsDisplayInRect:[path bounds]];
-    
 }
 
 #pragma mark Calculate center of a uiBezierPath
@@ -180,7 +187,7 @@
 }
 
 
-#pragma makr Custom-Drawing code
+#pragma mark Custom-Drawing code
 
 - (void)drawRect:(CGRect)rect {
         
@@ -195,7 +202,7 @@
 
     scale = (self.contentScaleFactor ==2)?scale/2:scale;
     
-        NSLog(@"Scale in draw is %f",scale);
+    NSLog(@"Scale in draw is %f",scale);
     
     int firstCol = floorf(CGRectGetMinX(rect) / tileSize.width);
     int lastCol = floorf((CGRectGetMaxX(rect)-1) / tileSize.width);
@@ -240,34 +247,6 @@
       
     int zoom = (scale <0.0625)?1:2;
     [self colorBodyLocationsInRect:rect WithZoom:zoom InContext:context withOffset:CGPointZero];
-  /*
-    for (InvoBodyPartDetails *part in self.shapesArray) {
-        
-        if (part.partShapePoints && CGRectIntersectsRect(rect, [part.partShapePoints bounds])) {
-            
-            if(zoom == part.zoomLevel){
-                CGContextSetStrokeColorWithColor(context,[BodyView blueColor]);
-                CGContextSetFillColorWithColor(context, [part.shapeColor CGColor]);
-                
-                [part.partShapePoints fill];
-                [part.partShapePoints stroke];
-            }
-            else{
-                
-                CGPoint centPoint = [self midPoinfOfBezierPath:part.partShapePoints];
-
-                CGContextSetLineWidth(context, 4.0f);
-                CGContextSetStrokeColorWithColor(context, part.shapeColor.CGColor);
-                CGContextSetFillColorWithColor(context, part.shapeColor.CGColor);
-                CGContextSetAlpha(context, 0.5f);
-                CGContextFillEllipseInRect(context, CGRectMake(centPoint.x-150 , centPoint.y-150 , 300, 300));
-                CGContextSetAlpha(context, 1.0f);
-                CGContextFillEllipseInRect(context, CGRectMake(centPoint.x-50, centPoint.y-50, 100, 100));
-                 
-            }
-        }
-    }
-   */
 }
 
 
@@ -319,21 +298,27 @@
 
 -(void)colorBodyLocationsInRect:(CGRect)rect WithZoom:(int)zm InContext:(CGContextRef)ctx withOffset:(CGPoint)ofst{
     
-    for (InvoBodyPartDetails *part in self.shapesArray) {
+    NSArray *shapesArrayCopy = nil;
+
+    @synchronized(self.shapesArray){
+        
+        shapesArrayCopy = [self.shapesArray copy];
+    }
+    
+    for (InvoBodyPartDetails *part in shapesArrayCopy) {
         
         if (part.partShapePoints && CGRectIntersectsRect(rect, [part.partShapePoints bounds])) {
             
             if(zm == part.zoomLevel){
-                CGContextSetStrokeColorWithColor(ctx,[BodyView blueColor]);
+                
+                CGContextSetStrokeColorWithColor(ctx,[UIColor blueColor].CGColor);
                 CGContextSetFillColorWithColor(ctx, [part.shapeColor CGColor]);
                 
-                    
                 [part.partShapePoints applyTransform:CGAffineTransformMakeTranslation(ofst.x, ofst.y)];
-              
 
                 [part.partShapePoints fill];
                 [part.partShapePoints stroke];
-                 [part.partShapePoints applyTransform:CGAffineTransformMakeTranslation(-ofst.x, -ofst.y)];
+                [part.partShapePoints applyTransform:CGAffineTransformMakeTranslation(-ofst.x, -ofst.y)];
                                
             }
             else{
@@ -344,6 +329,7 @@
                 CGContextSetStrokeColorWithColor(ctx, part.shapeColor.CGColor);
                 CGContextSetFillColorWithColor(ctx, part.shapeColor.CGColor);
                 CGContextSetAlpha(ctx, 0.5f);
+                //CGContextSetBlendMode(ctx, kCGBlendModeSourceAtop);
                 CGContextFillEllipseInRect(ctx, CGRectMake(centPoint.x-150 +ofst.x , centPoint.y-150+ofst.y , 300, 300));
                 CGContextSetAlpha(ctx, 1.0f);
                 CGContextFillEllipseInRect(ctx, CGRectMake(centPoint.x-50+ofst.x, centPoint.y-50+ofst.y, 100, 100));
@@ -408,6 +394,7 @@
     CGRect shapeRemoveRect = CGRectZero;
     InvoBodyPartDetails *PartToRem =nil;
     NSString *strToRet = nil;
+    
     for (InvoBodyPartDetails *part in self.shapesArray) {
         
         if ([part.partShapePoints containsPoint:touch]) {
@@ -422,8 +409,8 @@
     }
     
     if(PartToRem){
-        [self.shapesArray removeObject:PartToRem];
         
+        [self.shapesArray removeObject:PartToRem];
     }
     
     [self setNeedsDisplayInRect:shapeRemoveRect];
@@ -502,24 +489,12 @@
     UIGraphicsEndImageContext();
     
 //    UIImageWriteToSavedPhotosAlbum(imgTRet, nil, nil, nil);
-    NSData *data = UIImagePNGRepresentation(imgTRet);
+   // NSData *data = UIImagePNGRepresentation(imgTRet);
+    NSData *data = UIImageJPEGRepresentation(imgTRet, 1);
 
     return data;
 }
 
--(void)drawRect:(CGRect)imageBounds inContext:(CGContextRef) ctx zoomLevel:(float)zoom{
-
-}
-
--(void)saved{
-
-    NSLog(@"Image was saved");
-    
-//    [self drawRect: imageBounds inContext: ctx zoomLevel: zoom];
-//     (void) drawRect: (CGRect) rect { [self drawRect: self.bounds inContext: currentContext zoomLevel: zoom]}
-//    typedef void(^ErrorBlock)(NSError *);
-//    last50PainEntriesIfError: (ErrorBlock) errorBlock;
-}
 #pragma mark -
 
 @end
