@@ -10,11 +10,11 @@
 		760D738B15CC54A300404C10 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 760D738A15CC54A300404C10 /* CoreImage.framework */; };
 		76111ED515D547BF007C1FC9 /* InvoBodyPartDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 76111ED415D547BF007C1FC9 /* InvoBodyPartDetails.m */; };
 		7612E21215A1E94500E8E009 /* BodyPartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7612E21115A1E94500E8E009 /* BodyPartView.m */; };
-		762B95E515E7DB19002342E9 /* BodyPartData.csv in Resources */ = {isa = PBXBuildFile; fileRef = 762B95E415E7DB19002342E9 /* BodyPartData.csv */; };
 		762EC62915C1CCBE00250155 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 762EC62215C1CCBE00250155 /* CHCSVParser.m */; };
 		762EC62A15C1CCBE00250155 /* CHCSVWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 762EC62415C1CCBE00250155 /* CHCSVWriter.m */; };
 		762EC62B15C1CCBE00250155 /* NSArray+CHCSVAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 762EC62615C1CCBE00250155 /* NSArray+CHCSVAdditions.m */; };
 		762EC62C15C1CCBE00250155 /* NSString+CHCSVAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 762EC62815C1CCBE00250155 /* NSString+CHCSVAdditions.m */; };
+		763307A715EEB3AE0059152A /* BodyPartData.csv in Resources */ = {isa = PBXBuildFile; fileRef = 763307A615EEB3AE0059152A /* BodyPartData.csv */; };
 		7673B51315ADD7CD006112C2 /* PainFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7673B51215ADD7CD006112C2 /* PainFaceView.m */; };
 		767B08D015C9A0F3001EA228 /* InvoPainGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 767B08CE15C9A0F3001EA228 /* InvoPainGraphViewController.m */; };
 		767B08D115C9A0F3001EA228 /* InvoPainGraphViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 767B08CF15C9A0F3001EA228 /* InvoPainGraphViewController.xib */; };
@@ -382,7 +382,6 @@
 		76111ED415D547BF007C1FC9 /* InvoBodyPartDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoBodyPartDetails.m; sourceTree = "<group>"; };
 		7612E21015A1E94500E8E009 /* BodyPartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodyPartView.h; sourceTree = "<group>"; };
 		7612E21115A1E94500E8E009 /* BodyPartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyPartView.m; sourceTree = "<group>"; };
-		762B95E415E7DB19002342E9 /* BodyPartData.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BodyPartData.csv; sourceTree = "<group>"; };
 		762EC62015C1CCBE00250155 /* CHCSV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSV.h; sourceTree = "<group>"; };
 		762EC62115C1CCBE00250155 /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
 		762EC62215C1CCBE00250155 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
@@ -392,6 +391,7 @@
 		762EC62615C1CCBE00250155 /* NSArray+CHCSVAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CHCSVAdditions.m"; sourceTree = "<group>"; };
 		762EC62715C1CCBE00250155 /* NSString+CHCSVAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CHCSVAdditions.h"; sourceTree = "<group>"; };
 		762EC62815C1CCBE00250155 /* NSString+CHCSVAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CHCSVAdditions.m"; sourceTree = "<group>"; };
+		763307A615EEB3AE0059152A /* BodyPartData.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BodyPartData.csv; sourceTree = "<group>"; };
 		766FF8FC15E51EA8000EDCD2 /* ErrorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorHandler.h; sourceTree = "<group>"; };
 		7673B51115ADD7CD006112C2 /* PainFaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PainFaceView.h; sourceTree = "<group>"; };
 		7673B51215ADD7CD006112C2 /* PainFaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PainFaceView.m; sourceTree = "<group>"; };
@@ -1556,7 +1556,7 @@
 		834C100F158F7255000C5652 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				762B95E415E7DB19002342E9 /* BodyPartData.csv */,
+				763307A615EEB3AE0059152A /* BodyPartData.csv */,
 				83C43F921598D6F700F401D2 /* zoomed_out_body.png */,
 				83C43F071598D6F700F401D2 /* images */,
 				76C711D3159A69BD009832BE /* Icons */,
@@ -1979,7 +1979,7 @@
 				76B127E515D441480000286A /* body_slices_36_512@2x.png in Resources */,
 				76D3E50715D5977A0095C553 /* README.txt in Resources */,
 				76D3E50815D5977A0095C553 /* release_notes.txt in Resources */,
-				762B95E515E7DB19002342E9 /* BodyPartData.csv in Resources */,
+				763307A715EEB3AE0059152A /* BodyPartData.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
