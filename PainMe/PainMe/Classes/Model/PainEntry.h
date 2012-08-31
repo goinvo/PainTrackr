@@ -21,9 +21,9 @@ typedef void(^ErrorHandler)(NSError *);
 @property (nonatomic) NSTimeInterval timestamp;
 @property (nonatomic, retain) PainLocation *location;
 
-+(void )painEntryWithTime:(NSDate *)time PainLevel:(int16_t)level ExtraNotes:(NSString *)extraNotes Location:(PainLocation *)painLoc;
++(void )painEntryWithTime:(NSDate *)time painLevel:(int16_t)level extraNotes:(NSString *)extraNotes location:(PainLocation *)painLoc;
 
 +(NSArray *)last50PainEntriesIfError:(ErrorHandler)handler;
-+(NSArray *)ArrayofEntiresByDay:(ErrorHandler)handler;
++(NSArray *)arrayofEntiresSorted:(ErrorHandler)handler;
 
 @end

@@ -61,39 +61,48 @@
     [self.navigationController setToolbarHidden:NO];
 
     self.view.backgroundColor = [UIColor whiteColor];
-    //self.scrollView.contentSize = CGSizeMake(320, 480);
     
     self.scrollView.backgroundColor = [UIColor clearColor];
     
-   // self.historyView.frame = CGRectMake(0,0,40, 40);
-    
-//    self.scrollView.minimumZoomScale = 1.0;
-//    self.scrollView.zoomScale = 1.0;
     self.scrollView.maximumZoomScale = 2.0;
     
     NSDictionary *histroyViews = [NSDictionary dictionaryWithDictionary:[[InvoDataManager sharedDataManager] entriesPerDayList]];
     
     NSLog(@"Total entries to draw are %d",[[histroyViews allKeys] count]);
-    int count = [[histroyViews allKeys] count];
 
-    int width = count *60 +count*10;
-    int height = count *108 +count*10;
+
+    [self.scrollView setFrame:CGRectMake(0, 0, 320, 480)];
     
-//    self.scrollView.contentSize = CGSizeMake(width, height);
-   [self.scrollView setFrame:CGRectMake(0, 0, 320, 480)];
-    
-    for (int i=0; i< count ;i ++) {
+    int i=0;
+    for (NSString *key in histroyViews) {
+        
+        InvoHistoryView *hisView =[[InvoHistoryView alloc]initWithFrame:CGRectMake(0, 0, 60, 108) locations:[[histroyViews valueForKey:key]copy]];
 
-        InvoHistoryView *hisView =[[InvoHistoryView alloc]initWithFrame:CGRectZero];
-        [hisView setFrame:CGRectMake(0, 0, 60, 108)];
-
-        CGRect imgViewRect;
-
-        imgViewRect = CGRectMake(10 +10*i + 60*i,10+ 10*((i+1)/4) + 108*((i+1)/4), 60, 108);
-
-        UIImageView *vi = [[UIImageView alloc]initWithFrame:imgViewRect];
-        [vi setBackgroundColor:[UIColor colorWithPatternImage:hisView.imgRet]];
-        [self.scrollView addSubview:vi];
+        [hisView setFrame:CGRectMake(10 +10*i + 60*i,10+ 10*((i+1)/4) + 108*((i+1)/4), 60, 108)];
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateStyle:NSDateFormatterShortStyle];
+        
+        NSDate *dateee = [formatter dateFromString:[key copy]];
+        
+        [formatter setDateFormat:@"E d"];
+        NSLog(@"day is %@",[formatter stringFromDate:dateee]);
+        
+//        [formatter setDateFormat:@"MMM"];
+//        NSLog(@"day is %@",[formatter stringFromDate:dateee]);
+        
+        UILabel *lbl  = [[UILabel alloc]init];
+        [lbl setBackgroundColor:[UIColor clearColor]];
+        [lbl setFont:[UIFont fontWithName:@"Helvetica" size:9]];
+        [lbl setTextAlignment:UITextAlignmentCenter];
+        [lbl setText:[[formatter stringFromDate:dateee] copy]];
+        [lbl setFrame:CGRectMake(0 ,108, 60, 10)];
+        
+        [hisView addSubview:lbl];
+                
+        [self.scrollView addSubview:hisView];
+        
+        i++;
     }
 }
 #pragma mark -
@@ -142,9 +151,7 @@
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    
 
-    
 }
 
 - (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view {
@@ -159,7 +166,8 @@
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
-    
+ 
+    return nil;
 }
 
 #pragma mark -

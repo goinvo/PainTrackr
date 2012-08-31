@@ -308,6 +308,8 @@
 		76B127E315D441480000286A /* body_slices_34_512@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76B127BF15D441480000286A /* body_slices_34_512@2x.png */; };
 		76B127E415D441480000286A /* body_slices_35_512@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76B127C015D441480000286A /* body_slices_35_512@2x.png */; };
 		76B127E515D441480000286A /* body_slices_36_512@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76B127C115D441480000286A /* body_slices_36_512@2x.png */; };
+		76BB404415F1144700ED69A9 /* historyBodyImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 76BB404215F1144700ED69A9 /* historyBodyImage.png */; };
+		76BB404515F1144700ED69A9 /* historyBodyImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76BB404315F1144700ED69A9 /* historyBodyImage@2x.png */; };
 		76C61AF515E3E21E00EDCBFC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76C61AF415E3E21E00EDCBFC /* MessageUI.framework */; };
 		76D3E50715D5977A0095C553 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 76D3E50415D5977A0095C553 /* README.txt */; };
 		76D3E50815D5977A0095C553 /* release_notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 76D3E50515D5977A0095C553 /* release_notes.txt */; };
@@ -361,7 +363,6 @@
 		834C1021158F7255000C5652 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 834C1017158F7255000C5652 /* MainStoryboard_iPhone.storyboard */; };
 		83A3BE371593B8D0008EB148 /* PainEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A3BE361593B8D0008EB148 /* PainEntry.m */; };
 		83A3BE3A1593B955008EB148 /* BodyPartGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A3BE391593B955008EB148 /* BodyPartGeometry.m */; };
-		83C4401C1598D6F800F401D2 /* zoomed_out_body.png in Resources */ = {isa = PBXBuildFile; fileRef = 83C43F921598D6F700F401D2 /* zoomed_out_body.png */; };
 		83C440201598D73E00F401D2 /* BodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C4401F1598D73E00F401D2 /* BodyView.m */; };
 		83C440241598D85100F401D2 /* InvoBodySelectionViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C440221598D85100F401D2 /* InvoBodySelectionViewControllerViewController.m */; };
 		83C440251598D85100F401D2 /* InvoBodySelectionViewControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83C440231598D85100F401D2 /* InvoBodySelectionViewControllerViewController.xib */; };
@@ -771,6 +772,8 @@
 		76B127BF15D441480000286A /* body_slices_34_512@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "body_slices_34_512@2x.png"; sourceTree = "<group>"; };
 		76B127C015D441480000286A /* body_slices_35_512@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "body_slices_35_512@2x.png"; sourceTree = "<group>"; };
 		76B127C115D441480000286A /* body_slices_36_512@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "body_slices_36_512@2x.png"; sourceTree = "<group>"; };
+		76BB404215F1144700ED69A9 /* historyBodyImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = historyBodyImage.png; sourceTree = "<group>"; };
+		76BB404315F1144700ED69A9 /* historyBodyImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "historyBodyImage@2x.png"; sourceTree = "<group>"; };
 		76C61AF415E3E21E00EDCBFC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		76D3E50415D5977A0095C553 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		76D3E50515D5977A0095C553 /* release_notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
@@ -837,7 +840,6 @@
 		83A3BE361593B8D0008EB148 /* PainEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PainEntry.m; path = PainMe/Classes/Model/PainEntry.m; sourceTree = SOURCE_ROOT; };
 		83A3BE381593B955008EB148 /* BodyPartGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodyPartGeometry.h; sourceTree = "<group>"; };
 		83A3BE391593B955008EB148 /* BodyPartGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyPartGeometry.m; sourceTree = "<group>"; };
-		83C43F921598D6F700F401D2 /* zoomed_out_body.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = zoomed_out_body.png; path = images/zoomed_out_body.png; sourceTree = "<group>"; };
 		83C4401E1598D73E00F401D2 /* BodyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodyView.h; sourceTree = "<group>"; };
 		83C4401F1598D73E00F401D2 /* BodyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyView.m; sourceTree = "<group>"; };
 		83C440211598D85100F401D2 /* InvoBodySelectionViewControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoBodySelectionViewControllerViewController.h; sourceTree = "<group>"; };
@@ -1569,8 +1571,9 @@
 		834C100F158F7255000C5652 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				76BB404215F1144700ED69A9 /* historyBodyImage.png */,
+				76BB404315F1144700ED69A9 /* historyBodyImage@2x.png */,
 				763307A615EEB3AE0059152A /* BodyPartData.csv */,
-				83C43F921598D6F700F401D2 /* zoomed_out_body.png */,
 				83C43F071598D6F700F401D2 /* images */,
 				76C711D3159A69BD009832BE /* Icons */,
 				834C1010158F7255000C5652 /* Core Data */,
@@ -1673,7 +1676,6 @@
 			files = (
 				834C1020158F7255000C5652 /* MainStoryboard_iPad.storyboard in Resources */,
 				834C1021158F7255000C5652 /* MainStoryboard_iPhone.storyboard in Resources */,
-				83C4401C1598D6F800F401D2 /* zoomed_out_body.png in Resources */,
 				83C440251598D85100F401D2 /* InvoBodySelectionViewControllerViewController.xib in Resources */,
 				76F1120D15AF5BEA00E2907C /* F1.png in Resources */,
 				76F1120E15AF5BEA00E2907C /* F2.png in Resources */,
@@ -1994,6 +1996,8 @@
 				76D3E50815D5977A0095C553 /* release_notes.txt in Resources */,
 				763307A715EEB3AE0059152A /* BodyPartData.csv in Resources */,
 				76D9950315EFB02D00FFF78C /* InvoHistoryViewController.xib in Resources */,
+				76BB404415F1144700ED69A9 /* historyBodyImage.png in Resources */,
+				76BB404515F1144700ED69A9 /* historyBodyImage@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

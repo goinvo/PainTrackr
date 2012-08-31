@@ -19,7 +19,6 @@
 @property (nonatomic, retain) UIBezierPath *bezierPath;
 
 @property (nonatomic, retain) NSArray *painLocDetails;
-//@property (nonatomic, retain) NSMutableDictionary *painShapes;
 
 @property (nonatomic, retain)NSMutableArray *painShapeDetailsArr;
 
@@ -60,7 +59,7 @@
            NSString *pName = [obj valueForKey:@"name"];
            NSInteger zmLvl = [[obj valueForKey:@"zoomLevel"]integerValue];
            
-           InvoBodyPartDetails *part = [InvoBodyPartDetails InvoBodyPartWithShape:[self bezierPath] Name:[pName copy] ZoomLevel:zmLvl];
+           InvoBodyPartDetails *part = [InvoBodyPartDetails invoBodyPartWithShape:[self bezierPath] name:[pName copy] zoomLevel:zmLvl];
            
            [self.painShapeDetailsArr addObject:part];
        }

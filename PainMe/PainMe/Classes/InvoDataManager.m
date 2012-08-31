@@ -54,7 +54,7 @@
 -(void)getDataFromCSVInDict;
 
 -(void)painLocationsInDatabase;
--(void) setPointCount: (NSInteger) newPoints;
+-(void)setPointCount: (NSInteger) newPoints;
 -(BOOL)painLocationExists:(NSString*)locName;
 -(int)totalLocations;
 @end
@@ -306,7 +306,7 @@
                 
                 int zoomLvl = [[[valArray objectAtIndex:0] objectAtIndex:1] integerValue];
                 
-                [PainLocation LocationEntryWithName:[ky copy] Shape:shapeVertices ZoomLevel:zoomLvl];
+                [PainLocation locationEntryWithName:[ky copy] shape:shapeVertices zoomLevel:zoomLvl];
                 
                 valArray = nil;
             }
@@ -418,7 +418,7 @@
 
 +(void)painEntryForLocation:(NSDictionary *)locDetails LevelPain:(int)painLvl notes:(NSString *)nots{
 
-    [PainLocation enterPainEntryForLocation:[locDetails copy] LevelPain:painLvl notes:[nots copy]];
+    [PainLocation enterPainEntryForLocation:[locDetails copy] levelPain:painLvl notes:[nots copy]];
 }
 
 -(NSArray *)totalPainEntriesForPart:(NSString *)pName{
@@ -502,7 +502,7 @@
     NSMutableDictionary *dateSortedEntries = [NSMutableDictionary dictionary];
 
     NSArray *totalEntries;
-     totalEntries = [PainEntry ArrayofEntiresByDay:^(NSError *err) {
+     totalEntries = [PainEntry arrayofEntiresSorted:^(NSError *err) {
 
         if (err) {
             NSLog(@"There was an error %@ while gettin entries",[err localizedDescription]);
@@ -546,10 +546,7 @@
          prevDate = currDate;
         
     }
-    
-//    NSLog(@"Date SOrted Dict looks like %@",dateSortedEntries);
-    
-//    totalNum = [totalEntries count];
+        
     return( ([totalEntries count]>0 )?[dateSortedEntries copy]:nil);
 }
 #pragma mark -

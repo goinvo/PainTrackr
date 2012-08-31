@@ -46,12 +46,12 @@
     
     NSDate *now = [[NSDate alloc] init];
     
-    [PainEntry painEntryWithTime:now PainLevel:painLvl ExtraNotes:[notes copy] Location:locFound];
+    [PainEntry painEntryWithTime:now painLevel:painLvl extraNotes:[notes copy] location:locFound];
 
 }
 
 
-+(void)LocationEntryWithName:(NSString *)locName Shape:(NSData *)shape ZoomLevel:(int16_t)levZoom {
++(void)locationEntryWithName:(NSString *)locName shape:(NSData *)shape zoomLevel:(int16_t)levZoom {
 
     PainLocation *locFound;
    

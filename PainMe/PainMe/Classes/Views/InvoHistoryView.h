@@ -11,6 +11,6 @@
 @interface InvoHistoryView : UIView
 @property (nonatomic, retain)UIImage *imgRet;
 
--(void )bodyToReturn;
-- (UIImage*)tileAtCol:(int)col row:(int)row withScale:(CGFloat)scale;
+- (id)initWithFrame:(CGRect)frame locations:(NSArray *)shapesDict;
+
 @end

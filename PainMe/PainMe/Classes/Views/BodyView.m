@@ -126,7 +126,7 @@
 
 -(void)addObjToSHapesArrayWithShape:(UIBezierPath *)shape color:(UIColor *)fillColor detail:(int)levDet name:(NSString *)partName{
 
-    InvoBodyPartDetails *partDetail = [InvoBodyPartDetails InvoBodyPartWithShape:[shape copy] COlor:fillColor ZoomLevel:levDet Name:[partName copy]];
+    InvoBodyPartDetails *partDetail = [InvoBodyPartDetails invoBodyPartWithShape:[shape copy] color:fillColor zoomLevel:levDet name:[partName copy]];
     
     [self.shapesArray addObject:partDetail];
 

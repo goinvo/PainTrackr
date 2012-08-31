@@ -28,10 +28,10 @@
 - (void)removePainEntries:(NSSet *)values;
 
 
-+(void)enterPainEntryForLocation:(NSDictionary *)locdict LevelPain:(int)painLvl notes:(NSString *)notes ;
++(void)enterPainEntryForLocation:(NSDictionary *)locdict levelPain:(int)painLvl notes:(NSString *)notes ;
 
 
-+(void)LocationEntryWithName:(NSString *)locName Shape:(NSData *)shape ZoomLevel:(int16_t)levZoom;
++(void)locationEntryWithName:(NSString *)locName shape:(NSData *)shape zoomLevel:(int16_t)levZoom;
 
 +(NSArray *)painLocations;
 @end

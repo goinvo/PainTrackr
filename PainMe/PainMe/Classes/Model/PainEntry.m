@@ -22,7 +22,7 @@
 @dynamic timestamp;
 @dynamic location;
 
-+(void )painEntryWithTime:(NSDate *)time PainLevel:(int16_t)level ExtraNotes:(NSString *)extraNotes Location:(PainLocation *)painLoc{
++(void )painEntryWithTime:(NSDate *)time painLevel:(int16_t)level extraNotes:(NSString *)extraNotes location:(PainLocation *)painLoc{
 
     PainEntry *newEntry;
    
@@ -39,11 +39,8 @@
     newEntry.timestamp = [time timeIntervalSinceReferenceDate];
     
     newEntry.location = painLoc ;
-//    NSLog(@"was entering new pain Entry");
     
     [dataManager saveContext];
-    
-//     NSLog(@"Entered new pain Entry");
 }
 
 +(NSArray *)last50PainEntriesIfError:(ErrorHandler)handler{
@@ -76,7 +73,7 @@
     return nil; 
 }
 
-+(NSArray *)ArrayofEntiresByDay:(ErrorHandler)handler{
++(NSArray *)arrayofEntiresSorted:(ErrorHandler)handler{
 
     InvoDataManager *dataManager = [InvoDataManager sharedDataManager];
     NSManagedObjectContext *mangObjContext = [dataManager managedObjectContext];
