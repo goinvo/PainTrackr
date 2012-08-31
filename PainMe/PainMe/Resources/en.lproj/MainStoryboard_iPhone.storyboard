@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="3">
     <dependencies>
+        <deployment defaultVersion="1296" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
     </dependencies>
     <scenes>
@@ -81,9 +82,6 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="ztP-wr-ac0" appends="YES" id="NLQ-b7-HyR"/>
-                                        </connections>
                                     </view>
                                 </subviews>
                                 <connections>
@@ -102,6 +100,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems>
+                        <barButtonItem title="History" id="GcJ-dO-dyS">
+                            <connections>
+                                <segue destination="x1J-dd-DmD" kind="modal" id="ewi-GP-hql"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="ro2-cl-npG"/>
                         <barButtonItem title="Send" id="gHK-Kg-PFO">
                             <connections>
@@ -118,9 +121,55 @@
                         <outlet property="sendButton" destination="gHK-Kg-PFO" id="gvF-ei-mGC"/>
                     </connections>
                 </viewController>
-                <swipeGestureRecognizer direction="left" id="ztP-wr-ac0"/>
             </objects>
             <point key="canvasLocation" x="221" y="661"/>
+        </scene>
+        <!--Invo History View Controller-->
+        <scene sceneID="fnG-in-oRR">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cGe-So-Y7G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="lcr-In-yy1" customClass="InvoHistoryViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oB6-WC-wsC">
+                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Dz6-eB-Vjd">
+                                <rect key="frame" x="0.0" y="-47" width="320" height="419"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem title="Back" id="fOW-H6-ZL6">
+                            <connections>
+                                <action selector="backPressed:" destination="lcr-In-yy1" id="4LI-Mg-Yuo"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" id="6ig-LJ-jSf"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="scrollView" destination="Dz6-eB-Vjd" id="uwh-BJ-mxw"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1100" y="661"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ndj-Av-Ze9">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mPu-j3-oa8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController definesPresentationContext="YES" id="x1J-dd-DmD" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sJy-Lf-0NK">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="lcr-In-yy1" kind="relationship" relationship="rootViewController" id="ySd-i8-4cN"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="622" y="655"/>
         </scene>
         <!--Invo Pain Graph View Controller-->
         <scene sceneID="9Z8-uV-771">
@@ -137,7 +186,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="571" y="662"/>
+            <point key="canvasLocation" x="221" y="1290"/>
         </scene>
         <!--Invo Detail View Controller - Detail-->
         <scene sceneID="24">
@@ -186,6 +235,13 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/InvoDetailViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="detailDescriptionLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="InvoHistoryViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InvoHistoryViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backPressed:"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
         </class>
         <class className="InvoMasterViewController" superclassName="UITableViewController">

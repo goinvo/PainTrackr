@@ -10,6 +10,10 @@
 #import "PainLocation.h"
 #import "InvoDataManager.h"
 
+@interface PainEntry ()
+
+
+@end
 
 @implementation PainEntry
 
@@ -42,7 +46,6 @@
 //     NSLog(@"Entered new pain Entry");
 }
 
-
 +(NSArray *)last50PainEntriesIfError:(ErrorHandler)handler{
 
     InvoDataManager *dataManager = [InvoDataManager sharedDataManager];
@@ -71,5 +74,37 @@
     }
     
     return nil; 
+}
+
++(NSArray *)ArrayofEntiresByDay:(ErrorHandler)handler{
+
+    InvoDataManager *dataManager = [InvoDataManager sharedDataManager];
+    NSManagedObjectContext *mangObjContext = [dataManager managedObjectContext];
+    
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"PainEntry" inManagedObjectContext:mangObjContext];
+    
+    NSFetchRequest *fetchReq =[[NSFetchRequest alloc] init];
+    [fetchReq setEntity:entityDesc];
+    [fetchReq setPropertiesToFetch:[NSArray arrayWithObjects:@"location",@"notes",@"painLevel",@"timestamp", nil]];
+    
+    NSSortDescriptor *desc = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO];
+    [fetchReq setSortDescriptors:[NSArray arrayWithObject:desc]];
+    
+    
+    NSError *error = nil;
+    NSArray *result = [mangObjContext executeFetchRequest:fetchReq error:&error];
+    
+    if (!error) {
+        
+        if (result &&[result count]>0) {
+            return result;
+        }
+    }
+    else{
+        handler(error);
+    }
+    
+    return nil;
+
 }
 @end

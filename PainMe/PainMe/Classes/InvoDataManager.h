@@ -41,4 +41,6 @@
 
 -(NSArray *)namesOfBodyParts;
 
+-(NSDictionary *)entriesPerDayList;
+
 @end

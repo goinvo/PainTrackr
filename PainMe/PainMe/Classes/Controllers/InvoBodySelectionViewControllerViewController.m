@@ -13,6 +13,8 @@
 #import "PainEntry.h"
 #import "PainLocation.h"
 
+#import "InvoHistoryViewController.h"
+
 @interface InvoBodySelectionViewControllerViewController () {
    
     CGPoint bodyOffset;
@@ -36,6 +38,7 @@
 -(void)checkAndAddLastEntryToView;
 
 -(IBAction)sendPresed:(id)sender;
+//-(IBAction)historyPressed:(id)sender;
 -(NSString *)timeForReport;
 -(void)showMailToBeSent;
 
@@ -554,6 +557,21 @@
     return [title copy];
 }
 
+#pragma mark -
+
+#pragma mark History Pressed
+/*
+-(IBAction)historyPressed:(id)sender{
+
+//    [self.navigationController presentViewController:[[InvoHistoryViewController alloc]initWithNibName:nil bundle:nil] animated:YES completion:^(){
+//    
+//        NSLog(@"Presented new View COntroller");
+//    }];
+    
+//    [self.navigationController pushViewController:[[InvoHistoryViewController alloc]initWithNibName:nil bundle:nil] animated:YES];
+    
+}
+ */
 #pragma mark -
 
 @end

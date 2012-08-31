@@ -141,7 +141,7 @@
 
     [self painLocationsInDatabase];
     
-    if(136 != [self totalLocations]){
+    if(137 != [self totalLocations]){
             
         [self getDataFromCSVInDict];
         [self listCoordinates];
@@ -494,7 +494,63 @@
         return [arrtoRet copy];
     }
     return nil;
+}
+
+-(NSDictionary *)entriesPerDayList{
+
+//    int totalNum = 0;
+    NSMutableDictionary *dateSortedEntries = [NSMutableDictionary dictionary];
+
+    NSArray *totalEntries;
+     totalEntries = [PainEntry ArrayofEntiresByDay:^(NSError *err) {
+
+        if (err) {
+            NSLog(@"There was an error %@ while gettin entries",[err localizedDescription]);
+        }
+    }];
     
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterShortStyle];
+
+    NSString *currDate =[formatter stringFromDate:[(NSDictionary *)[totalEntries objectAtIndex:0] valueForKey:@"timestamp"]];
+    
+    NSString *prevDate = [formatter stringFromDate:[(NSDictionary *)[totalEntries objectAtIndex:0] valueForKey:@"timestamp"]];
+    NSMutableArray *arr = [NSMutableArray array];
+    
+    for (int i=0; i<[totalEntries count];i++) {
+        
+        NSDictionary *dict = [totalEntries objectAtIndex:i];
+                
+        currDate = [formatter stringFromDate:[dict valueForKey:@"timestamp"]] ;
+//        NSLog(@"curr Date is %@",currDate);
+//        NSLog(@"Prev Date is %@",prevDate);
+        
+        if (i == [totalEntries count]-1) {
+        
+            [dateSortedEntries setValue:arr forKey:currDate];
+            arr= [NSMutableArray array];
+            break;
+        }
+        
+        if ([currDate isEqualToString:prevDate]) {
+            
+            [arr addObject:dict];
+        }
+        else{
+            [dateSortedEntries setValue:arr forKey:prevDate];
+            arr= [NSMutableArray array];
+
+        }
+//        NSLog(@"Entry is %@",[dict valueForKey:@"timestamp"]);
+         prevDate = currDate;
+        
+    }
+    
+//    NSLog(@"Date SOrted Dict looks like %@",dateSortedEntries);
+    
+//    totalNum = [totalEntries count];
+    return( ([totalEntries count]>0 )?[dateSortedEntries copy]:nil);
 }
 #pragma mark -
 

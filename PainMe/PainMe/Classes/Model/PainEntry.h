@@ -24,4 +24,6 @@ typedef void(^ErrorHandler)(NSError *);
 +(void )painEntryWithTime:(NSDate *)time PainLevel:(int16_t)level ExtraNotes:(NSString *)extraNotes Location:(PainLocation *)painLoc;
 
 +(NSArray *)last50PainEntriesIfError:(ErrorHandler)handler;
++(NSArray *)ArrayofEntiresByDay:(ErrorHandler)handler;
+
 @end

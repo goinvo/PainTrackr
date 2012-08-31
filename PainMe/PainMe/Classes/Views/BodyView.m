@@ -436,6 +436,7 @@
     CGFloat scale = (level<0.0623)?0.0623:0.123;
     
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(self.bounds.size.width+1024,self.bounds.size.height+500), NO, 0.25);
+//    NSLog(@"self bounds are %@", NSStringFromCGRect(self.bounds));
 
     CGContextRef ctxRef = UIGraphicsGetCurrentContext();
         
