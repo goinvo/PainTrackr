@@ -9,6 +9,7 @@
 #import "InvoHistoryView.h"
 #import "QuartzCore/QuartzCore.h"
 #import "PainEntry.h"
+#import "PainLocation.h"
 
 @interface InvoHistoryView ()
 @property (nonatomic, retain) NSMutableArray *locationArray;
@@ -24,14 +25,14 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        NSLog(@"history view init");
-        NSLog(@"Received dict is %@",shapesDict);
-       // NSDictionary *locatDict = [NSDictionary dictionaryWithDictionary:shapesDict];
+//        NSLog(@"history view init");
+//        NSLog(@"Received dict is %@",shapesDict);
+        NSArray *locatArr = [NSArray arrayWithArray:shapesDict];
         
-//        for (PainEntry *obj in [locatDict allValues]) {
-//            
-//            
-//        }
+        for (PainEntry *obj in locatArr) {
+            PainLocation *pLoc = (PainLocation *)[obj valueForKey:@"location"];
+//            NSLog(@"%@",pLoc.name);
+        }
     }
     return self;
 }

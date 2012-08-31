@@ -183,7 +183,7 @@
     if (locDict) {
 
         if([self.bodyView doesEntryExist:[[[locDict allKeys]objectAtIndex:0]copy]]){
-            [InvoDataManager painEntryForLocation:[locDict copy] LevelPain:0 notes:nil];
+            [InvoDataManager painEntryForLocation:[locDict copy] levelPain:0 notes:nil];
         }
     }
 
@@ -338,7 +338,7 @@
 
 #pragma mark PainFaceDel Method
 
--(void)checkForBodyIntersectionWithLocalPoint:(CGPoint)locPoint AndPainLvl:(int)painLvl {
+-(void)checkForBodyIntersectionWithLocalPoint:(CGPoint)locPoint andPainLvl:(int)painLvl {
 
     CGPoint convPoint = CGPointZero;
     
@@ -360,7 +360,7 @@
         if(painLvl ==0){
         
             if([self.bodyView doesEntryExist:[[[pathContainingPoint allKeys]objectAtIndex:0]copy]]){
-                [InvoDataManager painEntryForLocation:[pathContainingPoint copy] LevelPain:0 notes:nil];
+                [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:0 notes:nil];
             }
             
             //Making changes to the text label
@@ -381,7 +381,7 @@
             [self.partNameLabel setText:[[pathContainingPoint allKeys] objectAtIndex:0]];
             [self.partNameLabel setTextColor:fillcolor];
             
-            [InvoDataManager painEntryForLocation:[pathContainingPoint copy] LevelPain:painLvl notes:nil];
+            [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:painLvl notes:nil];
             
             fillcolor = nil;
         }

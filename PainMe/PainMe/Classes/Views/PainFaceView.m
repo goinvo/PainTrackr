@@ -186,11 +186,11 @@
             
             CGPoint endTouchLoc = [gestReco locationInView:[gestReco view]];
 
-            NSLog(@"sragging ended");
+            NSLog(@"dragging ended");
             
             if (self.viewToDrag) {
             
-                [delegate checkForBodyIntersectionWithLocalPoint:endTouchLoc AndPainLvl:self.viewToDrag.tag];
+                [delegate checkForBodyIntersectionWithLocalPoint:endTouchLoc andPainLvl:self.viewToDrag.tag];
 
                 [self putBackPainFace:self.viewToDrag];
                 self.viewToDrag = nil;

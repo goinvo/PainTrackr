@@ -73,8 +73,10 @@
 
     [self.scrollView setFrame:CGRectMake(0, 0, 320, 480)];
     
-    int i=0;
-    for (NSString *key in histroyViews) {
+    
+    for (int i=0; i<[[histroyViews allKeys ]count]; i++) {
+
+        NSString *key = [[histroyViews allKeys] objectAtIndex:i];
         
         InvoHistoryView *hisView =[[InvoHistoryView alloc]initWithFrame:CGRectMake(0, 0, 60, 108) locations:[[histroyViews valueForKey:key]copy]];
 
@@ -102,7 +104,6 @@
                 
         [self.scrollView addSubview:hisView];
         
-        i++;
     }
 }
 #pragma mark -

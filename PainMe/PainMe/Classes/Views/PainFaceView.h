@@ -21,7 +21,7 @@ kFaceTags;
 
 @protocol PainFaceDelegate <NSObject>
 
--(void)checkForBodyIntersectionWithLocalPoint:(CGPoint)locPoint AndPainLvl:(int)painLvl;
+-(void)checkForBodyIntersectionWithLocalPoint:(CGPoint)locPoint andPainLvl:(int)painLvl;
 
 -(void)changeStrokeWithPoint:(CGPoint)dragPoint painLvl:(int)painLvl;
 

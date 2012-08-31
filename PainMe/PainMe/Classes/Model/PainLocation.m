@@ -19,7 +19,7 @@
 @dynamic painEntries;
 
 
-+(void)enterPainEntryForLocation:(NSDictionary *)locdict LevelPain:(int)painLvl notes:(NSString *)notes{
++(void)enterPainEntryForLocation:(NSDictionary *)locdict levelPain:(int)painLvl notes:(NSString *)notes{
 
     
     PainLocation *locFound  = nil;

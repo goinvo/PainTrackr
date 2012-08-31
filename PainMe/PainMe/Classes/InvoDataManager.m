@@ -416,7 +416,7 @@
 
 #pragma mark pain location enrty
 
-+(void)painEntryForLocation:(NSDictionary *)locDetails LevelPain:(int)painLvl notes:(NSString *)nots{
++(void)painEntryForLocation:(NSDictionary *)locDetails levelPain:(int)painLvl notes:(NSString *)nots{
 
     [PainLocation enterPainEntryForLocation:[locDetails copy] levelPain:painLvl notes:[nots copy]];
 }
@@ -546,7 +546,7 @@
          prevDate = currDate;
         
     }
-        
+    NSLog(@"date sorted entries are %@",dateSortedEntries);
     return( ([totalEntries count]>0 )?[dateSortedEntries copy]:nil);
 }
 #pragma mark -
