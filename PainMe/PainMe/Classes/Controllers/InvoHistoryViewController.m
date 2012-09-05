@@ -72,27 +72,79 @@
 
 
     [self.scrollView setFrame:CGRectMake(0, 0, 320, 480)];
-    
-    
-    for (int i=0; i<[[histroyViews allKeys ]count]; i++) {
 
-        NSString *key = [[histroyViews allKeys] objectAtIndex:i];
+    NSArray *sortedDates = [[histroyViews allKeys] sortedArrayUsingComparator:^(NSDate *d1, NSDate *d2) {
+        return [d1 compare:d2];
+    }];
+    
+    int maxCOunt = [sortedDates count];
+    
+    NSString *prevDateString = [sortedDates objectAtIndex:0];
+    
+    NSDateFormatter *form1 = [[NSDateFormatter alloc] init];
+    
+    [form1 setDateStyle:NSDateFormatterShortStyle];
+    NSDate *date = [form1 dateFromString:prevDateString];
+    [form1 setDateFormat:@"MMMM YYY"];
+    UILabel *l1 = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, 320, 20)];
+    [l1 setBackgroundColor:[UIColor grayColor]];
+    [l1 setText:[NSString stringWithFormat:@"%@",[form1 stringFromDate:date]]];
+    [l1 setTextAlignment:UITextAlignmentCenter];
+    [self.scrollView addSubview:l1];
+ 
+    
+    int mounthCount = 0;    
+    float xIndex = 10.0;
+    float yIndex = 45.0;
+    int column = 0;
+    
+    for (int i=0; i<maxCOunt; i++) {
+ 
+//Checking for dates and adding labels accordingly to the scroll view        
+        NSString *currDateString = [[sortedDates objectAtIndex:i] copy];
         
-        InvoHistoryView *hisView =[[InvoHistoryView alloc]initWithFrame:CGRectMake(0, 0, 60, 108) locations:[[histroyViews valueForKey:key]copy]];
+        [form1 setDateStyle:NSDateFormatterShortStyle];
+        
+        NSDate *currDate = [form1 dateFromString:currDateString];
+        NSDate *prevDate = [form1 dateFromString:prevDateString];
+               
+        [form1 setDateFormat:@"MM"];
+        
+        if(![[form1 stringFromDate:currDate] isEqualToString:[form1 stringFromDate:prevDate]]){
+            
+            mounthCount ++;
+            
+            [form1 setDateFormat:@"MMMM YYY"];
+            yIndex += 118;
+            UILabel *l1 = [[UILabel alloc]initWithFrame:CGRectMake(0, yIndex, 320, 20)];
+            [l1 setBackgroundColor:[UIColor grayColor]];
+            [l1 setText:[NSString stringWithFormat:@"%@",[form1 stringFromDate:currDate]]];
+            [l1 setTextAlignment:UITextAlignmentCenter];
+            [self.scrollView addSubview:l1];
+          
+            
+            yIndex += 35;
+            column = 0;
+        }
+    
+        prevDateString = currDateString;
 
-        [hisView setFrame:CGRectMake(10 +10*i + 60*i,10+ 10*((i+1)/4) + 108*((i+1)/4), 60, 108)];
+// Doing the drawing for Body and adding it to scrollView
+       
+        InvoHistoryView *hisView =[[InvoHistoryView alloc]initWithFrame:CGRectMake(0, 0, 60, 108) locations:[[histroyViews valueForKey:currDateString]copy]];
+
+        xIndex = 10 +70*column;
+     
+        [hisView setFrame:CGRectMake(xIndex,yIndex, 60, 108)];
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
         [formatter setDateStyle:NSDateFormatterShortStyle];
         
-        NSDate *dateee = [formatter dateFromString:[key copy]];
+        NSDate *dateee = [formatter dateFromString:[currDateString copy]];
         
         [formatter setDateFormat:@"E d"];
         NSLog(@"day is %@",[formatter stringFromDate:dateee]);
-        
-//        [formatter setDateFormat:@"MMM"];
-//        NSLog(@"day is %@",[formatter stringFromDate:dateee]);
-        
+                
         UILabel *lbl  = [[UILabel alloc]init];
         [lbl setBackgroundColor:[UIColor clearColor]];
         [lbl setFont:[UIFont fontWithName:@"Helvetica" size:9]];
@@ -103,8 +155,19 @@
         [hisView addSubview:lbl];
                 
         [self.scrollView addSubview:hisView];
+
+        column ++;
         
+        if(column ==4){
+            column = 0;
+            yIndex +=118;
+        }
     }
+    
+    
+    self.scrollView.contentSize = (yIndex+108 <480 )?CGSizeMake( 320, 480+108) : CGSizeMake(320, yIndex+108*2);
+
+    
 }
 #pragma mark -
 
@@ -117,7 +180,7 @@
 #pragma mark UIScrollViewDelegate methods
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
+   // NSLog(@"did scroll");
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
@@ -135,7 +198,7 @@
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale {
     
-    NSLog(@"Scale is %f",scale);
+   // NSLog(@"Scale is %f",scale);
     
 }
 
@@ -153,11 +216,12 @@
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
 
+   // NSLog(@"ha ha");
 }
 
 - (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view {
     
-    NSLog(@"Scale while beginning zooming is %f",scrollView.zoomScale);
+   // NSLog(@"Scale while beginning zooming is %f",scrollView.zoomScale);
     
 }
 
@@ -168,7 +232,7 @@
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
  
-    return nil;
+    return self.scrollView;
 }
 
 #pragma mark -

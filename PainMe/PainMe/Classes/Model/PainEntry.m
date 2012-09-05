@@ -37,6 +37,9 @@
 
 //    NSLog(@"Time stamp is %lf",[time timeIntervalSinceNow]) ;
     newEntry.timestamp = [time timeIntervalSinceReferenceDate];
+//    NSTimeInterval newInterval = 24*3*60*60;
+//    NSDate *newDate = [time dateByAddingTimeInterval:newInterval];
+//    newEntry.timestamp = [newDate timeIntervalSinceReferenceDate];
     
     newEntry.location = painLoc ;
     

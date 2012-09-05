@@ -14,6 +14,7 @@
 @interface InvoHistoryView ()
 @property (nonatomic, retain) NSMutableArray *locationArray;
 @property (nonatomic, retain) NSString *dateSring;
+@property (nonatomic, readwrite)BOOL moreEntries;
 @end
 
 
@@ -28,10 +29,18 @@
 //        NSLog(@"history view init");
 //        NSLog(@"Received dict is %@",shapesDict);
         NSArray *locatArr = [NSArray arrayWithArray:shapesDict];
+        self.moreEntries = NO;
         
+        int i=0;
         for (PainEntry *obj in locatArr) {
             PainLocation *pLoc = (PainLocation *)[obj valueForKey:@"location"];
-//            NSLog(@"%@",pLoc.name);
+            NSLog(@"%@",pLoc.name);
+            i++;
+        }
+        
+        if (i>1) {
+            self.moreEntries = YES;
+            [self setNeedsDisplay];
         }
     }
     return self;
@@ -44,10 +53,24 @@
 {
     // Drawing code
     NSLog(@"Drawing in History view");
+    UIImage *img = [UIImage imageNamed:@"historyBodyImage.png"];
     [[UIColor whiteColor] setFill];
     UIRectFill(rect);
-    UIImage *img = [UIImage imageNamed:@"historyBodyImage.png"];
-    [img drawInRect:rect];    
+    
+    if (!self.moreEntries) {
+        [img drawInRect:rect];
+        [[UIColor blackColor]setStroke];
+        CGContextStrokeRect(UIGraphicsGetCurrentContext(), rect);
+    }
+    else{
+    
+        [img drawInRect:CGRectMake(0, 0, rect.size.width -10, rect.size.height)];
+        [[UIColor blackColor]setStroke];
+        CGContextStrokeRect(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, rect.size.width -10, rect.size.height));
+
+        CGContextStrokeRect(UIGraphicsGetCurrentContext(), CGRectMake(rect.size.width -10, 5,10, rect.size.height-10));
+    }
+
 }
  
 @end

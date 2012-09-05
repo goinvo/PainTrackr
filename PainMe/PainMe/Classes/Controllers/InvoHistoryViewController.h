@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InvoHistoryViewController : UIViewController
+@interface InvoHistoryViewController : UIViewController<UIScrollViewDelegate>
 
 @end
