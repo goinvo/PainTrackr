@@ -11,6 +11,12 @@
 #import <MessageUI/MessageUI.h>
 #import <MessageUi/MFMailComposeViewController.h>
 
+typedef enum{
+
+    kTagPartNameBubble = 10
+}kTags;
+
+
 @interface InvoBodySelectionViewControllerViewController : UIViewController <UIScrollViewDelegate,UIGestureRecognizerDelegate,PainFaceDelegate,MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, retain)IBOutlet UILabel *partNameLabel;

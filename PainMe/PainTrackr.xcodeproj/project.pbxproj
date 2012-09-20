@@ -18,6 +18,7 @@
 		7673B51315ADD7CD006112C2 /* PainFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7673B51215ADD7CD006112C2 /* PainFaceView.m */; };
 		767B08D015C9A0F3001EA228 /* InvoPainGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 767B08CE15C9A0F3001EA228 /* InvoPainGraphViewController.m */; };
 		767B08D115C9A0F3001EA228 /* InvoPainGraphViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 767B08CF15C9A0F3001EA228 /* InvoPainGraphViewController.xib */; };
+		7683CBA9160BC8F500B566A7 /* InvoPartNamelabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7683CBA8160BC8F500B566A7 /* InvoPartNamelabel.m */; };
 		76AA47DC15C9968500A28859 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76AA47DB15C9968500A28859 /* libCorePlot-CocoaTouch.a */; };
 		76AB5DA515B890E100FEB78B /* InvoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AB5DA415B890E100FEB78B /* InvoDataManager.m */; };
 		76B1258215D43F160000286A /* untitled-1_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 76B1255E15D43F160000286A /* untitled-1_01.png */; };
@@ -402,6 +403,8 @@
 		767B08CD15C9A0F3001EA228 /* InvoPainGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoPainGraphViewController.h; sourceTree = "<group>"; };
 		767B08CE15C9A0F3001EA228 /* InvoPainGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoPainGraphViewController.m; sourceTree = "<group>"; };
 		767B08CF15C9A0F3001EA228 /* InvoPainGraphViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoPainGraphViewController.xib; sourceTree = "<group>"; };
+		7683CBA7160BC8F500B566A7 /* InvoPartNamelabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoPartNamelabel.h; sourceTree = "<group>"; };
+		7683CBA8160BC8F500B566A7 /* InvoPartNamelabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoPartNamelabel.m; sourceTree = "<group>"; };
 		76AA478C15C9968500A28859 /* _CPTConstraintsFixed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CPTConstraintsFixed.h; sourceTree = "<group>"; };
 		76AA478D15C9968500A28859 /* _CPTConstraintsRelative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CPTConstraintsRelative.h; sourceTree = "<group>"; };
 		76AA478E15C9968500A28859 /* _CPTDarkGradientTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CPTDarkGradientTheme.h; sourceTree = "<group>"; };
@@ -1564,6 +1567,8 @@
 				7673B51215ADD7CD006112C2 /* PainFaceView.m */,
 				76D9950515EFB1B300FFF78C /* InvoHistoryView.h */,
 				76D9950615EFB1B300FFF78C /* InvoHistoryView.m */,
+				7683CBA7160BC8F500B566A7 /* InvoPartNamelabel.h */,
+				7683CBA8160BC8F500B566A7 /* InvoPartNamelabel.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2053,6 +2058,7 @@
 				76111ED515D547BF007C1FC9 /* InvoBodyPartDetails.m in Sources */,
 				76D9950215EFB02D00FFF78C /* InvoHistoryViewController.m in Sources */,
 				76D9950715EFB1B300FFF78C /* InvoHistoryView.m in Sources */,
+				7683CBA9160BC8F500B566A7 /* InvoPartNamelabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

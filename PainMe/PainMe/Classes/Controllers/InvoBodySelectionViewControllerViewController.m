@@ -12,7 +12,7 @@
 #import "BodyPartGeometry.h"
 #import "PainEntry.h"
 #import "PainLocation.h"
-
+#import "InvoPartNameLabel.h"
 #import "InvoHistoryViewController.h"
 
 @interface InvoBodySelectionViewControllerViewController () {
@@ -167,6 +167,11 @@
 
 -(void)handleTapGesture:(UITapGestureRecognizer *)gestureReco{
 
+    InvoPartNamelabel *lbl = (InvoPartNamelabel *)[self.view viewWithTag:kTagPartNameBubble];
+    if (lbl) {
+        [lbl removeFromSuperview];
+    }
+
     CGPoint touchLocation = [gestureReco locationInView:self.scrollView];
     NSLog(@"Tapped inside scrollView at x:%f y:%f",touchLocation.x, touchLocation.y);
   
@@ -179,22 +184,25 @@
     int zmLvl = (self.scrollView.zoomScale <0.06)?1:2;
     
     locDict = [self.bodyGeometry containsPoint:CGPointMake(newPt.x/BODY_VIEW_WIDTH, newPt.y/BODY_VIEW_HEIGHT) withZoomLVL:zmLvl];
-       
+   /*
     if (locDict) {
 
         if([self.bodyView doesEntryExist:[[[locDict allKeys]objectAtIndex:0]copy]]){
             [InvoDataManager painEntryForLocation:[locDict copy] levelPain:0 notes:nil];
         }
     }
-
+*/
 //Making changes to the text label
-    NSString *name =  [self.bodyView removePainAtLocation:newPt];
+    NSString *name =  [self.bodyView partNameAtLocation:newPt remove:NO];
     
     if (name) {
-        if ([name isEqualToString:self.partNameLabel.text]) {
-            [self.partNameLabel setText:@"NONE"];
-            [self.partNameLabel setTextColor:[UIColor blackColor]];
-        }
+//        if ([name isEqualToString:self.partNameLabel.text]) {
+//            [self.partNameLabel setText:@"NONE"];
+//            [self.partNameLabel setTextColor:[UIColor blackColor]];
+//        }
+        InvoPartNamelabel *bble = [[InvoPartNamelabel alloc] initWithFrame:CGRectMake(touchLocation.x,touchLocation.y , 100, 20) name:[name copy]];
+        [bble setTag:kTagPartNameBubble];
+        [self.view insertSubview:bble atIndex:100];
     }
     /*
     int tileNum = [self tileAtTouchLocation:touchLocation];
@@ -364,7 +372,8 @@
             }
             
             //Making changes to the text label
-            NSString *name =  [self.bodyView removePainAtLocation:CGPointMake(convPoint.x*BODY_VIEW_WIDTH, convPoint.y*BODY_VIEW_HEIGHT)];
+           // NSString *name =  [self.bodyView removePainAtLocation:CGPointMake(convPoint.x*BODY_VIEW_WIDTH, convPoint.y*BODY_VIEW_HEIGHT)];
+            NSString *name = [self.bodyView partNameAtLocation:CGPointMake(convPoint.x*BODY_VIEW_WIDTH, convPoint.y*BODY_VIEW_HEIGHT) remove:YES];
             
             if (name) {
                 if ([name isEqualToString:self.partNameLabel.text]) {

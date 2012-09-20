@@ -389,8 +389,8 @@
 }
 
 #pragma mark removing Pain At given point
--(NSString *)removePainAtLocation:(CGPoint)touch{
-
+-(NSString *)partNameAtLocation:(CGPoint)touch remove:(BOOL)toRem{
+    
     CGRect shapeRemoveRect = CGRectZero;
     InvoBodyPartDetails *PartToRem =nil;
     NSString *strToRet = nil;
@@ -400,7 +400,7 @@
         if ([part.partShapePoints containsPoint:touch]) {
             
             shapeRemoveRect = [part.partShapePoints bounds];
-
+            
             PartToRem = part ;
             
             strToRet =part.partName;
@@ -408,12 +408,11 @@
         }
     }
     
-    if(PartToRem){
+    if(PartToRem && toRem){
         
         [self.shapesArray removeObject:PartToRem];
+        [self setNeedsDisplayInRect:shapeRemoveRect];
     }
-    
-    [self setNeedsDisplayInRect:shapeRemoveRect];
     
     return strToRet;
 }

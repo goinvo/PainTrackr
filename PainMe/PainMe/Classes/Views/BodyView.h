@@ -28,7 +28,7 @@
 -(void)maskWithColor:(UIColor *)maskFillColor;
 -(void)resetStroke;
 
--(NSString *)removePainAtLocation:(CGPoint)touch;
+-(NSString *)partNameAtLocation:(CGPoint)touch remove:(BOOL)toRem;
 -(void)addObjToSHapesArrayWithShape:(UIBezierPath *)shape color:(UIColor *)fillColor detail:(int)levDet name:(NSString *)partName;
 
 -(BOOL)doesEntryExist:(NSString *)name;

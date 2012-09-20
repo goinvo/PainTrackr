@@ -12,10 +12,20 @@
 #import "InvoHistoryView.h"
 
 @interface InvoHistoryViewController ()
+{
+
+    NSDateFormatter *form1;
+}
 
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) InvoHistoryView *historyView;
+
+@property (nonatomic, retain)NSArray *sortedDates;
+@property (nonatomic, retain)NSDictionary *painEntriesByDate;
+
 -(IBAction)backPressed:(id)sender;
+
+-(void)sortDates;
 @end
 
 @implementation InvoHistoryViewController
@@ -52,108 +62,130 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-#pragma mark view Will Appear
+#pragma mark SortDates
+-(void)sortDates{
 
--(void)viewWillAppear:(BOOL)animated{
+    NSMutableArray *unSortedDates = [NSMutableArray array];
+    NSDateFormatter *frmtr = [[NSDateFormatter alloc]init];
+    
+    [frmtr setDateStyle:NSDateFormatterShortStyle];
+    
+    for (id objDate in [self.painEntriesByDate allKeys]) {
+        
+        [unSortedDates addObject:[frmtr dateFromString:objDate]];
+    }
+    
+    self.sortedDates = [unSortedDates sortedArrayUsingComparator:^(NSDate *d1, NSDate *d2) {
+        
+        return [d1 compare:d2];
+    }];
+    
+    NSLog(@"sorted array is %@", self.sortedDates);
 
-    [super viewWillAppear:animated];
+}
+
+#pragma mark -
+
+#pragma mark setUpview
+-(void)setUpView{
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     [self.navigationController setToolbarHidden:NO];
-
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.scrollView.backgroundColor = [UIColor clearColor];
     
     self.scrollView.maximumZoomScale = 2.0;
     
-    NSDictionary *histroyViews = [NSDictionary dictionaryWithDictionary:[[InvoDataManager sharedDataManager] entriesPerDayList]];
+    self.painEntriesByDate = [NSDictionary dictionaryWithDictionary:[[InvoDataManager sharedDataManager] entriesPerDayList]];
     
-    NSLog(@"Total entries to draw are %d",[[histroyViews allKeys] count]);
-
-
+    NSLog(@"Total entries to draw are %d",[[self.painEntriesByDate allKeys] count]);
+    
     [self.scrollView setFrame:CGRectMake(0, 0, 320, 480)];
+    
+    form1 = [[NSDateFormatter alloc] init];
 
-    NSArray *sortedDates = [[histroyViews allKeys] sortedArrayUsingComparator:^(NSDate *d1, NSDate *d2) {
-        return [d1 compare:d2];
-    }];
-    
-    int maxCOunt = [sortedDates count];
-    
-    NSString *prevDateString = [sortedDates objectAtIndex:0];
-    
-    NSDateFormatter *form1 = [[NSDateFormatter alloc] init];
-    
+    [self sortDates];
+
+}
+
+#pragma mark -
+
+-(void)addLabelFromDate:(NSDate *)date formatStyle:(NSString *)frmtSyl rect:(CGRect)labelrect backColor:(UIColor*)color fontSize:(float)fntSize toView:(id)viewToAttach{
+
     [form1 setDateStyle:NSDateFormatterShortStyle];
-    NSDate *date = [form1 dateFromString:prevDateString];
-    [form1 setDateFormat:@"MMMM YYY"];
-    UILabel *l1 = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, 320, 20)];
-    [l1 setBackgroundColor:[UIColor grayColor]];
+    [form1 setDateFormat:frmtSyl];
+    
+    UILabel *l1 = [[UILabel alloc]initWithFrame:labelrect];
+    [l1 setBackgroundColor:color];
+    [l1 setFont:[UIFont fontWithName:@"Helvetica" size:fntSize]];
     [l1 setText:[NSString stringWithFormat:@"%@",[form1 stringFromDate:date]]];
     [l1 setTextAlignment:UITextAlignmentCenter];
-    [self.scrollView addSubview:l1];
- 
+    [viewToAttach addSubview:l1];
     
+}
+
+#pragma mark view Will Appear
+
+-(void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+
+    [self setUpView];
+   
+ 
+    int maxCOunt = [self.sortedDates count];
+    
+    NSDate *prevDateString = [self.sortedDates objectAtIndex:0];
+    NSLog(@"date is %@",prevDateString);
+   
+    [self addLabelFromDate:prevDateString formatStyle:@"MMMM YYY" rect:CGRectMake(0, 10, 320, 20) backColor:[UIColor grayColor] fontSize:14.0f toView:self.scrollView];
+
     int mounthCount = 0;    
     float xIndex = 10.0;
     float yIndex = 45.0;
     int column = 0;
     
+    NSDate *prevDate = prevDateString;
+    
     for (int i=0; i<maxCOunt; i++) {
  
 //Checking for dates and adding labels accordingly to the scroll view        
-        NSString *currDateString = [[sortedDates objectAtIndex:i] copy];
-        
+         
         [form1 setDateStyle:NSDateFormatterShortStyle];
         
-        NSDate *currDate = [form1 dateFromString:currDateString];
-        NSDate *prevDate = [form1 dateFromString:prevDateString];
-               
+        NSDate *currDate = [[self.sortedDates objectAtIndex:i] copy];
         [form1 setDateFormat:@"MM"];
+        
+//        NSLog(@" currDate %@",[form1 stringFromDate:currDate]);
+//        NSLog(@" PrevDate %@",[form1 stringFromDate:prevDate]);
         
         if(![[form1 stringFromDate:currDate] isEqualToString:[form1 stringFromDate:prevDate]]){
             
             mounthCount ++;
-            
-            [form1 setDateFormat:@"MMMM YYY"];
             yIndex += 118;
-            UILabel *l1 = [[UILabel alloc]initWithFrame:CGRectMake(0, yIndex, 320, 20)];
-            [l1 setBackgroundColor:[UIColor grayColor]];
-            [l1 setText:[NSString stringWithFormat:@"%@",[form1 stringFromDate:currDate]]];
-            [l1 setTextAlignment:UITextAlignmentCenter];
-            [self.scrollView addSubview:l1];
-          
+            
+            [self addLabelFromDate:currDate formatStyle:@"MMMM YYY" rect:CGRectMake(0, yIndex, 320, 20) backColor:[UIColor grayColor] fontSize:14.0f toView:self.scrollView];
             
             yIndex += 35;
             column = 0;
         }
     
-        prevDateString = currDateString;
+        prevDate = currDate;
 
 // Doing the drawing for Body and adding it to scrollView
-       
-        InvoHistoryView *hisView =[[InvoHistoryView alloc]initWithFrame:CGRectMake(0, 0, 60, 108) locations:[[histroyViews valueForKey:currDateString]copy]];
+   
+        [form1 setDateFormat:@"M/dd/YY"];
+        NSString *stringFrmDate = [form1 stringFromDate:currDate];
+        
+        InvoHistoryView *hisView =[[InvoHistoryView alloc]initWithFrame:CGRectMake(0, 0, 60, 108) locations:[[self.painEntriesByDate valueForKey:stringFrmDate] copy]];
 
         xIndex = 10 +70*column;
      
         [hisView setFrame:CGRectMake(xIndex,yIndex, 60, 108)];
+    
+        [self addLabelFromDate:currDate formatStyle:@"E d" rect:CGRectMake(0 ,108, 60, 10) backColor:[UIColor clearColor] fontSize:9.0 toView:hisView];
         
-        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-        [formatter setDateStyle:NSDateFormatterShortStyle];
-        
-        NSDate *dateee = [formatter dateFromString:[currDateString copy]];
-        
-        [formatter setDateFormat:@"E d"];
-        NSLog(@"day is %@",[formatter stringFromDate:dateee]);
-                
-        UILabel *lbl  = [[UILabel alloc]init];
-        [lbl setBackgroundColor:[UIColor clearColor]];
-        [lbl setFont:[UIFont fontWithName:@"Helvetica" size:9]];
-        [lbl setTextAlignment:UITextAlignmentCenter];
-        [lbl setText:[[formatter stringFromDate:dateee] copy]];
-        [lbl setFrame:CGRectMake(0 ,108, 60, 10)];
-        
-        [hisView addSubview:lbl];
-                
         [self.scrollView addSubview:hisView];
 
         column ++;
@@ -164,11 +196,9 @@
         }
     }
     
-    
     self.scrollView.contentSize = (yIndex+108 <480 )?CGSizeMake( 320, 480+108) : CGSizeMake(320, yIndex+108*2);
-
-    
 }
+
 #pragma mark -
 
 -(IBAction)backPressed:(id)sender{
