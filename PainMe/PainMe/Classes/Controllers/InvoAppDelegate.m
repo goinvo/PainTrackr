@@ -50,7 +50,7 @@
     
     [dtaMgr checkPainLocationDataBase];
     
-    [TestFlight takeOff:@"35de84803bb30da2ded080223940da33_MTEwMDY2MjAxMi0wNy0xMyAxNDo1MTozNi44MDQ4NjU"];
+//    [TestFlight takeOff:@"35de84803bb30da2ded080223940da33_MTEwMDY2MjAxMi0wNy0xMyAxNDo1MTozNi44MDQ4NjU"];
        
     return YES;
 }

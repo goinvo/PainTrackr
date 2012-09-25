@@ -513,37 +513,42 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterShortStyle];
 
-    NSString *currDate =[formatter stringFromDate:[(NSDictionary *)[totalEntries objectAtIndex:0] valueForKey:@"timestamp"]];
+   // NSString *currDate =[formatter stringFromDate:[(NSDictionary *)[totalEntries objectAtIndex:0] valueForKey:@"timestamp"]];
     
     NSString *prevDate = [formatter stringFromDate:[(NSDictionary *)[totalEntries objectAtIndex:0] valueForKey:@"timestamp"]];
     NSMutableArray *arr = [NSMutableArray array];
     
     for (int i=0; i<[totalEntries count];i++) {
         
-        NSDictionary *dict = [totalEntries objectAtIndex:i];
-                
-        currDate = [formatter stringFromDate:[dict valueForKey:@"timestamp"]] ;
-//        NSLog(@"curr Date is %@",currDate);
-//        NSLog(@"Prev Date is %@",prevDate);
+  
+        PainEntry *entry = [totalEntries objectAtIndex:i];
+        NSString *currDate;
         
-        if (i == [totalEntries count]-1) {
-        
-            [dateSortedEntries setValue:arr forKey:currDate];
-            arr= [NSMutableArray array];
-            break;
-        }
-        
-        if ([currDate isEqualToString:prevDate]) {
+        if(entry){
+            currDate = [formatter stringFromDate:[entry valueForKey:@"timestamp"]] ;
             
-            [arr addObject:dict];
-        }
-        else{
-            [dateSortedEntries setValue:arr forKey:prevDate];
-            arr= [NSMutableArray array];
+            if (![currDate isEqualToString:prevDate]) {
+                
+                [dateSortedEntries setValue:arr forKey:prevDate];
+                arr = [NSMutableArray array];
+                
+                if(![arr containsObject:entry]){
+                    [arr addObject:entry];
+                }
+            }
+            else if (i == [totalEntries count]-1){
+            
+                id value = [dateSortedEntries valueForKey:currDate];
+                if (!value) {
+                    [dateSortedEntries setValue:arr forKey:currDate];
+                }
+            }
+            if(![arr containsObject:entry]){
+                [arr addObject:entry];
+            }
 
+            prevDate = currDate;
         }
-//        NSLog(@"Entry is %@",[dict valueForKey:@"timestamp"]);
-         prevDate = currDate;
         
     }
     NSLog(@"date sorted entries are %@",dateSortedEntries);

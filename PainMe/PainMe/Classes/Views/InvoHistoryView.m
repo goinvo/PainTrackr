@@ -8,37 +8,42 @@
 
 #import "InvoHistoryView.h"
 #import "QuartzCore/QuartzCore.h"
-#import "PainEntry.h"
-#import "PainLocation.h"
+//#import "PainEntry.h"
+//#import "PainLocation.h"
+
 
 @interface InvoHistoryView ()
+{
+
+}
 @property (nonatomic, retain) NSMutableArray *locationArray;
 @property (nonatomic, retain) NSString *dateSring;
 @property (nonatomic, readwrite)BOOL moreEntries;
+
 @end
 
 
 
 @implementation InvoHistoryView
 
-- (id)initWithFrame:(CGRect)frame locations:(NSArray *)shapesDict
+@synthesize del = _del;
+
+- (id)initWithFrame:(CGRect)frame locations:(NSArray *)shapesDict date:(NSString *)stringDate 
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
 //        NSLog(@"history view init");
 //        NSLog(@"Received dict is %@",shapesDict);
+        
+        [self setUserInteractionEnabled:YES];
         NSArray *locatArr = [NSArray arrayWithArray:shapesDict];
+        
+        
+        self.dateSring = [stringDate copy];
         self.moreEntries = NO;
         
-        int i=0;
-        for (PainEntry *obj in locatArr) {
-            PainLocation *pLoc = (PainLocation *)[obj valueForKey:@"location"];
-            NSLog(@"%@",pLoc.name);
-            i++;
-        }
-        
-        if (i>1) {
+        if ([locatArr count] > 1) {
             self.moreEntries = YES;
             [self setNeedsDisplay];
         }
@@ -52,7 +57,7 @@
 - (void)drawRect:(CGRect)rect
 {
     // Drawing code
-    NSLog(@"Drawing in History view");
+//    NSLog(@"Drawing in History view");
     UIImage *img = [UIImage imageNamed:@"historyBodyImage.png"];
     [[UIColor whiteColor] setFill];
     UIRectFill(rect);
@@ -63,14 +68,32 @@
         CGContextStrokeRect(UIGraphicsGetCurrentContext(), rect);
     }
     else{
-    
-        [img drawInRect:CGRectMake(0, 0, rect.size.width -10, rect.size.height)];
+        
         [[UIColor blackColor]setStroke];
-        CGContextStrokeRect(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, rect.size.width -10, rect.size.height));
+        [[UIColor whiteColor]setFill];
+         CGContextSetShadow(UIGraphicsGetCurrentContext(), CGSizeMake(2.0, 2.0), 1.0);
+        
+        CGContextStrokeRect(UIGraphicsGetCurrentContext(), CGRectMake(20, 20,rect.size.width-21,rect.size.height-21 ));
+        CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(20, 20,rect.size.width-21,rect.size.height-21 ));
 
-        CGContextStrokeRect(UIGraphicsGetCurrentContext(), CGRectMake(rect.size.width -10, 5,10, rect.size.height-10));
+//        [img drawInRect:CGRectMake(20, 20,rect.size.width-20,rect.size.height-20 )];
+        
+        CGContextStrokeRect(UIGraphicsGetCurrentContext(), CGRectMake(10, 10,rect.size.width-20,rect.size.height-20 ));
+        CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(10, 10,rect.size.width-20,rect.size.height-20 ));
+       
+//        [img drawInRect:CGRectMake(10, 10,rect.size.width-20,rect.size.height-20 )];
+        
+        CGContextStrokeRect(UIGraphicsGetCurrentContext(), CGRectMake(0, 0,rect.size.width-20,rect.size.height-20 ));
+        CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(1, 1,rect.size.width-21,rect.size.height-21 ));
+        
+        [img drawInRect:CGRectMake(0, 0,rect.size.width-20,rect.size.height-20 )];
     }
+}
 
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+
+//    NSLog(@"touched me with date %@", self.dateSring);
+    [self.del daySelectedWas:self.dateSring];
 }
  
 @end

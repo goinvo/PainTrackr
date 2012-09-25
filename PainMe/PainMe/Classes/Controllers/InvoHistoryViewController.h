@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "InvoHistoryView.h"
 
-@interface InvoHistoryViewController : UIViewController<UIScrollViewDelegate>
+@interface InvoHistoryViewController : UIViewController<UIScrollViewDelegate,UIGestureRecognizerDelegate,HistoryViewDelegate>
 
 @end

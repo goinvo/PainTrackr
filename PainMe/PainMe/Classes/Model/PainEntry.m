@@ -85,7 +85,7 @@
     
     NSFetchRequest *fetchReq =[[NSFetchRequest alloc] init];
     [fetchReq setEntity:entityDesc];
-    [fetchReq setPropertiesToFetch:[NSArray arrayWithObjects:@"location",@"notes",@"painLevel",@"timestamp", nil]];
+//    [fetchReq setPropertiesToFetch:[NSArray arrayWithObjects:@"location",@"notes",@"painLevel",@"timestamp", nil]];
     
     NSSortDescriptor *desc = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO];
     [fetchReq setSortDescriptors:[NSArray arrayWithObject:desc]];
