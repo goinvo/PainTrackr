@@ -14,6 +14,7 @@
 #import "PainLocation.h"
 #import "InvoPartNameLabel.h"
 #import "InvoHistoryViewController.h"
+#import "InvoAboutViewController.h"
 
 @interface InvoBodySelectionViewControllerViewController () {
    
@@ -38,6 +39,7 @@
 -(void)checkAndAddLastEntryToView;
 
 -(IBAction)sendPresed:(id)sender;
+-(IBAction)aboutPressed:(id)sender;
 //-(IBAction)historyPressed:(id)sender;
 -(NSString *)timeForReport;
 -(void)showMailToBeSent;
@@ -382,7 +384,7 @@
 //                }
 //            }
         }
-        else{
+//        else{
             UIColor *fillcolor = [self colorfromPain:painLvl];
             
             [self.bodyView renderPainForBodyPartPath:[[pathContainingPoint allValues] objectAtIndex:0] WithColor:fillcolor detailLevel:zoomLVL name:[[pathContainingPoint allKeys] objectAtIndex:0]];
@@ -393,7 +395,7 @@
             [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:painLvl notes:nil];
             
             fillcolor = nil;
-        }
+//        }
     }
 }
 
@@ -439,7 +441,7 @@
     
     switch (painLvl) {
         case 0:
-            //colorToFill = [UIColor colorWithRed:0.00f green:0.00f blue:0.00f alpha:1.0f];
+            colorToFill = [UIColor colorWithRed:1.00f green:1.00f blue:1.00f alpha:1.0f];
             break;
         case 1:
             colorToFill = [UIColor colorWithRed:0.99f green:0.71f blue:0.51f alpha:0.9f];               
@@ -581,6 +583,16 @@
     
 }
  */
+#pragma mark -
+
+#pragma mark About tapped
+
+-(IBAction)aboutPressed:(id)sender{
+
+    InvoAboutViewController *aboutCtrl = [[InvoAboutViewController alloc]initWithNibName:nil bundle:nil];
+    
+    [self.navigationController pushViewController:aboutCtrl animated:YES];
+}
 #pragma mark -
 
 @end

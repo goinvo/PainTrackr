@@ -95,10 +95,15 @@
                                 <segue destination="x1J-dd-DmD" kind="modal" id="ewi-GP-hql"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="ro2-cl-npG"/>
-                        <barButtonItem title="Send" id="gHK-Kg-PFO">
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="7Dn-GQ-5qz"/>
+                        <barButtonItem systemItem="action" id="gHK-Kg-PFO">
                             <connections>
                                 <action selector="sendPresed:" destination="Yo3-Z7-ePf" id="PFk-iI-YcU"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="?" id="BBm-aa-8Y8">
+                            <connections>
+                                <action selector="aboutPressed:" destination="Yo3-Z7-ePf" id="ZqW-0i-w8O"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -164,23 +169,6 @@
             </objects>
             <point key="canvasLocation" x="622" y="655"/>
         </scene>
-        <!--Invo Pain Graph View Controller-->
-        <scene sceneID="9Z8-uV-771">
-            <objects>
-                <viewController id="kKB-AA-inu" customClass="InvoPainGraphViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="l1X-wK-Sdl">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.41129225130000002" green="0.2065406082" blue="0.00085065706629999999" alpha="0.83999999999999997" colorSpace="calibratedRGB"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="d1f-TH-ELv"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mtW-Bw-n6b" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="221" y="1290"/>
-        </scene>
         <!--Invo Detail View Controller - Detail-->
         <scene sceneID="24">
             <objects>
@@ -217,6 +205,7 @@
         <class className="InvoBodySelectionViewControllerViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/InvoBodySelectionViewControllerViewController.h"/>
             <relationships>
+                <relationship kind="action" name="aboutPressed:"/>
                 <relationship kind="action" name="sendPresed:"/>
                 <relationship kind="outlet" name="bodyView" candidateClass="BodyView"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>

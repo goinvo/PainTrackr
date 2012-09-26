@@ -23,6 +23,8 @@
 		763307A715EEB3AE0059152A /* BodyPartData.csv in Resources */ = {isa = PBXBuildFile; fileRef = 763307A615EEB3AE0059152A /* BodyPartData.csv */; };
 		7657561716137CA000067BAF /* F1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7657561616137CA000067BAF /* F1.png */; };
 		7657561916137CAE00067BAF /* F1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7657561816137CAE00067BAF /* F1@2x.png */; };
+		7657561D161382BC00067BAF /* InvoAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7657561B161382BB00067BAF /* InvoAboutViewController.m */; };
+		7657561E161382BC00067BAF /* InvoAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7657561C161382BC00067BAF /* InvoAboutViewController.xib */; };
 		7673B51315ADD7CD006112C2 /* PainFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7673B51215ADD7CD006112C2 /* PainFaceView.m */; };
 		7683CBA9160BC8F500B566A7 /* InvoPartNamelabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7683CBA8160BC8F500B566A7 /* InvoPartNamelabel.m */; };
 		76AB5DA515B890E100FEB78B /* InvoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AB5DA415B890E100FEB78B /* InvoDataManager.m */; };
@@ -411,6 +413,9 @@
 		763307A615EEB3AE0059152A /* BodyPartData.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BodyPartData.csv; sourceTree = "<group>"; };
 		7657561616137CA000067BAF /* F1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = F1.png; sourceTree = "<group>"; };
 		7657561816137CAE00067BAF /* F1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "F1@2x.png"; sourceTree = "<group>"; };
+		7657561A161382BB00067BAF /* InvoAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoAboutViewController.h; sourceTree = "<group>"; };
+		7657561B161382BB00067BAF /* InvoAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoAboutViewController.m; sourceTree = "<group>"; };
+		7657561C161382BC00067BAF /* InvoAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoAboutViewController.xib; sourceTree = "<group>"; };
 		766FF8FC15E51EA8000EDCD2 /* ErrorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorHandler.h; sourceTree = "<group>"; };
 		7673B51115ADD7CD006112C2 /* PainFaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PainFaceView.h; sourceTree = "<group>"; };
 		7673B51215ADD7CD006112C2 /* PainFaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PainFaceView.m; sourceTree = "<group>"; };
@@ -1361,6 +1366,9 @@
 				76C5FC7A1610DC3200B9CDAD /* InvoDetailedHistoryViewController.h */,
 				76C5FC7B1610DC3200B9CDAD /* InvoDetailedHistoryViewController.m */,
 				76C5FC7C1610DC3200B9CDAD /* InvoDetailedHistoryViewController.xib */,
+				7657561A161382BB00067BAF /* InvoAboutViewController.h */,
+				7657561B161382BB00067BAF /* InvoAboutViewController.m */,
+				7657561C161382BC00067BAF /* InvoAboutViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1846,6 +1854,7 @@
 				762C19FF1612543D00434807 /* Body_Detail@2x.png in Resources */,
 				7657561716137CA000067BAF /* F1.png in Resources */,
 				7657561916137CAE00067BAF /* F1@2x.png in Resources */,
+				7657561E161382BC00067BAF /* InvoAboutViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1903,6 +1912,7 @@
 				7683CBA9160BC8F500B566A7 /* InvoPartNamelabel.m in Sources */,
 				76C5FC7D1610DC3200B9CDAD /* InvoDetailedHistoryViewController.m in Sources */,
 				762C1A03161258FD00434807 /* InvoDetailedHistoryBodyView.m in Sources */,
+				7657561D161382BC00067BAF /* InvoAboutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

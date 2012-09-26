@@ -56,9 +56,14 @@
         int maxCOunt = [self.sortedDates count];
         
         NSDate *prevDateString = [self.sortedDates objectAtIndex:0];
-//        NSLog(@"date is %@",prevDateString);
+//
+        //NSLog(@"date is %@",prevDateString);
         
-        [self addLabelFromDate:prevDateString formatStyle:@"MMMM YYY" rect:CGRectMake(0, 10, 320, 20) backColor:[UIColor grayColor] fontSize:14.0f toView:self.scrollView];
+        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 2, 320, 1)];
+        [lineView setBackgroundColor:[UIColor lightGrayColor]];
+        [self.scrollView addSubview:lineView];
+        
+        [self addLabelFromDate:prevDateString formatStyle:@"MMMM YYY" rect:CGRectMake(0, 10, 320, 20) backColor:[UIColor clearColor] fontSize:15.0f toView:self.scrollView];
         
         int mounthCount = 0;
         float xIndex = 10.0;
@@ -84,7 +89,11 @@
                 mounthCount ++;
                 yIndex += 130;
                 
-                [self addLabelFromDate:currDate formatStyle:@"MMMM YYY" rect:CGRectMake(0, yIndex, 320, 20) backColor:[UIColor grayColor] fontSize:14.0f toView:self.scrollView];
+                UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, yIndex, 320, 1)];
+                [lineView setBackgroundColor:[UIColor lightGrayColor]];
+                [self.scrollView addSubview:lineView];
+
+                [self addLabelFromDate:currDate formatStyle:@"MMMM YYY" rect:CGRectMake(0, yIndex+5, 320, 20) backColor:[UIColor clearColor] fontSize:15.0f toView:self.scrollView];
                 
                 yIndex += 35;
                 column = 0;
@@ -197,7 +206,8 @@
     
     UILabel *l1 = [[UILabel alloc]initWithFrame:labelrect];
     [l1 setBackgroundColor:color];
-    [l1 setFont:[UIFont fontWithName:@"Helvetica" size:fntSize]];
+    [l1 setFont:[UIFont fontWithName:@"Helvetica-Bold" size:fntSize]];
+    
     [l1 setText:[NSString stringWithFormat:@"%@",[form1 stringFromDate:date]]];
     [l1 setTextAlignment:UITextAlignmentCenter];
     [viewToAttach addSubview:l1];
