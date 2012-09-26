@@ -13,6 +13,9 @@
 		7612D8AB160D02E6009924A9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7612D8A7160D02E6009924A9 /* README.md */; };
 		7612D8AC160D02E6009924A9 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 7612D8A8160D02E6009924A9 /* release_notes.md */; };
 		7612E21215A1E94500E8E009 /* BodyPartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7612E21115A1E94500E8E009 /* BodyPartView.m */; };
+		762C19FE1612543D00434807 /* Body_Detail.png in Resources */ = {isa = PBXBuildFile; fileRef = 762C19FC1612543D00434807 /* Body_Detail.png */; };
+		762C19FF1612543D00434807 /* Body_Detail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 762C19FD1612543D00434807 /* Body_Detail@2x.png */; };
+		762C1A03161258FD00434807 /* InvoDetailedHistoryBodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 762C1A02161258FD00434807 /* InvoDetailedHistoryBodyView.m */; };
 		762EC62915C1CCBE00250155 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 762EC62215C1CCBE00250155 /* CHCSVParser.m */; };
 		762EC62A15C1CCBE00250155 /* CHCSVWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 762EC62415C1CCBE00250155 /* CHCSVWriter.m */; };
 		762EC62B15C1CCBE00250155 /* NSArray+CHCSVAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 762EC62615C1CCBE00250155 /* NSArray+CHCSVAdditions.m */; };
@@ -392,6 +395,10 @@
 		7612D8A9160D02E6009924A9 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		7612E21015A1E94500E8E009 /* BodyPartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodyPartView.h; sourceTree = "<group>"; };
 		7612E21115A1E94500E8E009 /* BodyPartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyPartView.m; sourceTree = "<group>"; };
+		762C19FC1612543D00434807 /* Body_Detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Body_Detail.png; sourceTree = "<group>"; };
+		762C19FD1612543D00434807 /* Body_Detail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Body_Detail@2x.png"; sourceTree = "<group>"; };
+		762C1A01161258FD00434807 /* InvoDetailedHistoryBodyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoDetailedHistoryBodyView.h; sourceTree = "<group>"; };
+		762C1A02161258FD00434807 /* InvoDetailedHistoryBodyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoDetailedHistoryBodyView.m; sourceTree = "<group>"; };
 		762EC62015C1CCBE00250155 /* CHCSV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSV.h; sourceTree = "<group>"; };
 		762EC62115C1CCBE00250155 /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
 		762EC62215C1CCBE00250155 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
@@ -1395,6 +1402,8 @@
 				76D9950615EFB1B300FFF78C /* InvoHistoryView.m */,
 				7683CBA7160BC8F500B566A7 /* InvoPartNamelabel.h */,
 				7683CBA8160BC8F500B566A7 /* InvoPartNamelabel.m */,
+				762C1A01161258FD00434807 /* InvoDetailedHistoryBodyView.h */,
+				762C1A02161258FD00434807 /* InvoDetailedHistoryBodyView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1402,6 +1411,8 @@
 		834C100F158F7255000C5652 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				762C19FC1612543D00434807 /* Body_Detail.png */,
+				762C19FD1612543D00434807 /* Body_Detail@2x.png */,
 				76BB404215F1144700ED69A9 /* historyBodyImage.png */,
 				76BB404315F1144700ED69A9 /* historyBodyImage@2x.png */,
 				763307A615EEB3AE0059152A /* BodyPartData.csv */,
@@ -1833,6 +1844,8 @@
 				76C5FC7E1610DC3200B9CDAD /* InvoDetailedHistoryViewController.xib in Resources */,
 				76C5FC811610DFDC00B9CDAD /* arrow_Left.png in Resources */,
 				76C5FC821610DFDC00B9CDAD /* arrow_right.png in Resources */,
+				762C19FE1612543D00434807 /* Body_Detail.png in Resources */,
+				762C19FF1612543D00434807 /* Body_Detail@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1889,6 +1902,7 @@
 				76D9950715EFB1B300FFF78C /* InvoHistoryView.m in Sources */,
 				7683CBA9160BC8F500B566A7 /* InvoPartNamelabel.m in Sources */,
 				76C5FC7D1610DC3200B9CDAD /* InvoDetailedHistoryViewController.m in Sources */,
+				762C1A03161258FD00434807 /* InvoDetailedHistoryBodyView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

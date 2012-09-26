@@ -7,7 +7,7 @@
 //
 
 #import "InvoDetailedHistoryViewController.h"
-
+#import "InvoDetailedHistoryBodyView.h"
 
 @interface InvoDetailedHistoryViewController (){
 
@@ -225,9 +225,9 @@
         [entriesScrollView removeFromSuperview];
     }
     
-    entriesScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(40, 50, 240, 359)];
-    [entriesScrollView setBackgroundColor:[UIColor grayColor]];
-
+    entriesScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(80, 50, 160, 360)];
+    [entriesScrollView setBackgroundColor:[UIColor lightGrayColor]];
+    entriesScrollView.pagingEnabled = YES;
     [self.view insertSubview:entriesScrollView atIndex:100];
 
     NSString *dString;
@@ -242,20 +242,16 @@
     }
     
     NSArray *entriesValue = [self.sortedByDateEntries valueForKey:dString];
-    NSLog(@"value count is %d",[entriesValue count]);
+//    NSLog(@"value count is %d",[entriesValue count]);
     
     float oldWIdth = entriesScrollView.bounds.size.width;
     float newWidth = oldWIdth * [entriesValue count];
     
     
     for (int i=0; i<[entriesValue count]; i++) {
-        
-        UIImage *img = [UIImage imageNamed:@"historyBodyImage.png"];
-        UIImageView *bodyImage = [[UIImageView alloc]initWithImage:img];
-        [bodyImage setContentMode:UIViewContentModeScaleToFill];
-        
-        [bodyImage setFrame:CGRectMake(240*i, 0, 240, 359)];
-        [entriesScrollView addSubview:bodyImage];
+                
+        InvoDetailedHistoryBodyView *detailView = [InvoDetailedHistoryBodyView detailedBodyViewWithFrame:CGRectMake(160*i, 0, 160, 360) PainDetails:[entriesValue objectAtIndex:i]];
+        [entriesScrollView addSubview:detailView];
     }
     
     [entriesScrollView setContentSize:CGSizeMake(newWidth, entriesScrollView.bounds.size.height)];

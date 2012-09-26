@@ -19,7 +19,7 @@
 
 @interface InvoHistoryView : UIView
 
-@property (nonatomic, retain)UIImage *imgRet;
+//@property (nonatomic, retain)UIImage *imgRet;
 @property (nonatomic, retain)id <HistoryViewDelegate> del;
 
 - (id)initWithFrame:(CGRect)frame locations:(NSArray *)shapesDict date:(NSString *)stringDate ;

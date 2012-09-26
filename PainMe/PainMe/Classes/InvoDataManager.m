@@ -551,7 +551,7 @@
         }
         
     }
-    NSLog(@"date sorted entries are %@",dateSortedEntries);
+//    NSLog(@"date sorted entries are %@",dateSortedEntries);
     return( ([totalEntries count]>0 )?[dateSortedEntries copy]:nil);
 }
 #pragma mark -
