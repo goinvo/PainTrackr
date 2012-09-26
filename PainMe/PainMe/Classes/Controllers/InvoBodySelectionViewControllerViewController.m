@@ -52,7 +52,7 @@
 @synthesize bodyGeometry = _bodyGeometry;
 @synthesize painFace = _painFace;
 
-@synthesize partNameLabel = _partNameLabel;
+//@synthesize partNameLabel = _partNameLabel;
 
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -142,8 +142,8 @@
             
             [self.bodyView addObjToSHapesArrayWithShape:locpath color:fillColor detail:zoom name:[[loc valueForKey:@"name"] copy]];
             
-            [self.partNameLabel setText:[loc valueForKey:@"name"]];
-            [self.partNameLabel setTextColor:fillColor];
+//            [self.partNameLabel setText:[loc valueForKey:@"name"]];
+//            [self.partNameLabel setTextColor:fillColor];
         }
     }
 }
@@ -173,10 +173,10 @@
     }
 
     CGPoint touchLocation = [gestureReco locationInView:self.scrollView];
-    NSLog(@"Tapped inside scrollView at x:%f y:%f",touchLocation.x, touchLocation.y);
+//    NSLog(@"Tapped inside scrollView at x:%f y:%f",touchLocation.x, touchLocation.y);
   
     CGPoint newPt = [self.bodyView convertPoint:touchLocation fromView:self.scrollView];
-    NSLog(@"New Point is %@", NSStringFromCGPoint(newPt));
+ //   NSLog(@"New Point is %@", NSStringFromCGPoint(newPt));
 
 //Creating a zero Pain Entry
     NSDictionary *locDict = nil;
@@ -216,7 +216,7 @@
 
 -(void)handleDoubleTap:(UIGestureRecognizer*)gestReco{
 
-    NSLog(@"double tap happened");
+//    NSLog(@"double tap happened");
     
     if (self.scrollView.zoomScale >=0.065) {
     
@@ -298,7 +298,7 @@
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale {
    
-    NSLog(@"Scale is %f",scale);
+//    NSLog(@"Scale is %f",scale);
     
     [self.painFace increaseVisibility];
 
@@ -324,7 +324,7 @@
 
 - (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view {
    
-     NSLog(@"Scale while beginning zooming is %f",scrollView.zoomScale);
+//     NSLog(@"Scale while beginning zooming is %f",scrollView.zoomScale);
     
     [self.painFace reduceVisibility];
 }
@@ -373,22 +373,22 @@
             
             //Making changes to the text label
            // NSString *name =  [self.bodyView removePainAtLocation:CGPointMake(convPoint.x*BODY_VIEW_WIDTH, convPoint.y*BODY_VIEW_HEIGHT)];
-            NSString *name = [self.bodyView partNameAtLocation:CGPointMake(convPoint.x*BODY_VIEW_WIDTH, convPoint.y*BODY_VIEW_HEIGHT) remove:YES];
+//            NSString *name = [self.bodyView partNameAtLocation:CGPointMake(convPoint.x*BODY_VIEW_WIDTH, convPoint.y*BODY_VIEW_HEIGHT) remove:YES];
             
-            if (name) {
-                if ([name isEqualToString:self.partNameLabel.text]) {
-                    [self.partNameLabel setText:@"NONE"];
-                    [self.partNameLabel setTextColor:[UIColor blackColor]];
-                }
-            }
+//            if (name) {
+//                if ([name isEqualToString:self.partNameLabel.text]) {
+//                    [self.partNameLabel setText:@"NONE"];
+//                    [self.partNameLabel setTextColor:[UIColor blackColor]];
+//                }
+//            }
         }
         else{
             UIColor *fillcolor = [self colorfromPain:painLvl];
             
             [self.bodyView renderPainForBodyPartPath:[[pathContainingPoint allValues] objectAtIndex:0] WithColor:fillcolor detailLevel:zoomLVL name:[[pathContainingPoint allKeys] objectAtIndex:0]];
             
-            [self.partNameLabel setText:[[pathContainingPoint allKeys] objectAtIndex:0]];
-            [self.partNameLabel setTextColor:fillcolor];
+//            [self.partNameLabel setText:[[pathContainingPoint allKeys] objectAtIndex:0]];
+//            [self.partNameLabel setTextColor:fillcolor];
             
             [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:painLvl notes:nil];
             

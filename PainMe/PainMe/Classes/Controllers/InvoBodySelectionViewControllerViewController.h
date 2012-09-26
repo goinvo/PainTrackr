@@ -19,6 +19,6 @@ typedef enum{
 
 @interface InvoBodySelectionViewControllerViewController : UIViewController <UIScrollViewDelegate,UIGestureRecognizerDelegate,PainFaceDelegate,MFMailComposeViewControllerDelegate>
 
-@property (nonatomic, retain)IBOutlet UILabel *partNameLabel;
+//@property (nonatomic, retain)IBOutlet UILabel *partNameLabel;
 
 @end

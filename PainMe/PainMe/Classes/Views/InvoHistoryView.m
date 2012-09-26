@@ -208,19 +208,15 @@
         if (_pointCount > 2) {
             
             [_bezierPath moveToPoint: CGPointMake(_points[0].x*viewWidth,_points[0].y*viewHeight) ];
-//            NSLog(@"moving to point %@", NSStringFromCGPoint(CGPointMake(_points[0].x*viewWidth,_points[0].y*viewHeight)));
             
             for (int i=1; i<_pointCount; i++) {
                 
                 [_bezierPath addLineToPoint:CGPointMake(_points[i].x*viewWidth ,_points[i].y*viewHeight)];
-//                NSLog(@"addling line to point %@", NSStringFromCGPoint(CGPointMake(_points[i].x*viewWidth ,_points[i].y*viewHeight)));
             }
             [_bezierPath closePath];
         }
     }
-  //  return _bezierPath;
- 
-}
+ }
 
 -(CGPoint)midPoinfOfBezierPath:(UIBezierPath *)bezier{
     

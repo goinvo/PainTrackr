@@ -12,6 +12,7 @@
 
     CGPoint *_points;
     int zoomLevel;
+    NSString *partName;
 }
 
 @property (nonatomic, retain) UIBezierPath *bezierPath;
@@ -46,7 +47,6 @@
         zoomLevel = [[obj valueForKey:@"zoomLevel"] integerValue];
         self.partColor = [self colorfromPain:[[detail valueForKey:@"painLevel"] integerValue]];
         
-        
         int count = ([vertices length])/sizeof(CGPoint);
         
         //set Point Count to calloc enough memory
@@ -55,6 +55,8 @@
         [vertices getBytes:(CGPoint *)_points length:[vertices length]];
         
         [self createUIBezierWithOffset:CGPointZero];
+        
+        partName = [obj valueForKey:@"name"];
     
     }
     return self;
@@ -78,6 +80,14 @@
 
     [self.bezierPath fill];
     
+    CGPoint midpt = [self midPoinfOfBezierPath:self.bezierPath];
+    
+    [[UIColor yellowColor] setFill];
+    CGContextSetAlpha(UIGraphicsGetCurrentContext(), 0.3f);
+    CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(midpt.x-30, midpt.y-8, 70, 16));
+    CGContextSetAlpha(UIGraphicsGetCurrentContext(), 1.0f);
+    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [UIColor blackColor].CGColor);
+    [partName drawInRect: CGRectMake(midpt.x-30, midpt.y-8, 70, 16) withFont:[UIFont fontWithName:@"Helvetica" size:10.0]lineBreakMode:NSLineBreakByTruncatingHead alignment:NSTextAlignmentCenter];
 }
 
 - (void) setPointCount: (NSInteger) newPoints {

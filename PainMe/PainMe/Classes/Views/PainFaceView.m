@@ -151,7 +151,7 @@
         
        if (gestReco.state == UIGestureRecognizerStateBegan) {
             
-            NSLog(@"sragging strted");
+//            NSLog(@"sragging strted");
             
             CGPoint strtTouchLoc = [gestReco locationInView:self];
 //            NSLog(@"Strt drag loc is %@", NSStringFromCGPoint(strtTouchLoc));
@@ -186,7 +186,7 @@
             
             CGPoint endTouchLoc = [gestReco locationInView:[gestReco view]];
 
-            NSLog(@"dragging ended");
+//            NSLog(@"dragging ended");
             
             if (self.viewToDrag) {
             
@@ -212,7 +212,7 @@
 #pragma mark view to drag
 -(UIView*)getViewToDragAtTouchLoc:(CGPoint)touchPt{
 
-    NSLog(@"Touch Pt is %@", NSStringFromCGPoint(touchPt));
+//    NSLog(@"Touch Pt is %@", NSStringFromCGPoint(touchPt));
     
     for (UIView *view in self.subviews) {
 

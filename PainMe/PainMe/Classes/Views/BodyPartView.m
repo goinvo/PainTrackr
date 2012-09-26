@@ -59,9 +59,9 @@
 
     _partPath.lineWidth = 2.0;
     
-    NSLog(@"partpath curr point x:%f y:%f", _partPath.currentPoint.x, _partPath.currentPoint.y);
-    NSLog(@"curr bounds are width:%f height:%f", self.bounds.size.width, self.bounds.size.height);
-    NSLog(@"super view bounds are %f %f", self.superview.bounds.size.width,self.superview.bounds.size.height);
+//    NSLog(@"partpath curr point x:%f y:%f", _partPath.currentPoint.x, _partPath.currentPoint.y);
+//    NSLog(@"curr bounds are width:%f height:%f", self.bounds.size.width, self.bounds.size.height);
+//    NSLog(@"super view bounds are %f %f", self.superview.bounds.size.width,self.superview.bounds.size.height);
 
 //    [_partPath applyTransform:CGAffineTransformMakeScale(1024, self.bounds.size.height)];
 

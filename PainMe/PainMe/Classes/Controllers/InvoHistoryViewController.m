@@ -46,7 +46,7 @@
 {
     [super viewDidLoad];
     
-        NSLog(@"History view did load");
+//        NSLog(@"History view did load");
     // Do any additional setup after loading the view from its nib.
     
     [self setUpView];
@@ -56,7 +56,7 @@
         int maxCOunt = [self.sortedDates count];
         
         NSDate *prevDateString = [self.sortedDates objectAtIndex:0];
-        NSLog(@"date is %@",prevDateString);
+//        NSLog(@"date is %@",prevDateString);
         
         [self addLabelFromDate:prevDateString formatStyle:@"MMMM YYY" rect:CGRectMake(0, 10, 320, 20) backColor:[UIColor grayColor] fontSize:14.0f toView:self.scrollView];
         
@@ -155,7 +155,7 @@
         return [d1 compare:d2];
     }];
     
-    NSLog(@"sorted array is %@", self.sortedDates);
+//    NSLog(@"sorted array is %@", self.sortedDates);
 
 }
 
@@ -221,7 +221,7 @@
 
 -(IBAction)backPressed:(id)sender{
 
-    NSLog(@"Back Pressed");
+//    NSLog(@"Back Pressed");
     [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 
@@ -289,7 +289,7 @@
 
 -(void)daySelectedWas:(NSString *)str{
 
-    NSLog(@"Selected day was %@", str);
+//    NSLog(@"Selected day was %@", str);
     InvoDetailedHistoryViewController *detailedHistory = [[InvoDetailedHistoryViewController alloc]initWithNibName:@"InvoDetailedHistoryViewController" bundle:[NSBundle mainBundle] date:str painEntriesByDate:[self.painEntriesByDate copy]];
     [self.navigationController pushViewController:detailedHistory animated:YES];
     

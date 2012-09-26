@@ -37,7 +37,7 @@
     //	NSLog(@"parser ended: %@", csvFile);
 }
 - (void) parser:(CHCSVParser *)parser didFailWithError:(NSError *)error {
-	NSLog(@"ERROR: %@", error);
+//	NSLog(@"ERROR: %@", error);
 }
 @end
 
@@ -110,9 +110,9 @@
             
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        } 
+//            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+//            abort();
+        }
     }
 }
 
@@ -197,7 +197,7 @@
 #pragma mark Get data from CSV file
 -(void)getDataFromCSVInDict{
     
-    NSLog(@"Beginning...");
+//    NSLog(@"Beginning...");
 	NSStringEncoding encoding = 0;
     // NSString *file = @"/Users/DDKarwa/Desktop/tmpCsvParse/Workbook1.csv";
     NSString *file = [[NSBundle mainBundle] pathForResource:@"BodyPartData" ofType:@"csv"];
@@ -206,16 +206,16 @@
     
 	CHCSVParser * p = [[CHCSVParser alloc] initWithStream:stream usedEncoding:&encoding error:&error];
 	
-	NSLog(@"encoding: %@", CFStringGetNameOfEncoding(CFStringConvertNSStringEncodingToEncoding(encoding)));
+//	NSLog(@"encoding: %@", CFStringGetNameOfEncoding(CFStringConvertNSStringEncodingToEncoding(encoding)));
 	
 	Delegate * d = [[Delegate alloc] init];
 	[p setParserDelegate:d];
 	
-	NSTimeInterval start = [NSDate timeIntervalSinceReferenceDate];
+//	NSTimeInterval start = [NSDate timeIntervalSinceReferenceDate];
 	[p parse];
-	NSTimeInterval end = [NSDate timeIntervalSinceReferenceDate];
+//	NSTimeInterval end = [NSDate timeIntervalSinceReferenceDate];
 	
-	NSLog(@"raw difference: %f", (end-start));
+//	NSLog(@"raw difference: %f", (end-start));
     
     NSArray *a = [NSArray arrayWithContentsOfCSVFile:file encoding:encoding error:nil];
     //    NSLog(@"%@", a);
@@ -396,9 +396,9 @@
          */
         [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
         
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }    
+//        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+//        abort();
+    }
     
     return __persistentStoreCoordinator;
 }

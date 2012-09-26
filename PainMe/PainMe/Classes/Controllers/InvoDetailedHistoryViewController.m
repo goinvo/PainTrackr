@@ -41,27 +41,29 @@
         // Custom initialization
         
 //        [self addFacesToView];
-        
         if (dateString) {
-            self.dateLabelText = [dateString copy];
+            
+            NSDateFormatter *frmtr = [[NSDateFormatter alloc]init];
+            [frmtr setDateStyle:NSDateFormatterShortStyle];
+            NSDate *dateFrmStr = [frmtr dateFromString:dateString];
+            [frmtr setDateFormat:@"EEEE d"];
+            
+            self.dateLabelText = [frmtr stringFromDate:dateFrmStr];
         }
-
+        
         if (sortedDict) {
             self.sortedByDateEntries = [sortedDict copy];
-
+            
             [self sortDates];
             
             self.currDateIndex = [ self indexOfDate:dateString];
             
-            [self checkButtonsToDisplayWithIndex:self.currDateIndex];
-
-            NSLog(@"dates are %@",self.datesArray);
-            
-            
-            
+//            NSLog(@"dates are %@",self.datesArray);
+        
             [self addBodyViewsForDate:[dateString copy]];
         }
-        
+
+          
     }
     return self;
 }
@@ -73,7 +75,7 @@
     if (![self.dateLabelText isEqualToString:@""]) {
         [dateLabel setText:self.dateLabelText];
     }
-    
+    [self checkButtonsToDisplayWithIndex:self.currDateIndex];
     entriesScrollView.pagingEnabled = YES;
 }
 
@@ -202,14 +204,14 @@
 
 -(IBAction)leftTapped:(id)sender{
 
-    NSLog(@"Left was Pressed");
+//    NSLog(@"Left was Pressed");
     self.currDateIndex = (self.currDateIndex > 0)? self.currDateIndex-=1 : 0;
     [self checkButtonsToDisplayWithIndex:self.currDateIndex];
     [self changeDateLabelWithIndex:self.currDateIndex];
 }
 -(IBAction)rightTapped:(id)sender{
 
-    NSLog(@"Right was Pressed");
+//    NSLog(@"Right was Pressed");
     self.currDateIndex = (self.currDateIndex < [self.datesArray count]-1 )? self.currDateIndex+=1 : [self.datesArray count]-1;
     [self checkButtonsToDisplayWithIndex:self.currDateIndex];
     [self changeDateLabelWithIndex:self.currDateIndex];
