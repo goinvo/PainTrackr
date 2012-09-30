@@ -54,8 +54,6 @@
 @synthesize bodyGeometry = _bodyGeometry;
 @synthesize painFace = _painFace;
 
-//@synthesize partNameLabel = _partNameLabel;
-
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -144,8 +142,6 @@
             
             [self.bodyView addObjToSHapesArrayWithShape:locpath color:fillColor detail:zoom name:[[loc valueForKey:@"name"] copy]];
             
-//            [self.partNameLabel setText:[loc valueForKey:@"name"]];
-//            [self.partNameLabel setTextColor:fillColor];
         }
     }
 }
@@ -186,34 +182,18 @@
     int zmLvl = (self.scrollView.zoomScale <0.06)?1:2;
     
     locDict = [self.bodyGeometry containsPoint:CGPointMake(newPt.x/BODY_VIEW_WIDTH, newPt.y/BODY_VIEW_HEIGHT) withZoomLVL:zmLvl];
-   /*
-    if (locDict) {
-
-        if([self.bodyView doesEntryExist:[[[locDict allKeys]objectAtIndex:0]copy]]){
-            [InvoDataManager painEntryForLocation:[locDict copy] levelPain:0 notes:nil];
-        }
-    }
-*/
 //Making changes to the text label
     NSString *name =  [self.bodyView partNameAtLocation:newPt remove:NO];
     
     if (name) {
-//        if ([name isEqualToString:self.partNameLabel.text]) {
-//            [self.partNameLabel setText:@"NONE"];
-//            [self.partNameLabel setTextColor:[UIColor blackColor]];
-//        }
-        InvoPartNamelabel *bble = [[InvoPartNamelabel alloc] initWithFrame:CGRectMake(touchLocation.x,touchLocation.y , 100, 20) name:[name copy]];
+        
+        CGPoint labelPt = [self.view convertPoint:touchLocation fromView:self.scrollView];
+//        NSLog(@"label Pt should be %@", NSStringFromCGPoint(labelPt));
+        
+        InvoPartNamelabel *bble = [[InvoPartNamelabel alloc] initWithFrame:CGRectMake(labelPt.x,labelPt.y , 100, 20) name:[name copy]];
         [bble setTag:kTagPartNameBubble];
         [self.view insertSubview:bble atIndex:100];
     }
-    /*
-    int tileNum = [self tileAtTouchLocation:touchLocation];
-    NSLog(@"Tile which was tapped was %d",tileNum);
-
-    bodyOffset = CGPointMake(touchLocation.x/(BODY_VIEW_WIDTH*self.scrollView.zoomScale),touchLocation.y/( BODY_VIEW_HEIGHT*self.scrollView.zoomScale));
-    
-    NSLog(@"The point with Respect to Global body Coordinates is x:%f y:%f",bodyOffset.x,bodyOffset.y);
-*/
 }
 
 -(void)handleDoubleTap:(UIGestureRecognizer*)gestReco{
