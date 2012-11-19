@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="11G63" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="PainEntry" representedClassName="PainEntry">
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="painLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date">
+            <userInfo/>
+        </attribute>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PainLocation" inverseName="painEntries" inverseEntity="PainLocation" syncable="YES"/>
+        <userInfo/>
+    </entity>
+    <entity name="PainLocation" representedClassName="PainLocation" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="orientation" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="shape" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="zoomLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="painEntries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PainEntry" inverseName="location" inverseEntity="PainEntry" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="PainEntry" positionX="-20072" positionY="-5580" width="128" height="105"/>
+        <element name="PainLocation" positionX="-19820" positionY="-5580" width="128" height="120"/>
+    </elements>
+</model>

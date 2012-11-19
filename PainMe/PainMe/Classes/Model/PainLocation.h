@@ -10,6 +10,13 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+typedef enum{
+
+    orientationFront =0,
+    orientationBack
+    
+} orientationTags;
+
 @class PainEntry;
 
 @interface PainLocation : NSManagedObject
@@ -18,6 +25,7 @@
 @property (nonatomic, retain) id shape;
 @property (nonatomic) int16_t zoomLevel;
 @property (nonatomic, retain) NSSet *painEntries;
+@property (nonatomic) int16_t orientation;
 @end
 
 @interface PainLocation (CoreDataGeneratedAccessors)
@@ -31,7 +39,7 @@
 +(void)enterPainEntryForLocation:(NSDictionary *)locdict levelPain:(int)painLvl notes:(NSString *)notes ;
 
 
-+(void)locationEntryWithName:(NSString *)locName shape:(NSData *)shape zoomLevel:(int16_t)levZoom;
++(void)locationEntryWithName:(NSString *)locName shape:(NSData *)shape zoomLevel:(int16_t)levZoom orientation:(int16_t)orient;
 
 +(NSArray *)painLocations;
 @end

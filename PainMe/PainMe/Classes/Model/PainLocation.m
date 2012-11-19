@@ -17,11 +17,11 @@
 @dynamic shape;
 @dynamic zoomLevel;
 @dynamic painEntries;
-
+@dynamic orientation;
 
 +(void)enterPainEntryForLocation:(NSDictionary *)locdict levelPain:(int)painLvl notes:(NSString *)notes{
 
-    
+
     PainLocation *locFound  = nil;
     
     InvoDataManager *dtaMgr = [InvoDataManager sharedDataManager];
@@ -51,7 +51,7 @@
 }
 
 
-+(void)locationEntryWithName:(NSString *)locName shape:(NSData *)shape zoomLevel:(int16_t)levZoom {
++(void)locationEntryWithName:(NSString *)locName shape:(NSData *)shape zoomLevel:(int16_t)levZoom orientation:(int16_t)orient{
 
     PainLocation *locFound;
    
@@ -77,6 +77,7 @@
     locFound.name = [locName copy];
     locFound.zoomLevel = levZoom;
     locFound.shape = (NSData *)[shape copy];
+    locFound.orientation = ((orient==0)?orientationFront : orientationBack);
     [dtaMgr saveContext];
 }
  

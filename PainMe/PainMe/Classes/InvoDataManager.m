@@ -6,8 +6,11 @@
 //  Copyright (c) 2012 Involution Studios, Inc. All rights reserved.
 //
 
+// CUrrent total number of locations is 245
+
 #import "InvoDataManager.h"
 
+#define MAX_LOCATIONS 245
 
 #define NUM_COLUMNS 4.0
 #define NUM_ROWS 9.0
@@ -108,9 +111,10 @@
         
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
             
+            
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-//            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 //            abort();
         }
     }
@@ -141,11 +145,18 @@
 
     [self painLocationsInDatabase];
     
-    if(137 != [self totalLocations]){
+    if(MAX_LOCATIONS != [self totalLocations]){
             
         [self getDataFromCSVInDict];
         [self listCoordinates];
     }
+    
+//    if(137 != [self totalLocations]){
+        
+//        [self getDataFromCSVInDict];
+//        [self listCoordinates];
+//    }
+
 }
 
 #pragma mark get painLocation Data from database
@@ -158,10 +169,13 @@
     [fetReq setEntity:descript];
     [fetReq setResultType:NSDictionaryResultType];
     
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name !=%@",@""];
+//    [fetReq setPredicate:predicate];
+    
     NSError *error = nil;
     NSArray *locData = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
     
-    //    NSLog(@"Entries are %@ with count %d", locData,[locData count]);
+//    NSLog(@"Entries are %@ with count %d", locData,[locData count]);
     self.keysFromStoredLocData = [NSMutableArray array];
     
     for (NSDictionary *dicti in locData) {
@@ -200,7 +214,7 @@
 //    NSLog(@"Beginning...");
 	NSStringEncoding encoding = 0;
     // NSString *file = @"/Users/DDKarwa/Desktop/tmpCsvParse/Workbook1.csv";
-    NSString *file = [[NSBundle mainBundle] pathForResource:@"BodyPartData" ofType:@"csv"];
+    NSString *file = [[NSBundle mainBundle] pathForResource:@"NewBodyPartData" ofType:@"csv"];
     NSInputStream *stream = [NSInputStream inputStreamWithFileAtPath:file];
     NSError *error = nil;
     
@@ -211,11 +225,11 @@
 	Delegate * d = [[Delegate alloc] init];
 	[p setParserDelegate:d];
 	
-//	NSTimeInterval start = [NSDate timeIntervalSinceReferenceDate];
+	NSTimeInterval start = [NSDate timeIntervalSinceReferenceDate];
 	[p parse];
-//	NSTimeInterval end = [NSDate timeIntervalSinceReferenceDate];
+	NSTimeInterval end = [NSDate timeIntervalSinceReferenceDate];
 	
-//	NSLog(@"raw difference: %f", (end-start));
+	NSLog(@"raw difference: %f", (end-start));
     
     NSArray *a = [NSArray arrayWithContentsOfCSVFile:file encoding:encoding error:nil];
     //    NSLog(@"%@", a);
@@ -261,12 +275,23 @@
 #pragma mark check if location exists in database
 -(BOOL)painLocationExists:(NSString*)locName{
 
-    for (NSString *str in self.keysFromStoredLocData) {
-        
-        if ([locName isEqualToString:str]) {
-            
-            return YES;
-        }
+//    for (NSString *str in self.keysFromStoredLocData) {
+//        
+//        if ([locName isEqualToString:str]) {
+//            
+//            return YES;
+//        }
+//    }
+//    return NO;
+    
+//    if ([self.keysFromStoredLocData indexOfObject:locName] == NSNotFound) {
+//        return NO;
+//    }
+//    return YES;
+    
+    if ([self.keysFromStoredLocData containsObject:locName]) {
+        NSLog(@"exists");
+        return YES;
     }
     return NO;
 }
@@ -291,6 +316,9 @@
                 
                 int i=0;
                 
+                NSString *orientString = [[valArray objectAtIndex:0] objectAtIndex:6];
+                int16_t orientation =  ([orientString isEqualToString:@"Back"])?1:0;
+                
                 for (NSArray *arr in valArray) {
                     
                     float xadd = [[arr objectAtIndex:2] floatValue];
@@ -306,7 +334,7 @@
                 
                 int zoomLvl = [[[valArray objectAtIndex:0] objectAtIndex:1] integerValue];
                 
-                [PainLocation locationEntryWithName:[ky copy] shape:shapeVertices zoomLevel:zoomLvl];
+                [PainLocation locationEntryWithName:[ky copy] shape:shapeVertices zoomLevel:zoomLvl orientation:orientation ];
                 
                 valArray = nil;
             }
