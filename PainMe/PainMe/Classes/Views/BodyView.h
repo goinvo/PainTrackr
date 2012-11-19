@@ -20,8 +20,7 @@
 }
 
 @property (nonatomic, readwrite)BOOL strokeChanged;
-
-
+@property (nonatomic, strong) NSString *currentView;
 
 -(void)renderPainForBodyPartPath:(UIBezierPath *)path WithColor:(UIColor *)fillColor detailLevel:(int)level name:(NSString *)pName;
 
@@ -34,4 +33,6 @@
 -(BOOL)doesEntryExist:(NSString *)name;
 -(NSData *)imageToAttachToReportWithZoomLevel:(float)level;
 -(void)colorBodyLocationsInRect:(CGRect)rect WithZoom:(int)zm InContext:(CGContextRef)ctx withOffset:(CGPoint)ofst;
+
+-(void)flipView;
 @end

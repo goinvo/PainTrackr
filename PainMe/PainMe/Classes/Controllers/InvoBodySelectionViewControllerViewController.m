@@ -352,30 +352,14 @@
             if([self.bodyView doesEntryExist:[[[pathContainingPoint allKeys]objectAtIndex:0]copy]]){
                 [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:0 notes:nil];
             }
-            
-            //Making changes to the text label
-           // NSString *name =  [self.bodyView removePainAtLocation:CGPointMake(convPoint.x*BODY_VIEW_WIDTH, convPoint.y*BODY_VIEW_HEIGHT)];
-//            NSString *name = [self.bodyView partNameAtLocation:CGPointMake(convPoint.x*BODY_VIEW_WIDTH, convPoint.y*BODY_VIEW_HEIGHT) remove:YES];
-            
-//            if (name) {
-//                if ([name isEqualToString:self.partNameLabel.text]) {
-//                    [self.partNameLabel setText:@"NONE"];
-//                    [self.partNameLabel setTextColor:[UIColor blackColor]];
-//                }
-//            }
         }
-//        else{
-            UIColor *fillcolor = [self colorfromPain:painLvl];
-            
-            [self.bodyView renderPainForBodyPartPath:[[pathContainingPoint allValues] objectAtIndex:0] WithColor:fillcolor detailLevel:zoomLVL name:[[pathContainingPoint allKeys] objectAtIndex:0]];
-            
-//            [self.partNameLabel setText:[[pathContainingPoint allKeys] objectAtIndex:0]];
-//            [self.partNameLabel setTextColor:fillcolor];
-            
-            [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:painLvl notes:nil];
-            
-            fillcolor = nil;
-//        }
+        UIColor *fillcolor = [self colorfromPain:painLvl];
+        
+        [self.bodyView renderPainForBodyPartPath:[[pathContainingPoint allValues] objectAtIndex:0] WithColor:fillcolor detailLevel:zoomLVL name:[[pathContainingPoint allKeys] objectAtIndex:0]];
+        
+        [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:painLvl notes:nil];
+        
+        fillcolor = nil;
     }
 }
 
@@ -575,4 +559,8 @@
 }
 #pragma mark -
 
+- (IBAction)flipTapped:(id)sender {
+
+    [self.bodyView flipView];
+}
 @end

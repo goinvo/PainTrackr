@@ -116,6 +116,8 @@
     self.isNewStroke = NO;
     self.strokeChanged = NO;
     
+    self.currentView = @"front";
+    
     self.shapesArray = [NSMutableArray array];
 
 }
@@ -273,11 +275,11 @@
        
        if (numFrmScale !=0) {
 
-            filename = [NSString stringWithFormat:@"body_slices_%02d_%d.png", (col+1) + (row) * BODY_TILE_COLUMNS,numFrmScale];           
+           filename = ([self.currentView isEqualToString:@"front"])? [NSString stringWithFormat:@"body_slices_%02d_%d.png", (col+1) + (row) * BODY_TILE_COLUMNS,numFrmScale] : [NSString stringWithFormat:@"back_zin_%02d_%d.png", (col+1) + (row) * BODY_TILE_COLUMNS,numFrmScale];
        }
        else {
            
-            filename = [NSString stringWithFormat:@"untitled-1_%02d.png", (col+1) + (row) * BODY_TILE_COLUMNS];
+           filename =([self.currentView isEqualToString:@"front"])? [NSString stringWithFormat:@"untitled-1_%02d.png", (col+1) + (row) * BODY_TILE_COLUMNS]:[NSString stringWithFormat:@"back_zout_%02d.png", (col+1) + (row) * BODY_TILE_COLUMNS];
        }
            
       NSString *path = [[NSBundle mainBundle] pathForResource: filename ofType: nil];
@@ -496,5 +498,11 @@
 }
 
 #pragma mark -
+
+-(void)flipView{
+ 
+    self.currentView = ([self.currentView isEqualToString:@"front"]? @"back" : @"front");
+    [self setNeedsDisplay];
+}
 
 @end
