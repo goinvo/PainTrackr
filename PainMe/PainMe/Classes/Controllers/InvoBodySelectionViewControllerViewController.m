@@ -44,6 +44,7 @@
 -(NSString *)timeForReport;
 -(void)showMailToBeSent;
 
+-(int)currentOrientation;
 @end
 
 @implementation InvoBodySelectionViewControllerViewController
@@ -140,7 +141,7 @@
             
             UIBezierPath *locpath = [self.bodyGeometry dictFrBodyLocation:[ [loc valueForKey:@"name"] copy]];
             
-            [self.bodyView addObjToSHapesArrayWithShape:locpath color:fillColor detail:zoom name:[[loc valueForKey:@"name"] copy]];
+            [self.bodyView addObjToSHapesArrayWithShape:locpath color:fillColor detail:zoom name:[[loc valueForKey:@"name"] copy] orientation:[self currentOrientation]];
             
         }
     }
@@ -169,7 +170,7 @@
     if (lbl) {
         [lbl removeFromSuperview];
     }
-
+    
     CGPoint touchLocation = [gestureReco locationInView:self.scrollView];
 //    NSLog(@"Tapped inside scrollView at x:%f y:%f",touchLocation.x, touchLocation.y);
   
@@ -181,7 +182,7 @@
     
     int zmLvl = (self.scrollView.zoomScale <0.06)?1:2;
     
-    locDict = [self.bodyGeometry containsPoint:CGPointMake(newPt.x/BODY_VIEW_WIDTH, newPt.y/BODY_VIEW_HEIGHT) withZoomLVL:zmLvl];
+    locDict = [self.bodyGeometry containsPoint:CGPointMake(newPt.x/BODY_VIEW_WIDTH, newPt.y/BODY_VIEW_HEIGHT) withZoomLVL:zmLvl withOrientation:[self currentOrientation]];
 //Making changes to the text label
     NSString *name =  [self.bodyView partNameAtLocation:newPt remove:NO];
     
@@ -343,7 +344,7 @@
 // Point is inside the Belly circle  
 
     NSDictionary *pathContainingPoint = nil;
-    pathContainingPoint = [self.bodyGeometry containsPoint:convPoint withZoomLVL:zoomLVL];
+    pathContainingPoint = [self.bodyGeometry containsPoint:convPoint withZoomLVL:zoomLVL withOrientation:[self currentOrientation]];
     
     if (pathContainingPoint) {
         
@@ -355,7 +356,7 @@
         }
         UIColor *fillcolor = [self colorfromPain:painLvl];
         
-        [self.bodyView renderPainForBodyPartPath:[[pathContainingPoint allValues] objectAtIndex:0] WithColor:fillcolor detailLevel:zoomLVL name:[[pathContainingPoint allKeys] objectAtIndex:0]];
+        [self.bodyView renderPainForBodyPartPath:[[pathContainingPoint allValues] objectAtIndex:0] WithColor:fillcolor detailLevel:zoomLVL name:[[pathContainingPoint allKeys] objectAtIndex:0] orient:[self currentOrientation]];
         
         [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:painLvl notes:nil];
         
@@ -376,7 +377,7 @@
         
         int zoomLVL = (self.scrollView.zoomScale >=0.062) ? 2 :1;
         
-        if ( [self.bodyGeometry containsPoint:convPoint withZoomLVL:zoomLVL]) {
+        if ( [self.bodyGeometry containsPoint:convPoint withZoomLVL:zoomLVL withOrientation:[self currentOrientation]]) {
             
             UIColor *fillcolor = [self colorfromPain:painLvl];
             
@@ -562,5 +563,10 @@
 - (IBAction)flipTapped:(id)sender {
 
     [self.bodyView flipView];
+}
+
+-(int)currentOrientation{
+
+    return (([self.bodyView.currentView isEqualToString:@"front"])?0:1);
 }
 @end

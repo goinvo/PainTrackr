@@ -126,15 +126,15 @@
 // body pain level changed
 // [self setNeedsDisplayInRect: ...]
 
--(void)addObjToSHapesArrayWithShape:(UIBezierPath *)shape color:(UIColor *)fillColor detail:(int)levDet name:(NSString *)partName{
+-(void)addObjToSHapesArrayWithShape:(UIBezierPath *)shape color:(UIColor *)fillColor detail:(int)levDet name:(NSString *)partName orientation:(int)side{
 
-    InvoBodyPartDetails *partDetail = [InvoBodyPartDetails invoBodyPartWithShape:[shape copy] color:fillColor zoomLevel:levDet name:[partName copy]];
+    InvoBodyPartDetails *partDetail = [InvoBodyPartDetails invoBodyPartWithShape:[shape copy] color:fillColor zoomLevel:levDet name:[partName copy] orientation:side];
     
     [self.shapesArray addObject:partDetail];
 
 }
 
--(void)renderPainForBodyPartPath:(UIBezierPath *)path WithColor:(UIColor *)fillColor detailLevel:(int)level name:(NSString *)pName{
+-(void)renderPainForBodyPartPath:(UIBezierPath *)path WithColor:(UIColor *)fillColor detailLevel:(int)level name:(NSString *)pName orient:(int)side{
     
     BOOL found = NO;
  
@@ -168,7 +168,7 @@
 
     if (!found) {
         
-        [self addObjToSHapesArrayWithShape:[path copy] color:fillColor detail:level name:[pName copy]];
+        [self addObjToSHapesArrayWithShape:[path copy] color:fillColor detail:level name:[pName copy] orientation:side];
     }
         [self setNeedsDisplayInRect:[path bounds]];
 }
@@ -302,6 +302,8 @@
     
     NSArray *shapesArrayCopy = nil;
 
+    int currSide = ([self.currentView isEqualToString:@"front"]?0:1);
+    
     @synchronized(self.shapesArray){
         
         shapesArrayCopy = [self.shapesArray copy];
@@ -309,7 +311,7 @@
     
     for (InvoBodyPartDetails *part in shapesArrayCopy) {
         
-        if (part.partShapePoints && CGRectIntersectsRect(rect, [part.partShapePoints bounds])) {
+        if (part.partShapePoints && CGRectIntersectsRect(rect, [part.partShapePoints bounds]) && part.orientation == currSide) {
             
             if(zm == part.zoomLevel){
                 

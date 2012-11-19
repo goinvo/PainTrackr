@@ -22,13 +22,13 @@
 @property (nonatomic, readwrite)BOOL strokeChanged;
 @property (nonatomic, strong) NSString *currentView;
 
--(void)renderPainForBodyPartPath:(UIBezierPath *)path WithColor:(UIColor *)fillColor detailLevel:(int)level name:(NSString *)pName;
+-(void)renderPainForBodyPartPath:(UIBezierPath *)path WithColor:(UIColor *)fillColor detailLevel:(int)level name:(NSString *)pName orient:(int)side;
 
 -(void)maskWithColor:(UIColor *)maskFillColor;
 -(void)resetStroke;
 
 -(NSString *)partNameAtLocation:(CGPoint)touch remove:(BOOL)toRem;
--(void)addObjToSHapesArrayWithShape:(UIBezierPath *)shape color:(UIColor *)fillColor detail:(int)levDet name:(NSString *)partName;
+-(void)addObjToSHapesArrayWithShape:(UIBezierPath *)shape color:(UIColor *)fillColor detail:(int)levDet name:(NSString *)partName orientation:(int)side;
 
 -(BOOL)doesEntryExist:(NSString *)name;
 -(NSData *)imageToAttachToReportWithZoomLevel:(float)level;

@@ -14,9 +14,9 @@
 @property (nonatomic, retain) UIColor *shapeColor;
 @property (nonatomic, readwrite) int zoomLevel;
 @property (nonatomic, retain) NSString *partName;
+@property (nonatomic, readwrite)int orientation;
 
++(InvoBodyPartDetails *)invoBodyPartWithShape:(UIBezierPath *)shape color:(UIColor *)color zoomLevel:(int)zmLevel name:(NSString *)name orientation:(int)side;
 
-+(InvoBodyPartDetails *)invoBodyPartWithShape:(UIBezierPath *)shape color:(UIColor *)color zoomLevel:(int)zmLevel name:(NSString *)name;
-
-+(InvoBodyPartDetails *)invoBodyPartWithShape:(UIBezierPath *)shape name:(NSString *)nme zoomLevel:(int)zmLevel;
++(InvoBodyPartDetails *)invoBodyPartWithShape:(UIBezierPath *)shape name:(NSString *)nme zoomLevel:(int)zmLevel orientation:(int)side;
 @end

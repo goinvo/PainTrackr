@@ -59,7 +59,7 @@
            NSString *pName = [obj valueForKey:@"name"];
            NSInteger zmLvl = [[obj valueForKey:@"zoomLevel"]integerValue];
            
-           InvoBodyPartDetails *part = [InvoBodyPartDetails invoBodyPartWithShape:[self bezierPath] name:[pName copy] zoomLevel:zmLvl];
+           InvoBodyPartDetails *part = [InvoBodyPartDetails invoBodyPartWithShape:[self bezierPath] name:[pName copy] zoomLevel:zmLvl orientation:[[obj valueForKey:@"orientation"] intValue]];
            
            [self.painShapeDetailsArr addObject:part];
        }
@@ -100,14 +100,14 @@
    if (_points) free(_points);
 }
 
-- (NSDictionary *) containsPoint: (CGPoint) point withZoomLVL:(int)zmLVL {
+- (NSDictionary *) containsPoint: (CGPoint) point withZoomLVL:(int)zmLVL withOrientation:(int16_t)orientation{
    // TODO:  Find an algorithm for quickly determining whether a polygon contains a point
         
     NSDictionary * toRet = nil;
     CGPoint pointToCheck = CGPointMake(point.x*NUM_TO_DIVIDEX, point.y*NUM_TO_DIVIDEY);
     for (InvoBodyPartDetails *part in self.painShapeDetailsArr) {
         
-        if (part.zoomLevel == zmLVL) {
+        if (part.zoomLevel == zmLVL && part.orientation == orientation) {
             
             if ([part.partShapePoints containsPoint:pointToCheck]) {
                 
