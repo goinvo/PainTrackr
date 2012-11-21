@@ -17,6 +17,7 @@
 #import "InvoAboutViewController.h"
 #import "InvoFlipButtonView.h"
 #import "InvoPainColorHelper.h"
+#import "InvoTextForEmail.h"
 
 @interface InvoBodySelectionViewControllerViewController () {
    
@@ -48,6 +49,7 @@
 
 -(int)currentOrientation;
 -(void)configFlipButtonImage;
+-(void)removeBodyNamePopUp;
 
 @end
 
@@ -177,13 +179,18 @@
 
 #pragma mark Handle Tap Gesture
 
--(void)handleTapGesture:(UITapGestureRecognizer *)gestureReco{
+-(void)removeBodyNamePopUp{
 
     InvoPartNamelabel *lbl = (InvoPartNamelabel *)[self.view viewWithTag:kTagPartNameBubble];
     if (lbl) {
         [lbl removeFromSuperview];
     }
-    
+}
+
+-(void)handleTapGesture:(UITapGestureRecognizer *)gestureReco{
+
+    [self removeBodyNamePopUp];
+        
     CGPoint touchLocation = [gestureReco locationInView:self.scrollView];
 //    NSLog(@"Tapped inside scrollView at x:%f y:%f",touchLocation.x, touchLocation.y);
   
@@ -213,6 +220,7 @@
 -(void)handleDoubleTap:(UIGestureRecognizer*)gestReco{
 
 //    NSLog(@"double tap happened");
+        [self removeBodyNamePopUp];
     
     if (self.scrollView.zoomScale >=0.065) {
     
@@ -252,6 +260,7 @@
 - (void)viewDidUnload
 {
     [self setFlipButton:nil];
+    [self setViewLabelButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -285,7 +294,7 @@
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
    
     [self.painFace reduceVisibility];
-    
+    [self removeBodyNamePopUp];
 }
 
 - (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view {
@@ -293,6 +302,7 @@
 //     NSLog(@"Scale while beginning zooming is %f",scrollView.zoomScale);
     
     [self.painFace reduceVisibility];
+    [self removeBodyNamePopUp];
 }
 
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView {
@@ -415,44 +425,16 @@
     //Image data of body
     
     NSData *img = [self.bodyView imageToAttachToReportWithZoomLevel:self.scrollView.zoomScale];
+  
+    NSString *bodyText = [InvoTextForEmail bodyTextForEmail];
     
-    NSArray *entries = [PainEntry last50PainEntriesIfError:^(NSError *error){
-        
-       // NSLog(@"error was %@",[error localizedDescription]);
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!" message:NSLocalizedString(@"Error occured while Populating Pain Entries.", @"") delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alert show];
-        [grayOverLayView removeFromSuperview];
-        [indicator stopAnimating];
-        [self.sendButton setEnabled:YES];
-        
-        return ;
-    }];
-    
-     NSString *str = @"";
-    int num=1;
-    for(NSDictionary *dict in entries){
-        
-        PainLocation *loc = [dict valueForKey:@"location"];
-        NSDate *dte= [dict valueForKey:@"timestamp"];
-        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-//        [formatter setDateStyle:NSDateFormatterShortStyle];
-        [formatter setTimeStyle:NSDateFormatterShortStyle];
-        
-        NSString *newStr = [NSString stringWithFormat:@"  %@\n  Pain Level: %d \n  %@\n \n",[loc valueForKey:@"name"],[[dict valueForKey:@"painLevel"] integerValue],[formatter stringFromDate:dte]];
-        
-        str = [str stringByAppendingString:[NSString stringWithFormat:@" %@",newStr]];
-        num++;
-    }
-    num=0;
-        
     MFMailComposeViewController *mailComp = [[MFMailComposeViewController alloc] init];
     
     [mailComp setSubject:[[self timeForReport] copy]];
     //    [mailComp setToRecipients:[NSArray arrayWithObject:@"dhaval@goinvo.com"]];
     [mailComp addAttachmentData:img mimeType:@"image/png" fileName:@"BodyReport"];
     
-    [mailComp setMessageBody:str isHTML:NO];
+    [mailComp setMessageBody:bodyText isHTML:NO];
     
     mailComp.mailComposeDelegate = self;
     
@@ -506,6 +488,10 @@
     [self.bodyView flipView];
     [self checkAndAddLastEntryToView];
     [self configFlipButtonImage];
+    
+    (0 ==[self currentOrientation])?[self.viewLabelButton setTitle:@"Front View"]:
+    [self.viewLabelButton setTitle:@"Back View"];
+    
 }
 
 -(int)currentOrientation{

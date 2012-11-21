@@ -22,5 +22,6 @@ typedef enum{
 - (IBAction)flipTapped:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIButton *flipButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *viewLabelButton;
 
 @end

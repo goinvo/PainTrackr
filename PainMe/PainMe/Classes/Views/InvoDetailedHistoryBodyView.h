@@ -12,4 +12,5 @@
 
 +(InvoDetailedHistoryBodyView *)detailedBodyViewWithFrame :(CGRect)frame PainDetails:(id)details;
 
+@property (nonatomic, assign)int orient;
 @end

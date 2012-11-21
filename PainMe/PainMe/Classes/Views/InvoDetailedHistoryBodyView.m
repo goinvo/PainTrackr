@@ -42,6 +42,7 @@
         [self setUserInteractionEnabled:NO];
         
         id obj = [detail valueForKey:@"location"];
+        self.orient = [[obj valueForKey:@"orientation"] intValue];
         
         NSData *vertices = [obj valueForKey:@"shape"];
         zoomLevel = [[obj valueForKey:@"zoomLevel"] integerValue];
@@ -72,7 +73,7 @@
     [[UIColor whiteColor] setFill];
     UIRectFill(rect);
     
-    UIImage *img = [UIImage imageNamed:@"Body_Detail.png"];
+    UIImage *img = (self.orient ==0)? [UIImage imageNamed:@"Body_Detail.png"] :[UIImage imageNamed:@"zoomout-back-image.png"] ;
     [img drawInRect:rect];
     
     [[UIColor blackColor]setStroke];

@@ -51,13 +51,12 @@
     
     [self setUpView];
     [self.view setClipsToBounds:YES];
+    
     if([self.sortedDates count]>0){
         
         int maxCOunt = [self.sortedDates count];
         
         NSDate *prevDateString = [self.sortedDates objectAtIndex:0];
-//
-        //NSLog(@"date is %@",prevDateString);
         
         UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 2, 320, 1)];
         [lineView setBackgroundColor:[UIColor lightGrayColor]];
@@ -224,8 +223,7 @@
 
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     [self.navigationController setToolbarHidden:NO];
-
- }
+}
 
 #pragma mark -
 
@@ -241,18 +239,6 @@
    // NSLog(@"did scroll");
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    
-    
-}
-
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
-    
-}
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale {
     
@@ -260,32 +246,8 @@
     
 }
 
-- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView {
-    
-}
-
 - (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView {
     return YES;
-}
-
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
-    
-}
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-
-   // NSLog(@"ha ha");
-}
-
-- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view {
-    
-   // NSLog(@"Scale while beginning zooming is %f",scrollView.zoomScale);
-    
-}
-
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView {
-    
-    
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {

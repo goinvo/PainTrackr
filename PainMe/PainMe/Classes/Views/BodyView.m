@@ -192,9 +192,6 @@
 #pragma mark Custom-Drawing code
 
 - (void)drawRect:(CGRect)rect {
-        
-    
-//    NSLog(@"the draw rect in BodyView draw is %@", NSStringFromCGRect(rect));
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     

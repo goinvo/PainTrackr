@@ -330,6 +330,7 @@
 		7657564216139F1300067BAF /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7657564116139F1300067BAF /* Icon@2x.png */; };
 		7657564616139FD600067BAF /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = 7657564516139FD600067BAF /* iTunesArtwork@2x */; };
 		7673B51315ADD7CD006112C2 /* PainFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7673B51215ADD7CD006112C2 /* PainFaceView.m */; };
+		767CF894165D510B002BABB2 /* InvoTextForEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 767CF893165D510B002BABB2 /* InvoTextForEmail.m */; };
 		7683CBA9160BC8F500B566A7 /* InvoPartNamelabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7683CBA8160BC8F500B566A7 /* InvoPartNamelabel.m */; };
 		76880DE6165C36AF007A6F81 /* InvoPainColorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 76880DE5165C36AF007A6F81 /* InvoPainColorHelper.m */; };
 		76AB5DA515B890E100FEB78B /* InvoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AB5DA415B890E100FEB78B /* InvoDataManager.m */; };
@@ -1018,6 +1019,8 @@
 		766FF8FC15E51EA8000EDCD2 /* ErrorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorHandler.h; sourceTree = "<group>"; };
 		7673B51115ADD7CD006112C2 /* PainFaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PainFaceView.h; sourceTree = "<group>"; };
 		7673B51215ADD7CD006112C2 /* PainFaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PainFaceView.m; sourceTree = "<group>"; };
+		767CF892165D510B002BABB2 /* InvoTextForEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoTextForEmail.h; sourceTree = "<group>"; };
+		767CF893165D510B002BABB2 /* InvoTextForEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoTextForEmail.m; sourceTree = "<group>"; };
 		7683CBA7160BC8F500B566A7 /* InvoPartNamelabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoPartNamelabel.h; sourceTree = "<group>"; };
 		7683CBA8160BC8F500B566A7 /* InvoPartNamelabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoPartNamelabel.m; sourceTree = "<group>"; };
 		76880DE4165C36AF007A6F81 /* InvoPainColorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoPainColorHelper.h; sourceTree = "<group>"; };
@@ -2221,9 +2224,7 @@
 			children = (
 				765756471613A04100067BAF /* Default-568h@2x.png */,
 				7657564116139F1300067BAF /* Icon@2x.png */,
-				76C61AF415E3E21E00EDCBFC /* MessageUI.framework */,
 				76D3E50B15D598970095C553 /* libz.dylib */,
-				760D738A15CC54A300404C10 /* CoreImage.framework */,
 				834C0FC9158F7121000C5652 /* PainMe */,
 				834C0FF1158F7121000C5652 /* PainMeTests */,
 				834C0FC0158F7121000C5652 /* Frameworks */,
@@ -2243,6 +2244,8 @@
 		834C0FC0158F7121000C5652 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				76C61AF415E3E21E00EDCBFC /* MessageUI.framework */,
+				760D738A15CC54A300404C10 /* CoreImage.framework */,
 				83C440261598D96800F401D2 /* QuartzCore.framework */,
 				834C0FC1158F7121000C5652 /* UIKit.framework */,
 				834C0FC3158F7121000C5652 /* Foundation.framework */,
@@ -2364,6 +2367,8 @@
 				762C1A02161258FD00434807 /* InvoDetailedHistoryBodyView.m */,
 				763A4F0C165BDCC70082D0D8 /* InvoFlipButtonView.h */,
 				763A4F0D165BDCC70082D0D8 /* InvoFlipButtonView.m */,
+				767CF892165D510B002BABB2 /* InvoTextForEmail.h */,
+				767CF893165D510B002BABB2 /* InvoTextForEmail.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -3158,6 +3163,7 @@
 				7657561D161382BC00067BAF /* InvoAboutViewController.m in Sources */,
 				763A4F0E165BDCC70082D0D8 /* InvoFlipButtonView.m in Sources */,
 				76880DE6165C36AF007A6F81 /* InvoPainColorHelper.m in Sources */,
+				767CF894165D510B002BABB2 /* InvoTextForEmail.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

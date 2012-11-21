@@ -55,7 +55,7 @@
     
     NSFetchRequest *fetchReq =[[NSFetchRequest alloc] init];
     [fetchReq setEntity:entityDesc];
-    [fetchReq setFetchLimit:50];
+    [fetchReq setFetchLimit:25];
     
     NSSortDescriptor *desc = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO];
     [fetchReq setSortDescriptors:[NSArray arrayWithObject:desc]];

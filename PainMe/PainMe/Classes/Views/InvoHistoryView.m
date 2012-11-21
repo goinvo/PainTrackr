@@ -66,6 +66,7 @@
 // Getting data from the shapesdict 
         id obj = [[locatArr objectAtIndex:0] valueForKey:@"location"];
         
+        self.orientation = [[obj valueForKey:@"orientation"] intValue];
         zoomLevel = [[obj valueForKey:@"zoomLevel"] integerValue];
         
         self.partColor = [self colorfromPain:[[[locatArr objectAtIndex:0] valueForKey:@"painLevel"] integerValue]];
@@ -100,23 +101,20 @@
 //    NSLog(@"Drawing in History view");
     
     
-    UIImage *img = [UIImage imageNamed:@"historyBodyImage.png"];
+    UIImage *img = (self.orientation ==0)? [UIImage imageNamed:@"historyBodyImage.png"]:[UIImage imageNamed:@"zoomout-back-image.png"];
     [[UIColor whiteColor] setFill];
     UIRectFill(rect);
     
     [[UIColor blackColor]setStroke];
     [[UIColor whiteColor]setFill];
     
- //   CGContextStrokeRect(UIGraphicsGetCurrentContext(), rect);
-    
     if (!self.moreEntries) {
         [img drawInRect:rect];
-    //    [[UIColor blackColor]setStroke];
+
         CGContextStrokeRect(UIGraphicsGetCurrentContext(), rect);
     }
     else{
         
-
          CGContextSetShadow(UIGraphicsGetCurrentContext(), CGSizeMake(2.0, 2.0), 1.0);
         
         CGContextStrokeRect(UIGraphicsGetCurrentContext(), CGRectMake(20, 20,rect.size.width-21,rect.size.height-21 ));
