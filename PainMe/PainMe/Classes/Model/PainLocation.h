@@ -42,4 +42,5 @@ typedef enum{
 +(void)locationEntryWithName:(NSString *)locName shape:(NSData *)shape zoomLevel:(int16_t)levZoom orientation:(int16_t)orient;
 
 +(NSArray *)painLocations;
+
 @end

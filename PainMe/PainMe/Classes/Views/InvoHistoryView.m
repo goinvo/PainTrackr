@@ -63,13 +63,14 @@
         self.dateSring = [stringDate copy];
         self.moreEntries = NO;
         
+// Getting data from the shapesdict 
         id obj = [[locatArr objectAtIndex:0] valueForKey:@"location"];
         
-        NSData *vertices = [obj valueForKey:@"shape"];
         zoomLevel = [[obj valueForKey:@"zoomLevel"] integerValue];
+        
         self.partColor = [self colorfromPain:[[[locatArr objectAtIndex:0] valueForKey:@"painLevel"] integerValue]];
         
-        
+        NSData *vertices = [obj valueForKey:@"shape"];
         int count = ([vertices length])/sizeof(CGPoint);
         
         //set Point Count to calloc enough memory

@@ -56,10 +56,10 @@
 
 -(void)getDataFromCSVInDict;
 
--(void)painLocationsInDatabase;
+-(int)painLocationsInDatabase;
 -(void)setPointCount: (NSInteger) newPoints;
 -(BOOL)painLocationExists:(NSString*)locName;
--(int)totalLocations;
+//-(int)totalLocations;
 @end
 
 
@@ -143,9 +143,9 @@
  
 -(void)checkPainLocationDataBase{
 
-    [self painLocationsInDatabase];
+//    [self painLocationsInDatabase];
     
-    if(MAX_LOCATIONS != [self totalLocations]){
+    if(MAX_LOCATIONS != [self painLocationsInDatabase]){
             
         [self getDataFromCSVInDict];
         [self listCoordinates];
@@ -161,7 +161,7 @@
 
 #pragma mark get painLocation Data from database
 
--(void)painLocationsInDatabase{
+-(int)painLocationsInDatabase{
       
     NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainLocation" inManagedObjectContext:self.managedObjectContext];
     
@@ -182,9 +182,11 @@
         //getting all names
         [self.keysFromStoredLocData addObject:[[dicti allValues]objectAtIndex:0]];
     }
+    
+    return [self.keysFromStoredLocData count];
 }
 
-
+/*
 -(int)totalLocations{
 
     NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainLocation" inManagedObjectContext:self.managedObjectContext];
@@ -205,6 +207,7 @@
     }
     return [locData count];
 }
+ */
 
 #pragma mark -
 
@@ -476,7 +479,7 @@
 }
 
 
--(id)lastPainEntryToRender{
+-(id)lastPainEntryToRenderWithOrient:(int)orient{
 
     NSEntityDescription *ent = [NSEntityDescription entityForName:@"PainEntry" inManagedObjectContext:self.managedObjectContext];
     
@@ -485,7 +488,24 @@
     
     NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO];
     [fetReq setSortDescriptors:[NSArray arrayWithObject:sort]];
-        
+
+    NSPredicate *pred;
+    
+    if (orient ==0) {
+        pred = [NSPredicate predicateWithFormat:@"location.orientation == NULL "];
+    }
+    else{
+        pred = [NSPredicate predicateWithFormat:@"location.orientation == %@",[NSNumber numberWithInt:orient]];
+    }
+    [fetReq setPredicate:pred];
+    [fetReq setFetchLimit:1];
+    
+//    NSExpression *lhs = [NSExpression expressionForKeyPath:@"location.orientation"];
+//    NSExpression *rhs = [NSExpression expressionForConstantValue:[NSNumber numberWithInt:orient]];
+//    
+//    NSPredicate *pred = [NSComparisonPredicate predicateWithLeftExpression:lhs rightExpression:rhs modifier:NSDirectPredicateModifier type:NSEqualToPredicateOperatorType options:0];
+//    [fetReq setPredicate:pred];
+    
 //    [fetReq setResultType:NSDictionaryResultType];
     [fetReq setPropertiesToFetch:[NSArray arrayWithObjects:@"location",@"notes",@"painLevel",@"timestamp", nil]];
     
@@ -493,7 +513,7 @@
     NSArray *CrDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
     
     if ([CrDta count] >0) {
-        
+
         return [CrDta objectAtIndex:0];
     }
     return nil;

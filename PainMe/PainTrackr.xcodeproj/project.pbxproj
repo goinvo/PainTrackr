@@ -310,6 +310,9 @@
 		762EC62B15C1CCBE00250155 /* NSArray+CHCSVAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 762EC62615C1CCBE00250155 /* NSArray+CHCSVAdditions.m */; };
 		762EC62C15C1CCBE00250155 /* NSString+CHCSVAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 762EC62815C1CCBE00250155 /* NSString+CHCSVAdditions.m */; };
 		763307A715EEB3AE0059152A /* BodyPartData.csv in Resources */ = {isa = PBXBuildFile; fileRef = 763307A615EEB3AE0059152A /* BodyPartData.csv */; };
+		763A4F0E165BDCC70082D0D8 /* InvoFlipButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 763A4F0D165BDCC70082D0D8 /* InvoFlipButtonView.m */; };
+		763A4F10165BE1AD0082D0D8 /* zoomout-back-image.png in Resources */ = {isa = PBXBuildFile; fileRef = 763A4F0F165BE1AD0082D0D8 /* zoomout-back-image.png */; };
+		763A4F12165BE5A30082D0D8 /* zout_back_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 763A4F11165BE5A30082D0D8 /* zout_back_image.png */; };
 		7657561716137CA000067BAF /* F1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7657561616137CA000067BAF /* F1.png */; };
 		7657561916137CAE00067BAF /* F1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7657561816137CAE00067BAF /* F1@2x.png */; };
 		7657561D161382BC00067BAF /* InvoAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7657561B161382BB00067BAF /* InvoAboutViewController.m */; };
@@ -328,6 +331,7 @@
 		7657564616139FD600067BAF /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = 7657564516139FD600067BAF /* iTunesArtwork@2x */; };
 		7673B51315ADD7CD006112C2 /* PainFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7673B51215ADD7CD006112C2 /* PainFaceView.m */; };
 		7683CBA9160BC8F500B566A7 /* InvoPartNamelabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7683CBA8160BC8F500B566A7 /* InvoPartNamelabel.m */; };
+		76880DE6165C36AF007A6F81 /* InvoPainColorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 76880DE5165C36AF007A6F81 /* InvoPainColorHelper.m */; };
 		76AB5DA515B890E100FEB78B /* InvoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AB5DA415B890E100FEB78B /* InvoDataManager.m */; };
 		76B1258215D43F160000286A /* untitled-1_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 76B1255E15D43F160000286A /* untitled-1_01.png */; };
 		76B1258315D43F160000286A /* untitled-1_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 76B1255F15D43F160000286A /* untitled-1_02.png */; };
@@ -685,7 +689,7 @@
 		7612D8A9160D02E6009924A9 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		7612E21015A1E94500E8E009 /* BodyPartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodyPartView.h; sourceTree = "<group>"; };
 		7612E21115A1E94500E8E009 /* BodyPartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyPartView.m; sourceTree = "<group>"; };
-		761FA945165AB53A0031C53E /* BackViewIncluded.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = BackViewIncluded.xcdatamodel; sourceTree = "<group>"; };
+		761FA945165AB53A0031C53E /* BackViewIncluded.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BackViewIncluded.xcdatamodel; sourceTree = "<group>"; };
 		761FA947165ABAE50031C53E /* NewBodyPartData.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NewBodyPartData.csv; sourceTree = "<group>"; };
 		761FA94B165ACB250031C53E /* back_zin_01_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_zin_01_128.png; sourceTree = "<group>"; };
 		761FA94C165ACB250031C53E /* back_zin_02_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_zin_02_128.png; sourceTree = "<group>"; };
@@ -989,6 +993,10 @@
 		762EC62715C1CCBE00250155 /* NSString+CHCSVAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CHCSVAdditions.h"; sourceTree = "<group>"; };
 		762EC62815C1CCBE00250155 /* NSString+CHCSVAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CHCSVAdditions.m"; sourceTree = "<group>"; };
 		763307A615EEB3AE0059152A /* BodyPartData.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BodyPartData.csv; sourceTree = "<group>"; };
+		763A4F0C165BDCC70082D0D8 /* InvoFlipButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoFlipButtonView.h; sourceTree = "<group>"; };
+		763A4F0D165BDCC70082D0D8 /* InvoFlipButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoFlipButtonView.m; sourceTree = "<group>"; };
+		763A4F0F165BE1AD0082D0D8 /* zoomout-back-image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zoomout-back-image.png"; sourceTree = "<group>"; };
+		763A4F11165BE5A30082D0D8 /* zout_back_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zout_back_image.png; sourceTree = "<group>"; };
 		7657561616137CA000067BAF /* F1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = F1.png; sourceTree = "<group>"; };
 		7657561816137CAE00067BAF /* F1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "F1@2x.png"; sourceTree = "<group>"; };
 		7657561A161382BB00067BAF /* InvoAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoAboutViewController.h; sourceTree = "<group>"; };
@@ -1012,6 +1020,8 @@
 		7673B51215ADD7CD006112C2 /* PainFaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PainFaceView.m; sourceTree = "<group>"; };
 		7683CBA7160BC8F500B566A7 /* InvoPartNamelabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoPartNamelabel.h; sourceTree = "<group>"; };
 		7683CBA8160BC8F500B566A7 /* InvoPartNamelabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoPartNamelabel.m; sourceTree = "<group>"; };
+		76880DE4165C36AF007A6F81 /* InvoPainColorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoPainColorHelper.h; sourceTree = "<group>"; };
+		76880DE5165C36AF007A6F81 /* InvoPainColorHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoPainColorHelper.m; sourceTree = "<group>"; };
 		76AB5DA315B890E100FEB78B /* InvoDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoDataManager.h; sourceTree = "<group>"; };
 		76AB5DA415B890E100FEB78B /* InvoDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoDataManager.m; sourceTree = "<group>"; };
 		76B1255E15D43F160000286A /* untitled-1_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "untitled-1_01.png"; sourceTree = "<group>"; };
@@ -1785,6 +1795,8 @@
 		7657562C16139EB700067BAF /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				763A4F11165BE5A30082D0D8 /* zout_back_image.png */,
+				763A4F0F165BE1AD0082D0D8 /* zoomout-back-image.png */,
 				7657564516139FD600067BAF /* iTunesArtwork@2x */,
 				7657562D16139EC700067BAF /* 512_icon.png */,
 				7657562E16139EC700067BAF /* 512_icon@2x.png */,
@@ -2329,6 +2341,8 @@
 				83A3BE391593B955008EB148 /* BodyPartGeometry.m */,
 				76111ED315D547BF007C1FC9 /* InvoBodyPartDetails.h */,
 				76111ED415D547BF007C1FC9 /* InvoBodyPartDetails.m */,
+				76880DE4165C36AF007A6F81 /* InvoPainColorHelper.h */,
+				76880DE5165C36AF007A6F81 /* InvoPainColorHelper.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2348,6 +2362,8 @@
 				7683CBA8160BC8F500B566A7 /* InvoPartNamelabel.m */,
 				762C1A01161258FD00434807 /* InvoDetailedHistoryBodyView.h */,
 				762C1A02161258FD00434807 /* InvoDetailedHistoryBodyView.m */,
+				763A4F0C165BDCC70082D0D8 /* InvoFlipButtonView.h */,
+				763A4F0D165BDCC70082D0D8 /* InvoFlipButtonView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -3080,6 +3096,8 @@
 				761FAB8F165ACB590031C53E /* back_zout_34.png in Resources */,
 				761FAB90165ACB590031C53E /* back_zout_35.png in Resources */,
 				761FAB91165ACB590031C53E /* back_zout_36.png in Resources */,
+				763A4F10165BE1AD0082D0D8 /* zoomout-back-image.png in Resources */,
+				763A4F12165BE5A30082D0D8 /* zout_back_image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3138,6 +3156,8 @@
 				76C5FC7D1610DC3200B9CDAD /* InvoDetailedHistoryViewController.m in Sources */,
 				762C1A03161258FD00434807 /* InvoDetailedHistoryBodyView.m in Sources */,
 				7657561D161382BC00067BAF /* InvoAboutViewController.m in Sources */,
+				763A4F0E165BDCC70082D0D8 /* InvoFlipButtonView.m in Sources */,
+				76880DE6165C36AF007A6F81 /* InvoPainColorHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
