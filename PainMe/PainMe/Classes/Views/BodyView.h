@@ -29,8 +29,9 @@
 
 -(NSString *)partNameAtLocation:(CGPoint)touch remove:(BOOL)toRem;
 -(void)addObjToSHapesArrayWithShape:(UIBezierPath *)shape color:(UIColor *)fillColor detail:(int)levDet name:(NSString *)partName orientation:(int)side;
-
 -(BOOL)doesEntryExist:(NSString *)name;
+//-(BOOL)doesEntryExist:(NSString *)name withZoomLevel:(int)level;
+
 -(NSData *)imageToAttachToReportWithZoomLevel:(float)level;
 -(void)colorBodyLocationsInRect:(CGRect)rect WithZoom:(int)zm InContext:(CGContextRef)ctx withOffset:(CGPoint)ofst;
 

@@ -44,10 +44,24 @@
 //        NSLog(@"PainLocation found is %@", locFound.name);
     }
     
-    NSDate *now = [[NSDate alloc] init];
+    NSSet *entriesForLocation = locFound.painEntries;
+    NSArray *sortedEntries = [entriesForLocation sortedArrayUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO]]];
+    //NSLog(@"sortedEntries are %@",sortedEntries);
     
-    [PainEntry painEntryWithTime:now painLevel:painLvl extraNotes:[notes copy] location:locFound];
-
+    if(sortedEntries.count >0){
+        int levelOfFoundEntry = [[[sortedEntries objectAtIndex:0] valueForKey:@"painLevel"] integerValue];
+        
+        if(levelOfFoundEntry != painLvl){
+            NSDate *now = [[NSDate alloc] init];
+            
+            [PainEntry painEntryWithTime:now painLevel:painLvl extraNotes:[notes copy] location:locFound];
+        }
+    }
+    else{
+        NSDate *now = [[NSDate alloc] init];
+        
+        [PainEntry painEntryWithTime:now painLevel:painLvl extraNotes:[notes copy] location:locFound];
+    }
 }
 
 
@@ -78,7 +92,7 @@
     locFound.zoomLevel = levZoom;
     locFound.shape = (NSData *)[shape copy];
     locFound.orientation = ((orient==0)?orientationFront : orientationBack);
-    [dtaMgr saveContext];
+//    [dtaMgr saveContext];
 }
  
 

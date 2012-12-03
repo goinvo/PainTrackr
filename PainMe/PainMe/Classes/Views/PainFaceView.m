@@ -175,10 +175,13 @@
                 
                 [self.viewToDrag setFrame:CGRectMake(newFacePt.x, newFacePt.y, self.viewToDrag.frame.size.width, self.viewToDrag.frame.size.height)];
             
+                if (newFacePt.x >55) {
+                    [delegate changeStrokeWithPoint:[gestReco locationInView:[gestReco view]] painLvl:self.viewToDrag.tag];
+                }
+                
                 [gestReco setTranslation:CGPointZero inView:self];
                 newFacePt = CGPointZero;
-                
-                [delegate changeStrokeWithPoint:[gestReco locationInView:[gestReco view]] painLvl:self.viewToDrag.tag];
+
             }
         }
         
@@ -190,7 +193,9 @@
             
             if (self.viewToDrag) {
             
-                [delegate checkForBodyIntersectionWithLocalPoint:endTouchLoc andPainLvl:self.viewToDrag.tag];
+                if(endTouchLoc.x >55){
+                    [delegate checkForBodyIntersectionWithLocalPoint:endTouchLoc andPainLvl:self.viewToDrag.tag];
+                }
 
                 [self putBackPainFace:self.viewToDrag];
                 self.viewToDrag = nil;

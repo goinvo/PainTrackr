@@ -145,10 +145,9 @@
     //@synchronized(self.shapesArray){
         arrayToIter = [self.shapesArray copy];
 //    }
-    
+        
     for (InvoBodyPartDetails *partDetail in arrayToIter) {
         
-        //if (CGPathEqualToPath(path.CGPath, partDetail.partShapePoints.CGPath)) {
         if([pName isEqualToString:partDetail.partName]){
             
             if (![fillColor isEqual:partDetail.shapeColor]) {
@@ -423,6 +422,7 @@
     for (InvoBodyPartDetails *part in self.shapesArray) {
     
         if ([part.partName isEqualToString:name]) {
+            
             return YES;
         }
     }

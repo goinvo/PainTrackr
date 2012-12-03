@@ -55,7 +55,11 @@
         // copy bytes to buffer _points
         [vertices getBytes:(CGPoint *)_points length:[vertices length]];
         
-        [self createUIBezierWithOffset:CGPointZero];
+        if (self.orient ==1) {
+            [self createUIBezierWithOffset:CGPointMake(0, 0.0)];
+        }else{
+            [self createUIBezierWithOffset:CGPointZero];
+        }
         
         partName = [obj valueForKey:@"name"];
     
@@ -83,11 +87,11 @@
     
     CGPoint midpt = [self midPoinfOfBezierPath:self.bezierPath];
     
-    [[UIColor yellowColor] setFill];
-    CGContextSetAlpha(UIGraphicsGetCurrentContext(), 0.3f);
+    [[UIColor darkGrayColor] setFill];
+    CGContextSetAlpha(UIGraphicsGetCurrentContext(), 0.6f);
     CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(midpt.x-30, midpt.y-8, 70, 16));
     CGContextSetAlpha(UIGraphicsGetCurrentContext(), 1.0f);
-    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [UIColor blackColor].CGColor);
+    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [UIColor whiteColor].CGColor);
     [partName drawInRect: CGRectMake(midpt.x-30, midpt.y-8, 70, 16) withFont:[UIFont fontWithName:@"Helvetica" size:10.0]lineBreakMode:NSLineBreakByTruncatingHead alignment:NSTextAlignmentCenter];
 }
 
@@ -103,6 +107,8 @@
     
     CGFloat viewWidth = self.bounds.size.width -offsetPoint.x;
     CGFloat viewHeight = self.bounds.size.height - offsetPoint.y;
+    
+    (self.orient ==1)? (viewHeight = 364) : (viewHeight = viewHeight);
     
     if (!_bezierPath) {
         

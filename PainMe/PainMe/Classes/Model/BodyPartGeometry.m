@@ -105,17 +105,38 @@
         
     NSDictionary * toRet = nil;
     CGPoint pointToCheck = CGPointMake(point.x*NUM_TO_DIVIDEX, point.y*NUM_TO_DIVIDEY);
+    
+    NSMutableArray *arrToIter = [NSMutableArray array];
+    
     for (InvoBodyPartDetails *part in self.painShapeDetailsArr) {
         
-        if (part.zoomLevel == zmLVL && part.orientation == orientation) {
-            
-            if ([part.partShapePoints containsPoint:pointToCheck]) {
-                
-                toRet = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObject:part.partShapePoints] forKeys:[NSArray arrayWithObject:part.partName]];
-                break;
-            }
+        if (part.orientation == orientation && part.zoomLevel == zmLVL ) {
+            [arrToIter addObject:part];
         }
     }
+    
+    for (InvoBodyPartDetails *part in arrToIter) {
+        
+        if ([part.partShapePoints containsPoint:pointToCheck]) {
+            
+            toRet = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObject:part.partShapePoints] forKeys:[NSArray arrayWithObject:part.partName]];
+//            toRet = [NSDictionary dictionaryWithObject:[NSArray arrayWithObjects:part.partShapePoints,[NSNumber numberWithInt:part.zoomLevel],nil] forKey:part.partName];
+            break;
+        }
+    }
+    arrToIter = nil;
+    
+//    for (InvoBodyPartDetails *part in self.painShapeDetailsArr) {
+//        
+//        if (part.zoomLevel == zmLVL && part.orientation == orientation) {
+//            
+//            if ([part.partShapePoints containsPoint:pointToCheck]) {
+//                
+//                toRet = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObject:part.partShapePoints] forKeys:[NSArray arrayWithObject:part.partName]];
+//                break;
+//            }
+//        }
+//    }
     
     return toRet;
 }

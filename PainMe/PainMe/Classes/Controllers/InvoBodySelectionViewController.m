@@ -6,7 +6,8 @@
 //  Copyright (c) 2012 Involution Studios, Inc. All rights reserved.
 //
 
-#import "InvoBodySelectionViewControllerViewController.h"
+#import <QuartzCore/QuartzCore.h>
+#import "InvoBodySelectionViewController.h"
 #import "BodyView.h"
 #import "InvoDataManager.h"
 #import "BodyPartGeometry.h"
@@ -19,7 +20,7 @@
 #import "InvoPainColorHelper.h"
 #import "InvoTextForEmail.h"
 
-@interface InvoBodySelectionViewControllerViewController () {
+@interface InvoBodySelectionViewController () {
    
     CGPoint bodyOffset;
     UIActivityIndicatorView *indicator;
@@ -53,7 +54,7 @@
 
 @end
 
-@implementation InvoBodySelectionViewControllerViewController
+@implementation InvoBodySelectionViewController
 
 @synthesize scrollView = _scrollView, bodyView = _bodyView;
 @synthesize tapGesture = _tapGesture;
@@ -137,7 +138,7 @@
     int currentOrient = [self currentOrientation];
     
     CGRect flipRect = CGRectMake(253, 20, 40, 90);
-    
+    [self.flipButton setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.8f]];
     [self.flipButton setFrame:flipRect];
     [self.flipButton setImage:[InvoFlipButtonView imageWithOrientation:currentOrient] forState:UIControlStateNormal];
 
@@ -213,6 +214,8 @@
         
         InvoPartNamelabel *bble = [[InvoPartNamelabel alloc] initWithFrame:CGRectMake(labelPt.x,labelPt.y , 100, 20) name:[name copy]];
         [bble setTag:kTagPartNameBubble];
+        [bble.layer setCornerRadius:5.0f];
+        [bble.layer setMasksToBounds:YES];
         [self.view insertSubview:bble atIndex:100];
     }
 }
@@ -340,6 +343,25 @@
     pathContainingPoint = [self.bodyGeometry containsPoint:convPoint withZoomLVL:zoomLVL withOrientation:[self currentOrientation]];
     
     if (pathContainingPoint) {
+
+        NSString *name = [[[pathContainingPoint allKeys]objectAtIndex:0]copy] ;
+//        int level;
+//        id values = [pathContainingPoint valueForKey:name];
+//        for (id value in values) {
+//            if ([value isKindOfClass:[NSNumber class]]) {
+//                level = [(NSNumber *)value intValue];
+//            }
+//        }
+//        if ([self.bodyView doesEntryExist:name withZoomLevel:level]) {
+//         
+//            [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:0 notes:nil];
+//        }
+//        UIColor *fillcolor = [InvoPainColorHelper colorfromPain:painLvl];
+//        
+//        [self.bodyView renderPainForBodyPartPath:[[pathContainingPoint allValues] objectAtIndex:0] WithColor:fillcolor detailLevel:zoomLVL name:[[pathContainingPoint allKeys] objectAtIndex:0] orient:[self currentOrientation]];
+//        fillcolor = nil;
+//        
+//        [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:painLvl notes:nil];
         
         if(painLvl ==0){
         
@@ -375,7 +397,6 @@
             UIColor *fillcolor = [InvoPainColorHelper colorfromPain:painLvl];
             
             [self.bodyView maskWithColor:fillcolor];
-            
         }
         else{
             

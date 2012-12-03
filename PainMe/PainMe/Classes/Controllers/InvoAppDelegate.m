@@ -8,7 +8,7 @@
 
 #import "InvoAppDelegate.h"
 
-#import "InvoBodySelectionViewControllerViewController.h"
+#import "InvoBodySelectionViewController.h"
 
 #import "InvoDataManager.h"
 
@@ -45,12 +45,13 @@
        //UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
        //InvoBodySelectionViewControllerViewController *controller = (InvoBodySelectionViewControllerViewController *)navigationController.topViewController;
    }
-    
+
     InvoDataManager *dtaMgr = [InvoDataManager sharedDataManager];
+//    dispatch_async(dispatch_get_current_queue(), ^(){
+        [dtaMgr checkPainLocationDataBase];
+//    });
     
-    [dtaMgr checkPainLocationDataBase];
-    
-//    [TestFlight takeOff:@"35de84803bb30da2ded080223940da33_MTEwMDY2MjAxMi0wNy0xMyAxNDo1MTozNi44MDQ4NjU"];
+    [TestFlight takeOff:@"35de84803bb30da2ded080223940da33_MTEwMDY2MjAxMi0wNy0xMyAxNDo1MTozNi44MDQ4NjU"];
        
     return YES;
 }

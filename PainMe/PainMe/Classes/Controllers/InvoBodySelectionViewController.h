@@ -17,7 +17,7 @@ typedef enum{
 }kTags;
 
 
-@interface InvoBodySelectionViewControllerViewController : UIViewController <UIScrollViewDelegate,UIGestureRecognizerDelegate,PainFaceDelegate,MFMailComposeViewControllerDelegate>
+@interface InvoBodySelectionViewController : UIViewController <UIScrollViewDelegate,UIGestureRecognizerDelegate,PainFaceDelegate,MFMailComposeViewControllerDelegate>
 
 - (IBAction)flipTapped:(id)sender;
 

@@ -10,7 +10,7 @@
 
 #import "InvoDataManager.h"
 
-#define MAX_LOCATIONS 245
+#define MAX_LOCATIONS 246
 
 #define NUM_COLUMNS 4.0
 #define NUM_ROWS 9.0
@@ -217,7 +217,7 @@
 //    NSLog(@"Beginning...");
 	NSStringEncoding encoding = 0;
     // NSString *file = @"/Users/DDKarwa/Desktop/tmpCsvParse/Workbook1.csv";
-    NSString *file = [[NSBundle mainBundle] pathForResource:@"NewBodyPartData" ofType:@"csv"];
+    NSString *file = [[NSBundle mainBundle] pathForResource:@"BackViewData" ofType:@"csv"];
     NSInputStream *stream = [NSInputStream inputStreamWithFileAtPath:file];
     NSError *error = nil;
     
@@ -309,8 +309,8 @@
         
         if ([dictKeys count]!=[self.keysFromStoredLocData count]) {
         
-            if (![self painLocationExists:[ky copy]])
-            {
+//            if (![self painLocationExists:[ky copy]])
+//            {
                 NSArray *valArray = [self.dict valueForKey:ky];
                 
                 int itmCount = [valArray count];
@@ -338,11 +338,15 @@
                 int zoomLvl = [[[valArray objectAtIndex:0] objectAtIndex:1] integerValue];
                 
                 [PainLocation locationEntryWithName:[ky copy] shape:shapeVertices zoomLevel:zoomLvl orientation:orientation ];
-                
+
                 valArray = nil;
-            }
+//            }
         }
     }
+    [self saveContext];
+    [self.keysFromStoredLocData removeAllObjects];
+    [self painLocationsInDatabase];
+    
 }
 
 -(void)setPointCount:(NSInteger)newPoints{
@@ -378,7 +382,8 @@
     if (__managedObjectModel != nil) {
         return __managedObjectModel;
     }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"PainMe" withExtension:@"momd"];
+   // NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"PainMe" withExtension:@"momd"];
+     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"PainMe" withExtension:@"momd"];
     __managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return __managedObjectModel;
 }
@@ -393,13 +398,22 @@
     
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"PainMe.sqlite"];
     
-    NSError *error = nil;
-    __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    //NSString *storePath = [storeURL path];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
     
+    // If the expected store doesn't exist, copy the default store.
+    if (![fileManager fileExistsAtPath:[storeURL path]]) {
+        NSURL *defaultStoreURL = [[NSBundle mainBundle] URLForResource:@"PainMe" withExtension:@"sqlite"];
+        if (defaultStoreURL) {
+            [fileManager copyItemAtURL:defaultStoreURL toURL:storeURL error:NULL];
+        }
+    }
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
                              [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
     
+    NSError *error = nil;
+    __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     
     if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options: options error:&error]) {
         /*
@@ -492,7 +506,9 @@
     NSPredicate *pred;
     
     if (orient ==0) {
-        pred = [NSPredicate predicateWithFormat:@"location.orientation == NULL "];
+//        pred = [NSPredicate predicateWithFormat:@"location.orientation == '0'"];
+//        pred = [NSPredicate predicateWithFormat:@"location.orientation == %@",nil];
+         pred = [NSPredicate predicateWithFormat:@"location.orientation == %@ ",[NSNumber numberWithInt:0]];
     }
     else{
         pred = [NSPredicate predicateWithFormat:@"location.orientation == %@",[NSNumber numberWithInt:orient]];

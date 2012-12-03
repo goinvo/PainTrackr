@@ -11,4 +11,7 @@
 @interface InvoPartNamelabel : UIView
 
 - (id)initWithFrame:(CGRect)frame name:(NSString *)partName;
+
+@property (nonatomic, strong)NSString *name;
+
 @end

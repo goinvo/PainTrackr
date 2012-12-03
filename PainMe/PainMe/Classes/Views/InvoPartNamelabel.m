@@ -7,6 +7,7 @@
 //
 
 #import "InvoPartNamelabel.h"
+//#import <QuartzCore/QuartzCore.h>
 
 @interface NSString (BlankString)
 
@@ -43,26 +44,39 @@
     if (self) {
         // Initialization code
         [self setUserInteractionEnabled:YES];
-        
-        if(NO == [NSString isStringEmpty:partName]){
-            
-            NSString *labelString = [partName copy];
-            [self setBackgroundColor:[UIColor yellowColor]];
-            
-            UILabel *label = [[UILabel alloc] init];
-            [label setFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
-            [label setBackgroundColor:[UIColor clearColor]];
-            [label setFont:[UIFont fontWithName:@"Helvetica" size:10]];
-            [label setLineBreakMode:UILineBreakModeCharacterWrap];
-            [label setTextAlignment:UITextAlignmentCenter];
-            [label setText:labelString];
-            [label setTextColor:[UIColor blackColor]];
-            
-            [self addSubview:label];
-            
-        }
+        self.name = [partName copy];
+        //[self.layer setCornerRadius:5.0f];
+//        if(NO == [NSString isStringEmpty:partName]){
+//            
+//            NSString *labelString = [partName copy];
+//            [self setBackgroundColor:[UIColor colorWithRed:90.0/255.0 green:90.0/255.0 blue:90.0/255.0 alpha:1.0]];
+//            
+//            UILabel *label = [[UILabel alloc] init];
+//            [label setFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+//            [label setBackgroundColor:[UIColor clearColor]];
+//            [label setFont:[UIFont fontWithName:@"Helvetica" size:10]];
+//            [label setLineBreakMode:UILineBreakModeCharacterWrap];
+//            [label setTextAlignment:UITextAlignmentCenter];
+//            [label setText:labelString];
+//            [label setTextColor:[UIColor whiteColor]];
+//            [label.layer setCornerRadius:5.0f];
+//            [self addSubview:label];
+//            
+//        }
     }
     return self;
+}
+
+-(void)drawRect:(CGRect)rect{
+
+    [[UIColor grayColor] setFill];
+    UIRectFill(rect);
+    
+   // [[UIColor colorWithRed:90.0/255.0 green:90.0/255.0 blue:90.0/255.0 alpha:1.0] setFill];
+    [[UIColor whiteColor]setFill];
+    
+//    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [UIColor whiteColor].CGColor);
+    [self.name drawInRect: CGRectMake(0, 3, rect.size.width, rect.size.height) withFont:[UIFont fontWithName:@"Helvetica" size:10.0]lineBreakMode:NSLineBreakByTruncatingHead alignment:NSTextAlignmentCenter];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{

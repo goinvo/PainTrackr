@@ -251,7 +251,7 @@
     
     
     for (int i=0; i<[entriesValue count]; i++) {
-                
+                //360
         InvoDetailedHistoryBodyView *detailView = [InvoDetailedHistoryBodyView detailedBodyViewWithFrame:CGRectMake(160*i, 0, 160, 360) PainDetails:[entriesValue objectAtIndex:i]];
         [entriesScrollView addSubview:detailView];
     }

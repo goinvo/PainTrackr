@@ -40,6 +40,9 @@
     
 // drawing with the coloring of the most recent PainEntry
     UIGraphicsBeginImageContext(flipRect.size);
+    
+    [[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.4]setFill];
+    UIRectFill(flipRect);
 
     [painColor setFill];
     [[UIColor blackColor]setStroke];

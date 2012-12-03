@@ -109,7 +109,8 @@
     [[UIColor whiteColor]setFill];
     
     if (!self.moreEntries) {
-        [img drawInRect:rect];
+   
+        [img drawInRect:CGRectMake(5, 5, rect.size.width-10, rect.size.height-10)];
 
         CGContextStrokeRect(UIGraphicsGetCurrentContext(), rect);
     }
