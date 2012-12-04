@@ -128,7 +128,7 @@
             }
         }
         
-        self.scrollView.contentSize = (yIndex+108 <480 )?CGSizeMake( 320, 480+108) : CGSizeMake(320, yIndex+108*2);
+        self.scrollView.contentSize = (yIndex+108 <480 )?CGSizeMake( 320, 480) : CGSizeMake(320, yIndex+108*2);
     }
 
 }
@@ -182,7 +182,7 @@
     self.scrollView.backgroundColor = [UIColor clearColor];
     self.scrollView.minimumZoomScale = 1.0f;
     self.scrollView.maximumZoomScale = 1.0f;
-    self.scrollView.pagingEnabled = YES;
+//    self.scrollView.pagingEnabled = YES;
     self.painEntriesByDate = [NSDictionary dictionaryWithDictionary:[[InvoDataManager sharedDataManager] entriesPerDayList]];
     
 //    NSLog(@"Total entries to draw are %d",[[self.painEntriesByDate allKeys] count]);

@@ -110,7 +110,7 @@
 
     
    _imageCache = [[NSCache alloc] init];
-   [_imageCache setCountLimit: 5 * 7];
+   [_imageCache setCountLimit: 3 * 7];
     
     self.isMask = NO;
     self.isNewStroke = NO;
@@ -417,11 +417,11 @@
     return strToRet;
 }
 
--(BOOL)doesEntryExist:(NSString *)name{
+-(BOOL)doesEntryExist:(NSString *)name withZoomLevel:(int)level {
 
     for (InvoBodyPartDetails *part in self.shapesArray) {
     
-        if ([part.partName isEqualToString:name]) {
+        if ([part.partName isEqualToString:name] && part.zoomLevel == level) {
             
             return YES;
         }

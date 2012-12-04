@@ -10,7 +10,7 @@
 
 #import "InvoDataManager.h"
 
-#define MAX_LOCATIONS 246
+#define MAX_LOCATIONS 255
 
 #define NUM_COLUMNS 4.0
 #define NUM_ROWS 9.0
@@ -150,13 +150,6 @@
         [self getDataFromCSVInDict];
         [self listCoordinates];
     }
-    
-//    if(137 != [self totalLocations]){
-        
-//        [self getDataFromCSVInDict];
-//        [self listCoordinates];
-//    }
-
 }
 
 #pragma mark get painLocation Data from database
@@ -228,29 +221,29 @@
 	Delegate * d = [[Delegate alloc] init];
 	[p setParserDelegate:d];
 	
-	NSTimeInterval start = [NSDate timeIntervalSinceReferenceDate];
+//	NSTimeInterval start = [NSDate timeIntervalSinceReferenceDate];
 	[p parse];
-	NSTimeInterval end = [NSDate timeIntervalSinceReferenceDate];
+//	NSTimeInterval end = [NSDate timeIntervalSinceReferenceDate];
 	
-	NSLog(@"raw difference: %f", (end-start));
+//	NSLog(@"raw difference: %f", (end-start));
     
     NSArray *a = [NSArray arrayWithContentsOfCSVFile:file encoding:encoding error:nil];
-    //    NSLog(@"%@", a);
+  //  NSLog(@"%@", a);
     NSString *s = [a CSVString];
     
-    //    NSLog(@"s is %@",s);
+    //NSLog(@"s is %@",s);
     
     NSArray *csvArray = [s CSVComponents];
+    int csvArrayCount = [csvArray count];
 //    NSLog(@" Array is %d",[csvArray count]);
     
     self.dict = [NSMutableDictionary dictionary];
     
     NSMutableArray *dictValueArray =[[NSMutableArray alloc] init];
     
-    
     NSString *prevString =[[csvArray objectAtIndex:0] objectAtIndex:0];
     
-    for (int i=0;i<[csvArray count];i++) {
+    for (int i=0;i<csvArrayCount;i++) {
         
         NSArray *obj = [csvArray objectAtIndex:i];
         NSString *keyString = [obj objectAtIndex:0];
@@ -309,6 +302,11 @@
         
         if ([dictKeys count]!=[self.keysFromStoredLocData count]) {
         
+            if ([ky isEqualToString:@"Posterior Head"]) {
+                
+                NSLog(@"details are %@",ky);
+            }
+
 //            if (![self painLocationExists:[ky copy]])
 //            {
                 NSArray *valArray = [self.dict valueForKey:ky];
@@ -336,7 +334,12 @@
                 NSData *shapeVertices = [NSData dataWithBytes:_pts length:sizeof(CGPoint)*itmCount];
                 
                 int zoomLvl = [[[valArray objectAtIndex:0] objectAtIndex:1] integerValue];
+            
+            if ([ky isEqualToString:@"Posterior Head"]) {
                 
+                NSLog(@"details are %@ zoom%d orient%d",ky,zoomLvl, orientation );
+            }
+
                 [PainLocation locationEntryWithName:[ky copy] shape:shapeVertices zoomLevel:zoomLvl orientation:orientation ];
 
                 valArray = nil;

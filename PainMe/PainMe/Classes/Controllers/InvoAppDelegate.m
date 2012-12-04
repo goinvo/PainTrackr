@@ -84,4 +84,9 @@
     
     [[InvoDataManager sharedDataManager] saveContext];
 }
+
+-(void)applicationDidReceiveMemoryWarning:(UIApplication *)application{
+
+    NSLog(@"App received emmory warning");
+}
 @end

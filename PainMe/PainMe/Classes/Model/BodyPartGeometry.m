@@ -34,7 +34,6 @@
 @synthesize painLocDetails = painLocDetails;
 
 
-
 - (id) init {
    self = [super init];
    if (self) {
@@ -62,6 +61,12 @@
            InvoBodyPartDetails *part = [InvoBodyPartDetails invoBodyPartWithShape:[self bezierPath] name:[pName copy] zoomLevel:zmLvl orientation:[[obj valueForKey:@"orientation"] intValue]];
            
            [self.painShapeDetailsArr addObject:part];
+       }
+       
+       for (InvoBodyPartDetails *part in self.painShapeDetailsArr) {
+           if (part.zoomLevel ==1) {
+             NSLog(@"part names to check are %@",part.partName);  
+           }
        }
     }
    return self;
@@ -115,12 +120,17 @@
         }
     }
     
+    for(InvoBodyPartDetails *part in arrToIter){
+    
+//        NSLog(@"part names to check are %@",part.partName);
+    }
+    
     for (InvoBodyPartDetails *part in arrToIter) {
         
         if ([part.partShapePoints containsPoint:pointToCheck]) {
             
-            toRet = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObject:part.partShapePoints] forKeys:[NSArray arrayWithObject:part.partName]];
-//            toRet = [NSDictionary dictionaryWithObject:[NSArray arrayWithObjects:part.partShapePoints,[NSNumber numberWithInt:part.zoomLevel],nil] forKey:part.partName];
+//            toRet = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObject:part.partShapePoints] forKeys:[NSArray arrayWithObject:part.partName]];
+            toRet = [NSDictionary dictionaryWithObject:[NSArray arrayWithObjects:part.partShapePoints,[NSNumber numberWithInt:part.zoomLevel],nil] forKey:part.partName];
             break;
         }
     }

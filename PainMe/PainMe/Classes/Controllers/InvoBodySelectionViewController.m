@@ -73,7 +73,6 @@
 */
 
 
-
 -(void)viewWillAppear:(BOOL)animated{
 
     [self.navigationController setNavigationBarHidden:YES];
@@ -345,37 +344,49 @@
     if (pathContainingPoint) {
 
         NSString *name = [[[pathContainingPoint allKeys]objectAtIndex:0]copy] ;
-//        int level;
-//        id values = [pathContainingPoint valueForKey:name];
-//        for (id value in values) {
-//            if ([value isKindOfClass:[NSNumber class]]) {
-//                level = [(NSNumber *)value intValue];
+        int level;
+        UIBezierPath *bezierShape = nil;
+        id values = [pathContainingPoint valueForKey:name];
+        for (id value in values) {
+            if ([value isKindOfClass:[NSNumber class]]) {
+                level = [(NSNumber *)value intValue];
+            }
+            else bezierShape = [value copy];
+        }
+        if(painLvl ==0){
+        
+            if ([self.bodyView doesEntryExist:name withZoomLevel:level]) {
+                UIColor *fillcolor = [InvoPainColorHelper colorfromPain:painLvl];
+                
+                [self.bodyView renderPainForBodyPartPath:bezierShape WithColor:[UIColor clearColor] detailLevel:zoomLVL name:[[pathContainingPoint allKeys] objectAtIndex:0] orient:[self currentOrientation]];
+                fillcolor = nil;
+
+                [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:0 notes:nil];
+            }
+            return;
+        }
+        else{
+        
+            UIColor *fillcolor = [InvoPainColorHelper colorfromPain:painLvl];
+            
+            [self.bodyView renderPainForBodyPartPath:bezierShape WithColor:fillcolor detailLevel:zoomLVL name:[[pathContainingPoint allKeys] objectAtIndex:0] orient:[self currentOrientation]];
+            fillcolor = nil;
+            
+            [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:painLvl notes:nil];
+        }
+//        if(painLvl ==0){
+//        
+//            if([self.bodyView doesEntryExist:[[[pathContainingPoint allKeys]objectAtIndex:0]copy]]){
+//                [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:0 notes:nil];
 //            }
-//        }
-//        if ([self.bodyView doesEntryExist:name withZoomLevel:level]) {
-//         
-//            [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:0 notes:nil];
 //        }
 //        UIColor *fillcolor = [InvoPainColorHelper colorfromPain:painLvl];
 //        
 //        [self.bodyView renderPainForBodyPartPath:[[pathContainingPoint allValues] objectAtIndex:0] WithColor:fillcolor detailLevel:zoomLVL name:[[pathContainingPoint allKeys] objectAtIndex:0] orient:[self currentOrientation]];
-//        fillcolor = nil;
 //        
 //        [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:painLvl notes:nil];
-        
-        if(painLvl ==0){
-        
-            if([self.bodyView doesEntryExist:[[[pathContainingPoint allKeys]objectAtIndex:0]copy]]){
-                [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:0 notes:nil];
-            }
-        }
-        UIColor *fillcolor = [InvoPainColorHelper colorfromPain:painLvl];
-        
-        [self.bodyView renderPainForBodyPartPath:[[pathContainingPoint allValues] objectAtIndex:0] WithColor:fillcolor detailLevel:zoomLVL name:[[pathContainingPoint allKeys] objectAtIndex:0] orient:[self currentOrientation]];
-        
-        [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:painLvl notes:nil];
-        
-        fillcolor = nil;
+//        
+//        fillcolor = nil;
     }
 }
 
