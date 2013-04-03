@@ -10,7 +10,7 @@
 
 #import "InvoDataManager.h"
 
-#define MAX_LOCATIONS 255
+#define MAX_LOCATIONS 257
 
 #define NUM_COLUMNS 4.0
 #define NUM_ROWS 9.0
@@ -179,29 +179,6 @@
     return [self.keysFromStoredLocData count];
 }
 
-/*
--(int)totalLocations{
-
-    NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainLocation" inManagedObjectContext:self.managedObjectContext];
-    
-    NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
-    [fetReq setEntity:descript];
-    [fetReq setResultType:NSDictionaryResultType];
-    
-    NSError *error = nil;
-    NSArray *locData = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
-    
-    //    NSLog(@"Entries are %@ with count %d", locData,[locData count]);
-    self.keysFromStoredLocData = [NSMutableArray array];
-    
-    for (NSDictionary *dicti in locData) {
-        //getting all names
-        [self.keysFromStoredLocData addObject:[[dicti allValues]objectAtIndex:0]];
-    }
-    return [locData count];
-}
- */
-
 #pragma mark -
 
 #pragma mark Get data from CSV file
@@ -211,6 +188,7 @@
 	NSStringEncoding encoding = 0;
     // NSString *file = @"/Users/DDKarwa/Desktop/tmpCsvParse/Workbook1.csv";
     NSString *file = [[NSBundle mainBundle] pathForResource:@"BackViewData" ofType:@"csv"];
+//      NSString *file = [[NSBundle mainBundle] pathForResource:@"NewBodyPartData" ofType:@"csv"];
     NSInputStream *stream = [NSInputStream inputStreamWithFileAtPath:file];
     NSError *error = nil;
     

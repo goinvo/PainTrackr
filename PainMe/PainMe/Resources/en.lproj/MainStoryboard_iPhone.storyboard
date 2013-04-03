@@ -157,7 +157,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Back" id="fOW-H6-ZL6">
+                        <barButtonItem title="Close" id="fOW-H6-ZL6">
                             <connections>
                                 <action selector="backPressed:" destination="lcr-In-yy1" id="4LI-Mg-Yuo"/>
                             </connections>

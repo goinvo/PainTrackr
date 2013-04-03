@@ -63,11 +63,11 @@
            [self.painShapeDetailsArr addObject:part];
        }
        
-       for (InvoBodyPartDetails *part in self.painShapeDetailsArr) {
-           if (part.zoomLevel ==1) {
-             NSLog(@"part names to check are %@",part.partName);  
-           }
-       }
+//       for (InvoBodyPartDetails *part in self.painShapeDetailsArr) {
+//           if (part.zoomLevel ==1) {
+//             NSLog(@"part names to check are %@",part.partName);
+//           }
+//       }
     }
    return self;
 }

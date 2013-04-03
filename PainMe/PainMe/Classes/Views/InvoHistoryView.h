@@ -21,7 +21,8 @@
 
 //@property (nonatomic, retain)UIImage *imgRet;
 @property (nonatomic, retain)id <HistoryViewDelegate> del;
-@property (nonatomic, assign)int orientation;
+@property (nonatomic, assign)int orientation1;
+@property (nonatomic, assign)int orientation2;
 
 - (id)initWithFrame:(CGRect)frame locations:(NSArray *)shapesDict date:(NSString *)stringDate ;
 

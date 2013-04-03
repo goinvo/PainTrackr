@@ -93,8 +93,6 @@
     return 0.2;
 }
 
-
-
 - (void) awakeFromNib {
     
    [super awakeFromNib];
@@ -311,7 +309,7 @@
             
             if(zm == part.zoomLevel){
                 
-                CGContextSetStrokeColorWithColor(ctx,[UIColor blueColor].CGColor);
+                CGContextSetStrokeColorWithColor(ctx,[UIColor clearColor].CGColor);
                 CGContextSetFillColorWithColor(ctx, [part.shapeColor CGColor]);
                 
                 [part.partShapePoints applyTransform:CGAffineTransformMakeTranslation(ofst.x, ofst.y)];
@@ -337,8 +335,8 @@
             }
         }
     }
-
 }
+
 #pragma mark -
 
 #pragma mark mask WIth color for stroke of body

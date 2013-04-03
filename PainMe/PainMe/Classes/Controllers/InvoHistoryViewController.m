@@ -58,9 +58,9 @@
         
         NSDate *prevDateString = [self.sortedDates objectAtIndex:0];
         
-        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 2, 320, 1)];
-        [lineView setBackgroundColor:[UIColor lightGrayColor]];
-        [self.scrollView addSubview:lineView];
+//        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 2, 320, 1)];
+//        [lineView setBackgroundColor:[UIColor lightGrayColor]];
+//        [self.scrollView addSubview:lineView];
         
         [self addLabelFromDate:prevDateString formatStyle:@"MMMM YYY" rect:CGRectMake(0, 10, 320, 20) backColor:[UIColor clearColor] fontSize:15.0f toView:self.scrollView];
         
@@ -115,7 +115,7 @@
                 
                 [hisView setFrame:CGRectMake(xIndex,yIndex, 60, 108)];
                 
-                [self addLabelFromDate:currDate formatStyle:@"E d" rect:CGRectMake(0 ,108, 60, 10) backColor:[UIColor clearColor] fontSize:9.0 toView:hisView];
+                [self addLabelFromDate:currDate formatStyle:@"E d" rect:CGRectMake(0 ,110, 60, 10) backColor:[UIColor clearColor] fontSize:9.0 toView:hisView];
                 
                 [self.scrollView addSubview:hisView];
                 
@@ -128,7 +128,9 @@
             }
         }
         
-        self.scrollView.contentSize = (yIndex+108 <480 )?CGSizeMake( 320, 480) : CGSizeMake(320, yIndex+108*2);
+        self.scrollView.contentSize = (yIndex+108 <[UIScreen mainScreen].bounds.size.height -35)?CGSizeMake( 320, [UIScreen mainScreen].bounds.size.height -35) : CGSizeMake(320, yIndex+108*2);
+        
+        NSLog(@"scrollview content size is %@", NSStringFromCGSize(self.scrollView.contentSize));
     }
 
 }

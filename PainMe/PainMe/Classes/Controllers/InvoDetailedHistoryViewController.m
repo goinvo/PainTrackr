@@ -135,31 +135,31 @@
 
 -(void)checkButtonsToDisplayWithIndex:(int)num {
     
+    
     if (num ==0){
         
         [leftButton setUserInteractionEnabled:NO];
         [leftButton setHidden:YES];
         
-        [rightButton setUserInteractionEnabled:YES];
-        [rightButton setHidden:NO];
+        if ([self.datesArray count]>1) {
+            [rightButton setUserInteractionEnabled:YES];
+            [rightButton setHidden:NO];
+            return;
+        }
+        [rightButton setUserInteractionEnabled:NO];
+        [rightButton setHidden:YES];
     }
-    else if(num == [self.datesArray count]-1) {
-        
-        if (num ==1) {
-            [leftButton setUserInteractionEnabled:NO];
-            [leftButton setHidden:YES];
+    else{
+    
+        int count = [self.datesArray count];
+        if (num == (count -1)) {
+            [leftButton setUserInteractionEnabled:YES];
+            [leftButton setHidden:NO];
             
             [rightButton setUserInteractionEnabled:NO];
             [rightButton setHidden:YES];
             return;
         }
-        [leftButton setUserInteractionEnabled:YES];
-        [leftButton setHidden:NO];
-        
-        [rightButton setUserInteractionEnabled:NO];
-        [rightButton setHidden:YES];
-    }
-    else{
         
         [leftButton setUserInteractionEnabled:YES];
         [leftButton setHidden:NO];
