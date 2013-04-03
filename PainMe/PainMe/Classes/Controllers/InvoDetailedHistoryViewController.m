@@ -12,19 +12,18 @@
 @interface InvoDetailedHistoryViewController (){
 
      IBOutlet UILabel *dateLabel;
-     UIScrollView *entriesScrollView;
     
     __weak IBOutlet UIButton *leftButton;
     __weak IBOutlet UIButton *rightButton;
 
 }
 
-@property (nonatomic, strong)NSString *dateLabelText;
-@property (nonatomic, readwrite)int currDateIndex;
+@property (nonatomic, weak) UIScrollView *entriesScrollView;
+@property (nonatomic, copy) NSString *dateLabelText;
+@property (nonatomic, readwrite) int currDateIndex;
 @property (nonatomic, strong) NSDictionary *sortedByDateEntries;
 @property (nonatomic, strong) NSArray *datesArray;
-@property (nonatomic, strong) UIPageViewController *pageViewCtrl;
-
+@property (nonatomic, strong) UIPageControl *pageViewCtrl;
 
 -(void)addFacesToView;
 -(IBAction)leftTapped:(id)sender;
@@ -39,8 +38,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        
-//        [self addFacesToView];
+
         if (dateString) {
             
             NSDateFormatter *frmtr = [[NSDateFormatter alloc]init];
@@ -50,20 +48,14 @@
             
             self.dateLabelText = [frmtr stringFromDate:dateFrmStr];
         }
-        
         if (sortedDict) {
             self.sortedByDateEntries = [sortedDict copy];
             
             [self sortDates];
-            
             self.currDateIndex = [ self indexOfDate:dateString];
-            
 //            NSLog(@"dates are %@",self.datesArray);
-        
             [self addBodyViewsForDate:[dateString copy]];
         }
-
-          
     }
     return self;
 }
@@ -76,7 +68,9 @@
         [dateLabel setText:self.dateLabelText];
     }
     [self checkButtonsToDisplayWithIndex:self.currDateIndex];
-    entriesScrollView.pagingEnabled = YES;
+    
+    _entriesScrollView.pagingEnabled = YES;
+    _entriesScrollView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -223,15 +217,30 @@
     
     //    NSLog(@"date is %@",date);
     
-    if (entriesScrollView) {
-        [entriesScrollView removeFromSuperview];
+    if (_entriesScrollView) {
+        [_entriesScrollView removeFromSuperview];
     }
     
-    entriesScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(80, 50, 160, 360)];
-    [entriesScrollView setBackgroundColor:[UIColor lightGrayColor]];
-    entriesScrollView.pagingEnabled = YES;
-    [self.view insertSubview:entriesScrollView atIndex:100];
-
+    //42 is for the NavBar
+    float dateHeight = dateLabel.frame.size.height;
+    float padding = 12.0f;
+    float height = [[UIScreen mainScreen] applicationFrame].size.height - 42.0f -dateHeight - padding*4;
+    float imgAspect = 4.0/9;
+    float width = imgAspect*height;
+    
+    NSLog(@"new height:%f width:%f", height,width);
+    
+    //160, 360
+    UIScrollView *scrollview;
+    
+    scrollview = [[UIScrollView alloc]initWithFrame:CGRectMake(10, 32, [[UIScreen mainScreen] applicationFrame].size.width, height)];
+    [scrollview setBackgroundColor:[UIColor colorWithWhite:0.94 alpha:0.8f]];
+    scrollview.pagingEnabled = YES;
+    scrollview.delegate = self;
+//    scrollview.showsHorizontalScrollIndicator = NO;
+    [self.view insertSubview:scrollview atIndex:100];
+    _entriesScrollView = scrollview;
+    
     NSString *dString;
     if([date isKindOfClass:[NSString class]]){
     
@@ -245,21 +254,44 @@
     
     NSArray *entriesValue = [self.sortedByDateEntries valueForKey:dString];
 //    NSLog(@"value count is %d",[entriesValue count]);
+
+    float oldWidth = _entriesScrollView.bounds.size.width;
+    float offsetX = (oldWidth - width)*0.5;
     
-    float oldWIdth = entriesScrollView.bounds.size.width;
-    float newWidth = oldWIdth * [entriesValue count];
+    float newWidth = oldWidth * [entriesValue count];
     
-    
-    for (int i=0; i<[entriesValue count]; i++) {
-                //360
-        InvoDetailedHistoryBodyView *detailView = [InvoDetailedHistoryBodyView detailedBodyViewWithFrame:CGRectMake(160*i, 0, 160, 360) PainDetails:[entriesValue objectAtIndex:i]];
-        [entriesScrollView addSubview:detailView];
+        for (int i=0; i<[entriesValue count]; i++) {
+            
+            InvoDetailedHistoryBodyView *detailView = [InvoDetailedHistoryBodyView detailedBodyViewWithFrame:CGRectMake(offsetX + oldWidth*i, 0, width, height) PainDetails:[entriesValue objectAtIndex:i]];
+            [_entriesScrollView addSubview:detailView];
     }
     
-    [entriesScrollView setContentSize:CGSizeMake(newWidth, entriesScrollView.bounds.size.height)];
+    [_entriesScrollView setContentSize:CGSizeMake(newWidth, _entriesScrollView.bounds.size.height)];
+    
+//    _pageViewCtrl = [[UIPageControl alloc]initWithFrame:CGRectMake((oldWidth-100)*0.5, height+10.0, 100, 50.0)];
+//    _pageViewCtrl.numberOfPages = [entriesValue count];
+//    _pageViewCtrl.currentPage = 0;
+//    [_pageViewCtrl setPageIndicatorTintColor:[UIColor redColor]];
+//    [_pageViewCtrl setCurrentPageIndicatorTintColor:[UIColor grayColor]];
+//    [self.view insertSubview:_pageViewCtrl aboveSubview:_entriesScrollView];
 }
 
 #pragma mark -
+
+-(UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView{
+
+    return _entriesScrollView;
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+
+    CGPoint contentOffset = scrollView.contentOffset;
+    
+//    int number = contentOffset.x/scrollView.frame.size.width;
+//    NSLog(@"number is %d", number);
+//    [_pageViewCtrl setCurrentPage:number];
+    
+}
 
 #pragma mark change date label based on selection
 

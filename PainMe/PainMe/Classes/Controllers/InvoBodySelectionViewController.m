@@ -21,6 +21,7 @@
 #import "InvoTextForEmail.h"
 
 #import "UIDevice+deviceInfo.h"
+#import "UIFont+PainTrackrFonts.h"
 
 @interface InvoBodySelectionViewController () {
    
@@ -212,8 +213,16 @@
         
         CGPoint labelPt = [self.view convertPoint:touchLocation fromView:self.scrollView];
 //        NSLog(@"label Pt should be %@", NSStringFromCGPoint(labelPt));
+        CGSize labelSize = [name sizeWithFont:[UIFont bubbleFont]];
         
-        InvoPartNamelabel *bble = [[InvoPartNamelabel alloc] initWithFrame:CGRectMake(labelPt.x,labelPt.y , 100, 20) name:[name copy]];
+        float startX = [self xPosWithCurrentXPos:labelPt.x
+                                      labelWidth:labelSize.width];
+        
+        float startY = [self yPosWithCurrentYPos:labelPt.y
+                                     labelHeight:labelSize.height];
+               
+        InvoPartNamelabel *bble = [[InvoPartNamelabel alloc] initWithFrame:CGRectMake(startX, startY, labelSize.width+10, 20)
+                                                                      name:[name copy]];
         [bble setTag:kTagPartNameBubble];
         [bble.layer setCornerRadius:5.0f];
         [bble.layer setMasksToBounds:YES];
@@ -221,15 +230,35 @@
     }
 }
 
+-(float)xPosWithCurrentXPos:(float)currPos labelWidth:(float)currWidth{
+    float frameWidth = [[UIScreen mainScreen] applicationFrame].size.width;
+    float toReturn = currPos;
+    if (toReturn< 0) {
+        toReturn +=10.0f;
+    }else if ((toReturn + currWidth)> frameWidth){
+        toReturn = frameWidth - (currWidth +20);
+    }
+    return toReturn;
+}
+
+-(float)yPosWithCurrentYPos:(float)currPos labelHeight:(float)currHeight{
+    
+    float frameHeight = [[UIScreen mainScreen] applicationFrame].size.height;
+    float toReturn = currPos;
+    
+    if ((toReturn + currHeight)> (frameHeight - 50)){
+        toReturn -= (currHeight+10);
+    }
+    return toReturn;
+}
+
 -(void)handleDoubleTap:(UIGestureRecognizer*)gestReco{
 
-//    NSLog(@"double tap happened");
-        [self removeBodyNamePopUp];
+    [self removeBodyNamePopUp];
     
     if (self.scrollView.zoomScale >=0.065) {
     
         [self.scrollView zoomToRect:CGRectMake(0, 0,BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT) animated:YES];
-
     }
     else{
         [self.scrollView zoomToRect:CGRectMake(0, 0,BODY_VIEW_WIDTH-1024*3, BODY_VIEW_HEIGHT-1024*3) animated:YES];
@@ -376,19 +405,6 @@
             
             [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:painLvl notes:nil];
         }
-//        if(painLvl ==0){
-//        
-//            if([self.bodyView doesEntryExist:[[[pathContainingPoint allKeys]objectAtIndex:0]copy]]){
-//                [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:0 notes:nil];
-//            }
-//        }
-//        UIColor *fillcolor = [InvoPainColorHelper colorfromPain:painLvl];
-//        
-//        [self.bodyView renderPainForBodyPartPath:[[pathContainingPoint allValues] objectAtIndex:0] WithColor:fillcolor detailLevel:zoomLVL name:[[pathContainingPoint allKeys] objectAtIndex:0] orient:[self currentOrientation]];
-//        
-//        [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:painLvl notes:nil];
-//        
-//        fillcolor = nil;
     }
 }
 
@@ -434,7 +450,9 @@
     [indicator startAnimating];
     [self.sendButton setEnabled:NO];
     
-    grayOverLayView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 460)];
+    CGSize overLayeSize = [[UIScreen mainScreen]applicationFrame].size;
+    
+    grayOverLayView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, overLayeSize.width, overLayeSize.height)];
     [grayOverLayView setBackgroundColor:[UIColor blackColor]];
     [grayOverLayView setAlpha:0.4f];
     [self.view addSubview:grayOverLayView];
@@ -525,7 +543,6 @@
     
     (0 ==[self currentOrientation])?[self.viewLabelButton setTitle:@"Front View"]:
     [self.viewLabelButton setTitle:@"Back View"];
-    
 }
 
 -(int)currentOrientation{
