@@ -22,12 +22,7 @@
 
 @property (nonatomic, strong) NSMutableArray *shapesArray;
 
-//+(CGColorSpaceRef)genericRGBSpace;
-//+(CGColorRef)redColor;
-//+(CGColorRef)blueColor;
-
 + (UIImage *)imageToMask:(UIImage *)image Withcolor:(UIColor *)color;
-//-(void)drawRect:(CGRect)imageBounds inContext:(CGContextRef) ctx zoomLevel:(float)zoom;
 
 @end
 
@@ -38,49 +33,6 @@
    return [CATiledLayer class];
 }
 
-/*
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
- */
-
-/*
-+(CGColorSpaceRef)genericRGBSpace;{
-
-    static CGColorSpaceRef space = NULL;
-    if (space == NULL) {
-        space = CGColorSpaceCreateDeviceRGB();
-    }
-    return space;
-}
-
-+(CGColorRef)redColor;{
-
-    static CGColorRef red = NULL;
-    if (red == NULL) {
-        CGFloat values[4] = {1.0,0.0,0.0,1.0};
-        red = CGColorCreate([self genericRGBSpace], values);
-    }
-    return red;
-}
-
-+(CGColorRef)blueColor;{
-    
-    static CGColorRef blue = NULL;
-    if (blue == NULL) {
-        CGFloat values[4] = {0.0,0.0,1.0,1.0};
-        blue = CGColorCreate([self genericRGBSpace], values);
-    }
-    return blue;
-}
-
-*/
 +(CFTimeInterval)fadeDuration{
 
     return 0.2;
@@ -97,8 +49,6 @@
     tiledLayer.tileSize = CGSizeMake(BODY_TILE_SIZE, BODY_TILE_SIZE);
    
     tiledLayer.levelsOfDetail = 5;
-//    tiledLayer.masksToBounds = YES;
-
     
    _imageCache = [[NSCache alloc] init];
    [_imageCache setCountLimit: 3 * 7];
@@ -301,7 +251,6 @@
                 [part.partShapePoints fill];
                 [part.partShapePoints stroke];
                 [part.partShapePoints applyTransform:CGAffineTransformMakeTranslation(-ofst.x, -ofst.y)];
-                               
             }
             else{
                 
