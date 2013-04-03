@@ -86,6 +86,8 @@
             }
         [bezierPath closePath];
     }
+    
+    free(points);
     return [bezierPath copy];
 }
 

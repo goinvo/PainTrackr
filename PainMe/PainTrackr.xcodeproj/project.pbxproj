@@ -684,7 +684,7 @@
 
 /* Begin PBXFileReference section */
 		760D738A15CC54A300404C10 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
-		76111ED315D547BF007C1FC9 /* InvoBodyPartDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoBodyPartDetails.h; sourceTree = "<group>"; };
+		76111ED315D547BF007C1FC9 /* InvoBodyPartDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = InvoBodyPartDetails.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		76111ED415D547BF007C1FC9 /* InvoBodyPartDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoBodyPartDetails.m; sourceTree = "<group>"; };
 		76117D431677EB2F00A284B9 /* BackViewData.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BackViewData.csv; sourceTree = "<group>"; };
 		76117D451677EC7C00A284B9 /* PainMe.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = PainMe.sqlite; sourceTree = "<group>"; };
@@ -692,7 +692,7 @@
 		7612D8A7160D02E6009924A9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		7612D8A8160D02E6009924A9 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
 		7612D8A9160D02E6009924A9 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
-		7612E21015A1E94500E8E009 /* BodyPartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodyPartView.h; sourceTree = "<group>"; };
+		7612E21015A1E94500E8E009 /* BodyPartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BodyPartView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		7612E21115A1E94500E8E009 /* BodyPartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyPartView.m; sourceTree = "<group>"; };
 		761FA945165AB53A0031C53E /* BackViewIncluded.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BackViewIncluded.xcdatamodel; sourceTree = "<group>"; };
 		761FA947165ABAE50031C53E /* NewBodyPartData.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NewBodyPartData.csv; sourceTree = "<group>"; };
@@ -987,10 +987,10 @@
 		762C19FC1612543D00434807 /* Body_Detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Body_Detail.png; sourceTree = "<group>"; };
 		762C19FD1612543D00434807 /* Body_Detail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Body_Detail@2x.png"; sourceTree = "<group>"; };
 		762C1A01161258FD00434807 /* InvoDetailedHistoryBodyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoDetailedHistoryBodyView.h; sourceTree = "<group>"; };
-		762C1A02161258FD00434807 /* InvoDetailedHistoryBodyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoDetailedHistoryBodyView.m; sourceTree = "<group>"; };
+		762C1A02161258FD00434807 /* InvoDetailedHistoryBodyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = InvoDetailedHistoryBodyView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		762EC62015C1CCBE00250155 /* CHCSV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSV.h; sourceTree = "<group>"; };
 		762EC62115C1CCBE00250155 /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
-		762EC62215C1CCBE00250155 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
+		762EC62215C1CCBE00250155 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CHCSVParser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		762EC62315C1CCBE00250155 /* CHCSVWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVWriter.h; sourceTree = "<group>"; };
 		762EC62415C1CCBE00250155 /* CHCSVWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVWriter.m; sourceTree = "<group>"; };
 		762EC62515C1CCBE00250155 /* NSArray+CHCSVAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CHCSVAdditions.h"; sourceTree = "<group>"; };
@@ -1021,16 +1021,16 @@
 		7657564516139FD600067BAF /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iTunesArtwork@2x"; sourceTree = "<group>"; };
 		765756471613A04100067BAF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		766FF8FC15E51EA8000EDCD2 /* ErrorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorHandler.h; sourceTree = "<group>"; };
-		7673B51115ADD7CD006112C2 /* PainFaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PainFaceView.h; sourceTree = "<group>"; };
-		7673B51215ADD7CD006112C2 /* PainFaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PainFaceView.m; sourceTree = "<group>"; };
+		7673B51115ADD7CD006112C2 /* PainFaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PainFaceView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		7673B51215ADD7CD006112C2 /* PainFaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PainFaceView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		767CF892165D510B002BABB2 /* InvoTextForEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoTextForEmail.h; sourceTree = "<group>"; };
 		767CF893165D510B002BABB2 /* InvoTextForEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoTextForEmail.m; sourceTree = "<group>"; };
 		7683CBA7160BC8F500B566A7 /* InvoPartNamelabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoPartNamelabel.h; sourceTree = "<group>"; };
 		7683CBA8160BC8F500B566A7 /* InvoPartNamelabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoPartNamelabel.m; sourceTree = "<group>"; };
 		76880DE4165C36AF007A6F81 /* InvoPainColorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InvoPainColorHelper.h; path = ../Model/InvoPainColorHelper.h; sourceTree = "<group>"; };
 		76880DE5165C36AF007A6F81 /* InvoPainColorHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InvoPainColorHelper.m; path = ../Model/InvoPainColorHelper.m; sourceTree = "<group>"; };
-		76AB5DA315B890E100FEB78B /* InvoDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoDataManager.h; sourceTree = "<group>"; };
-		76AB5DA415B890E100FEB78B /* InvoDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoDataManager.m; sourceTree = "<group>"; };
+		76AB5DA315B890E100FEB78B /* InvoDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = InvoDataManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		76AB5DA415B890E100FEB78B /* InvoDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = InvoDataManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		76ADFB2116694FA000161203 /* BackViewIncluded 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BackViewIncluded 2.xcdatamodel"; sourceTree = "<group>"; };
 		76B1255E15D43F160000286A /* untitled-1_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "untitled-1_01.png"; sourceTree = "<group>"; };
 		76B1255F15D43F160000286A /* untitled-1_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "untitled-1_02.png"; sourceTree = "<group>"; };
@@ -1331,10 +1331,10 @@
 		76C61AF415E3E21E00EDCBFC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		76D3E50B15D598970095C553 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		76D994FF15EFB02D00FFF78C /* InvoHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoHistoryViewController.h; sourceTree = "<group>"; };
-		76D9950015EFB02D00FFF78C /* InvoHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoHistoryViewController.m; sourceTree = "<group>"; };
+		76D9950015EFB02D00FFF78C /* InvoHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = InvoHistoryViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		76D9950115EFB02D00FFF78C /* InvoHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoHistoryViewController.xib; sourceTree = "<group>"; };
-		76D9950515EFB1B300FFF78C /* InvoHistoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoHistoryView.h; sourceTree = "<group>"; };
-		76D9950615EFB1B300FFF78C /* InvoHistoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoHistoryView.m; sourceTree = "<group>"; };
+		76D9950515EFB1B300FFF78C /* InvoHistoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = InvoHistoryView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		76D9950615EFB1B300FFF78C /* InvoHistoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = InvoHistoryView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		76F1120815AF5BEA00E2907C /* F2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = F2.png; sourceTree = "<group>"; };
 		76F1120915AF5BEA00E2907C /* F3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = F3.png; sourceTree = "<group>"; };
 		76F1120A15AF5BEA00E2907C /* F4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = F4.png; sourceTree = "<group>"; };
@@ -1359,9 +1359,9 @@
 		834C1004158F7255000C5652 /* InvoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoAppDelegate.h; sourceTree = "<group>"; };
 		834C1005158F7255000C5652 /* InvoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoAppDelegate.m; sourceTree = "<group>"; };
 		834C1006158F7255000C5652 /* InvoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoDetailViewController.h; sourceTree = "<group>"; };
-		834C1007158F7255000C5652 /* InvoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoDetailViewController.m; sourceTree = "<group>"; };
+		834C1007158F7255000C5652 /* InvoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = InvoDetailViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		834C1008158F7255000C5652 /* InvoMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoMasterViewController.h; sourceTree = "<group>"; };
-		834C1009158F7255000C5652 /* InvoMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoMasterViewController.m; sourceTree = "<group>"; };
+		834C1009158F7255000C5652 /* InvoMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = InvoMasterViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		834C100B158F7255000C5652 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		834C100C158F7255000C5652 /* PainMe-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PainMe-Prefix.pch"; sourceTree = "<group>"; };
 		834C1012158F7255000C5652 /* PainMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PainMe.xcdatamodel; sourceTree = "<group>"; };
@@ -1370,17 +1370,17 @@
 		834C1018158F7255000C5652 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		834C1019158F7255000C5652 /* PainMe-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PainMe-Info.plist"; sourceTree = "<group>"; };
 		83A3BE2A1593B786008EB148 /* 1.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 1.0.xcdatamodel; sourceTree = "<group>"; };
-		83A3BE351593B8D0008EB148 /* PainEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PainEntry.h; path = PainMe/Classes/Model/PainEntry.h; sourceTree = SOURCE_ROOT; };
+		83A3BE351593B8D0008EB148 /* PainEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = PainEntry.h; path = PainMe/Classes/Model/PainEntry.h; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		83A3BE361593B8D0008EB148 /* PainEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PainEntry.m; path = PainMe/Classes/Model/PainEntry.m; sourceTree = SOURCE_ROOT; };
 		83A3BE381593B955008EB148 /* BodyPartGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodyPartGeometry.h; sourceTree = "<group>"; };
-		83A3BE391593B955008EB148 /* BodyPartGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyPartGeometry.m; sourceTree = "<group>"; };
+		83A3BE391593B955008EB148 /* BodyPartGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BodyPartGeometry.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		83C4401E1598D73E00F401D2 /* BodyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodyView.h; sourceTree = "<group>"; };
-		83C4401F1598D73E00F401D2 /* BodyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyView.m; sourceTree = "<group>"; };
+		83C4401F1598D73E00F401D2 /* BodyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BodyView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		83C440211598D85100F401D2 /* InvoBodySelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoBodySelectionViewController.h; sourceTree = "<group>"; };
-		83C440221598D85100F401D2 /* InvoBodySelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoBodySelectionViewController.m; sourceTree = "<group>"; };
+		83C440221598D85100F401D2 /* InvoBodySelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = InvoBodySelectionViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		83C440231598D85100F401D2 /* InvoBodySelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoBodySelectionViewController.xib; sourceTree = "<group>"; };
 		83C440261598D96800F401D2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		83C440281598DA2700F401D2 /* PainLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PainLocation.h; sourceTree = "<group>"; };
+		83C440281598DA2700F401D2 /* PainLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PainLocation.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		83C440291598DA2700F401D2 /* PainLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PainLocation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -3307,7 +3307,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PainMe/Classes/Helpers/PainMe-Prefix.pch";
 				GCC_VERSION = "";

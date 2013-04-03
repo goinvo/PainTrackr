@@ -16,11 +16,11 @@
     NSDateFormatter *form1;
 }
 
-@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, retain) InvoHistoryView *historyView;
+@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, strong) InvoHistoryView *historyView;
 
-@property (nonatomic, retain)NSArray *sortedDates;
-@property (nonatomic, retain)NSDictionary *painEntriesByDate;
+@property (nonatomic, strong)NSArray *sortedDates;
+@property (nonatomic, strong)NSDictionary *painEntriesByDate;
 
 -(IBAction)backPressed:(id)sender;
 
@@ -138,7 +138,7 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
+    // Release any stronged subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 

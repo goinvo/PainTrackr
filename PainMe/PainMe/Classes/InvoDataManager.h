@@ -14,15 +14,12 @@
 
 @interface InvoDataManager : NSObject
 
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
-@property (nonatomic,retain) NSMutableArray *parsedComponents;
-@property (nonatomic, retain) NSMutableArray *vertRange;
-@property (nonatomic, retain) NSArray *nwArrVert;
+@property (nonatomic,strong) NSMutableArray *parsedComponents;
+@property (nonatomic, strong) NSMutableArray *vertRange;
+@property (nonatomic, strong) NSArray *nwArrVert;
 
-@property (nonatomic, retain) NSFetchedResultsController *fetCtrl;
+@property (nonatomic, strong) NSFetchedResultsController *fetCtrl;
 
 
 - (void)saveContext;
@@ -43,4 +40,5 @@
 
 -(NSDictionary *)entriesPerDayList;
 
+-(NSManagedObjectContext *) objContext;
 @end

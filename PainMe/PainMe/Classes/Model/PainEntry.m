@@ -28,7 +28,7 @@
    
     InvoDataManager *dataManager = [InvoDataManager sharedDataManager];
     
-    NSManagedObjectContext *mangObjContext = [dataManager managedObjectContext];
+    NSManagedObjectContext *mangObjContext = [dataManager objContext];
             
     newEntry = (PainEntry *)[NSEntityDescription insertNewObjectForEntityForName:@"PainEntry" inManagedObjectContext:mangObjContext];
     
@@ -49,7 +49,7 @@
 +(NSArray *)last50PainEntriesIfError:(ErrorHandler)handler{
 
     InvoDataManager *dataManager = [InvoDataManager sharedDataManager];
-    NSManagedObjectContext *mangObjContext = [dataManager managedObjectContext];
+    NSManagedObjectContext *mangObjContext = [dataManager objContext];
     
     NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"PainEntry" inManagedObjectContext:mangObjContext];
     
@@ -79,7 +79,7 @@
 +(NSArray *)arrayofEntiresSorted:(ErrorHandler)handler{
 
     InvoDataManager *dataManager = [InvoDataManager sharedDataManager];
-    NSManagedObjectContext *mangObjContext = [dataManager managedObjectContext];
+    NSManagedObjectContext *mangObjContext = [dataManager objContext];
     
     NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"PainEntry" inManagedObjectContext:mangObjContext];
     

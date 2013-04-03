@@ -27,15 +27,15 @@
     UIView *grayOverLayView;
 }
 
-@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, retain) IBOutlet BodyView *bodyView;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *sendButton;
-@property (nonatomic, retain) UITapGestureRecognizer *tapGesture;
+@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, strong) IBOutlet BodyView *bodyView;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *sendButton;
+@property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
 
-@property (nonatomic, retain) BodyPartGeometry *bodyGeometry;
-@property (nonatomic, retain) PainFaceView *painFace;
+@property (nonatomic, strong) BodyPartGeometry *bodyGeometry;
+@property (nonatomic, strong) PainFaceView *painFace;
 
-@property (nonatomic, retain) UITapGestureRecognizer *doubleTap;
+@property (nonatomic, strong) UITapGestureRecognizer *doubleTap;
 
 -(void)initTapGesture;
 -(int)tileAtTouchLocation:(CGPoint)touchPt;
@@ -55,11 +55,6 @@
 @end
 
 @implementation InvoBodySelectionViewController
-
-@synthesize scrollView = _scrollView, bodyView = _bodyView;
-@synthesize tapGesture = _tapGesture;
-@synthesize bodyGeometry = _bodyGeometry;
-@synthesize painFace = _painFace;
 
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -264,7 +259,7 @@
     [self setFlipButton:nil];
     [self setViewLabelButton:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
+    // Release any stronged subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 

@@ -16,11 +16,11 @@
 }
 
 
-@property (nonatomic, retain) UIColor *bodyStrokeColor;
+@property (nonatomic, strong) UIColor *bodyStrokeColor;
 @property (nonatomic, readwrite) BOOL isMask;
 @property (nonatomic, readwrite ) BOOL isNewStroke;
 
-@property (nonatomic, retain) NSMutableArray *shapesArray;
+@property (nonatomic, strong) NSMutableArray *shapesArray;
 
 //+(CGColorSpaceRef)genericRGBSpace;
 //+(CGColorRef)redColor;
@@ -32,13 +32,6 @@
 @end
 
 @implementation BodyView
-
-
-@synthesize bodyStrokeColor = _bodyStrokeColor;
-@synthesize isMask = _isMask;
-@synthesize isNewStroke = _isNewStroke;
-
-@synthesize strokeChanged;
 
 +(Class)layerClass
 {
@@ -226,18 +219,7 @@
                 }
                 
                 [tile drawInRect:tileRect];
-                
-                
-                // Draw a white line around the tile border so
-                // we can see it
-                //
-                //                [[UIColor redColor] set];
-                //                CGContextSetLineWidth(context, 6.0);
-                //                CGContextStrokeRect(context, tileRect);
-                
-                //                CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
-                //                CGContextFillEllipseInRect(context, CGRectMake(0, 0, rect.size.width*0.25*scale, rect.size.height*0.25*scale));
-            }
+             }
         }
     }
       
@@ -269,11 +251,13 @@
        
        if (numFrmScale !=0) {
 
-           filename = ([self.currentView isEqualToString:@"front"])? [NSString stringWithFormat:@"body_slices_%02d_%d.png", (col+1) + (row) * BODY_TILE_COLUMNS,numFrmScale] : [NSString stringWithFormat:@"back_zin_%02d_%d.png", (col+1) + (row) * BODY_TILE_COLUMNS,numFrmScale];
+           filename = ([self.currentView isEqualToString:@"front"])? [NSString stringWithFormat:@"body_slices_%02d_%d.png", (col+1) + (row) * BODY_TILE_COLUMNS,numFrmScale] :
+                                                                    [NSString stringWithFormat:@"back_zin_%02d_%d.png", (col+1) + (row) * BODY_TILE_COLUMNS,numFrmScale];
        }
        else {
            
-           filename =([self.currentView isEqualToString:@"front"])? [NSString stringWithFormat:@"untitled-1_%02d.png", (col+1) + (row) * BODY_TILE_COLUMNS]:[NSString stringWithFormat:@"back_zout_%02d.png", (col+1) + (row) * BODY_TILE_COLUMNS];
+           filename =([self.currentView isEqualToString:@"front"])? [NSString stringWithFormat:@"untitled-1_%02d.png", (col+1) + (row) * BODY_TILE_COLUMNS]:
+                                                                    [NSString stringWithFormat:@"back_zout_%02d.png", (col+1) + (row) * BODY_TILE_COLUMNS];
        }
            
       NSString *path = [[NSBundle mainBundle] pathForResource: filename ofType: nil];
@@ -438,7 +422,10 @@
 
     CGContextRef ctxRef = UIGraphicsGetCurrentContext();
         
-    [@"Pain Trackr Report" drawInRect:CGRectMake(400, -50, self.bounds.size.width, 300) withFont:[UIFont fontWithName:@"Helvetica" size:300] lineBreakMode:UILineBreakModeWordWrap alignment:UITextAlignmentCenter];
+    [@"Pain Trackr Report" drawInRect:CGRectMake(400, -50, self.bounds.size.width, 300)
+                            withFont:[UIFont fontWithName:@"Helvetica" size:300]
+                        lineBreakMode:UILineBreakModeWordWrap
+                            alignment:UITextAlignmentCenter];
     
     for(int i=0 ;i<6;i++){
         
@@ -455,7 +442,11 @@
         CGContextSetFillColorWithColor(ctxRef, [UIColor blackColor].CGColor);
         
         NSString *tmp = (i==0)? @"0":[NSString stringWithFormat:@"%d-%d",(i*2 -1),i*2];
-        [tmp drawInRect:CGRectMake(img.size.width*0.25*15 +50,(40*(i) + img.size.height*i)*10 + 15*img.size.height +200, 400, 140) withFont:[UIFont fontWithName:@"Helvetica" size:150 ] lineBreakMode:UILineBreakModeCharacterWrap alignment:UITextAlignmentCenter];
+        
+        [tmp drawInRect:CGRectMake(img.size.width*0.25*15 +50,(40*(i) + img.size.height*i)*10 + 15*img.size.height +200, 400, 140)
+               withFont:[UIFont fontWithName:@"Helvetica" size:150 ]
+          lineBreakMode:UILineBreakModeCharacterWrap
+              alignment:UITextAlignmentCenter];
     }
     
     CGSize tileSize = (CGSize){BODY_TILE_SIZE, BODY_TILE_SIZE};

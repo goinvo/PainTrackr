@@ -16,10 +16,10 @@ typedef void(^ErrorHandler)(NSError *);
 
 @interface PainEntry : NSManagedObject
 
-@property (nonatomic, retain) NSString * notes;
+@property (nonatomic, strong) NSString * notes;
 @property (nonatomic) int16_t painLevel;
 @property (nonatomic) NSTimeInterval timestamp;
-@property (nonatomic, retain) PainLocation *location;
+@property (nonatomic, strong) PainLocation *location;
 
 +(void )painEntryWithTime:(NSDate *)time painLevel:(int16_t)level extraNotes:(NSString *)extraNotes location:(PainLocation *)painLoc;
 
