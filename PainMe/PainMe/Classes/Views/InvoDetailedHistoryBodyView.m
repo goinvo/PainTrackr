@@ -77,7 +77,8 @@
     [[UIColor whiteColor] setFill];
     UIRectFill(rect);
     
-    UIImage *img = (self.orient ==0)? [UIImage imageNamed:@"Body_Detail.png"] :[UIImage imageNamed:@"zoomout-back-image.png"] ;
+    UIImage *img = (self.orient ==0)? [UIImage imageNamed:@"Body_Detail.png"]:
+                                      [UIImage imageNamed:@"zoomout-back-image.png"] ;
     [img drawInRect:rect];
     
     [[UIColor blackColor]setStroke];

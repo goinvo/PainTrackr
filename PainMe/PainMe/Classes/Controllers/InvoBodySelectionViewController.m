@@ -213,7 +213,8 @@
         CGPoint labelPt = [self.view convertPoint:touchLocation fromView:self.scrollView];
 //        NSLog(@"label Pt should be %@", NSStringFromCGPoint(labelPt));
         
-        InvoPartNamelabel *bble = [[InvoPartNamelabel alloc] initWithFrame:CGRectMake(labelPt.x,labelPt.y , 100, 20) name:[name copy]];
+        InvoPartNamelabel *bble = [[InvoPartNamelabel alloc] initWithFrame:CGRectMake(labelPt.x,labelPt.y , 100, 20)
+                                                                      name:[name copy]];
         [bble setTag:kTagPartNameBubble];
         [bble.layer setCornerRadius:5.0f];
         [bble.layer setMasksToBounds:YES];
@@ -229,7 +230,6 @@
     if (self.scrollView.zoomScale >=0.065) {
     
         [self.scrollView zoomToRect:CGRectMake(0, 0,BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT) animated:YES];
-
     }
     else{
         [self.scrollView zoomToRect:CGRectMake(0, 0,BODY_VIEW_WIDTH-1024*3, BODY_VIEW_HEIGHT-1024*3) animated:YES];

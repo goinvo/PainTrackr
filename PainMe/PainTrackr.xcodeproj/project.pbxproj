@@ -1808,7 +1808,6 @@
 			isa = PBXGroup;
 			children = (
 				763A4F11165BE5A30082D0D8 /* zout_back_image.png */,
-				763A4F0F165BE1AD0082D0D8 /* zoomout-back-image.png */,
 				7657564516139FD600067BAF /* iTunesArtwork@2x */,
 				7657562D16139EC700067BAF /* 512_icon.png */,
 				7657562E16139EC700067BAF /* 512_icon@2x.png */,
@@ -2297,12 +2296,12 @@
 		834C1002158F7255000C5652 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				834C100D158F7255000C5652 /* Model */,
+				834C100A158F7255000C5652 /* Helpers */,
 				7612D8A5160D02E6009924A9 /* TestFlightSDK1 */,
 				762EC61E15C1CC8D00250155 /* CSVParser */,
 				76AB5DA115B8909000FEB78B /* Singletons */,
 				834C1003158F7255000C5652 /* Controllers */,
-				834C100A158F7255000C5652 /* Helpers */,
-				834C100D158F7255000C5652 /* Model */,
 				834C100E158F7255000C5652 /* Views */,
 			);
 			path = Classes;
@@ -2392,6 +2391,7 @@
 				761FA947165ABAE50031C53E /* NewBodyPartData.csv */,
 				7657562C16139EB700067BAF /* Icons */,
 				762C19FC1612543D00434807 /* Body_Detail.png */,
+				763A4F0F165BE1AD0082D0D8 /* zoomout-back-image.png */,
 				762C19FD1612543D00434807 /* Body_Detail@2x.png */,
 				76BB404215F1144700ED69A9 /* historyBodyImage.png */,
 				76BB404315F1144700ED69A9 /* historyBodyImage@2x.png */,
