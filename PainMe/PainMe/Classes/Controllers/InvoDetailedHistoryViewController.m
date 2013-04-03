@@ -237,7 +237,7 @@
     [scrollview setBackgroundColor:[UIColor colorWithWhite:0.94 alpha:0.8f]];
     scrollview.pagingEnabled = YES;
     scrollview.delegate = self;
-    scrollview.showsHorizontalScrollIndicator = NO;
+//    scrollview.showsHorizontalScrollIndicator = NO;
     [self.view insertSubview:scrollview atIndex:100];
     _entriesScrollView = scrollview;
     
@@ -268,12 +268,12 @@
     
     [_entriesScrollView setContentSize:CGSizeMake(newWidth, _entriesScrollView.bounds.size.height)];
     
-    _pageViewCtrl = [[UIPageControl alloc]initWithFrame:CGRectMake((oldWidth-100)*0.5, height+10.0, 100, 50.0)];
-    _pageViewCtrl.numberOfPages = [entriesValue count];
-    _pageViewCtrl.currentPage = 0;
-    [_pageViewCtrl setPageIndicatorTintColor:[UIColor redColor]];
-    [_pageViewCtrl setCurrentPageIndicatorTintColor:[UIColor grayColor]];
-    [self.view insertSubview:_pageViewCtrl aboveSubview:_entriesScrollView];
+//    _pageViewCtrl = [[UIPageControl alloc]initWithFrame:CGRectMake((oldWidth-100)*0.5, height+10.0, 100, 50.0)];
+//    _pageViewCtrl.numberOfPages = [entriesValue count];
+//    _pageViewCtrl.currentPage = 0;
+//    [_pageViewCtrl setPageIndicatorTintColor:[UIColor redColor]];
+//    [_pageViewCtrl setCurrentPageIndicatorTintColor:[UIColor grayColor]];
+//    [self.view insertSubview:_pageViewCtrl aboveSubview:_entriesScrollView];
 }
 
 #pragma mark -
@@ -287,9 +287,9 @@
 
     CGPoint contentOffset = scrollView.contentOffset;
     
-    int number = contentOffset.x/scrollView.frame.size.width;
-    NSLog(@"number is %d", number);
-    [_pageViewCtrl setCurrentPage:number];
+//    int number = contentOffset.x/scrollView.frame.size.width;
+//    NSLog(@"number is %d", number);
+//    [_pageViewCtrl setCurrentPage:number];
     
 }
 

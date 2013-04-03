@@ -313,6 +313,7 @@
 		762EC62C15C1CCBE00250155 /* NSString+CHCSVAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 762EC62815C1CCBE00250155 /* NSString+CHCSVAdditions.m */; };
 		763307A715EEB3AE0059152A /* BodyPartData.csv in Resources */ = {isa = PBXBuildFile; fileRef = 763307A615EEB3AE0059152A /* BodyPartData.csv */; };
 		76354CD7170CA41B009E8D6A /* UIDevice+deviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 76354CD6170CA41B009E8D6A /* UIDevice+deviceInfo.m */; };
+		76354CDA170CD09D009E8D6A /* UIFont+PainTrackrFonts.m in Sources */ = {isa = PBXBuildFile; fileRef = 76354CD9170CD09D009E8D6A /* UIFont+PainTrackrFonts.m */; };
 		763A4F0E165BDCC70082D0D8 /* InvoFlipButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 763A4F0D165BDCC70082D0D8 /* InvoFlipButtonView.m */; };
 		763A4F10165BE1AD0082D0D8 /* zoomout-back-image.png in Resources */ = {isa = PBXBuildFile; fileRef = 763A4F0F165BE1AD0082D0D8 /* zoomout-back-image.png */; };
 		763A4F12165BE5A30082D0D8 /* zout_back_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 763A4F11165BE5A30082D0D8 /* zout_back_image.png */; };
@@ -1001,6 +1002,8 @@
 		763307A615EEB3AE0059152A /* BodyPartData.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BodyPartData.csv; sourceTree = "<group>"; };
 		76354CD5170CA41B009E8D6A /* UIDevice+deviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+deviceInfo.h"; sourceTree = "<group>"; };
 		76354CD6170CA41B009E8D6A /* UIDevice+deviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+deviceInfo.m"; sourceTree = "<group>"; };
+		76354CD8170CD09D009E8D6A /* UIFont+PainTrackrFonts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+PainTrackrFonts.h"; sourceTree = "<group>"; };
+		76354CD9170CD09D009E8D6A /* UIFont+PainTrackrFonts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+PainTrackrFonts.m"; sourceTree = "<group>"; };
 		763A4F0C165BDCC70082D0D8 /* InvoFlipButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoFlipButtonView.h; sourceTree = "<group>"; };
 		763A4F0D165BDCC70082D0D8 /* InvoFlipButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoFlipButtonView.m; sourceTree = "<group>"; };
 		763A4F0F165BE1AD0082D0D8 /* zoomout-back-image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zoomout-back-image.png"; sourceTree = "<group>"; };
@@ -2341,6 +2344,8 @@
 				834C100C158F7255000C5652 /* PainMe-Prefix.pch */,
 				76354CD5170CA41B009E8D6A /* UIDevice+deviceInfo.h */,
 				76354CD6170CA41B009E8D6A /* UIDevice+deviceInfo.m */,
+				76354CD8170CD09D009E8D6A /* UIFont+PainTrackrFonts.h */,
+				76354CD9170CD09D009E8D6A /* UIFont+PainTrackrFonts.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -3180,6 +3185,7 @@
 				76880DE6165C36AF007A6F81 /* InvoPainColorHelper.m in Sources */,
 				767CF894165D510B002BABB2 /* InvoTextForEmail.m in Sources */,
 				76354CD7170CA41B009E8D6A /* UIDevice+deviceInfo.m in Sources */,
+				76354CDA170CD09D009E8D6A /* UIFont+PainTrackrFonts.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
