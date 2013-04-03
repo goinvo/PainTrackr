@@ -39,7 +39,7 @@
     UIColor *painColor = [InvoPainColorHelper colorfromPain:[[entry valueForKey:@"painLevel"]intValue]];
     
 // drawing with the coloring of the most recent PainEntry
-    UIGraphicsBeginImageContext(flipRect.size);
+    UIGraphicsBeginImageContextWithOptions(flipRect.size,NO,[[UIScreen mainScreen]scale]);
     
     [[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.4]setFill];
     UIRectFill(flipRect);

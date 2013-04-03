@@ -20,6 +20,8 @@
 #import "InvoPainColorHelper.h"
 #import "InvoTextForEmail.h"
 
+#import "UIDevice+deviceInfo.h"
+
 @interface InvoBodySelectionViewController () {
    
     CGPoint bodyOffset;
@@ -85,23 +87,29 @@
     bodyOffset = CGPointZero;
     
     self.scrollView.contentSize = CGSizeMake(BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT );
-    
-    self.scrollView.backgroundColor = [UIColor clearColor];
+    self.scrollView.bounces = NO;
+    self.scrollView.backgroundColor = [UIColor whiteColor];
     
     self.bodyView.frame = CGRectMake(70,0,BODY_VIEW_WIDTH *1.17, BODY_VIEW_HEIGHT);
+
+    //40 for the BottomBar
+    float appHeight =[[UIScreen mainScreen] applicationFrame].size.height -42;
     
-//    NSLog(@"bodyview frame is %@", NSStringFromCGRect(self.bodyView.frame));
-    self.scrollView.minimumZoomScale = 0.045;
-    self.scrollView.zoomScale = 0.045;
+    //helps define the zoomScale
+    //to fit the view within the height of view
+    float minZoomScale = appHeight/BODY_VIEW_HEIGHT;
+
+    self.scrollView.minimumZoomScale = minZoomScale;
+    self.scrollView.zoomScale = minZoomScale;
     self.scrollView.maximumZoomScale = 1.0;
     
-// Add the Face button View
+    // Add the Face button View
     
     self.painFace = [[PainFaceView alloc] init];
     self.painFace.delegate = self;
     [self.view insertSubview:self.painFace atIndex:10];
    
-//Init TapGesture Recognizer    
+    //Init TapGesture Recognizer    
     [self initTapGesture];
     
     self.bodyGeometry = [[BodyPartGeometry alloc] init];
@@ -156,7 +164,6 @@
             UIBezierPath *locpath = [self.bodyGeometry dictFrBodyLocation:[ [loc valueForKey:@"name"] copy]];
             
             [self.bodyView addObjToSHapesArrayWithShape:locpath color:fillColor detail:zoom name:[[loc valueForKey:@"name"] copy] orientation:[self currentOrientation]];
-            
         }
     }
 }
