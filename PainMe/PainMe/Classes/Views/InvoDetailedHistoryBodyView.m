@@ -15,9 +15,9 @@
     NSString *partName;
 }
 
-@property (nonatomic, retain) UIBezierPath *bezierPath;
+@property (nonatomic, strong) UIBezierPath *bezierPath;
 @property (nonatomic, readonly) NSInteger pointCount;
-@property (nonatomic, retain) UIColor *partColor;
+@property (nonatomic, strong) UIColor *partColor;
 
 - (id)initWithFrame:(CGRect)frame painDetail:(id)detail;
 -(void)createUIBezierWithOffset:(CGPoint)offsetPoint;

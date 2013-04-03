@@ -11,34 +11,24 @@
 
 @interface PainFaceView ()
 
-@property (nonatomic, retain)UIView *f1;
-@property (nonatomic, retain)UIView *f2;
-@property (nonatomic, retain)UIView *f3;
-@property (nonatomic, retain)UIView *f4;
-@property (nonatomic, retain)UIView *f5;
-@property (nonatomic, retain)UIView *f6;
+@property (nonatomic, strong)UIView *f1;
+@property (nonatomic, strong)UIView *f2;
+@property (nonatomic, strong)UIView *f3;
+@property (nonatomic, strong)UIView *f4;
+@property (nonatomic, strong)UIView *f5;
+@property (nonatomic, strong)UIView *f6;
 
 @property (nonatomic, readwrite)BOOL shouldGetTouch;
 
 -(void)handleFaceDrag:(UIPanGestureRecognizer *) gestReco;
 -(UIView*)getViewToDragAtTouchLoc:(CGPoint)touchPt;
-
 -(void)putBackPainFace:(UIView *)face;
-
 -(void)addLabels;
 
-@property (nonatomic, retain)UIPanGestureRecognizer *dragGesture;
+@property (nonatomic, strong)UIPanGestureRecognizer *dragGesture;
 @end
 
 @implementation PainFaceView
-
-@synthesize f1 =_f1, f2 =_f2, f3 =_f3, f4 =_f4, f5 =_f5, f6 =_f6;
-
-@synthesize viewToDrag;
-
-@synthesize dragGesture = _dragGesture;
-
-@synthesize delegate;
 
 -(id)init{
 
@@ -176,7 +166,7 @@
                 [self.viewToDrag setFrame:CGRectMake(newFacePt.x, newFacePt.y, self.viewToDrag.frame.size.width, self.viewToDrag.frame.size.height)];
             
                 if (newFacePt.x >55) {
-                    [delegate changeStrokeWithPoint:[gestReco locationInView:[gestReco view]] painLvl:self.viewToDrag.tag];
+                    [self.delegate changeStrokeWithPoint:[gestReco locationInView:[gestReco view]] painLvl:self.viewToDrag.tag];
                 }
                 
                 [gestReco setTranslation:CGPointZero inView:self];
@@ -194,13 +184,13 @@
             if (self.viewToDrag) {
             
                 if(endTouchLoc.x >55){
-                    [delegate checkForBodyIntersectionWithLocalPoint:endTouchLoc andPainLvl:self.viewToDrag.tag];
+                    [self.delegate checkForBodyIntersectionWithLocalPoint:endTouchLoc andPainLvl:self.viewToDrag.tag];
                 }
 
                 [self putBackPainFace:self.viewToDrag];
                 self.viewToDrag = nil;
 
-                [delegate blackStrokeForBody];
+                [self.delegate blackStrokeForBody];
             }
         }  
     }

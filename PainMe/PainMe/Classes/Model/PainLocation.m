@@ -26,7 +26,7 @@
     
     InvoDataManager *dtaMgr = [InvoDataManager sharedDataManager];
     
-    NSManagedObjectContext *moc = [dtaMgr managedObjectContext];
+    NSManagedObjectContext *moc = [dtaMgr objContext];
     NSEntityDescription *entyDescrip = [NSEntityDescription  entityForName:@"PainLocation" inManagedObjectContext:moc];
     
     NSFetchRequest *fetchreq = [[NSFetchRequest alloc] init];
@@ -71,7 +71,7 @@
    
     InvoDataManager *dtaMgr = [InvoDataManager sharedDataManager];
     
-    NSManagedObjectContext *moc = [dtaMgr managedObjectContext];
+    NSManagedObjectContext *moc = [dtaMgr objContext];
     NSEntityDescription *entyDescrip = [NSEntityDescription  entityForName:@"PainLocation" inManagedObjectContext:moc];
     
     NSFetchRequest *fetchreq = [[NSFetchRequest alloc] init];
@@ -100,7 +100,7 @@
 
     InvoDataManager *dtaMgr = [InvoDataManager sharedDataManager];
     
-    NSManagedObjectContext *moc = [dtaMgr managedObjectContext];
+    NSManagedObjectContext *moc = [dtaMgr objContext];
     NSEntityDescription *entyDescrip = [NSEntityDescription  entityForName:@"PainLocation" inManagedObjectContext:moc];
     
     NSFetchRequest *fetchreq = [[NSFetchRequest alloc] init];
@@ -108,7 +108,7 @@
     [fetchreq setResultType:NSDictionaryResultType];
     
     NSError *error;
-    NSArray *CrDta = [dtaMgr.managedObjectContext executeFetchRequest:fetchreq error:&error];
+    NSArray *CrDta = [[dtaMgr objContext] executeFetchRequest:fetchreq error:&error];
 //    NSLog(@"value in PainLocation is %@", CrDta);
     
     return CrDta;

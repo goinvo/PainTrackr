@@ -50,9 +50,13 @@
     CGPoint *_pts;
 }
 
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
 @property (nonatomic, readonly)NSInteger pointCount;
-@property (nonatomic, retain)NSMutableDictionary *dict;
-@property (nonatomic, retain)NSMutableArray *keysFromStoredLocData;
+@property (nonatomic, strong)NSMutableDictionary *dict;
+@property (nonatomic, strong)NSMutableArray *keysFromStoredLocData;
 
 -(void)getDataFromCSVInDict;
 
@@ -64,21 +68,6 @@
 
 
 @implementation InvoDataManager
-
-@synthesize pointCount = _pointCount;
-
-@synthesize managedObjectContext = __managedObjectContext;
-@synthesize managedObjectModel = __managedObjectModel;
-@synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
-
-@synthesize vertRange = _vertRange;
-@synthesize nwArrVert = _nwArrVert;
-@synthesize parsedComponents = _parsedComponents;
-@synthesize keysFromStoredLocData = _keysFromStoredLocData;
-
-
-@synthesize dict =_dict;
-@synthesize fetCtrl;
 
 -(void)dealloc{
 
@@ -344,89 +333,84 @@
 // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
 - (NSManagedObjectContext *)managedObjectContext
 {
-    if (__managedObjectContext != nil) {
-        return __managedObjectContext;
+
+    if(!_managedObjectContext ){
+        NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+        if (coordinator != nil) {
+            _managedObjectContext = [[NSManagedObjectContext alloc] init];
+            [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+        }
     }
-    
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-    if (coordinator != nil) {
-        __managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [__managedObjectContext setPersistentStoreCoordinator:coordinator];
-    }
-    return __managedObjectContext;
+    return _managedObjectContext;
 }
 
 // Returns the managed object model for the application.
 // If the model doesn't already exist, it is created from the application's model.
 - (NSManagedObjectModel *)managedObjectModel
 {
-    if (__managedObjectModel != nil) {
-        return __managedObjectModel;
+    if (!_managedObjectModel ) {
+        
+        NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"PainMe" withExtension:@"momd"];
+        _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     }
-   // NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"PainMe" withExtension:@"momd"];
-     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"PainMe" withExtension:@"momd"];
-    __managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    return __managedObjectModel;
+    return _managedObjectModel;
 }
 
 // Returns the persistent store coordinator for the application.
 // If the coordinator doesn't already exist, it is created and the application's store added to it.
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {
-    if (__persistentStoreCoordinator != nil) {
-        return __persistentStoreCoordinator;
-    }
+    if (!_persistentStoreCoordinator ){
+        NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"PainMe.sqlite"];
     
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"PainMe.sqlite"];
-    
-    //NSString *storePath = [storeURL path];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    // If the expected store doesn't exist, copy the default store.
-    if (![fileManager fileExistsAtPath:[storeURL path]]) {
-        NSURL *defaultStoreURL = [[NSBundle mainBundle] URLForResource:@"PainMe" withExtension:@"sqlite"];
-        if (defaultStoreURL) {
-            [fileManager copyItemAtURL:defaultStoreURL toURL:storeURL error:NULL];
+        //NSString *storePath = [storeURL path];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        
+        // If the expected store doesn't exist, copy the default store.
+        if (![fileManager fileExistsAtPath:[storeURL path]]) {
+            NSURL *defaultStoreURL = [[NSBundle mainBundle] URLForResource:@"PainMe" withExtension:@"sqlite"];
+            if (defaultStoreURL) {
+                [fileManager copyItemAtURL:defaultStoreURL toURL:storeURL error:NULL];
+            }
+        }
+        NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+                                 [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+        
+        NSError *error = nil;
+        _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+        
+        if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options: options error:&error]) {
+            /*
+             Replace this implementation with code to handle the error appropriately.
+             
+             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+             
+             Typical reasons for an error here include:
+             * The persistent store is not accessible;
+             * The schema for the persistent store is incompatible with current managed object model.
+             Check the error message to determine what the actual problem was.
+             
+             
+             If the persistent store is not accessible, there is typically something wrong with the file path. Often, a file URL is pointing into the application's resources directory instead of a writeable directory.
+             
+             If you encounter schema incompatibility errors during development, you can reduce their frequency by:
+             * Simply deleting the existing store:
+             [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil]
+             
+             * Performing automatic lightweight migration by passing the following dictionary as the options parameter:
+             [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+             
+             Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
+             
+             */
+            [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
+            
+            //        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            //        abort();
         }
     }
-    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
-                             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
-                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
-    
-    NSError *error = nil;
-    __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    
-    if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options: options error:&error]) {
-        /*
-         Replace this implementation with code to handle the error appropriately.
-         
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-         
-         Typical reasons for an error here include:
-         * The persistent store is not accessible;
-         * The schema for the persistent store is incompatible with current managed object model.
-         Check the error message to determine what the actual problem was.
-         
-         
-         If the persistent store is not accessible, there is typically something wrong with the file path. Often, a file URL is pointing into the application's resources directory instead of a writeable directory.
-         
-         If you encounter schema incompatibility errors during development, you can reduce their frequency by:
-         * Simply deleting the existing store:
-         [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil]
-         
-         * Performing automatic lightweight migration by passing the following dictionary as the options parameter: 
-         [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
-         
-         Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
-         
-         */
-        [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
-        
-//        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-//        abort();
-    }
-    
-    return __persistentStoreCoordinator;
+    return _persistentStoreCoordinator;
 }
 
 #pragma mark - Application's Documents directory
@@ -487,8 +471,6 @@
     NSPredicate *pred;
     
     if (orient ==0) {
-//        pred = [NSPredicate predicateWithFormat:@"location.orientation == '0'"];
-//        pred = [NSPredicate predicateWithFormat:@"location.orientation == %@",nil];
          pred = [NSPredicate predicateWithFormat:@"location.orientation == %@ ",[NSNumber numberWithInt:0]];
     }
     else{
@@ -497,11 +479,6 @@
     [fetReq setPredicate:pred];
     [fetReq setFetchLimit:1];
     
-//    NSExpression *lhs = [NSExpression expressionForKeyPath:@"location.orientation"];
-//    NSExpression *rhs = [NSExpression expressionForConstantValue:[NSNumber numberWithInt:orient]];
-//    
-//    NSPredicate *pred = [NSComparisonPredicate predicateWithLeftExpression:lhs rightExpression:rhs modifier:NSDirectPredicateModifier type:NSEqualToPredicateOperatorType options:0];
-//    [fetReq setPredicate:pred];
     
 //    [fetReq setResultType:NSDictionaryResultType];
     [fetReq setPropertiesToFetch:[NSArray arrayWithObjects:@"location",@"notes",@"painLevel",@"timestamp", nil]];
@@ -600,6 +577,9 @@
     return( ([totalEntries count]>0 )?[dateSortedEntries copy]:nil);
 }
 #pragma mark -
+-(NSManagedObjectContext *) objContext{
 
+    return self.managedObjectContext;
+}
 
 @end

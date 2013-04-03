@@ -39,19 +39,16 @@
        UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
        splitViewController.delegate = (id)navigationController.topViewController;
        
-       //UINavigationController *masterNavigationController = [splitViewController.viewControllers objectAtIndex:0];
-       //InvoBodySelectionViewControllerViewController *controller = (InvoBodySelectionViewControllerViewController *)masterNavigationController.topViewController;
-   } else {
-       //UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-       //InvoBodySelectionViewControllerViewController *controller = (InvoBodySelectionViewControllerViewController *)navigationController.topViewController;
+    } else {
+ 
+//TODO: figureOut the reason for this else        
    }
 
     InvoDataManager *dtaMgr = [InvoDataManager sharedDataManager];
-//    dispatch_async(dispatch_get_current_queue(), ^(){
-        [dtaMgr checkPainLocationDataBase];
-//    });
+
+    [dtaMgr checkPainLocationDataBase];
     
-    [TestFlight takeOff:@"35de84803bb30da2ded080223940da33_MTEwMDY2MjAxMi0wNy0xMyAxNDo1MTozNi44MDQ4NjU"];
+//    [TestFlight takeOff:@"35de84803bb30da2ded080223940da33_MTEwMDY2MjAxMi0wNy0xMyAxNDo1MTozNi44MDQ4NjU"];
        
     return YES;
 }

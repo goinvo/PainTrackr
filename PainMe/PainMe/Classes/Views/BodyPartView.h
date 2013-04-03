@@ -10,7 +10,7 @@
 
 @interface BodyPartView : UIView
 
-@property (nonatomic, retain) UIBezierPath *partPath;
+@property (nonatomic, strong) UIBezierPath *partPath;
 -(id)initWithShape:(UIBezierPath *)shapePath;
 
 @end

@@ -21,10 +21,10 @@ typedef enum{
 
 @interface PainLocation : NSManagedObject
 
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) id shape;
+@property (nonatomic, strong) NSString * name;
+@property (nonatomic, strong) id shape;
 @property (nonatomic) int16_t zoomLevel;
-@property (nonatomic, retain) NSSet *painEntries;
+@property (nonatomic, strong) NSSet *painEntries;
 @property (nonatomic) int16_t orientation;
 @end
 

@@ -10,10 +10,10 @@
 
 @interface InvoBodyPartDetails : NSObject
 
-@property (nonatomic, retain) UIBezierPath *partShapePoints;
-@property (nonatomic, retain) UIColor *shapeColor;
+@property (nonatomic, strong) UIBezierPath *partShapePoints;
+@property (nonatomic, strong) UIColor *shapeColor;
 @property (nonatomic, readwrite) int zoomLevel;
-@property (nonatomic, retain) NSString *partName;
+@property (nonatomic, copy) NSString *partName;
 @property (nonatomic, readwrite)int orientation;
 
 +(InvoBodyPartDetails *)invoBodyPartWithShape:(UIBezierPath *)shape color:(UIColor *)color zoomLevel:(int)zmLevel name:(NSString *)name orientation:(int)side;

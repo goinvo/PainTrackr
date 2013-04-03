@@ -20,15 +20,15 @@
     int zoomLevel2;
 
 }
-//@property (nonatomic, retain) NSMutableArray *locationArray;
-@property (nonatomic, retain) NSString *dateSring;
+//@property (nonatomic, strong) NSMutableArray *locationArray;
+@property (nonatomic, strong) NSString *dateSring;
 @property (nonatomic, readwrite)BOOL moreEntries;
-@property (nonatomic, retain) UIBezierPath *bezierPath;
-@property (nonatomic, retain) UIBezierPath *bezierPath2;
+@property (nonatomic, strong) UIBezierPath *bezierPath;
+@property (nonatomic, strong) UIBezierPath *bezierPath2;
 @property (nonatomic, readonly) NSInteger pointCount;
 @property (nonatomic, readonly) NSInteger pointCount2;
-@property (nonatomic, retain) UIColor *partColor;
-@property (nonatomic, retain) UIColor *partColor2;
+@property (nonatomic, strong) UIColor *partColor;
+@property (nonatomic, strong) UIColor *partColor2;
 @property (nonatomic, readwrite)BOOL isBack;
 
 -(void)createUIBezierWithOffset:(CGPoint)offsetPoint viewSize:(CGSize)viewSize;
@@ -41,8 +41,6 @@
 
 
 @implementation InvoHistoryView
-
-@synthesize del = _del;
 
 - (void) setPointCount: (NSInteger) newPoints {
     

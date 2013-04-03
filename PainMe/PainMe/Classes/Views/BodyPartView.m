@@ -10,14 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 @implementation BodyPartView
-@synthesize partPath = _partPath;
 
-/*
-+(Class)layerClass
-{
-    return [CATiledLayer class];
-}
- */
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -34,11 +27,7 @@
     self = [super init];
     
     if(self){
-        
-//        CATiledLayer *tiledLayer = (CATiledLayer *)self.layer;
-//        
-//        tiledLayer.tileSize = CGSizeMake(1024*8, 1024*17);
-                
+                        
         [self setUserInteractionEnabled:NO];
         self.backgroundColor = [UIColor clearColor];
         self.partPath = [shapePath copy];

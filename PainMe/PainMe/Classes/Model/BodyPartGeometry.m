@@ -16,11 +16,11 @@
 }
 
 @property (nonatomic, readonly) NSInteger pointCount;
-@property (nonatomic, retain) UIBezierPath *bezierPath;
+@property (nonatomic, strong) UIBezierPath *bezierPath;
 
-@property (nonatomic, retain) NSArray *painLocDetails;
+@property (nonatomic, strong) NSArray *painLocDetails;
 
-@property (nonatomic, retain)NSMutableArray *painShapeDetailsArr;
+@property (nonatomic, strong)NSMutableArray *painShapeDetailsArr;
 
 
 @end
@@ -29,9 +29,6 @@
 #define NUM_TO_DIVIDEY (1024.0*9)
 
 @implementation BodyPartGeometry
-
-@synthesize pointCount = _pointCount, bezierPath = _bezierPath;
-@synthesize painLocDetails = painLocDetails;
 
 
 - (id) init {
