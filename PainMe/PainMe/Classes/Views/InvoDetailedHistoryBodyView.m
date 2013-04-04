@@ -7,6 +7,7 @@
 //
 
 #import "InvoDetailedHistoryBodyView.h"
+#import "UIFont+PainTrackrFonts.h"
 
 @interface InvoDetailedHistoryBodyView (){
 
@@ -73,6 +74,7 @@
 - (void)drawRect:(CGRect)rect
 {
     // Drawing code
+    CGContextRef ctxRef = UIGraphicsGetCurrentContext();
     
     [[UIColor whiteColor] setFill];
     UIRectFill(rect);
@@ -83,17 +85,43 @@
     
     [[UIColor blackColor]setStroke];
     [self.partColor setFill];
-
     [self.bezierPath fill];
     
     CGPoint midpt = [self midPoinfOfBezierPath:self.bezierPath];
     
+    //creating the rect based on label size
+    CGSize labelSize = [partName sizeWithFont:[UIFont bubbleFont]];
+    CGRect textRect = CGRectMake(midpt.x-labelSize.width*0.5, midpt.y-labelSize.height*0.5, labelSize.width+10, labelSize.height);
+  
+    //positioning the label properly within the bounds of the view
+    if ((textRect.origin.x + textRect.size.width) > rect.size.width) {
+        textRect.origin.x -= ((textRect.origin.x + textRect.size.width) - rect.size.width);
+    }else if (textRect.origin.x < 0){
+        textRect.origin.x = 1.0;
+    }
+    
+    if ((textRect.origin.y + textRect.size.height) > rect.size.height) {
+        textRect.origin.y -= ((textRect.origin.y + textRect.size.height) - rect.size.height);
+    }
+    
+    
+    CGPathRef roundedRectPath = [UIBezierPath bezierPathWithRoundedRect:textRect cornerRadius:4.0f].CGPath;
+    
     [[UIColor darkGrayColor] setFill];
-    CGContextSetAlpha(UIGraphicsGetCurrentContext(), 0.6f);
-    CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(midpt.x-30, midpt.y-8, 70, 16));
-    CGContextSetAlpha(UIGraphicsGetCurrentContext(), 1.0f);
-    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [UIColor whiteColor].CGColor);
-    [partName drawInRect: CGRectMake(midpt.x-30, midpt.y-8, 70, 16) withFont:[UIFont fontWithName:@"Helvetica" size:10.0]lineBreakMode:NSLineBreakByTruncatingHead alignment:NSTextAlignmentCenter];
+    CGContextSetAlpha(ctxRef, 0.6f);
+    CGContextAddPath(ctxRef, roundedRectPath);
+    CGContextFillPath(ctxRef);
+ //   CGPathRelease(roundedRectPath);
+
+    
+    CGContextSetAlpha(ctxRef, 1.0f);
+    CGContextSetFillColorWithColor(ctxRef, [UIColor whiteColor].CGColor);
+    
+    
+    [partName drawInRect:textRect
+                withFont:[UIFont bubbleFont]
+           lineBreakMode:NSLineBreakByTruncatingHead
+               alignment:NSTextAlignmentCenter];
 }
 
 - (void) setPointCount: (NSInteger) newPoints {

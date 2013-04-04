@@ -27,7 +27,8 @@
 -(void)maskWithColor:(UIColor *)maskFillColor;
 -(void)resetStroke;
 
--(NSString *)partNameAtLocation:(CGPoint)touch remove:(BOOL)toRem;
+-(NSString *)partNameAtLocation:(CGPoint)touch withObj:(NSDictionary *)objDict remove:(BOOL)toRem;
+//-(NSString *)partNameAtLocation:(CGPoint)touch remove:(BOOL)toRem;
 -(void)addObjToSHapesArrayWithShape:(UIBezierPath *)shape color:(UIColor *)fillColor detail:(int)levDet name:(NSString *)partName orientation:(int)side;
 
 -(BOOL)doesEntryExist:(NSString *)name withZoomLevel:(int)level;

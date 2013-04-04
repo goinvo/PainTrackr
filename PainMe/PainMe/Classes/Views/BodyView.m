@@ -320,15 +320,20 @@
 }
 
 #pragma mark removing Pain At given point
--(NSString *)partNameAtLocation:(CGPoint)touch remove:(BOOL)toRem{
+-(NSString *)partNameAtLocation:(CGPoint)touch withObj:(NSDictionary *)objDict remove:(BOOL)toRem{
     
     CGRect shapeRemoveRect = CGRectZero;
     InvoBodyPartDetails *PartToRem =nil;
     NSString *strToRet = nil;
+    NSString *nameToCompare = [[objDict allKeys] objectAtIndex:0];
+    [self.shapesArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+    
+        NSLog(@"shape in shaesArray is %@", [((InvoBodyPartDetails *)obj) partName]);
+    }];
     
     for (InvoBodyPartDetails *part in self.shapesArray) {
         
-        if ([part.partShapePoints containsPoint:touch]) {
+        if ([part.partName isEqualToString:nameToCompare]) {
             
             shapeRemoveRect = [part.partShapePoints bounds];
             
@@ -414,21 +419,19 @@
                                       tileSize.width, tileSize.height);
                 
                 [tile drawInRect:tileRect];
-                
             }
         }
     }
     
     int zoom = (scale <0.0625)?1:2;
-    [self colorBodyLocationsInRect:self.bounds WithZoom:zoom InContext:UIGraphicsGetCurrentContext() withOffset:CGPointMake(1024, 500)];
-    
+    [self colorBodyLocationsInRect:self.bounds
+                          WithZoom:zoom
+                         InContext:UIGraphicsGetCurrentContext()
+                        withOffset:CGPointMake(1024, 500)];
     
     UIImage *imgTRet = UIGraphicsGetImageFromCurrentImageContext();
     
     UIGraphicsEndImageContext();
-    
-//    UIImageWriteToSavedPhotosAlbum(imgTRet, nil, nil, nil);
-   // NSData *data = UIImagePNGRepresentation(imgTRet);
     NSData *data = UIImageJPEGRepresentation(imgTRet, 1);
 
     return data;

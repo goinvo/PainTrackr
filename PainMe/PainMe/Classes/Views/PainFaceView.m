@@ -11,12 +11,12 @@
 
 @interface PainFaceView ()
 
-@property (nonatomic, strong)UIView *f1;
-@property (nonatomic, strong)UIView *f2;
-@property (nonatomic, strong)UIView *f3;
-@property (nonatomic, strong)UIView *f4;
-@property (nonatomic, strong)UIView *f5;
-@property (nonatomic, strong)UIView *f6;
+@property (nonatomic, weak)UIView *f1;
+@property (nonatomic, weak)UIView *f2;
+@property (nonatomic, weak)UIView *f3;
+@property (nonatomic, weak)UIView *f4;
+@property (nonatomic, weak)UIView *f5;
+@property (nonatomic, weak)UIView *f6;
 
 @property (nonatomic, readwrite)BOOL shouldGetTouch;
 
@@ -32,7 +32,7 @@
 
 -(id)init{
 
-    if (self = [super initWithFrame:CGRectMake(0, 0, 55, 480)]) {
+    if (self = [super initWithFrame:CGRectMake(0, 0, 55, 420)]) {
         
         [self setUserInteractionEnabled:YES];
         
@@ -42,47 +42,44 @@
         [self adPanGesture];
         
         // Adding face views
-        self.f1= [[UIView alloc]init];
-        UIImage *img = [UIImage imageNamed:@"F1.png"];
-        [self.f1 setBackgroundColor:[UIColor colorWithPatternImage:img]];
-        [self.f1 setFrame:CGRectMake(10, 5, img.size.width, img.size.height)];
-        self.f1.tag = kTagFace1;
-        [self addSubview:self.f1];
-                
-        self.f2= [[UIView alloc]init];
-        img = [UIImage imageNamed:@"F2.png"];
-        [self.f2 setBackgroundColor:[UIColor colorWithPatternImage:img]];
-        [self.f2 setFrame:CGRectMake(10, ((4*2)+img.size.height), img.size.width, img.size.height)];
-        self.f2.tag = kTagFace2;
-        [self addSubview:self.f2];
         
-        self.f3= [[UIView alloc]init];
-        img = [UIImage imageNamed:@"F3.png"];
-        [self.f3 setBackgroundColor:[UIColor colorWithPatternImage:img]];
-        [self.f3 setFrame:CGRectMake(10, ((4*3)+img.size.height*2), img.size.width, img.size.height)];
-        self.f3.tag = kTagFace3;
-        [self addSubview:self.f3];
-
-        self.f4= [[UIView alloc]init];
-        img = [UIImage imageNamed:@"F4.png"];
-        [self.f4 setBackgroundColor:[UIColor colorWithPatternImage:img]];
-        [self.f4 setFrame:CGRectMake(10, ((4*4)+img.size.height*3), img.size.width, img.size.height)];
-        self.f4.tag = kTagFace4;
-        [self addSubview:self.f4];
-        
-        self.f5= [[UIView alloc]init];
-        img = [UIImage imageNamed:@"F5.png"];
-        [self.f5 setBackgroundColor:[UIColor colorWithPatternImage:img]];
-        [self.f5 setFrame:CGRectMake(10, ((4*5)+img.size.height*4), img.size.width, img.size.height)];
-        self.f5.tag = kTagFace5;
-        [self addSubview:self.f5];
-        
-        self.f6= [[UIView alloc]init];
-        img = [UIImage imageNamed:@"F6.png"];
-        [self.f6 setBackgroundColor:[UIColor colorWithPatternImage:img]];
-        [self.f6 setFrame:CGRectMake(10, ((4*6)+img.size.height*5), img.size.width, img.size.height)];
-        self.f6.tag = kTagFace6;
-        [self addSubview:self.f6];
+        NSMutableString *name =nil;
+        for (int i=1; i<=6; i++) {
+            UIView *view = [[UIView alloc]init];
+            name = [NSString stringWithFormat:@"F%d.png",i];
+            UIImage *img = [UIImage imageNamed:name];
+            name = nil;
+            [view setBackgroundColor:[UIColor colorWithPatternImage:img]];
+            [view setFrame:CGRectMake(10, 5+(4+img.size.height)*(i-1), img.size.width, img.size.height)];
+            [self addSubview:view];
+            
+            switch (i) {
+                case 1:
+                    _f1 = view;
+                    _f1.tag = kTagFace1;
+                    break;
+                case 2:
+                    _f2 = view;
+                    _f2.tag = kTagFace2;
+                    break;
+                case 3:
+                    _f3 = view;
+                    _f3.tag = kTagFace3;
+                    break;
+                case 4:
+                    _f4 = view;
+                    _f4.tag = kTagFace4;
+                    break;
+                case 5:
+                    _f5 = view;
+                    _f5.tag = kTagFace5;
+                    break;
+                case 6:
+                    _f6 = view;
+                    _f6.tag = kTagFace6;
+                    break;
+            }
+        }
         
         self.viewToDrag = [[UIView alloc] init];
         self.shouldGetTouch = YES;
@@ -155,13 +152,8 @@
             
             if (self.viewToDrag) {
                 newPoint = [gestReco translationInView:self];
-  //              NSLog(@"new Point is %@", NSStringFromCGPoint(newPoint));
-                
-//                NSLog(@"view to drag curr frame origin is %@",NSStringFromCGPoint(self.viewToDrag.frame.origin));
                 
                 CGPoint newFacePt = CGPointMake(self.viewToDrag.frame.origin.x + newPoint.x, self.viewToDrag.frame.origin.y +newPoint.y);
-  
-//                NSLog(@"newFacePt is %@", NSStringFromCGPoint(newFacePt));
                 
                 [self.viewToDrag setFrame:CGRectMake(newFacePt.x, newFacePt.y, self.viewToDrag.frame.size.width, self.viewToDrag.frame.size.height)];
             
@@ -178,8 +170,6 @@
         if(gestReco.state == UIGestureRecognizerStateEnded){
             
             CGPoint endTouchLoc = [gestReco locationInView:[gestReco view]];
-
-//            NSLog(@"dragging ended");
             
             if (self.viewToDrag) {
             
@@ -210,8 +200,6 @@
 //    NSLog(@"Touch Pt is %@", NSStringFromCGPoint(touchPt));
     
     for (UIView *view in self.subviews) {
-
-//        NSLog(@"view frame is %@", NSStringFromCGRect(view.frame));
 
         if (CGRectContainsPoint(view.frame, touchPt)) {
             return view;
