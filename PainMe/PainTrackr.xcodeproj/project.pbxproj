@@ -337,6 +337,7 @@
 		767CF894165D510B002BABB2 /* InvoTextForEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 767CF893165D510B002BABB2 /* InvoTextForEmail.m */; };
 		7683CBA9160BC8F500B566A7 /* InvoPartNamelabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7683CBA8160BC8F500B566A7 /* InvoPartNamelabel.m */; };
 		76880DE6165C36AF007A6F81 /* InvoPainColorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 76880DE5165C36AF007A6F81 /* InvoPainColorHelper.m */; };
+		768B2479170E04AE0098C708 /* back_Zout.png in Resources */ = {isa = PBXBuildFile; fileRef = 768B2478170E04AE0098C708 /* back_Zout.png */; };
 		76AB5DA515B890E100FEB78B /* InvoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AB5DA415B890E100FEB78B /* InvoDataManager.m */; };
 		76B1258215D43F160000286A /* untitled-1_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 76B1255E15D43F160000286A /* untitled-1_01.png */; };
 		76B1258315D43F160000286A /* untitled-1_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 76B1255F15D43F160000286A /* untitled-1_02.png */; };
@@ -1035,6 +1036,7 @@
 		7683CBA8160BC8F500B566A7 /* InvoPartNamelabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoPartNamelabel.m; sourceTree = "<group>"; };
 		76880DE4165C36AF007A6F81 /* InvoPainColorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InvoPainColorHelper.h; path = ../Model/InvoPainColorHelper.h; sourceTree = "<group>"; };
 		76880DE5165C36AF007A6F81 /* InvoPainColorHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InvoPainColorHelper.m; path = ../Model/InvoPainColorHelper.m; sourceTree = "<group>"; };
+		768B2478170E04AE0098C708 /* back_Zout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_Zout.png; sourceTree = "<group>"; };
 		76AB5DA315B890E100FEB78B /* InvoDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = InvoDataManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		76AB5DA415B890E100FEB78B /* InvoDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = InvoDataManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		76ADFB2116694FA000161203 /* BackViewIncluded 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BackViewIncluded 2.xcdatamodel"; sourceTree = "<group>"; };
@@ -2391,6 +2393,7 @@
 		834C100F158F7255000C5652 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				768B2478170E04AE0098C708 /* back_Zout.png */,
 				76117D451677EC7C00A284B9 /* PainMe.sqlite */,
 				76117D431677EB2F00A284B9 /* BackViewData.csv */,
 				761FA947165ABAE50031C53E /* NewBodyPartData.csv */,
@@ -3123,6 +3126,7 @@
 				763A4F12165BE5A30082D0D8 /* zout_back_image.png in Resources */,
 				76117D441677EB2F00A284B9 /* BackViewData.csv in Resources */,
 				76117D461677EC7C00A284B9 /* PainMe.sqlite in Resources */,
+				768B2479170E04AE0098C708 /* back_Zout.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
