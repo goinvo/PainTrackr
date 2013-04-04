@@ -81,7 +81,7 @@
     switch (self.orient) {
         case 0:
             imgNameToUse = (zoomLevel ==1)?@"Body_Detail.png" : @"Front_Zin.png";
-            drawingRect = rect;
+            drawingRect = rect;	
             break;
         case 1:
             imgNameToUse = (zoomLevel ==1)?@"back_Zout.png" : @"back_Zin.png";
