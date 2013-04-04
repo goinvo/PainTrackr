@@ -74,22 +74,25 @@
     [[UIColor whiteColor] setFill];
     UIRectFill(rect);
     
-    UIImage *img = (self.orient ==0)? [UIImage imageNamed:@"Body_Detail.png"]:
-                                      [UIImage imageNamed:@"back_Zout.png"] ;
-    
-//    NSLog(@"rect is %@", NSStringFromCGRect(rect));
-//    NSLog(@"size is %@ with aspect ratio%f", NSStringFromCGSize(img.size), img.size.width/img.size.height);
-    
-    if(img.size.width/img.size.height !=0.44) NSLog(@"NSLOG new height of img is :%f",img.size.width/0.44);
-    if (self.orient == 0) {
-        [img drawInRect:rect];
+    NSString *imgNameToUse = nil;
+    CGRect drawingRect = CGRectZero;
+   
+    //choosing right image and rect to use for drawing
+    switch (self.orient) {
+        case 0:
+            imgNameToUse = (zoomLevel ==1)?@"Body_Detail.png" : @"Front_Zin.png";
+            drawingRect = rect;
+            break;
+        case 1:
+            imgNameToUse = (zoomLevel ==1)?@"back_Zout.png" : @"back_Zin.png";
+            UIImage *tmpImg =  [UIImage imageNamed:imgNameToUse];
+            float newHeight = rect.size.width/(tmpImg.size.width/tmpImg.size.height);
+             drawingRect = CGRectMake(rect.origin.x, rect.origin.y + (rect.size.height - newHeight)*0.5, rect.size.width,newHeight);
+            break;
     }
-    else{
-        float newHeight = rect.size.width/(img.size.width/img.size.height);
-        CGRect newRect = CGRectMake(rect.origin.x, rect.origin.y + (rect.size.height - newHeight)*0.5, rect.size.width,newHeight);
-        [img drawInRect:newRect];
-    }
-
+    UIImage *img =  [UIImage imageNamed:imgNameToUse];
+    
+    [img drawInRect:drawingRect];
     
     [[UIColor blackColor]setStroke];
     [self.partColor setFill];
