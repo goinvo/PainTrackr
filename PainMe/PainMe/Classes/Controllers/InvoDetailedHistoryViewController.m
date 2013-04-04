@@ -277,7 +277,7 @@
 }
 
 #pragma mark -
-
+/*
 -(UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView{
 
     return _entriesScrollView;
@@ -285,14 +285,14 @@
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
 
-    CGPoint contentOffset = scrollView.contentOffset;
+//    CGPoint contentOffset = scrollView.contentOffset;
     
 //    int number = contentOffset.x/scrollView.frame.size.width;
 //    NSLog(@"number is %d", number);
 //    [_pageViewCtrl setCurrentPage:number];
     
 }
-
+*/
 #pragma mark change date label based on selection
 
 -(void)changeDateLabelWithIndex:(int)dateIndex{

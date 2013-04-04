@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong) UIBezierPath *partShapePoints;
 @property (nonatomic, strong) UIColor *shapeColor;
-@property (nonatomic, readwrite) int zoomLevel;
+@property (nonatomic, readwrite ) int zoomLevel;
 @property (nonatomic, copy) NSString *partName;
 @property (nonatomic, readwrite)int orientation;
 

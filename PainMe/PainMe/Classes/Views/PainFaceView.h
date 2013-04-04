@@ -29,10 +29,10 @@ kFaceTags;
 
 @end
 
-@interface PainFaceView : UIView<UIGestureRecognizerDelegate>
+@interface PainFaceView : UIView <UIGestureRecognizerDelegate>
 
-@property (nonatomic, strong)UIView *viewToDrag;
-@property (nonatomic, assign)id <PainFaceDelegate> delegate;
+@property (nonatomic, strong) UIView *viewToDrag;
+@property (nonatomic, assign) id <PainFaceDelegate> delegate;
 
 -(void)reduceVisibility;
 -(void)increaseVisibility;

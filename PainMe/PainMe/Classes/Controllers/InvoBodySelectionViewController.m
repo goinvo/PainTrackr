@@ -195,19 +195,20 @@
     [self removeBodyNamePopUp];
         
     CGPoint touchLocation = [gestureReco locationInView:self.scrollView];
-//    NSLog(@"Tapped inside scrollView at x:%f y:%f",touchLocation.x, touchLocation.y);
   
     CGPoint newPt = [self.bodyView convertPoint:touchLocation fromView:self.scrollView];
- //   NSLog(@"New Point is %@", NSStringFromCGPoint(newPt));
-
+ 
 //Creating a zero Pain Entry
     NSDictionary *locDict = nil;
     
     int zmLvl = (self.scrollView.zoomScale <0.06)?1:2;
     
-    locDict = [self.bodyGeometry containsPoint:CGPointMake(newPt.x/BODY_VIEW_WIDTH, newPt.y/BODY_VIEW_HEIGHT) withZoomLVL:zmLvl withOrientation:[self currentOrientation]];
+    locDict = [self.bodyGeometry containsPoint:CGPointMake(newPt.x/BODY_VIEW_WIDTH, newPt.y/BODY_VIEW_HEIGHT)
+                                   withZoomLVL:zmLvl
+                               withOrientation:[self currentOrientation]];
+    
 //Making changes to the text label
-    NSString *name =  [self.bodyView partNameAtLocation:newPt remove:NO];
+    NSString *name =  [self.bodyView partNameAtLocation:newPt withObj:[locDict copy] remove:NO];
     
     if (name) {
         
@@ -216,7 +217,7 @@
         CGSize labelSize = [name sizeWithFont:[UIFont bubbleFont]];
         
         float startX = [self xPosWithCurrentXPos:labelPt.x
-                                      labelWidth:labelSize.width];
+                                      labelWidth:(labelSize.width+10)];
         
         float startY = [self yPosWithCurrentYPos:labelPt.y
                                      labelHeight:labelSize.height];
@@ -233,6 +234,7 @@
 -(float)xPosWithCurrentXPos:(float)currPos labelWidth:(float)currWidth{
     float frameWidth = [[UIScreen mainScreen] applicationFrame].size.width;
     float toReturn = currPos;
+  
     if (toReturn< 0) {
         toReturn +=10.0f;
     }else if ((toReturn + currWidth)> frameWidth){
@@ -336,12 +338,6 @@
     
     [self.painFace reduceVisibility];
     [self removeBodyNamePopUp];
-}
-
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView {
-   
-//    NSLog(@"ScrollView zoom scale is %f", scrollView.zoomScale);
-    
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
