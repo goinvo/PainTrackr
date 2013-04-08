@@ -56,14 +56,9 @@
         // copy bytes to buffer _points
         [vertices getBytes:(CGPoint *)_points length:[vertices length]];
         
-        if (self.orient ==1) {
-            [self createUIBezierWithOffset:CGPointMake(0, 0.0)];
-        }else{
-            [self createUIBezierWithOffset:CGPointZero];
-        }
+        [self createUIBezierWithOffset:CGPointZero];
         
         partName = [obj valueForKey:@"name"];
-    
     }
     return self;
 }
@@ -79,9 +74,25 @@
     [[UIColor whiteColor] setFill];
     UIRectFill(rect);
     
-    UIImage *img = (self.orient ==0)? [UIImage imageNamed:@"Body_Detail.png"]:
-                                      [UIImage imageNamed:@"zoomout-back-image.png"] ;
-    [img drawInRect:rect];
+    NSString *imgNameToUse = nil;
+    CGRect drawingRect = CGRectZero;
+   
+    //choosing right image and rect to use for drawing
+    switch (self.orient) {
+        case 0:
+            imgNameToUse = (zoomLevel ==1)?@"Body_Detail.png" : @"Front_Zin.png";
+            drawingRect = rect;	
+            break;
+        case 1:
+            imgNameToUse = (zoomLevel ==1)?@"back_Zout.png" : @"back_Zin.png";
+            UIImage *tmpImg =  [UIImage imageNamed:imgNameToUse];
+            float newHeight = rect.size.width/(tmpImg.size.width/tmpImg.size.height);
+             drawingRect = CGRectMake(rect.origin.x, rect.origin.y + (rect.size.height - newHeight)*0.5, rect.size.width,newHeight);
+            break;
+    }
+    UIImage *img =  [UIImage imageNamed:imgNameToUse];
+    
+    [img drawInRect:drawingRect];
     
     [[UIColor blackColor]setStroke];
     [self.partColor setFill];
@@ -104,15 +115,11 @@
         textRect.origin.y -= ((textRect.origin.y + textRect.size.height) - rect.size.height);
     }
     
-    
-    CGPathRef roundedRectPath = [UIBezierPath bezierPathWithRoundedRect:textRect cornerRadius:4.0f].CGPath;
-    
     [[UIColor darkGrayColor] setFill];
+    CGPathRef roundedRectPath = [UIBezierPath bezierPathWithRoundedRect:textRect cornerRadius:4.0f].CGPath;
     CGContextSetAlpha(ctxRef, 0.6f);
     CGContextAddPath(ctxRef, roundedRectPath);
     CGContextFillPath(ctxRef);
- //   CGPathRelease(roundedRectPath);
-
     
     CGContextSetAlpha(ctxRef, 1.0f);
     CGContextSetFillColorWithColor(ctxRef, [UIColor whiteColor].CGColor);
@@ -135,9 +142,7 @@
 -(void)createUIBezierWithOffset:(CGPoint)offsetPoint{
     
     CGFloat viewWidth = self.bounds.size.width -offsetPoint.x;
-    CGFloat viewHeight = self.bounds.size.height - offsetPoint.y;
-    
-    (self.orient ==1)? (viewHeight = 364) : (viewHeight = viewHeight);
+    CGFloat viewHeight = self.bounds.size.height ;
     
     if (!_bezierPath) {
         
@@ -150,9 +155,11 @@
             for (int i=1; i<_pointCount; i++) {
                 
                 [_bezierPath addLineToPoint:CGPointMake(_points[i].x*viewWidth ,_points[i].y*viewHeight)];
-                
             }
             [_bezierPath closePath];
+            if (_points) {
+                free(_points);
+            }
         }
     }
 }

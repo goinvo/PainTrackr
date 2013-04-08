@@ -16,8 +16,8 @@
     NSDateFormatter *form1;
 }
 
-@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, strong) InvoHistoryView *historyView;
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
+//@property (nonatomic, weak) InvoHistoryView *historyView;
 
 @property (nonatomic, strong)NSArray *sortedDates;
 @property (nonatomic, strong)NSDictionary *painEntriesByDate;
@@ -58,11 +58,12 @@
         
         NSDate *prevDateString = [self.sortedDates objectAtIndex:0];
         
-//        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 2, 320, 1)];
-//        [lineView setBackgroundColor:[UIColor lightGrayColor]];
-//        [self.scrollView addSubview:lineView];
-        
-        [self addLabelFromDate:prevDateString formatStyle:@"MMMM YYY" rect:CGRectMake(0, 10, 320, 20) backColor:[UIColor clearColor] fontSize:15.0f toView:self.scrollView];
+        [self addLabelFromDate:prevDateString
+                   formatStyle:@"MMMM YYY"
+                          rect:CGRectMake(0, 10, 320, 20)
+                     backColor:[UIColor clearColor]
+                      fontSize:15.0f
+                        toView:self.scrollView];
         
         int mounthCount = 0;
         float xIndex = 10.0;
@@ -92,7 +93,12 @@
                 [lineView setBackgroundColor:[UIColor lightGrayColor]];
                 [self.scrollView addSubview:lineView];
 
-                [self addLabelFromDate:currDate formatStyle:@"MMMM YYY" rect:CGRectMake(0, yIndex+5, 320, 20) backColor:[UIColor clearColor] fontSize:15.0f toView:self.scrollView];
+                [self addLabelFromDate:currDate
+                           formatStyle:@"MMMM YYY"
+                                  rect:CGRectMake(0, yIndex+5, 320, 20)
+                             backColor:[UIColor clearColor]
+                              fontSize:15.0f
+                                toView:self.scrollView];
                 
                 yIndex += 35;
                 column = 0;
@@ -185,7 +191,7 @@
     self.scrollView.minimumZoomScale = 1.0f;
     self.scrollView.maximumZoomScale = 1.0f;
 //    self.scrollView.pagingEnabled = YES;
-    self.painEntriesByDate = [NSDictionary dictionaryWithDictionary:[[InvoDataManager sharedDataManager] entriesPerDayList]];
+    self.painEntriesByDate = [[[InvoDataManager sharedDataManager] entriesPerDayList] copy];
     
 //    NSLog(@"Total entries to draw are %d",[[self.painEntriesByDate allKeys] count]);
     
@@ -209,7 +215,7 @@
     [l1 setBackgroundColor:color];
     [l1 setFont:[UIFont fontWithName:@"Helvetica-Bold" size:fntSize]];
     
-    [l1 setText:[NSString stringWithFormat:@"%@",[form1 stringFromDate:date]]];
+    [l1 setText:[form1 stringFromDate:date]];
     [l1 setTextAlignment:UITextAlignmentCenter];
     [viewToAttach addSubview:l1];
     

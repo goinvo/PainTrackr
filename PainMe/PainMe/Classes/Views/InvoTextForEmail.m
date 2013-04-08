@@ -11,35 +11,40 @@
 
 @implementation InvoTextForEmail
 
-//+(NSString *)bodyTextForEmail{
-//
-//    CTFontRef fontRef = CTFontCreateWithName((CFStringRef)@"Chalkduster", 36.0f, NULL); // 9-1
-//    NSDictionary *attrDictionary = [NSDictionary dictionaryWithObjectsAndKeys:(__bridge id)fontRef, (NSString *)kCTFontAttributeName, (id)[[UIColor blueColor] CGColor], (NSString *)(kCTForegroundColorAttributeName), (id)[[UIColor redColor] CGColor], (NSString *) kCTStrokeColorAttributeName, (id)[NSNumber numberWithFloat:-3.0], (NSString *)kCTStrokeWidthAttributeName, nil]; // 10-1
-//    CFRelease(fontRef); // 11-1
-//    
-//    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:@"Everybody loves iNVASIVECODE!" attributes:attrDictionary]; // 12-1
-//
-//    CGSize size = CGSizeMake([[UIScreen mainScreen]bounds].size.width, [[UIScreen mainScreen]bounds].size.height);
-//    
-//    UIGraphicsBeginImageContext(size);
-//    CGContextRef context = UIGraphicsGetCurrentContext();
-//    
-//    CGContextSetTextMatrix(context, CGAffineTransformIdentity); // 2-1
-//    CGContextTranslateCTM(context, 0, [[UIScreen mainScreen]bounds].size.height); // 3-1
-//    CGContextScaleCTM(context, 1.0, -1.0); // 4-1
-//    CTLineRef line = CTLineCreateWithAttributedString((__bridge CFAttributedStringRef)attString); // 5-1
-//    
-//    // Set text position and draw the line into the graphic context
-//    CGContextSetTextPosition(context, 30.0, 500.0); // 6-1
-//    CTLineDraw(line, context); // 7-1
-//    CFRelease(line); // 8-1
-//    UIGraphicsEndImageContext();
-//    
-//    return [attString string];
-//}
 
++ (NSString*)base64forData:(NSData*)theData {
+    
+    const uint8_t* input = (const uint8_t*)[theData bytes];
+    NSInteger length = [theData length];
+    
+    static char table[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+    
+    NSMutableData* data = [NSMutableData dataWithLength:((length + 2) / 3) * 4];
+    uint8_t* output = (uint8_t*)data.mutableBytes;
+    
+    NSInteger i;
+    for (i=0; i < length; i += 3) {
+        NSInteger value = 0;
+        NSInteger j;
+        for (j = i; j < (i + 3); j++) {
+            value <<= 8;
+            
+            if (j < length) {
+                value |= (0xFF & input[j]);
+            }
+        }
+        
+        NSInteger theIndex = (i / 3) * 4;
+        output[theIndex + 0] =                    table[(value >> 18) & 0x3F];
+        output[theIndex + 1] =                    table[(value >> 12) & 0x3F];
+        output[theIndex + 2] = (i + 1) < length ? table[(value >> 6)  & 0x3F] : '=';
+        output[theIndex + 3] = (i + 2) < length ? table[(value >> 0)  & 0x3F] : '=';
+    }
+    
+    return [[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] copy];
+}
 
-+(NSString *)bodyTextForEmail{
++(NSString *)bodyTextForEmailWithImage:(NSData *)data{
 
     NSArray *entries = [PainEntry last50PainEntriesIfError:^(NSError *error){
         
@@ -50,8 +55,7 @@
         
     }];
 
-    NSString  *str = @"";
-//    int num=1;
+    NSString  *emailBodyStr = @"";    
     
     NSDate *prevDate = [[entries objectAtIndex:0] valueForKey:@"timestamp"];
     
@@ -63,9 +67,9 @@
     if(entries){
         NSString *currDate;
         [frmtr setDateFormat:@"MMMM YYY"];
-        str = [frmtr stringFromDate:prevDate];
+        emailBodyStr = [frmtr stringFromDate:prevDate];
         [frmtr setDateFormat:@"E d"];
-        str = [str stringByAppendingString:[NSString stringWithFormat:@"\n %@\n",[frmtr stringFromDate:prevDate]]];
+        emailBodyStr = [emailBodyStr stringByAppendingString:[NSString stringWithFormat:@"\n %@\n",[frmtr stringFromDate:prevDate]]];
         
        // for(NSDictionary *dict in entries){
         for (int i=0; i<[entries count]; i++) {
@@ -82,14 +86,14 @@
                 
                 if (![[frmtr stringFromDate:dte ] isEqualToString:[frmtr stringFromDate:prevDate]]) {
                     
-                    str = [str stringByAppendingString: [NSString stringWithFormat:@" \n %@ \n",[frmtr stringFromDate:dte]]];
+                    emailBodyStr = [emailBodyStr stringByAppendingString: [NSString stringWithFormat:@" \n %@ \n",[frmtr stringFromDate:dte]]];
                     [frmtr setDateFormat:@"E d"];
                     
-                    str = [str stringByAppendingString: [NSString stringWithFormat:@" \n %@ \n",[frmtr stringFromDate:dte]]];
+                    emailBodyStr = [emailBodyStr stringByAppendingString: [NSString stringWithFormat:@" \n %@ \n",[frmtr stringFromDate:dte]]];
                 }
                 else{
                     [frmtr setDateFormat:@"E d"];
-                    str = [str stringByAppendingString: [NSString stringWithFormat:@" \n %@ \n",[frmtr stringFromDate:dte]]];
+                    emailBodyStr = [emailBodyStr stringByAppendingString: [NSString stringWithFormat:@" \n %@ \n",[frmtr stringFromDate:dte]]];
                 }
             }
             
@@ -99,25 +103,11 @@
             
             NSString *newStr = [NSString stringWithFormat:@"  %@\n  Pain Level: %d \n  %@\n \n",[loc valueForKey:@"name"],[[dict valueForKey:@"painLevel"] integerValue],[formatter stringFromDate:dte]];
             
-            str = [str stringByAppendingString:[NSString stringWithFormat:@" %@",newStr]];
+            emailBodyStr = [emailBodyStr stringByAppendingString:[NSString stringWithFormat:@" %@",newStr]];
             prevDate = dte;
-//            num++;
-
-            
-//            PainLocation *loc = [dict valueForKey:@"location"];
-//            NSDate *dte= [dict valueForKey:@"timestamp"];
-//            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-//            //        [formatter setDateStyle:NSDateFormatterShortStyle];
-//            [formatter setTimeStyle:NSDateFormatterShortStyle];
-//            
-//            NSString *newStr = [NSString stringWithFormat:@"  %@\n  Pain Level: %d \n  %@\n \n",[loc valueForKey:@"name"],[[dict valueForKey:@"painLevel"] integerValue],[formatter stringFromDate:dte]];
-//            
-//            str = [str stringByAppendingString:[NSString stringWithFormat:@" %@",newStr]];
-//            num++;
         }
     }
-    //num=0;
 
-    return [str copy];
+    return [emailBodyStr copy];
 }
 @end

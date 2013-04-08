@@ -39,6 +39,7 @@
 @property (nonatomic, strong) PainFaceView *painFace;
 
 @property (nonatomic, strong) UITapGestureRecognizer *doubleTap;
+@property (nonatomic, strong) UIImageView *overLayView;
 
 -(void)initTapGesture;
 -(int)tileAtTouchLocation:(CGPoint)touchPt;
@@ -99,7 +100,6 @@
     //helps define the zoomScale
     //to fit the view within the height of view
     float minZoomScale = appHeight/BODY_VIEW_HEIGHT;
-
     self.scrollView.minimumZoomScale = minZoomScale;
     self.scrollView.zoomScale = minZoomScale;
     self.scrollView.maximumZoomScale = 1.0;
@@ -133,9 +133,95 @@
     
 //Configuring image for flipButton
     [self configFlipButtonImage];
-
+    
+//Add a transparent overlay
+    [self checkSaveNumberOfLaunches];
 }
 
+#pragma mark Check Number of AppLaunches
+-(void)checkSaveNumberOfLaunches{
+    
+    NSArray *docDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    NSLog(@"docDIrectory count is%d", [docDirectories count]);
+    
+    NSString *docDirectory = [docDirectories objectAtIndex:0];
+    
+    NSString *fileName = [NSString stringWithFormat:@"%@/LaunchNumber.txt",docDirectory];
+    
+    NSError *error2 ;
+    NSString *launch = [[NSString alloc] initWithContentsOfFile:fileName
+                                                   usedEncoding:nil
+                                                          error:&error2];
+    int timesLaunched = 0;
+    timesLaunched = [launch intValue] ;
+    
+    if (timesLaunched ==0) {
+        
+        NSLog(@"Launching for first time");
+        [self addCoachMarks];
+    }
+    
+    timesLaunched +=1;
+    NSString *numbr = [NSString stringWithFormat:@"%d",timesLaunched];
+    NSError *error;
+    [numbr writeToFile:fileName
+            atomically:YES
+              encoding:NSStringEncodingConversionAllowLossy
+                 error:&error]; 
+}
+
+#pragma mark add/remove coachMarks
+-(void)addCoachMarks{
+
+    CGRect frame = [[UIScreen mainScreen] applicationFrame];
+    
+    NSString *imgName = (frame.size.height > 480.0)? @"coachmarks_long.png":
+    @"coachmarks.png";
+    
+    UIImageView *tmpView = [[UIImageView alloc]initWithFrame:frame];
+    [tmpView setImage:[UIImage imageNamed:imgName]];
+    
+    [[[[UIApplication sharedApplication] delegate] window] addSubview:tmpView];
+    _overLayView = tmpView;
+    [_overLayView setExclusiveTouch:YES];
+    [_overLayView becomeFirstResponder];
+    
+    [self makeViewsRecieveTouch:NO];
+}
+
+-(void)removeCoachMarks{
+
+    if (_overLayView) {
+        [_overLayView resignFirstResponder];
+        [_overLayView removeFromSuperview];
+        _overLayView = nil;
+    }
+    [self makeViewsRecieveTouch:YES];
+}
+
+#pragma mark  manage touches for Adding/Removing coachMarks
+-(void)makeViewsRecieveTouch:(BOOL)isTouch{
+
+    [self.painFace setUserInteractionEnabled:isTouch];
+    [self.scrollView setUserInteractionEnabled:isTouch];
+    [self.toolbarItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+        
+        [(UIBarButtonItem *)obj setEnabled:isTouch];
+        //NSLog(@"Tool bar items are %@",self.toolbarItems);
+    }];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+
+    if (_overLayView) {
+        [self removeCoachMarks];
+    }
+}
+
+
+
+#pragma mark add the FlipButton
 -(void)configFlipButtonImage{
     //0 = Front, 1 = Back
     int currentOrient = [self currentOrientation];
@@ -144,9 +230,8 @@
     [self.flipButton setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.8f]];
     [self.flipButton setFrame:flipRect];
     [self.flipButton setImage:[InvoFlipButtonView imageWithOrientation:currentOrient] forState:UIControlStateNormal];
-
 }
- 
+
 
 #pragma mark Draw last entry if it exists
 -(void)checkAndAddLastEntryToView{
@@ -192,6 +277,12 @@
 
 -(void)handleTapGesture:(UITapGestureRecognizer *)gestureReco{
 
+    if (_overLayView) {
+        [_overLayView resignFirstResponder];
+        [_overLayView removeFromSuperview];
+        _overLayView = nil;
+    }
+    
     [self removeBodyNamePopUp];
         
     CGPoint touchLocation = [gestureReco locationInView:self.scrollView];
@@ -263,8 +354,10 @@
         [self.scrollView zoomToRect:CGRectMake(0, 0,BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT) animated:YES];
     }
     else{
+        //3
         [self.scrollView zoomToRect:CGRectMake(0, 0,BODY_VIEW_WIDTH-1024*3, BODY_VIEW_HEIGHT-1024*3) animated:YES];
     }
+    [self.bodyView.layer setNeedsDisplay];
 }
 
 
@@ -316,7 +409,7 @@
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale {
    
-//    NSLog(@"Scale is %f",scale);
+    NSLog(@"Scale is %f",scale);
     
     [self.painFace increaseVisibility];
 
@@ -380,27 +473,34 @@
             }
             else bezierShape = [value copy];
         }
-        if(painLvl ==0){
-        
-            if ([self.bodyView doesEntryExist:name withZoomLevel:level]) {
-                UIColor *fillcolor = [InvoPainColorHelper colorfromPain:painLvl];
-                
-                [self.bodyView renderPainForBodyPartPath:bezierShape WithColor:[UIColor clearColor] detailLevel:zoomLVL name:[[pathContainingPoint allKeys] objectAtIndex:0] orient:[self currentOrientation]];
-                fillcolor = nil;
+        [self drawAndCreatePainEntryForPath:bezierShape
+                                   location:[pathContainingPoint copy]
+                                       name:[[pathContainingPoint allKeys] objectAtIndex:0]
+                                  levelPain:painLvl
+                                       zoom:zoomLVL];
+    }
+}
 
-                [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:0 notes:nil];
-            }
-            return;
-        }
-        else{
+-(void)drawAndCreatePainEntryForPath:(UIBezierPath *)path location:(id)value name:(NSString *)name levelPain:(int)painLvl zoom:(int)zoomLVL{
+
+    //checking it trying to erase an entry and
+    //if that entry actually exisits.
+    
+    if(painLvl ==0 && (![self.bodyView doesEntryExist:name withZoomLevel:zoomLVL])){
+    //if doesnot exist then no need to create
+    //so return
+        return;
+    }
+    
+    if([InvoDataManager painEntryForLocation:[value copy] levelPain:painLvl notes:nil]){
+        UIColor *fillcolor = [InvoPainColorHelper colorfromPain:painLvl];
+        [self.bodyView renderPainForBodyPartPath:path
+                                       WithColor:fillcolor
+                                     detailLevel:zoomLVL
+                                            name:[[value allKeys] objectAtIndex:0]
+                                          orient:[self currentOrientation]];
         
-            UIColor *fillcolor = [InvoPainColorHelper colorfromPain:painLvl];
-            
-            [self.bodyView renderPainForBodyPartPath:bezierShape WithColor:fillcolor detailLevel:zoomLVL name:[[pathContainingPoint allKeys] objectAtIndex:0] orient:[self currentOrientation]];
-            fillcolor = nil;
-            
-            [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:painLvl notes:nil];
-        }
+        fillcolor = nil;
     }
 }
 
@@ -474,7 +574,7 @@
     
     NSData *img = [self.bodyView imageToAttachToReportWithZoomLevel:self.scrollView.zoomScale];
   
-    NSString *bodyText = [InvoTextForEmail bodyTextForEmail];
+    NSString *bodyText = [InvoTextForEmail bodyTextForEmailWithImage:[img copy]];
     
     MFMailComposeViewController *mailComp = [[MFMailComposeViewController alloc] init];
     

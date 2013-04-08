@@ -10,5 +10,5 @@
 
 @interface UIDevice (deviceInfo)
 
-- (NSString *)deviceInfo;
++ (NSString *)deviceInfo;
 @end

@@ -46,7 +46,16 @@
 
     [painColor setFill];
     [[UIColor blackColor]setStroke];
-    [flipImage drawInRect:flipRect blendMode:kCGBlendModeNormal alpha:0.8];
+  //resetting the frame to match the flipsize image aspect ratio
+    if (currSide ==0) {
+        float newHeight = flipRect.size.width/(flipImage.size.width/flipImage.size.height);
+        CGRect newRect = CGRectMake(flipRect.origin.x, flipRect.origin.y + (flipRect.size.height - newHeight)*0.5, flipRect.size.width,newHeight);
+        flipRect = newRect;
+    }
+    
+    [flipImage drawInRect:flipRect
+                blendMode:kCGBlendModeNormal
+                    alpha:0.8];
     [path fill];
     
     flipImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -58,7 +67,7 @@
 +(UIBezierPath *)createUIBezierWithdata:(NSData *)vertices Offset:(CGPoint)offsetPoint {
     
     CGFloat viewWidth = 40 -offsetPoint.x;
-    CGFloat viewHeight = 90 - offsetPoint.y;
+    CGFloat viewHeight = 90.0 - offsetPoint.y;
     
     int pointCount = 0;
     UIBezierPath *bezierPath = nil;

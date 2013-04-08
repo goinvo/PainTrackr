@@ -12,7 +12,7 @@
 
 @implementation UIDevice (deviceInfo)
 
-- (NSString *)deviceInfo
++ (NSString *)deviceInfo
 {
     size_t size;
     

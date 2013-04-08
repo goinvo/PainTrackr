@@ -51,7 +51,7 @@
     tiledLayer.levelsOfDetail = 5;
     
    _imageCache = [[NSCache alloc] init];
-   [_imageCache setCountLimit: 3 * 7];
+   [_imageCache setCountLimit: 4 * 7];
     
     self.isMask = NO;
     self.isNewStroke = NO;
@@ -139,7 +139,7 @@
     
     CGFloat scale = CGContextGetCTM(context).a/self.contentScaleFactor;
 
-    scale = (self.contentScaleFactor ==2)?scale/2:scale;
+    //scale = (self.contentScaleFactor ==2)?scale/2:scale;
     
 //    NSLog(@"Scale in draw is %f",scale);
     
@@ -173,7 +173,7 @@
         }
     }
       
-    int zoom = (scale <0.0625)?1:2;
+    int zoom = (scale <=0.0625)?1:2;
     [self colorBodyLocationsInRect:rect WithZoom:zoom InContext:context withOffset:CGPointZero];
 }
 
@@ -182,10 +182,10 @@
 {
     int numFrmScale = 128;
     
-    if (scale <0.0625) {
+    if (scale <=0.0625) {
         numFrmScale = 0;
     }
-    else if (scale >=0.0625 && scale <0.25) {
+    else if (scale >0.0625 && scale <0.25) {
         numFrmScale = 128;
     }
     else if (scale >=0.25 && scale <0.5) {
@@ -431,9 +431,19 @@
     
     UIImage *imgTRet = UIGraphicsGetImageFromCurrentImageContext();
     
-    UIGraphicsEndImageContext();
-    NSData *data = UIImageJPEGRepresentation(imgTRet, 1);
+    CGSize screenSize = [[UIScreen mainScreen]applicationFrame].size;
 
+//    UIImage *testImg;
+//    CGContextSaveGState(ctxRef);
+//    [imgTRet drawInRect:CGRectMake(0, 0, 150, 150)];
+//    testImg = UIGraphicsGetImageFromCurrentImageContext();
+//    CGContextRestoreGState(ctxRef);
+    
+
+    
+    UIGraphicsEndImageContext();
+   // NSData *data = UIImageJPEGRepresentation(imgTRet, 1);
+     NSData *data = UIImageJPEGRepresentation(imgTRet, 1);
     return data;
 }
 

@@ -10,5 +10,6 @@
 
 @interface InvoTextForEmail : NSObject
 
-+(NSString *)bodyTextForEmail;
+//+(NSString *)bodyTextForEmail;
++(NSString *)bodyTextForEmailWithImage:(NSData *)data;
 @end
