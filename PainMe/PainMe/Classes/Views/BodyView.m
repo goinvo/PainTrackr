@@ -431,9 +431,19 @@
     
     UIImage *imgTRet = UIGraphicsGetImageFromCurrentImageContext();
     
-    UIGraphicsEndImageContext();
-    NSData *data = UIImageJPEGRepresentation(imgTRet, 1);
+    CGSize screenSize = [[UIScreen mainScreen]applicationFrame].size;
 
+//    UIImage *testImg;
+//    CGContextSaveGState(ctxRef);
+//    [imgTRet drawInRect:CGRectMake(0, 0, 150, 150)];
+//    testImg = UIGraphicsGetImageFromCurrentImageContext();
+//    CGContextRestoreGState(ctxRef);
+    
+
+    
+    UIGraphicsEndImageContext();
+   // NSData *data = UIImageJPEGRepresentation(imgTRet, 1);
+     NSData *data = UIImageJPEGRepresentation(imgTRet, 1);
     return data;
 }
 

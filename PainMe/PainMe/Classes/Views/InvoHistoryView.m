@@ -18,18 +18,22 @@
     CGPoint *_points;
     int zoomLevel1;
     int zoomLevel2;
-
 }
-//@property (nonatomic, strong) NSMutableArray *locationArray;
-@property (nonatomic, strong) NSString *dateSring;
-@property (nonatomic, readwrite)BOOL moreEntries;
+
+@property (nonatomic, copy) NSString *dateSring;
 @property (nonatomic, strong) UIBezierPath *bezierPath;
 @property (nonatomic, strong) UIBezierPath *bezierPath2;
-@property (nonatomic, readonly) NSInteger pointCount;
-@property (nonatomic, readonly) NSInteger pointCount2;
 @property (nonatomic, strong) UIColor *partColor;
 @property (nonatomic, strong) UIColor *partColor2;
+
+@property (nonatomic, readonly) NSInteger pointCount;
+@property (nonatomic, readonly) NSInteger pointCount2;
+
+@property (nonatomic, assign)int orientation1;
+@property (nonatomic, assign)int orientation2;
+
 @property (nonatomic, readwrite)BOOL isBack;
+@property (nonatomic, readwrite)BOOL moreEntries;
 
 -(void)createUIBezierWithOffset:(CGPoint)offsetPoint viewSize:(CGSize)viewSize;
 -(void)createUIBezier2WithOffset:(CGPoint)offsetPoint viewSize:(CGSize)viewSize;
@@ -70,7 +74,6 @@
         
         [self setUserInteractionEnabled:YES];
         [self setExclusiveTouch:YES];
-       // [self setClipsToBounds:YES];
         
         NSArray *locatArr = [NSArray arrayWithArray:shapesDict];
         self.dateSring = [stringDate copy];
@@ -147,30 +150,11 @@
     [[UIColor whiteColor]setFill];
     
     if (!self.moreEntries) {
-   
-//        [img1 drawInRect:CGRectMake(5, 5, rect.size.width-10, rect.size.height-10)];
         [img1 drawInRect:CGRectMake(rect.size.width*0.25, 0,rect.size.width*0.75,rect.size.height) ];
         [self.partColor setFill];
         [self.bezierPath fill];
-//       CGContextStrokeRect(UIGraphicsGetCurrentContext(), rect);
     }
     else{
-        
-//         CGContextSetShadow(UIGraphicsGetCurrentContext(), CGSizeMake(2.0, 2.0), 1.0);
-        
-//        CGContextStrokeRect(UIGraphicsGetCurrentContext(), CGRectMake(20, 20,rect.size.width-21,rect.size.height-21 ));
-//        CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(20, 20,rect.size.width-21,rect.size.height-21 ));
-
-//        [img drawInRect:CGRectMake(20, 20,rect.size.width-20,rect.size.height-20 )];
-        
-//        CGContextStrokeRect(UIGraphicsGetCurrentContext(), CGRectMake(10, 10,rect.size.width-20,rect.size.height-20 ));
-//        CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(10, 10,rect.size.width-20,rect.size.height-20 ));
-       
-//        [img drawInRect:CGRectMake(10, 10,rect.size.width-20,rect.size.height-20 )];
-        
-//        CGContextStrokeRect(UIGraphicsGetCurrentContext(), CGRectMake(0, 0,rect.size.width-20,rect.size.height-20 ));
-//        CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(1, 1,rect.size.width-21,rect.size.height-21 ));
-       
    
         [img1 drawInRect:CGRectMake(rect.size.width*0.25, 0,rect.size.width*0.75,rect.size.height)];
         
@@ -226,6 +210,7 @@
     }
  }
 
+#pragma mark handling touches
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     //[self.layer setOpacity:0.5];
     CALayer *maskLayer = [CALayer layer];
@@ -243,13 +228,6 @@
     [lay removeFromSuperlayer];
 }
 
-/*
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-
-    NSLog(@"Moving");
-    NSLog(@"event is %@",[event debugDescription]);
-}
-*/
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
 
 //    NSLog(@"touched me with date %@", self.dateSring);
@@ -264,28 +242,7 @@
     }
 }
 
--(void)createUIBezierWithOffset:(CGPoint)offsetPoint viewSize:(CGSize)viewSize{
-
-    CGFloat viewWidth = self.bounds.size.width -offsetPoint.x;
-    CGFloat viewHeight = self.bounds.size.height - offsetPoint.y;
-    
-    if (!_bezierPath) {
-        
-        _bezierPath = [UIBezierPath bezierPath];
-        
-        if (_pointCount > 2) {
-            
-            [_bezierPath moveToPoint: CGPointMake(offsetPoint.x + _points[0].x*viewWidth,_points[0].y*viewHeight) ];
-            
-            for (int i=1; i<_pointCount; i++) {
-                
-                [_bezierPath addLineToPoint:CGPointMake(offsetPoint.x +_points[i].x*viewWidth ,_points[i].y*viewHeight)];
-            }
-            [_bezierPath closePath];
-        }
-    }
- }
-
+#pragma mark midPoint of bezier
 -(CGPoint)midPoinfOfBezierPath:(UIBezierPath *)bezier{
     
     if(bezier){
@@ -299,6 +256,7 @@
     return CGPointZero;
 }
 
+#pragma mark creating second entry 
 -(void)setThinsForSecondEntryWith:(id)secondEntry{
     //id obj = [secondEntry  valueForKey:@"location"];
     
@@ -339,6 +297,28 @@
                 [_bezierPath2 addLineToPoint:CGPointMake(offsetPoint.x +_points[i].x*viewSize.width ,_points[i].y*viewHeight)];
             }
             [_bezierPath2 closePath];
+        }
+    }
+}
+
+-(void)createUIBezierWithOffset:(CGPoint)offsetPoint viewSize:(CGSize)viewSize{
+    
+    CGFloat viewWidth = self.bounds.size.width - offsetPoint.x;
+    CGFloat viewHeight = self.bounds.size.height - offsetPoint.y;
+    
+    if (!_bezierPath) {
+        
+        _bezierPath = [UIBezierPath bezierPath];
+        
+        if (_pointCount > 2) {
+            
+            [_bezierPath moveToPoint: CGPointMake(offsetPoint.x + _points[0].x*viewWidth,_points[0].y*viewHeight) ];
+            
+            for (int i=1; i<_pointCount; i++) {
+                
+                [_bezierPath addLineToPoint:CGPointMake(offsetPoint.x +_points[i].x*viewWidth ,_points[i].y*viewHeight)];
+            }
+            [_bezierPath closePath];
         }
     }
 }

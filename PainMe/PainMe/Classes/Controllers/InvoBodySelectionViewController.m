@@ -39,6 +39,7 @@
 @property (nonatomic, strong) PainFaceView *painFace;
 
 @property (nonatomic, strong) UITapGestureRecognizer *doubleTap;
+@property (nonatomic, strong) UIImageView *overLayView;
 
 -(void)initTapGesture;
 -(int)tileAtTouchLocation:(CGPoint)touchPt;
@@ -133,9 +134,95 @@
     
 //Configuring image for flipButton
     [self configFlipButtonImage];
-
+    
+//Add a transparent overlay
+    [self checkSaveNumberOfLaunches];
 }
 
+#pragma mark Check Number of AppLaunches
+-(void)checkSaveNumberOfLaunches{
+    
+    NSArray *docDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    NSLog(@"docDIrectory count is%d", [docDirectories count]);
+    
+    NSString *docDirectory = [docDirectories objectAtIndex:0];
+    
+    NSString *fileName = [NSString stringWithFormat:@"%@/LaunchNumber.txt",docDirectory];
+    
+    NSError *error2 ;
+    NSString *launch = [[NSString alloc] initWithContentsOfFile:fileName
+                                                   usedEncoding:nil
+                                                          error:&error2];
+    int timesLaunched = 0;
+    timesLaunched = [launch intValue] ;
+    
+    if (timesLaunched ==0) {
+        
+        NSLog(@"Launching for first time");
+        [self addCoachMarks];
+    }
+    
+    timesLaunched +=1;
+    NSString *numbr = [NSString stringWithFormat:@"%d",timesLaunched];
+    NSError *error;
+    [numbr writeToFile:fileName
+            atomically:YES
+              encoding:NSStringEncodingConversionAllowLossy
+                 error:&error]; 
+}
+
+#pragma mark add/remove coachMarks
+-(void)addCoachMarks{
+
+    CGRect frame = [[UIScreen mainScreen] applicationFrame];
+    
+    NSString *imgName = (frame.size.height > 480.0)? @"coachmarks_long.png":
+    @"coachmarks.png";
+    
+    UIImageView *tmpView = [[UIImageView alloc]initWithFrame:frame];
+    [tmpView setImage:[UIImage imageNamed:imgName]];
+    
+    [[[[UIApplication sharedApplication] delegate] window] addSubview:tmpView];
+    _overLayView = tmpView;
+    [_overLayView setExclusiveTouch:YES];
+    [_overLayView becomeFirstResponder];
+    
+    [self makeViewsRecieveTouch:NO];
+}
+
+-(void)removeCoachMarks{
+
+    if (_overLayView) {
+        [_overLayView resignFirstResponder];
+        [_overLayView removeFromSuperview];
+        _overLayView = nil;
+    }
+    [self makeViewsRecieveTouch:YES];
+}
+
+#pragma mark  manage touches for Adding/Removing coachMarks
+-(void)makeViewsRecieveTouch:(BOOL)isTouch{
+
+    [self.painFace setUserInteractionEnabled:isTouch];
+    [self.scrollView setUserInteractionEnabled:isTouch];
+    [self.toolbarItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+        
+        [(UIBarButtonItem *)obj setEnabled:isTouch];
+        //NSLog(@"Tool bar items are %@",self.toolbarItems);
+    }];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+
+    if (_overLayView) {
+        [self removeCoachMarks];
+    }
+}
+
+
+
+#pragma mark add the FlipButton
 -(void)configFlipButtonImage{
     //0 = Front, 1 = Back
     int currentOrient = [self currentOrientation];
@@ -144,9 +231,8 @@
     [self.flipButton setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.8f]];
     [self.flipButton setFrame:flipRect];
     [self.flipButton setImage:[InvoFlipButtonView imageWithOrientation:currentOrient] forState:UIControlStateNormal];
-
 }
- 
+
 
 #pragma mark Draw last entry if it exists
 -(void)checkAndAddLastEntryToView{
@@ -192,6 +278,12 @@
 
 -(void)handleTapGesture:(UITapGestureRecognizer *)gestureReco{
 
+    if (_overLayView) {
+        [_overLayView resignFirstResponder];
+        [_overLayView removeFromSuperview];
+        _overLayView = nil;
+    }
+    
     [self removeBodyNamePopUp];
         
     CGPoint touchLocation = [gestureReco locationInView:self.scrollView];
@@ -474,7 +566,7 @@
     
     NSData *img = [self.bodyView imageToAttachToReportWithZoomLevel:self.scrollView.zoomScale];
   
-    NSString *bodyText = [InvoTextForEmail bodyTextForEmail];
+    NSString *bodyText = [InvoTextForEmail bodyTextForEmailWithImage:[img copy]];
     
     MFMailComposeViewController *mailComp = [[MFMailComposeViewController alloc] init];
     

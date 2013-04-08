@@ -62,7 +62,12 @@
 //        [lineView setBackgroundColor:[UIColor lightGrayColor]];
 //        [self.scrollView addSubview:lineView];
         
-        [self addLabelFromDate:prevDateString formatStyle:@"MMMM YYY" rect:CGRectMake(0, 10, 320, 20) backColor:[UIColor clearColor] fontSize:15.0f toView:self.scrollView];
+        [self addLabelFromDate:prevDateString
+                   formatStyle:@"MMMM YYY"
+                          rect:CGRectMake(0, 10, 320, 20)
+                     backColor:[UIColor clearColor]
+                      fontSize:15.0f
+                        toView:self.scrollView];
         
         int mounthCount = 0;
         float xIndex = 10.0;
@@ -92,7 +97,12 @@
                 [lineView setBackgroundColor:[UIColor lightGrayColor]];
                 [self.scrollView addSubview:lineView];
 
-                [self addLabelFromDate:currDate formatStyle:@"MMMM YYY" rect:CGRectMake(0, yIndex+5, 320, 20) backColor:[UIColor clearColor] fontSize:15.0f toView:self.scrollView];
+                [self addLabelFromDate:currDate
+                           formatStyle:@"MMMM YYY"
+                                  rect:CGRectMake(0, yIndex+5, 320, 20)
+                             backColor:[UIColor clearColor]
+                              fontSize:15.0f
+                                toView:self.scrollView];
                 
                 yIndex += 35;
                 column = 0;
