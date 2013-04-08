@@ -19,11 +19,11 @@
 @dynamic painEntries;
 @dynamic orientation;
 
-+(void)enterPainEntryForLocation:(NSDictionary *)locdict levelPain:(int)painLvl notes:(NSString *)notes{
++(BOOL)enterPainEntryForLocation:(NSDictionary *)locdict levelPain:(int)painLvl notes:(NSString *)notes{
 
 
     PainLocation *locFound  = nil;
-    
+    BOOL toRet = NO;
     InvoDataManager *dtaMgr = [InvoDataManager sharedDataManager];
     
     NSManagedObjectContext *moc = [dtaMgr objContext];
@@ -41,7 +41,7 @@
     if (result && [result count]>0) {
 
         locFound = (PainLocation *)[result objectAtIndex:0];
-//        NSLog(@"PainLocation found is %@", locFound.name);
+        NSLog(@"PainLocation found is %@", locFound.name);
     }
     
     NSSet *entriesForLocation = locFound.painEntries;
@@ -50,18 +50,36 @@
     
     if(sortedEntries.count >0){
         int levelOfFoundEntry = [[[sortedEntries objectAtIndex:0] valueForKey:@"painLevel"] integerValue];
-        
+        NSDate *timeStamp = [[sortedEntries objectAtIndex:0] valueForKey:@"timestamp"] ;
+        NSDate *now = [[NSDate alloc] init];
         if(levelOfFoundEntry != painLvl){
-            NSDate *now = [[NSDate alloc] init];
-            
+            toRet = YES;
             [PainEntry painEntryWithTime:now painLevel:painLvl extraNotes:[notes copy] location:locFound];
+        }
+        else{
+            
+            NSLog(@"gotta handle this Else of founfEntry and painLevel");
+            NSCalendar *cal = [NSCalendar currentCalendar];
+            unsigned int unitFlags = NSDayCalendarUnit| NSMonthCalendarUnit ;
+            NSDateComponents *foundComps = [cal components:unitFlags fromDate:timeStamp];
+            NSDateComponents *currComps = [cal components:unitFlags fromDate:now];
+            
+            if ([foundComps month] != [currComps month] || [foundComps day] != [currComps day] ) {
+                toRet = YES;
+                [PainEntry painEntryWithTime:now painLevel:painLvl extraNotes:[notes copy] location:locFound];
+            }
+            
+//            NSLog(@"foundComps %@ currComps:%@",foundComps, currComps); 
+//            NSLog(@"time stamp is %@", timeStamp);
+//            NSLog(@"time now is %@",now);
         }
     }
     else{
         NSDate *now = [[NSDate alloc] init];
-        
+        toRet = YES;
         [PainEntry painEntryWithTime:now painLevel:painLvl extraNotes:[notes copy] location:locFound];
     }
+    return toRet;
 }
 
 

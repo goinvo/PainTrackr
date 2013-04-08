@@ -38,6 +38,7 @@
                                         <gestureRecognizers/>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="delegate" destination="Yo3-Z7-ePf" id="ZF5-1e-m4B"/>
                                 </connections>
@@ -105,6 +106,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Dz6-eB-Vjd">
                                 <rect key="frame" x="0.0" y="-47" width="320" height="419"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="delegate" destination="lcr-In-yy1" id="hZs-0F-zma"/>
                                 </connections>

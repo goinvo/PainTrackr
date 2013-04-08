@@ -473,27 +473,34 @@
             }
             else bezierShape = [value copy];
         }
-        if(painLvl ==0){
-        
-            if ([self.bodyView doesEntryExist:name withZoomLevel:level]) {
-                UIColor *fillcolor = [InvoPainColorHelper colorfromPain:painLvl];
-                
-                [self.bodyView renderPainForBodyPartPath:bezierShape WithColor:[UIColor clearColor] detailLevel:zoomLVL name:[[pathContainingPoint allKeys] objectAtIndex:0] orient:[self currentOrientation]];
-                fillcolor = nil;
+        [self drawAndCreatePainEntryForPath:bezierShape
+                                   location:[pathContainingPoint copy]
+                                       name:[[pathContainingPoint allKeys] objectAtIndex:0]
+                                  levelPain:painLvl
+                                       zoom:zoomLVL];
+    }
+}
 
-                [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:0 notes:nil];
-            }
-            return;
-        }
-        else{
+-(void)drawAndCreatePainEntryForPath:(UIBezierPath *)path location:(id)value name:(NSString *)name levelPain:(int)painLvl zoom:(int)zoomLVL{
+
+    //checking it trying to erase an entry and
+    //if that entry actually exisits.
+    
+    if(painLvl ==0 && (![self.bodyView doesEntryExist:name withZoomLevel:zoomLVL])){
+    //if doesnot exist then no need to create
+    //so return
+        return;
+    }
+    
+    if([InvoDataManager painEntryForLocation:[value copy] levelPain:painLvl notes:nil]){
+        UIColor *fillcolor = [InvoPainColorHelper colorfromPain:painLvl];
+        [self.bodyView renderPainForBodyPartPath:path
+                                       WithColor:fillcolor
+                                     detailLevel:zoomLVL
+                                            name:[[value allKeys] objectAtIndex:0]
+                                          orient:[self currentOrientation]];
         
-            UIColor *fillcolor = [InvoPainColorHelper colorfromPain:painLvl];
-            
-            [self.bodyView renderPainForBodyPartPath:bezierShape WithColor:fillcolor detailLevel:zoomLVL name:[[pathContainingPoint allKeys] objectAtIndex:0] orient:[self currentOrientation]];
-            fillcolor = nil;
-            
-            [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:painLvl notes:nil];
-        }
+        fillcolor = nil;
     }
 }
 

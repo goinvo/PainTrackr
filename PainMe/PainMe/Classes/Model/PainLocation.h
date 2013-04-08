@@ -36,7 +36,7 @@ typedef enum{
 - (void)removePainEntries:(NSSet *)values;
 
 
-+(void)enterPainEntryForLocation:(NSDictionary *)locdict levelPain:(int)painLvl notes:(NSString *)notes ;
++(BOOL)enterPainEntryForLocation:(NSDictionary *)locdict levelPain:(int)painLvl notes:(NSString *)notes ;
 
 
 +(void)locationEntryWithName:(NSString *)locName shape:(NSData *)shape zoomLevel:(int16_t)levZoom orientation:(int16_t)orient;

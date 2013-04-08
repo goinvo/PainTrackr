@@ -141,7 +141,7 @@
 
     //scale = (self.contentScaleFactor ==2)?scale/2:scale;
     
-    NSLog(@"Scale in draw is %f",scale);
+//    NSLog(@"Scale in draw is %f",scale);
     
     int firstCol = floorf(CGRectGetMinX(rect) / tileSize.width);
     int lastCol = floorf((CGRectGetMaxX(rect)-1) / tileSize.width);

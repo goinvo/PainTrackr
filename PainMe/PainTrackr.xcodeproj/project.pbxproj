@@ -334,9 +334,6 @@
 		7657564216139F1300067BAF /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7657564116139F1300067BAF /* Icon@2x.png */; };
 		7657564616139FD600067BAF /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = 7657564516139FD600067BAF /* iTunesArtwork@2x */; };
 		7673B51315ADD7CD006112C2 /* PainFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7673B51215ADD7CD006112C2 /* PainFaceView.m */; };
-		7673D2D0170F637F009D2D09 /* coachmarks_long@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7673D2CD170F637F009D2D09 /* coachmarks_long@2x.png */; };
-		7673D2D1170F637F009D2D09 /* coachmarks.png in Resources */ = {isa = PBXBuildFile; fileRef = 7673D2CE170F637F009D2D09 /* coachmarks.png */; };
-		7673D2D2170F637F009D2D09 /* coachmarks@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7673D2CF170F637F009D2D09 /* coachmarks@2x.png */; };
 		767CF894165D510B002BABB2 /* InvoTextForEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 767CF893165D510B002BABB2 /* InvoTextForEmail.m */; };
 		7683CBA9160BC8F500B566A7 /* InvoPartNamelabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7683CBA8160BC8F500B566A7 /* InvoPartNamelabel.m */; };
 		76880DE6165C36AF007A6F81 /* InvoPainColorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 76880DE5165C36AF007A6F81 /* InvoPainColorHelper.m */; };
@@ -657,6 +654,9 @@
 		76F1121C15AF5BFB00E2907C /* F4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76F1121615AF5BFB00E2907C /* F4@2x.png */; };
 		76F1121D15AF5BFB00E2907C /* F5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76F1121715AF5BFB00E2907C /* F5@2x.png */; };
 		76F1121E15AF5BFB00E2907C /* F6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76F1121815AF5BFB00E2907C /* F6@2x.png */; };
+		76F26141171380F500E61B65 /* coachmarks_long@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76F2613E171380F500E61B65 /* coachmarks_long@2x.png */; };
+		76F26142171380F500E61B65 /* coachmarks.png in Resources */ = {isa = PBXBuildFile; fileRef = 76F2613F171380F500E61B65 /* coachmarks.png */; };
+		76F26143171380F500E61B65 /* coachmarks@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76F26140171380F500E61B65 /* coachmarks@2x.png */; };
 		834C0FC2158F7121000C5652 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834C0FC1158F7121000C5652 /* UIKit.framework */; };
 		834C0FC4158F7121000C5652 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834C0FC3158F7121000C5652 /* Foundation.framework */; };
 		834C0FC6158F7121000C5652 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834C0FC5158F7121000C5652 /* CoreGraphics.framework */; };
@@ -1038,9 +1038,6 @@
 		766FF8FC15E51EA8000EDCD2 /* ErrorHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorHandler.h; sourceTree = "<group>"; };
 		7673B51115ADD7CD006112C2 /* PainFaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PainFaceView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		7673B51215ADD7CD006112C2 /* PainFaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PainFaceView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		7673D2CD170F637F009D2D09 /* coachmarks_long@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coachmarks_long@2x.png"; sourceTree = "<group>"; };
-		7673D2CE170F637F009D2D09 /* coachmarks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coachmarks.png; sourceTree = "<group>"; };
-		7673D2CF170F637F009D2D09 /* coachmarks@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coachmarks@2x.png"; sourceTree = "<group>"; };
 		767CF892165D510B002BABB2 /* InvoTextForEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoTextForEmail.h; sourceTree = "<group>"; };
 		767CF893165D510B002BABB2 /* InvoTextForEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoTextForEmail.m; sourceTree = "<group>"; };
 		7683CBA7160BC8F500B566A7 /* InvoPartNamelabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoPartNamelabel.h; sourceTree = "<group>"; };
@@ -1369,6 +1366,9 @@
 		76F1121615AF5BFB00E2907C /* F4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "F4@2x.png"; sourceTree = "<group>"; };
 		76F1121715AF5BFB00E2907C /* F5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "F5@2x.png"; sourceTree = "<group>"; };
 		76F1121815AF5BFB00E2907C /* F6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "F6@2x.png"; sourceTree = "<group>"; };
+		76F2613E171380F500E61B65 /* coachmarks_long@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coachmarks_long@2x.png"; sourceTree = "<group>"; };
+		76F2613F171380F500E61B65 /* coachmarks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coachmarks.png; sourceTree = "<group>"; };
+		76F26140171380F500E61B65 /* coachmarks@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coachmarks@2x.png"; sourceTree = "<group>"; };
 		834C0FBD158F7121000C5652 /* PainTrackr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PainTrackr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		834C0FC1158F7121000C5652 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		834C0FC3158F7121000C5652 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1882,9 +1882,9 @@
 		7673D2CC170F636C009D2D09 /* CoachMark */ = {
 			isa = PBXGroup;
 			children = (
-				7673D2CD170F637F009D2D09 /* coachmarks_long@2x.png */,
-				7673D2CE170F637F009D2D09 /* coachmarks.png */,
-				7673D2CF170F637F009D2D09 /* coachmarks@2x.png */,
+				76F2613E171380F500E61B65 /* coachmarks_long@2x.png */,
+				76F2613F171380F500E61B65 /* coachmarks.png */,
+				76F26140171380F500E61B65 /* coachmarks@2x.png */,
 			);
 			name = CoachMark;
 			sourceTree = "<group>";
@@ -3172,9 +3172,9 @@
 				768B2485170E18500098C708 /* back_Zin@2x.png in Resources */,
 				768B2488170E188D0098C708 /* Front_Zin.png in Resources */,
 				768B2489170E188D0098C708 /* Front_Zin@2x.png in Resources */,
-				7673D2D0170F637F009D2D09 /* coachmarks_long@2x.png in Resources */,
-				7673D2D1170F637F009D2D09 /* coachmarks.png in Resources */,
-				7673D2D2170F637F009D2D09 /* coachmarks@2x.png in Resources */,
+				76F26141171380F500E61B65 /* coachmarks_long@2x.png in Resources */,
+				76F26142171380F500E61B65 /* coachmarks.png in Resources */,
+				76F26143171380F500E61B65 /* coachmarks@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

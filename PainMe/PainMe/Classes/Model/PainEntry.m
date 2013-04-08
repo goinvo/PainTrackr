@@ -41,6 +41,7 @@
 //    NSDate *newDate = [time dateByAddingTimeInterval:newInterval];
 //    newEntry.timestamp = [newDate timeIntervalSinceReferenceDate];
     
+
     newEntry.location = painLoc ;
     
     [dataManager saveContext];
