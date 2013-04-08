@@ -146,7 +146,7 @@
             self.viewToDrag = [self getViewToDragAtTouchLoc:strtTouchLoc];
         }
         
-        if (gestReco.state== UIGestureRecognizerStateChanged) {
+       else if (gestReco.state== UIGestureRecognizerStateChanged) {
             
 //            NSLog(@"view State changed");
             
@@ -167,7 +167,7 @@
             }
         }
         
-        if(gestReco.state == UIGestureRecognizerStateEnded){
+       else if(gestReco.state == UIGestureRecognizerStateEnded){
             
             CGPoint endTouchLoc = [gestReco locationInView:[gestReco view]];
             
@@ -182,7 +182,13 @@
 
                 [self.delegate blackStrokeForBody];
             }
-        }  
+        }
+       else if (gestReco.state == UIGestureRecognizerStateCancelled || gestReco.state == UIGestureRecognizerStateFailed){
+           [self putBackPainFace:self.viewToDrag];
+           self.viewToDrag = nil;
+           
+           [self.delegate blackStrokeForBody];
+       }
     }
 }
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
