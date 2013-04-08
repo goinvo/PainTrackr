@@ -97,7 +97,7 @@
     if (!error) {
         
         if (result &&[result count]>0) {
-            return result;
+            return [result copy];
         }
     }
     else{

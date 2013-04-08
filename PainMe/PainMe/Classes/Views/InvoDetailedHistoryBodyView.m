@@ -157,6 +157,9 @@
                 [_bezierPath addLineToPoint:CGPointMake(_points[i].x*viewWidth ,_points[i].y*viewHeight)];
             }
             [_bezierPath closePath];
+            if (_points) {
+                free(_points);
+            }
         }
     }
 }

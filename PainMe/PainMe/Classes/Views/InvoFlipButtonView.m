@@ -67,7 +67,7 @@
 +(UIBezierPath *)createUIBezierWithdata:(NSData *)vertices Offset:(CGPoint)offsetPoint {
     
     CGFloat viewWidth = 40 -offsetPoint.x;
-    CGFloat viewHeight = 90 - offsetPoint.y;
+    CGFloat viewHeight = 90.0 - offsetPoint.y;
     
     int pointCount = 0;
     UIBezierPath *bezierPath = nil;
