@@ -100,7 +100,6 @@
     //helps define the zoomScale
     //to fit the view within the height of view
     float minZoomScale = appHeight/BODY_VIEW_HEIGHT;
-
     self.scrollView.minimumZoomScale = minZoomScale;
     self.scrollView.zoomScale = minZoomScale;
     self.scrollView.maximumZoomScale = 1.0;
@@ -355,8 +354,10 @@
         [self.scrollView zoomToRect:CGRectMake(0, 0,BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT) animated:YES];
     }
     else{
+        //3
         [self.scrollView zoomToRect:CGRectMake(0, 0,BODY_VIEW_WIDTH-1024*3, BODY_VIEW_HEIGHT-1024*3) animated:YES];
     }
+    [self.bodyView.layer setNeedsDisplay];
 }
 
 
@@ -408,7 +409,7 @@
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale {
    
-//    NSLog(@"Scale is %f",scale);
+    NSLog(@"Scale is %f",scale);
     
     [self.painFace increaseVisibility];
 

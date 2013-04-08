@@ -51,7 +51,7 @@
     tiledLayer.levelsOfDetail = 5;
     
    _imageCache = [[NSCache alloc] init];
-   [_imageCache setCountLimit: 3 * 7];
+   [_imageCache setCountLimit: 4 * 7];
     
     self.isMask = NO;
     self.isNewStroke = NO;
@@ -139,9 +139,9 @@
     
     CGFloat scale = CGContextGetCTM(context).a/self.contentScaleFactor;
 
-    scale = (self.contentScaleFactor ==2)?scale/2:scale;
+    //scale = (self.contentScaleFactor ==2)?scale/2:scale;
     
-//    NSLog(@"Scale in draw is %f",scale);
+    NSLog(@"Scale in draw is %f",scale);
     
     int firstCol = floorf(CGRectGetMinX(rect) / tileSize.width);
     int lastCol = floorf((CGRectGetMaxX(rect)-1) / tileSize.width);
@@ -173,7 +173,7 @@
         }
     }
       
-    int zoom = (scale <0.0625)?1:2;
+    int zoom = (scale <=0.0625)?1:2;
     [self colorBodyLocationsInRect:rect WithZoom:zoom InContext:context withOffset:CGPointZero];
 }
 
@@ -182,10 +182,10 @@
 {
     int numFrmScale = 128;
     
-    if (scale <0.0625) {
+    if (scale <=0.0625) {
         numFrmScale = 0;
     }
-    else if (scale >=0.0625 && scale <0.25) {
+    else if (scale >0.0625 && scale <0.25) {
         numFrmScale = 128;
     }
     else if (scale >=0.25 && scale <0.5) {
