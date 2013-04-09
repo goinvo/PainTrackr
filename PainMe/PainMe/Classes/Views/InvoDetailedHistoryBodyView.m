@@ -13,9 +13,9 @@
 
     CGPoint *_points;
     int zoomLevel;
-    NSString *partName;
 }
 
+@property (nonatomic, copy) NSString *partName;
 @property (nonatomic, strong) UIBezierPath *bezierPath;
 @property (nonatomic, readonly) NSInteger pointCount;
 @property (nonatomic, strong) UIColor *partColor;
@@ -58,7 +58,7 @@
         
         [self createUIBezierWithOffset:CGPointZero];
         
-        partName = [obj valueForKey:@"name"];
+        _partName = [obj valueForKey:@"name"];
     }
     return self;
 }
@@ -101,7 +101,7 @@
     CGPoint midpt = [self midPoinfOfBezierPath:self.bezierPath];
     
     //creating the rect based on label size
-    CGSize labelSize = [partName sizeWithFont:[UIFont bubbleFont]];
+    CGSize labelSize = [_partName sizeWithFont:[UIFont bubbleFont]];
     CGRect textRect = CGRectMake(midpt.x-labelSize.width*0.5, midpt.y-labelSize.height*0.5, labelSize.width+10, labelSize.height);
   
     //positioning the label properly within the bounds of the view
@@ -125,7 +125,7 @@
     CGContextSetFillColorWithColor(ctxRef, [UIColor whiteColor].CGColor);
     
     
-    [partName drawInRect:textRect
+    [_partName drawInRect:textRect
                 withFont:[UIFont bubbleFont]
            lineBreakMode:NSLineBreakByTruncatingHead
                alignment:NSTextAlignmentCenter];

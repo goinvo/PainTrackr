@@ -144,7 +144,7 @@
 #pragma mark get painLocation Data from database
 
 -(int)painLocationsInDatabase{
-      
+    
     NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainLocation" inManagedObjectContext:self.managedObjectContext];
     
     NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
@@ -602,10 +602,10 @@
         
   
         PainEntry *entry = [totalEntries objectAtIndex:i];
-        NSString *currDate;
+        NSString *currDate = nil;
         
         if(entry){
-            currDate = [formatter stringFromDate:[entry valueForKey:@"timestamp"]] ;
+            currDate = [formatter stringFromDate:[entry valueForKey:@"timestamp"]];
             
             if (![currDate isEqualToString:prevDate]) {
                 
@@ -627,9 +627,11 @@
                 [arr addObject:entry];
             }
 
-            prevDate = currDate;
+            prevDate = [currDate copy];
+            currDate = nil;
         }
     }
+    prevDate = nil;
 //    NSLog(@"date sorted entries are %@",dateSortedEntries);
     return( ([totalEntries count]>0 )?[dateSortedEntries copy]:nil);
 }
