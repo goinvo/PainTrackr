@@ -20,10 +20,10 @@
 
 +(UIImage *)imageWithOrientation:(int)side{
 
-    CGRect flipRect = CGRectMake(0, 0, 40, 90);
+    CGRect flipRect = CGRectMake(0, 0, 40, 90.0);
    
     int currSide = (side ==0)?1 : 0;
-    
+    float offsetY = 0.0;
     NSArray *entryToRender = [[InvoDataManager sharedDataManager] painEntryToRenderWithOrient:currSide justOne:NO];
     
 // selecting the UIImage based on the orientation
@@ -32,9 +32,12 @@
     float newHeight = flipRect.size.height;
 //resetting the frame to match the flipsize image aspect ratio
     if (currSide ==1) {
+        //0.5
         newHeight = flipRect.size.width/(flipImage.size.width/flipImage.size.height);
-        CGRect newRect = CGRectMake(flipRect.origin.x, flipRect.origin.y + (flipRect.size.height - newHeight)*0.5, flipRect.size.width,newHeight);
+        offsetY = -(flipRect.size.height - newHeight)*0.25;
+        CGRect newRect = CGRectMake(flipRect.origin.x, flipRect.origin.y + (flipRect.size.height - newHeight)*0.25, flipRect.size.width,newHeight);
         flipRect = newRect;
+        
         NSLog(@"new rect is %@", NSStringFromCGRect(newRect));
     }
 //starting the drawing
@@ -57,7 +60,7 @@
         if (fillColor && zoom ==1) {
             NSData *vertices = [loc valueForKey:@"shape"];
             UIBezierPath *path = [InvoFlipButtonView createUIBezierWithdata:[vertices copy]
-                                                                     Offset:CGPointMake(0, 0)];
+                                                                     Offset:CGPointMake(0, offsetY)];
     
             [fillColor setFill];
             [path fill];
@@ -73,7 +76,8 @@
 +(UIBezierPath *)createUIBezierWithdata:(NSData *)vertices Offset:(CGPoint)offsetPoint {
     
     CGFloat viewWidth = 40 -offsetPoint.x;
-    CGFloat viewHeight = 90.0 - offsetPoint.y;
+    CGFloat viewHeight = 90.0;
+    //CGFloat viewHeight = 90.0 - offsetPoint.y;
     
     int pointCount = 0;
     UIBezierPath *bezierPath = nil;
@@ -93,11 +97,11 @@
         
         bezierPath = [UIBezierPath bezierPath];
             
-            [bezierPath moveToPoint: CGPointMake(points[0].x*viewWidth,points[0].y*viewHeight) ];
+            [bezierPath moveToPoint: CGPointMake(points[0].x*viewWidth,offsetPoint.y + points[0].y*viewHeight) ];
             
             for (int i=1; i<pointCount; i++) {
                 
-                [bezierPath addLineToPoint:CGPointMake(points[i].x*viewWidth ,points[i].y*viewHeight)];
+                [bezierPath addLineToPoint:CGPointMake(points[i].x*viewWidth ,offsetPoint.y+ points[i].y*viewHeight)];
             }
         [bezierPath closePath];
     }

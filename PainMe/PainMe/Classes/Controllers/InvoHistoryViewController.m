@@ -60,7 +60,7 @@
             
             //Checking for dates and adding labels accordingly to the scroll view
             
-//            [form1 setDateStyle:NSDateFormatterShortStyle];
+            [_form1 setDateStyle:NSDateFormatterShortStyle];
             
             NSDate *currDate = [[self.sortedDates objectAtIndex:i] copy];
             [_form1 setDateFormat:@"MM"];
@@ -170,20 +170,15 @@
 #pragma mark setUpview
 -(void)setUpView{
     
-  //  [self.view setUserInteractionEnabled:YES];
-    
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     [self.navigationController setToolbarHidden:NO];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    
-//    self.scrollView.backgroundColor = [UIColor whiteColor];
+
     self.scrollView.minimumZoomScale = 1.0f;
     self.scrollView.maximumZoomScale = 1.0f;
-//    self.scrollView.pagingEnabled = YES;
+
     _painEntriesByDate = [[[InvoDataManager sharedDataManager] entriesPerDayList] copy]; 
-    
-//    NSLog(@"Total entries to draw are %d",[[self.painEntriesByDate allKeys] count]);
     
     [self.scrollView setFrame:CGRectMake(0, 0, 320, 480)];
     
@@ -199,14 +194,14 @@
 -(void)addLabelFromDate:(NSDate *)date formatStyle:(NSString *)frmtSyl rect:(CGRect)labelrect backColor:(UIColor*)color fontSize:(float)fntSize toView:(id)viewToAttach{
 
     NSDateFormatter *labelDateFrmtr = [[NSDateFormatter alloc]init];
-    
+    NSDate *localCopy = [date copy];
     [labelDateFrmtr setDateStyle:NSDateFormatterShortStyle];
     [labelDateFrmtr setDateFormat:frmtSyl];
     
     UILabel *l1 = [[UILabel alloc]initWithFrame:labelrect];
     [l1 setBackgroundColor:color];
     [l1 setFont:[UIFont fontWithName:@"Helvetica-Bold" size:fntSize]];
-    NSString *text = [labelDateFrmtr stringFromDate:date];
+    NSString *text = [labelDateFrmtr stringFromDate:localCopy];
     [l1 setText:text];
     [l1 setTextAlignment:UITextAlignmentCenter];
     [viewToAttach addSubview:l1];

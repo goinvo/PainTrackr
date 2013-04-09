@@ -537,10 +537,8 @@
                             
                             //found and entry
                             [arrtoReturn addObject:entry];
-                            NSLog(@"Added %@ on %@ in arrToReturn", entry.location.name, [NSDate dateWithTimeIntervalSinceReferenceDate:entry.timestamp]);
+                           // NSLog(@"Added %@ on %@ in arrToReturn", entry.location.name, [NSDate dateWithTimeIntervalSinceReferenceDate:entry.timestamp]);
                         }
-                        
-                        //                   NSLog(@"fetched data is %@ on %@", entry.location.name, [NSDate dateWithTimeIntervalSinceReferenceDate:entry.timestamp]);
                     }
                     
                 }];

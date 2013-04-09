@@ -43,7 +43,7 @@
         [self setUserInteractionEnabled:NO];
         
         id obj = [detail valueForKey:@"location"];
-        self.orient = [[obj valueForKey:@"orientation"] intValue];
+        _orient = [[obj valueForKey:@"orientation"] intValue];
         
         NSData *vertices = [obj valueForKey:@"shape"];
         zoomLevel = [[obj valueForKey:@"zoomLevel"] integerValue];
@@ -96,7 +96,7 @@
     
     [[UIColor blackColor]setStroke];
     [self.partColor setFill];
-    [self.bezierPath fill];
+    [_bezierPath fill];
     
     CGPoint midpt = [self midPoinfOfBezierPath:self.bezierPath];
     
@@ -123,7 +123,6 @@
     
     CGContextSetAlpha(ctxRef, 1.0f);
     CGContextSetFillColorWithColor(ctxRef, [UIColor whiteColor].CGColor);
-    
     
     [_partName drawInRect:textRect
                 withFont:[UIFont bubbleFont]
@@ -157,10 +156,11 @@
                 [_bezierPath addLineToPoint:CGPointMake(_points[i].x*viewWidth ,_points[i].y*viewHeight)];
             }
             [_bezierPath closePath];
-            if (_points) {
-                free(_points);
-            }
         }
+    }
+    
+    if (_points) {
+        free(_points);
     }
 }
 
