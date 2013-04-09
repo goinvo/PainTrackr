@@ -63,13 +63,13 @@
 
 }
 
-// handle delegate method
-// body pain level changed
-// [self setNeedsDisplayInRect: ...]
-
 -(void)addObjToSHapesArrayWithShape:(UIBezierPath *)shape color:(UIColor *)fillColor detail:(int)levDet name:(NSString *)partName orientation:(int)side{
 
-    InvoBodyPartDetails *partDetail = [InvoBodyPartDetails invoBodyPartWithShape:[shape copy] color:fillColor zoomLevel:levDet name:[partName copy] orientation:side];
+    InvoBodyPartDetails *partDetail = [InvoBodyPartDetails invoBodyPartWithShape:[shape copy]
+                                                                           color:fillColor
+                                                                       zoomLevel:levDet
+                                                                            name:[partName copy]
+                                                                     orientation:side];
     
     [self.shapesArray addObject:partDetail];
 
@@ -97,20 +97,19 @@
                 newPart = partDetail;
                 break;
             }
-            else return;
+            return;
         }
     }
     
     if(newPart){
-//        NSLog(@"Was changing color");
         newPart.shapeColor = fillColor;
     }
 
     if (!found) {
-        
         [self addObjToSHapesArrayWithShape:[path copy] color:fillColor detail:level name:[pName copy] orientation:side];
     }
-        [self setNeedsDisplayInRect:[path bounds]];
+    
+    [self setNeedsDisplayInRect:[path bounds]];
 }
 
 #pragma mark Calculate center of a uiBezierPath

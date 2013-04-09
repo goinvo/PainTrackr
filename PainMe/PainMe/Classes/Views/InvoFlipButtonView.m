@@ -24,43 +24,49 @@
    
     int currSide = (side ==0)?1 : 0;
     
-    PainEntry *entry = [[InvoDataManager sharedDataManager] painEntryToRenderWithOrient:currSide justOne:YES];
-    PainLocation *loc = [entry valueForKey:@"location"];
+    NSArray *entryToRender = [[InvoDataManager sharedDataManager] painEntryToRenderWithOrient:currSide justOne:NO];
     
-// getting data points to draw the bezier shape
-    NSData *vertices = [loc valueForKey:@"shape"];
-    UIBezierPath *path = [InvoFlipButtonView createUIBezierWithdata:[vertices copy] Offset:CGPointZero];
-
 // selecting the UIImage based on the orientation
     NSString *flipImageName = (side ==0)? @"zout_back_image.png":@"historyBodyImage.png";
     UIImage *flipImage = [UIImage imageNamed:flipImageName];
-
-//Pain Color
-    UIColor *painColor = [InvoPainColorHelper colorfromPain:[[entry valueForKey:@"painLevel"]intValue]];
-    
-// drawing with the coloring of the most recent PainEntry
-    UIGraphicsBeginImageContextWithOptions(flipRect.size,NO,[[UIScreen mainScreen]scale]);
+    float newHeight = flipRect.size.height;
+//resetting the frame to match the flipsize image aspect ratio
+    if (currSide ==1) {
+        newHeight = flipRect.size.width/(flipImage.size.width/flipImage.size.height);
+        CGRect newRect = CGRectMake(flipRect.origin.x, flipRect.origin.y + (flipRect.size.height - newHeight)*0.5, flipRect.size.width,newHeight);
+        flipRect = newRect;
+        NSLog(@"new rect is %@", NSStringFromCGRect(newRect));
+    }
+//starting the drawing
+    UIGraphicsBeginImageContextWithOptions(flipRect.size, NO, [[UIScreen mainScreen]scale]);
     
     [[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.4]setFill];
     UIRectFill(flipRect);
-
-    [painColor setFill];
     [[UIColor blackColor]setStroke];
-  //resetting the frame to match the flipsize image aspect ratio
-    if (currSide ==0) {
-        float newHeight = flipRect.size.width/(flipImage.size.width/flipImage.size.height);
-        CGRect newRect = CGRectMake(flipRect.origin.x, flipRect.origin.y + (flipRect.size.height - newHeight)*0.5, flipRect.size.width,newHeight);
-        flipRect = newRect;
-    }
     
     [flipImage drawInRect:flipRect
                 blendMode:kCGBlendModeNormal
                     alpha:0.8];
-    [path fill];
+    
+    [entryToRender enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+        
+        UIColor *fillColor = [InvoPainColorHelper colorfromPain:[[obj valueForKey:@"painLevel"] integerValue]];
+        PainLocation *loc = [(PainEntry *)obj location];
+        int zoom = [[loc valueForKey:@"zoomLevel"] intValue];
+//if a painLevel other than 0
+        if (fillColor && zoom ==1) {
+            NSData *vertices = [loc valueForKey:@"shape"];
+            UIBezierPath *path = [InvoFlipButtonView createUIBezierWithdata:[vertices copy]
+                                                                     Offset:CGPointMake(0, 0)];
+    
+            [fillColor setFill];
+            [path fill];
+        }
+    }];
     
     flipImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-
+    
     return flipImage;
 }
 
