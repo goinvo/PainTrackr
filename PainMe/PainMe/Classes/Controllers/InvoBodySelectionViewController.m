@@ -39,7 +39,9 @@
 @property (nonatomic, strong) PainFaceView *painFace;
 
 @property (nonatomic, strong) UITapGestureRecognizer *doubleTap;
-@property (nonatomic, strong) UIImageView *overLayView;
+@property (nonatomic, weak) UIImageView *overLayView;
+
+@property (nonatomic, strong)UIDocumentInteractionController *docInterCtrl;
 
 -(void)initTapGesture;
 -(int)tileAtTouchLocation:(CGPoint)touchPt;
@@ -557,7 +559,7 @@
 }
 
 -(void)showMailToBeSent{
-
+/*
     if (![MFMailComposeViewController canSendMail]) {
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning!" message:NSLocalizedString(@"Your device is not able to send mail.", @"") delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
@@ -592,7 +594,26 @@
         [indicator stopAnimating];
 
     } ];
+ 
+ */
+    
+    
+    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"coachmarks" withExtension:@"png"];
+    if (URL) {
+        // Initialize Document Interaction Controller
+        self.docInterCtrl = [UIDocumentInteractionController interactionControllerWithURL:URL];
+        // Configure Document Interaction Controller
+        [self.docInterCtrl setDelegate:self];
+        // Preview PDF
+        [self.docInterCtrl presentPreviewAnimated:YES];
+    }
+}
 
+#pragma mark DocInteraction Ctrl delegate methods
+
+- (UIViewController *) documentInteractionControllerViewControllerForPreview: (UIDocumentInteractionController *) controller{
+
+    return self;
 }
 
 #pragma mark -
