@@ -60,11 +60,11 @@
             
             NSLog(@"gotta handle this Else of founfEntry and painLevel");
             NSCalendar *cal = [NSCalendar currentCalendar];
-            unsigned int unitFlags = NSDayCalendarUnit| NSMonthCalendarUnit ;
+            unsigned int unitFlags = NSDayCalendarUnit| NSMonthCalendarUnit | NSYearCalendarUnit ;
             NSDateComponents *foundComps = [cal components:unitFlags fromDate:timeStamp];
             NSDateComponents *currComps = [cal components:unitFlags fromDate:now];
             
-            if ([foundComps month] != [currComps month] || [foundComps day] != [currComps day] ) {
+            if ([foundComps month] != [currComps month] || [foundComps day] != [currComps day] || [foundComps year] != [currComps year]) {
                 toRet = YES;
                 [PainEntry painEntryWithTime:now painLevel:painLvl extraNotes:[notes copy] location:locFound];
             }

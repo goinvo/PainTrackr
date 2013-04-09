@@ -238,21 +238,30 @@
 #pragma mark Draw last entry if it exists
 -(void)checkAndAddLastEntryToView{
 
-    id entryToRender =   [[InvoDataManager sharedDataManager] lastPainEntryToRenderWithOrient:[self currentOrientation]];
+    NSArray *entryToRender =   [[InvoDataManager sharedDataManager] painEntryToRenderWithOrient:[self currentOrientation] justOne:NO];
         
-    if (entryToRender) {
+    if ([entryToRender count]) {
         //    NSLog(@"entry to render is %@",entryToRender);
         
-        UIColor *fillColor = [InvoPainColorHelper colorfromPain:[[(PainEntry *)entryToRender valueForKey:@"painLevel"] integerValue]];
-        
-        if (fillColor) {
-            PainLocation *loc = (PainLocation *)[entryToRender valueForKey:@"location"];
-            int zoom = [[loc valueForKey:@"zoomLevel"] intValue];
+        __block BodyView *weakCopy = self.bodyView;
+        [entryToRender enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
             
-            UIBezierPath *locpath = [self.bodyGeometry dictFrBodyLocation:[ [loc valueForKey:@"name"] copy]];
+            UIColor *fillColor = [InvoPainColorHelper colorfromPain:[[obj valueForKey:@"painLevel"] integerValue]];
             
-            [self.bodyView addObjToSHapesArrayWithShape:locpath color:fillColor detail:zoom name:[[loc valueForKey:@"name"] copy] orientation:[self currentOrientation]];
-        }
+            if (fillColor) {
+                PainLocation *loc = (PainLocation *)[obj valueForKey:@"location"];
+                int zoom = [[loc valueForKey:@"zoomLevel"] intValue];
+                
+                UIBezierPath *locpath = [self.bodyGeometry dictFrBodyLocation:[ [loc valueForKey:@"name"] copy]];
+                
+                [weakCopy addObjToSHapesArrayWithShape:locpath
+                                                 color:fillColor
+                                                detail:zoom
+                                                  name:[[loc valueForKey:@"name"] copy]
+                                           orientation:[self currentOrientation]];
+            }
+            
+        }];
     }
 }
 
@@ -559,7 +568,7 @@
 }
 
 -(void)showMailToBeSent{
-/*
+
     if (![MFMailComposeViewController canSendMail]) {
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning!" message:NSLocalizedString(@"Your device is not able to send mail.", @"") delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
@@ -579,13 +588,11 @@
     NSString *bodyText = [InvoTextForEmail bodyTextForEmailWithImage:[img copy]];
     
     MFMailComposeViewController *mailComp = [[MFMailComposeViewController alloc] init];
-    
     [mailComp setSubject:[[self timeForReport] copy]];
     //    [mailComp setToRecipients:[NSArray arrayWithObject:@"dhaval@goinvo.com"]];
     [mailComp addAttachmentData:img mimeType:@"image/png" fileName:@"BodyReport"];
-    
     [mailComp setMessageBody:bodyText isHTML:NO];
-    
+
     mailComp.mailComposeDelegate = self;
     
     [self presentViewController:mailComp animated:YES completion:^(){
@@ -594,19 +601,19 @@
         [indicator stopAnimating];
 
     } ];
- 
- */
+
+
     
-    
-    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"coachmarks" withExtension:@"png"];
-    if (URL) {
-        // Initialize Document Interaction Controller
-        self.docInterCtrl = [UIDocumentInteractionController interactionControllerWithURL:URL];
-        // Configure Document Interaction Controller
-        [self.docInterCtrl setDelegate:self];
-        // Preview PDF
-        [self.docInterCtrl presentPreviewAnimated:YES];
-    }
+
+//    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"coachmarks" withExtension:@"png"];
+//    if (URL) {
+//        // Initialize Document Interaction Controller
+//        self.docInterCtrl = [UIDocumentInteractionController interactionControllerWithURL:URL];
+//        // Configure Document Interaction Controller
+//        [self.docInterCtrl setDelegate:self];
+//        // Preview PDF
+//        [self.docInterCtrl presentPreviewAnimated:YES];
+//    }
 }
 
 #pragma mark DocInteraction Ctrl delegate methods

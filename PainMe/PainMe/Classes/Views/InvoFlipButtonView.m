@@ -24,7 +24,7 @@
    
     int currSide = (side ==0)?1 : 0;
     
-    PainEntry *entry = [[InvoDataManager sharedDataManager] lastPainEntryToRenderWithOrient:currSide];
+    PainEntry *entry = [[InvoDataManager sharedDataManager] painEntryToRenderWithOrient:currSide justOne:YES];
     PainLocation *loc = [entry valueForKey:@"location"];
     
 // getting data points to draw the bezier shape
