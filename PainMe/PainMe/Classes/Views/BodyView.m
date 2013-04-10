@@ -97,7 +97,7 @@
                 newPart = partDetail;
                 break;
             }
-            return;
+            else return;
         }
     }
     
@@ -430,7 +430,7 @@
     
     UIImage *imgTRet = UIGraphicsGetImageFromCurrentImageContext();
     
-    CGSize screenSize = [[UIScreen mainScreen]applicationFrame].size;
+//    CGSize screenSize = [[UIScreen mainScreen]applicationFrame].size;
 
 //    UIImage *testImg;
 //    CGContextSaveGState(ctxRef);
@@ -439,9 +439,7 @@
 //    CGContextRestoreGState(ctxRef);
     
 
-    
     UIGraphicsEndImageContext();
-   // NSData *data = UIImageJPEGRepresentation(imgTRet, 1);
      NSData *data = UIImageJPEGRepresentation(imgTRet, 1);
     return data;
 }
@@ -454,4 +452,23 @@
     [self setNeedsDisplay];
 }
 
+-(void)clearAllPartsForOrientation:(int)orient{
+
+    NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
+    for (InvoBodyPartDetails *part in self.shapesArray) {
+        
+        if (part.orientation == orient) {
+            [indexSet addIndex:[self.shapesArray indexOfObject:part]];
+        }
+    }
+    if ([indexSet count]) {
+        [self.shapesArray removeObjectsAtIndexes:indexSet];
+        [self setNeedsDisplay];
+    }
+}
+
+-(NSArray *)currentPartsUsedForDrawing{
+
+    return [NSArray arrayWithArray:_shapesArray];
+}
 @end

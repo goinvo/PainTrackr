@@ -19,9 +19,12 @@
 #import "InvoFlipButtonView.h"
 #import "InvoPainColorHelper.h"
 #import "InvoTextForEmail.h"
-
+#import "InvoBodyPartDetails.h"
 #import "UIDevice+deviceInfo.h"
 #import "UIFont+PainTrackrFonts.h"
+
+
+#define ZOOM_LEVEL(x) ((x <0.06)?1:2)
 
 @interface InvoBodySelectionViewController () {
    
@@ -226,19 +229,21 @@
 #pragma mark add the FlipButton
 -(void)configFlipButtonImage{
     //0 = Front, 1 = Back
-    int currentOrient = [self currentOrientation];
+    int flipOrient = ([self currentOrientation]+1)%2;
     
     CGRect flipRect = CGRectMake(253, 20, 40, 90);
     [self.flipButton setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.8f]];
     [self.flipButton setFrame:flipRect];
-    [self.flipButton setImage:[InvoFlipButtonView imageWithOrientation:currentOrient] forState:UIControlStateNormal];
+    [self.flipButton setImage:[InvoFlipButtonView imageWithOrientation:flipOrient] forState:UIControlStateNormal];
 }
 
 
 #pragma mark Draw last entry if it exists
 -(void)checkAndAddLastEntryToView{
 
-    NSArray *entryToRender =   [[InvoDataManager sharedDataManager] painEntryToRenderWithOrient:[self currentOrientation] justOne:NO];
+ //   NSArray *entryToRender =   [[InvoDataManager sharedDataManager] painEntryToRenderWithOrient:[self currentOrientation] justOne:NO];
+    
+    NSArray *entryToRender = [PainLocation painEntryToRenderWithOrient:[self currentOrientation] Zoom:ZOOM_LEVEL(self.scrollView.zoomScale)];
         
     if ([entryToRender count]) {
         //    NSLog(@"entry to render is %@",entryToRender);
@@ -252,7 +257,7 @@
                 PainLocation *loc = (PainLocation *)[obj valueForKey:@"location"];
                 int zoom = [[loc valueForKey:@"zoomLevel"] intValue];
                 
-                UIBezierPath *locpath = [self.bodyGeometry dictFrBodyLocation:[ [loc valueForKey:@"name"] copy]];
+                UIBezierPath *locpath = [self.bodyGeometry shapeForLocationName:[ [loc valueForKey:@"name"] copy]];
                 
                 [weakCopy addObjToSHapesArrayWithShape:locpath
                                                  color:fillColor
@@ -461,13 +466,9 @@
     
     convPoint = [self.view convertPoint:locPoint toView:self.scrollView];
 
-//    NSLog(@"conv point is %@", NSStringFromCGPoint(convPoint));
-
     convPoint = CGPointMake((convPoint.x -70)/(BODY_VIEW_WIDTH*self.scrollView.zoomScale),convPoint.y/( BODY_VIEW_HEIGHT*self.scrollView.zoomScale));
     
     int zoomLVL = (self.scrollView.zoomScale >=0.062) ? 2 :1;
-
-// Point is inside the Belly circle  
 
     NSDictionary *pathContainingPoint = nil;
     pathContainingPoint = [self.bodyGeometry containsPoint:convPoint withZoomLVL:zoomLVL withOrientation:[self currentOrientation]];
@@ -662,7 +663,7 @@
 - (IBAction)flipTapped:(id)sender {
 
     [self.bodyView flipView];
-    [self checkAndAddLastEntryToView];
+ //   [self checkAndAddLastEntryToView];
     [self configFlipButtonImage];
     
     (0 ==[self currentOrientation])?[self.viewLabelButton setTitle:@"Front View"]:
@@ -672,5 +673,46 @@
 -(int)currentOrientation{
 
     return (([self.bodyView.currentView isEqualToString:@"front"])?0:1);
+}
+
+
+- (IBAction)clearButtonTapped:(id)sender {
+
+    NSLog(@"clear Button tapped");
+    if (_bodyView) {
+        
+        NSArray *currentParts = [_bodyView currentPartsUsedForDrawing];
+        UIColor *fillcolor = [UIColor whiteColor];
+        NSArray *allLocations = [PainLocation  painEntriesForOrientation:[self currentOrientation] zoomLevel:ZOOM_LEVEL(self.scrollView.zoomScale)];
+        
+        for (InvoBodyPartDetails *part in currentParts) {
+            
+            if (part.orientation == [self currentOrientation]) {
+//                NSDictionary *partDict = [NSDictionary dictionaryWithObject:[NSArray arrayWithObjects:part.partShapePoints,[NSNumber numberWithInt:part.zoomLevel],nil] forKey:part.partName];
+                
+                for (id painLoc in allLocations) {
+                    
+                    if ([[painLoc valueForKey:@"name"] isEqualToString:part.partName]) {
+                //creating a zero PainEntry                        
+                        [PainEntry painEntryWithTime:[NSDate date]
+                                           painLevel:0
+                                          extraNotes:nil
+                                            location:painLoc ];
+                        
+                        //drawing the zero PainEntry in bodyView
+                        [self.bodyView renderPainForBodyPartPath:part.partShapePoints
+                                                       WithColor:fillcolor
+                                                     detailLevel:ZOOM_LEVEL(self.scrollView.zoomScale)
+                                                            name:[part.partName copy]
+                                                          orient:[self currentOrientation]];
+
+                        break;
+                    }
+                }
+            }
+        }
+        [[InvoDataManager sharedDataManager] saveContext];
+        [ _bodyView clearAllPartsForOrientation:[self currentOrientation]];
+    }
 }
 @end

@@ -471,83 +471,71 @@
     NSPredicate *pred;
     
     if (orient ==0) {
-        pred = [NSPredicate predicateWithFormat:@"location.orientation == %@ ",[NSNumber numberWithInt:0]];
+        pred = [NSPredicate predicateWithFormat:@"location.orientation == %@",[NSNumber numberWithInt:0]];
     }
     else{
         pred = [NSPredicate predicateWithFormat:@"location.orientation == %@",[NSNumber numberWithInt:orient]];
     }
     [fetReq setPredicate:pred];
     //    [fetReq setResultType:NSDictionaryResultType];
-    if (isOnlyOne) {
-        [fetReq setFetchLimit:1];
+   
         
-        [fetReq setPropertiesToFetch:[NSArray arrayWithObjects:@"location",@"notes",@"painLevel",@"timestamp", nil]];
+    [fetReq setPropertiesToFetch:[NSArray arrayWithObjects:@"location",@"notes",@"painLevel",@"timestamp", nil]];
+    
+    NSError *error;
+    NSArray *fetchedData = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
+    NSMutableArray *arrtoReturn = [NSMutableArray array];
+    
+    if ([fetchedData count] >0) {
         
-        NSError *error;
-        NSArray *foundEntries = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
+        NSCalendar *cal = [NSCalendar currentCalendar];
+        unsigned int unitFlags = NSDayCalendarUnit| NSMonthCalendarUnit| NSYearCalendarUnit ;
+        //todays date components
+        NSDateComponents *currComps = [cal components:unitFlags fromDate:[NSDate date]];
         
-        if ([foundEntries count] >0) {
-            
-            return [foundEntries objectAtIndex:0];
-        }
-    }
-    else{
+        PainEntry *latestObj = (PainEntry *)[fetchedData objectAtIndex:0];
         
-        [fetReq setPropertiesToFetch:[NSArray arrayWithObjects:@"location",@"notes",@"painLevel",@"timestamp", nil]];
+        NSDateComponents *fetchedComp = [cal components:unitFlags
+                                               fromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:latestObj.timestamp]];
         
-        NSError *error;
-        NSArray *fetchedData = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
-        NSMutableArray *arrtoReturn = [NSMutableArray array];
+        //adding the latest entry to return
+        //since it will be added even in case of newday/old day
+        [arrtoReturn addObject:[fetchedData objectAtIndex:0]];
         
-        if ([fetchedData count] >0) {
+        if (fetchedComp.day == currComps.day && fetchedComp.month == currComps.month && fetchedComp.year == currComps.year) {
+            //get all the entries for the current day
             
-            NSCalendar *cal = [NSCalendar currentCalendar];
-            unsigned int unitFlags = NSDayCalendarUnit| NSMonthCalendarUnit| NSYearCalendarUnit ;
-            //todays date components
-            NSDateComponents *currComps = [cal components:unitFlags fromDate:[NSDate date]];
+            __block NSString *foundName = [latestObj.location.name copy];
             
-            PainEntry *latestObj = (PainEntry *)[fetchedData objectAtIndex:0];
+            __block NSDateComponents *objcomp = [cal components:unitFlags
+                                                       fromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:latestObj.timestamp]];
             
-            NSDateComponents *fetchedComp = [cal components:unitFlags
-                                                   fromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:latestObj.timestamp]];
-            
-            //adding the latest entry to return
-            //since it will be added even in case of newday/old day
-            [arrtoReturn addObject:[fetchedData objectAtIndex:0]];
-            
-            if (fetchedComp.day == currComps.day && fetchedComp.month == currComps.month && fetchedComp.year == currComps.year) {
-                //get all the entries for the current day
+            [fetchedData enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
                 
-                __block NSString *foundName = [latestObj.location.name copy];
-                
-                __block NSDateComponents *objcomp = [cal components:unitFlags
-                                                           fromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:latestObj.timestamp]];
-                
-                [fetchedData enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+                PainEntry *entry = (PainEntry *)obj;
+                //                NSLog(@"fetched data is %@ on %@", entry.location.name, [NSDate dateWithTimeIntervalSinceReferenceDate:entry.timestamp]);
+                if (idx!=0 && ![entry.location.name isEqualToString:foundName]) {
                     
-                    PainEntry *entry = (PainEntry *)obj;
-                    //                NSLog(@"fetched data is %@ on %@", entry.location.name, [NSDate dateWithTimeIntervalSinceReferenceDate:entry.timestamp]);
-                    if (idx!=0 && ![entry.location.name isEqualToString:foundName]) {
+                    foundName = entry.location.name;
+                    objcomp = [cal components:unitFlags
+                                     fromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:entry.timestamp]];
+                    
+                    if( objcomp.day == currComps.day && objcomp.month == currComps.month && objcomp.year == currComps.year){
                         
-                        foundName = entry.location.name;
-                        objcomp = [cal components:unitFlags
-                                         fromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:entry.timestamp]];
-                        
-                        if( objcomp.day == currComps.day && objcomp.month == currComps.month && objcomp.year == currComps.year){
-                            
-                            //found and entry
-                            [arrtoReturn addObject:entry];
-                           // NSLog(@"Added %@ on %@ in arrToReturn", entry.location.name, [NSDate dateWithTimeIntervalSinceReferenceDate:entry.timestamp]);
-                        }
+                        //found and entry
+                        [arrtoReturn addObject:entry];
+                        // NSLog(@"Added %@ on %@ in arrToReturn", entry.location.name, [NSDate dateWithTimeIntervalSinceReferenceDate:entry.timestamp]);
                     }
-                    
-                }];
-            }
+                }
+                
+            }];
         }
         return [NSArray arrayWithArray:arrtoReturn];
     }
+    
     return nil;
 }
+
 
 
 -(NSArray *)namesOfBodyParts{

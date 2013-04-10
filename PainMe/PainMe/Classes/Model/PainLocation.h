@@ -43,4 +43,8 @@ typedef enum{
 
 +(NSArray *)painLocations;
 
+
++(NSArray *)painEntriesForOrientation:(int)orient zoomLevel:(int)zoom;
++(id)painEntryToRenderWithOrient:(int)orient Zoom:(int)zoomLvl;
+
 @end

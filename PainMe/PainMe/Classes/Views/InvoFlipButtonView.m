@@ -22,16 +22,15 @@
 
     CGRect flipRect = CGRectMake(0, 0, 40, 90.0);
    
-    int currSide = (side ==0)?1 : 0;
     float offsetY = 0.0;
-    NSArray *entryToRender = [[InvoDataManager sharedDataManager] painEntryToRenderWithOrient:currSide justOne:NO];
+    NSArray *entryToRender = [PainLocation  painEntryToRenderWithOrient:side Zoom:1];
     
 // selecting the UIImage based on the orientation
-    NSString *flipImageName = (side ==0)? @"zout_back_image.png":@"historyBodyImage.png";
+    NSString *flipImageName = (side ==1)? @"zout_back_image.png":@"historyBodyImage.png";
     UIImage *flipImage = [UIImage imageNamed:flipImageName];
     float newHeight = flipRect.size.height;
 //resetting the frame to match the flipsize image aspect ratio
-    if (currSide ==1) {
+    if (side ==1) {
         //0.5
         newHeight = flipRect.size.width/(flipImage.size.width/flipImage.size.height);
         offsetY = -(flipRect.size.height - newHeight)*0.25;

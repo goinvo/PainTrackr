@@ -59,12 +59,6 @@
            
            [self.painShapeDetailsArr addObject:part];
        }
-       
-//       for (InvoBodyPartDetails *part in self.painShapeDetailsArr) {
-//           if (part.zoomLevel ==1) {
-//             NSLog(@"part names to check are %@",part.partName);
-//           }
-//       }
     }
    return self;
 }
@@ -117,16 +111,15 @@
         }
     }
     
-    for(InvoBodyPartDetails *part in arrToIter){
-    
+//    for(InvoBodyPartDetails *part in arrToIter){
+//    
 //        NSLog(@"part names to check are %@",part.partName);
-    }
+//    }
     
     for (InvoBodyPartDetails *part in arrToIter) {
         
         if ([part.partShapePoints containsPoint:pointToCheck]) {
-            
-//            toRet = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObject:part.partShapePoints] forKeys:[NSArray arrayWithObject:part.partName]];
+
             toRet = [NSDictionary dictionaryWithObject:[NSArray arrayWithObjects:part.partShapePoints,[NSNumber numberWithInt:part.zoomLevel],nil] forKey:part.partName];
             break;
         }
@@ -149,7 +142,7 @@
 }
 
 
--(UIBezierPath *)dictFrBodyLocation:(NSString *)locName{
+-(UIBezierPath *)shapeForLocationName:(NSString *)locName{
 
     UIBezierPath *path;
     if (locName) {

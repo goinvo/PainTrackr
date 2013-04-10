@@ -132,5 +132,87 @@
     return CrDta;
 }
 
- 
++(NSArray *)painEntriesForOrientation:(int)orient zoomLevel:(int)zoom{
+    
+    InvoDataManager *dtaMgr = [InvoDataManager sharedDataManager];
+    
+    NSManagedObjectContext *moc = [dtaMgr objContext];
+    NSEntityDescription *entyDescrip = [NSEntityDescription  entityForName:@"PainLocation" inManagedObjectContext:moc];
+    
+    NSFetchRequest *fetchreq = [[NSFetchRequest alloc] init];
+    [fetchreq setEntity:entyDescrip];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"orientation == %d && zoomLevel == %d",orient, zoom];
+    
+    [fetchreq setPredicate:predicate];
+    //[fetchreq setResultType:NSDictionaryResultType];
+    
+    NSError *error;
+    NSArray *allLocations = [[dtaMgr objContext] executeFetchRequest:fetchreq error:&error];
+    
+    if (!error && [allLocations count]) {
+        return allLocations;
+    }
+    return nil;
+}
+
++(id)painEntryToRenderWithOrient:(int)orient Zoom:(int)zoomLvl {
+
+    NSMutableArray *arrToReturn = [NSMutableArray array];
+    
+    InvoDataManager *dataManager = [InvoDataManager sharedDataManager];
+    NSManagedObjectContext *moc = [dataManager objContext];
+    NSEntityDescription *entyDescrip = [NSEntityDescription  entityForName:@"PainLocation" inManagedObjectContext:moc];
+    
+    NSFetchRequest *fetchreq = [[NSFetchRequest alloc] init];
+    [fetchreq setEntity:entyDescrip];
+
+//    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO];
+//    [fetchreq setSortDescriptors:[NSArray arrayWithObject:sort]];
+    
+     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"orientation == %d&& zoomLevel == %d",orient, zoomLvl];
+    [fetchreq setPredicate:predicate];
+    //[fetchreq setResultType:NSDictionaryResultType];
+    
+    NSError *error;
+    NSArray *allLocations = [[dataManager objContext] executeFetchRequest:fetchreq error:&error];
+    
+    if (!error && [allLocations count]) {
+        
+        for (PainLocation *loc in allLocations) {
+            
+            NSLog(@"painEntries for loc:%@ ",loc.name);
+            int count = 0;
+            count = [[loc painEntries] count];
+            if (count) {
+                
+                NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO]];
+                
+                NSArray *sortedRecipes = [[[loc painEntries] allObjects] sortedArrayUsingDescriptors:sortDescriptors];
+                
+                PainEntry *latestObj = [sortedRecipes objectAtIndex:0];
+//                PainEntry *latestObj = [[[loc painEntries]allObjects] objectAtIndex:count-1];
+                NSCalendar *cal = [NSCalendar currentCalendar];
+                unsigned int unitFlags = NSDayCalendarUnit| NSMonthCalendarUnit| NSYearCalendarUnit ;
+                //todays date components
+                NSDateComponents *currComps = [cal components:unitFlags fromDate:[NSDate date]];
+                
+                NSDateComponents *fetchedComp = [cal components:unitFlags
+                                                       fromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:latestObj.timestamp]];
+                
+                 if( fetchedComp.day == currComps.day && fetchedComp.month == currComps.month && fetchedComp.year == currComps.year){
+        
+                    NSLog(@"entry created on %@",[NSDate dateWithTimeIntervalSinceReferenceDate:latestObj.timestamp]);
+                     [arrToReturn addObject:latestObj];
+                 }
+            }
+         }
+        return arrToReturn;
+    }
+    return nil;
+}
+
+
+
+
 @end

@@ -17,6 +17,7 @@
     switch (painLvl) {
         case 0:
             colorToFill = [UIColor colorWithRed:1.00f green:1.00f blue:1.00f alpha:1.0f];
+           // colorToFill = [UIColor clearColor];
             break;
         case 1:
             colorToFill = [UIColor colorWithRed:0.99f green:0.71f blue:0.51f alpha:0.9f];

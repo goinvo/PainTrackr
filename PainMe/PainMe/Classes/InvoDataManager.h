@@ -34,8 +34,7 @@
 
 -(NSArray *)totalPainEntriesForPart:(NSString *)pName;
 
-//-(id)lastPainEntryToRenderWithOrient:(int)orient;
--(id)painEntryToRenderWithOrient:(int)orient justOne:(BOOL)isOnlyOne;
+//-(id)painEntryToRenderWithOrient:(int)orient justOne:(BOOL)isOnlyOne;
 
 -(NSArray *)namesOfBodyParts;
 

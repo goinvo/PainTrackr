@@ -19,9 +19,10 @@ typedef enum{
 
 @interface InvoBodySelectionViewController : UIViewController <UIScrollViewDelegate,UIGestureRecognizerDelegate,PainFaceDelegate,MFMailComposeViewControllerDelegate, UIDocumentInteractionControllerDelegate>
 
-- (IBAction)flipTapped:(id)sender;
-
 @property (weak, nonatomic) IBOutlet UIButton *flipButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *viewLabelButton;
+
+- (IBAction)flipTapped:(id)sender;
+- (IBAction)clearButtonTapped:(id)sender;
 
 @end
