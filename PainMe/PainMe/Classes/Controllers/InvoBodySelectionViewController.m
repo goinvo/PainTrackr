@@ -17,14 +17,17 @@
 #import "InvoHistoryViewController.h"
 #import "InvoAboutViewController.h"
 #import "InvoFlipButtonView.h"
-#import "InvoPainColorHelper.h"
+
 #import "InvoTextForEmail.h"
 #import "InvoBodyPartDetails.h"
 #import "UIDevice+deviceInfo.h"
 #import "UIFont+PainTrackrFonts.h"
-
+#import "UIColor+PainColor.h"
 
 #define ZOOM_LEVEL(x) ((x <0.06)?1:2)
+
+NSString *const FrontView = @"front";
+NSString *const RearView = @"Back View";
 
 @interface InvoBodySelectionViewController () {
    
@@ -65,16 +68,19 @@
 
 @implementation InvoBodySelectionViewController
 
-/*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+
+- (void)viewDidUnload
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    [self setFlipButton:nil];
+    [super viewDidUnload];
+    // Release any stronged subviews of the main view.
+    // e.g. self.myOutlet = nil;
 }
-*/
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
 
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -132,7 +138,7 @@
    
 //Activity indicator
     indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    [indicator setColor:[UIColor grayColor]];
+    [indicator setColor:[UIColor indicatiorColor]];
     [indicator setCenter:CGPointMake(160, 240)];
     [self.view insertSubview:indicator aboveSubview:self.scrollView];
     
@@ -148,7 +154,7 @@
     
     NSArray *docDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     
-    NSLog(@"docDIrectory count is%d", [docDirectories count]);
+    NSLog(@"docDirectory count is%d", [docDirectories count]);
     
     NSString *docDirectory = [docDirectories objectAtIndex:0];
     
@@ -189,8 +195,6 @@
     
     [[[[UIApplication sharedApplication] delegate] window] addSubview:tmpView];
     _overLayView = tmpView;
-    [_overLayView setExclusiveTouch:YES];
-    [_overLayView becomeFirstResponder];
     
     [self makeViewsRecieveTouch:NO];
 }
@@ -198,7 +202,6 @@
 -(void)removeCoachMarks{
 
     if (_overLayView) {
-        [_overLayView resignFirstResponder];
         [_overLayView removeFromSuperview];
         _overLayView = nil;
     }
@@ -225,14 +228,13 @@
 }
 
 
-
 #pragma mark add the FlipButton
 -(void)configFlipButtonImage{
     //0 = Front, 1 = Back
     int flipOrient = ([self currentOrientation]+1)%2;
     
     CGRect flipRect = CGRectMake(253, 20, 40, 90);
-    [self.flipButton setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.8f]];
+    [self.flipButton setBackgroundColor:[UIColor flipButnBackColor]];
     [self.flipButton setFrame:flipRect];
     [self.flipButton setImage:[InvoFlipButtonView imageWithOrientation:flipOrient] forState:UIControlStateNormal];
 }
@@ -240,10 +242,9 @@
 
 #pragma mark Draw last entry if it exists
 -(void)checkAndAddLastEntryToView{
-
- //   NSArray *entryToRender =   [[InvoDataManager sharedDataManager] painEntryToRenderWithOrient:[self currentOrientation] justOne:NO];
     
-    NSArray *entryToRender = [PainLocation painEntryToRenderWithOrient:[self currentOrientation] Zoom:ZOOM_LEVEL(self.scrollView.zoomScale)];
+    NSArray *entryToRender = [PainLocation painEntryToRenderWithOrient:[self currentOrientation]
+                                                                  Zoom:ZOOM_LEVEL(self.scrollView.zoomScale)];
         
     if ([entryToRender count]) {
         //    NSLog(@"entry to render is %@",entryToRender);
@@ -251,7 +252,7 @@
         __block BodyView *weakCopy = self.bodyView;
         [entryToRender enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
             
-            UIColor *fillColor = [InvoPainColorHelper colorfromPain:[[obj valueForKey:@"painLevel"] integerValue]];
+            UIColor *fillColor = [UIColor colorfromPain:[[obj valueForKey:@"painLevel"] integerValue]];
             
             if (fillColor) {
                 PainLocation *loc = (PainLocation *)[obj valueForKey:@"location"];
@@ -401,19 +402,6 @@
 }
 #pragma mark-
 
-- (void)viewDidUnload
-{
-    [self setFlipButton:nil];
-    [self setViewLabelButton:nil];
-    [super viewDidUnload];
-    // Release any stronged subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
 
 #pragma mark UIScrollViewDelegate methods
 
@@ -505,7 +493,7 @@
     }
     
     if([InvoDataManager painEntryForLocation:[value copy] levelPain:painLvl notes:nil]){
-        UIColor *fillcolor = [InvoPainColorHelper colorfromPain:painLvl];
+        UIColor *fillcolor = [UIColor colorfromPain:painLvl];
         [self.bodyView renderPainForBodyPartPath:path
                                        WithColor:fillcolor
                                      detailLevel:zoomLVL
@@ -531,7 +519,7 @@
         
         if ( [self.bodyGeometry containsPoint:convPoint withZoomLVL:zoomLVL withOrientation:[self currentOrientation]]) {
             
-            UIColor *fillcolor = [InvoPainColorHelper colorfromPain:painLvl];
+            UIColor *fillcolor = [UIColor colorfromPain:painLvl];
             
             [self.bodyView maskWithColor:fillcolor];
         }
@@ -658,21 +646,20 @@
     
     [self.navigationController pushViewController:aboutCtrl animated:YES];
 }
-#pragma mark -
+
+#pragma mark FlipTapped
 
 - (IBAction)flipTapped:(id)sender {
 
     [self.bodyView flipView];
- //   [self checkAndAddLastEntryToView];
+//Show all relevant entries for a given orientation
+    [self checkAndAddLastEntryToView];
     [self configFlipButtonImage];
-    
-    (0 ==[self currentOrientation])?[self.viewLabelButton setTitle:@"Front View"]:
-    [self.viewLabelButton setTitle:@"Back View"];
 }
 
 -(int)currentOrientation{
 
-    return (([self.bodyView.currentView isEqualToString:@"front"])?0:1);
+    return (([self.bodyView.currentView isEqualToString:FrontView])?0:1);
 }
 
 
@@ -682,13 +669,13 @@
     if (_bodyView) {
         
         NSArray *currentParts = [_bodyView currentPartsUsedForDrawing];
-        UIColor *fillcolor = [UIColor whiteColor];
-        NSArray *allLocations = [PainLocation  painEntriesForOrientation:[self currentOrientation] zoomLevel:ZOOM_LEVEL(self.scrollView.zoomScale)];
+//        UIColor *fillcolor = [UIColor colorfromPain:0];
+        NSArray *allLocations = [PainLocation  painLocationsForOrientation:[self currentOrientation]
+                                                               zoomLevel:0];
         
         for (InvoBodyPartDetails *part in currentParts) {
             
             if (part.orientation == [self currentOrientation]) {
-//                NSDictionary *partDict = [NSDictionary dictionaryWithObject:[NSArray arrayWithObjects:part.partShapePoints,[NSNumber numberWithInt:part.zoomLevel],nil] forKey:part.partName];
                 
                 for (id painLoc in allLocations) {
                     
@@ -701,7 +688,7 @@
                         
                         //drawing the zero PainEntry in bodyView
                         [self.bodyView renderPainForBodyPartPath:part.partShapePoints
-                                                       WithColor:fillcolor
+                                                       WithColor:[UIColor colorfromPain:0]
                                                      detailLevel:ZOOM_LEVEL(self.scrollView.zoomScale)
                                                             name:[part.partName copy]
                                                           orient:[self currentOrientation]];

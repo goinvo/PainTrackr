@@ -21,7 +21,6 @@
 
 +(BOOL)enterPainEntryForLocation:(NSDictionary *)locdict levelPain:(int)painLvl notes:(NSString *)notes{
 
-
     PainLocation *locFound  = nil;
     BOOL toRet = NO;
     InvoDataManager *dtaMgr = [InvoDataManager sharedDataManager];
@@ -82,7 +81,9 @@
     return toRet;
 }
 
-
+#pragma mark creating a location entry
+//used for users with old version of app
+//who do not have any backside view locations
 +(void)locationEntryWithName:(NSString *)locName shape:(NSData *)shape zoomLevel:(int16_t)levZoom orientation:(int16_t)orient{
 
     PainLocation *locFound;
@@ -113,7 +114,8 @@
 //    [dtaMgr saveContext];
 }
  
-
+//Returns an array of all pain Locations
+//returns an Array of dictionary items
 +(NSArray *)painLocations{
 
     InvoDataManager *dtaMgr = [InvoDataManager sharedDataManager];
@@ -126,13 +128,20 @@
     [fetchreq setResultType:NSDictionaryResultType];
     
     NSError *error;
-    NSArray *CrDta = [[dtaMgr objContext] executeFetchRequest:fetchreq error:&error];
-//    NSLog(@"value in PainLocation is %@", CrDta);
+    NSArray *allLocationsDict = [[dtaMgr objContext] executeFetchRequest:fetchreq error:&error];
     
-    return CrDta;
+    if (!error) {
+        
+        return allLocationsDict;
+    }
+//    NSLog(@"value in PainLocation is %@", CrDta);
+    return nil;
+    
 }
 
-+(NSArray *)painEntriesForOrientation:(int)orient zoomLevel:(int)zoom{
+//Returns an array of all PainLocations
+//based on orientation and zoomLevel
++(NSArray *)painLocationsForOrientation:(int)orient zoomLevel:(int)zoom{
     
     InvoDataManager *dtaMgr = [InvoDataManager sharedDataManager];
     
@@ -142,10 +151,8 @@
     NSFetchRequest *fetchreq = [[NSFetchRequest alloc] init];
     [fetchreq setEntity:entyDescrip];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"orientation == %d && zoomLevel == %d",orient, zoom];
-    
+    NSPredicate *predicate =(zoom >0)?[NSPredicate predicateWithFormat:@"orientation == %d && zoomLevel == %d",orient, zoom] :[NSPredicate predicateWithFormat:@"orientation == %d",orient] ;
     [fetchreq setPredicate:predicate];
-    //[fetchreq setResultType:NSDictionaryResultType];
     
     NSError *error;
     NSArray *allLocations = [[dtaMgr objContext] executeFetchRequest:fetchreq error:&error];
@@ -156,6 +163,8 @@
     return nil;
 }
 
+//Returns an array of most recent painEntry for a location
+//based on orientation and zoomLevel
 +(id)painEntryToRenderWithOrient:(int)orient Zoom:(int)zoomLvl {
 
     NSMutableArray *arrToReturn = [NSMutableArray array];
@@ -166,14 +175,10 @@
     
     NSFetchRequest *fetchreq = [[NSFetchRequest alloc] init];
     [fetchreq setEntity:entyDescrip];
-
-//    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO];
-//    [fetchreq setSortDescriptors:[NSArray arrayWithObject:sort]];
     
-     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"orientation == %d&& zoomLevel == %d",orient, zoomLvl];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"orientation == %d&& zoomLevel == %d",orient, zoomLvl];
     [fetchreq setPredicate:predicate];
-    //[fetchreq setResultType:NSDictionaryResultType];
-    
+
     NSError *error;
     NSArray *allLocations = [[dataManager objContext] executeFetchRequest:fetchreq error:&error];
     
@@ -181,30 +186,31 @@
         
         for (PainLocation *loc in allLocations) {
             
-            NSLog(@"painEntries for loc:%@ ",loc.name);
             int count = 0;
             count = [[loc painEntries] count];
             if (count) {
                 
+                //sorting the nsset of PainEntries
+                //for a given location
                 NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO]];
-                
                 NSArray *sortedRecipes = [[[loc painEntries] allObjects] sortedArrayUsingDescriptors:sortDescriptors];
                 
                 PainEntry *latestObj = [sortedRecipes objectAtIndex:0];
-//                PainEntry *latestObj = [[[loc painEntries]allObjects] objectAtIndex:count-1];
+
                 NSCalendar *cal = [NSCalendar currentCalendar];
                 unsigned int unitFlags = NSDayCalendarUnit| NSMonthCalendarUnit| NSYearCalendarUnit ;
+
                 //todays date components
                 NSDateComponents *currComps = [cal components:unitFlags fromDate:[NSDate date]];
-                
                 NSDateComponents *fetchedComp = [cal components:unitFlags
                                                        fromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:latestObj.timestamp]];
-                
-                 if( fetchedComp.day == currComps.day && fetchedComp.month == currComps.month && fetchedComp.year == currComps.year){
         
-                    NSLog(@"entry created on %@",[NSDate dateWithTimeIntervalSinceReferenceDate:latestObj.timestamp]);
-                     [arrToReturn addObject:latestObj];
-                 }
+                //if the entry is todays date
+                //then just add to the return array
+                if( fetchedComp.day == currComps.day && fetchedComp.month == currComps.month && fetchedComp.year == currComps.year){
+                    
+                    [arrToReturn addObject:latestObj];
+                }
             }
          }
         return arrToReturn;

@@ -10,4 +10,8 @@
 
 @interface UIColor (PainColor)
 
++(UIColor *)colorfromPain:(int)painLvl;
++(UIColor *)indicatiorColor;
++(UIColor *)flipButnBackColor;
+
 @end

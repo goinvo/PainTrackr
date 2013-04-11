@@ -20,7 +20,7 @@
 }
 
 @property (nonatomic, readwrite)BOOL strokeChanged;
-@property (nonatomic, strong) NSString *currentView;
+@property (nonatomic, copy) NSString *currentView;
 
 -(void)renderPainForBodyPartPath:(UIBezierPath *)path WithColor:(UIColor *)fillColor detailLevel:(int)level name:(NSString *)pName orient:(int)side;
 

@@ -54,10 +54,8 @@
     [[UIColor grayColor] setFill];
     UIRectFill(rect);
     
-   // [[UIColor colorWithRed:90.0/255.0 green:90.0/255.0 blue:90.0/255.0 alpha:1.0] setFill];
     [[UIColor whiteColor]setFill];
     
-//    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [UIColor whiteColor].CGColor);
     [self.name drawInRect: CGRectMake(0, 3, rect.size.width, rect.size.height)
                  withFont:[UIFont bubbleFont]
             lineBreakMode:NSLineBreakByTruncatingTail

@@ -124,7 +124,8 @@
             }
         }
         
-        self.scrollView.contentSize = (yIndex+108 <[UIScreen mainScreen].bounds.size.height -35)?CGSizeMake( 320, [UIScreen mainScreen].bounds.size.height -35) : CGSizeMake(320, yIndex+108*2);
+        self.scrollView.contentSize = (yIndex+108 <[UIScreen mainScreen].bounds.size.height -35)?CGSizeMake( 320, [UIScreen mainScreen].bounds.size.height -35) :
+                                                                                                 CGSizeMake(320, yIndex+118*2);
         
         NSLog(@"scrollview content size is %@", NSStringFromCGSize(self.scrollView.contentSize));
     }

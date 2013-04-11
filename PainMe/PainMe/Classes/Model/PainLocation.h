@@ -21,7 +21,7 @@ typedef enum{
 
 @interface PainLocation : NSManagedObject
 
-@property (nonatomic, strong) NSString * name;
+@property (nonatomic, copy) NSString * name;
 @property (nonatomic, strong) id shape;
 @property (nonatomic) int16_t zoomLevel;
 @property (nonatomic, strong) NSSet *painEntries;
@@ -38,13 +38,11 @@ typedef enum{
 
 +(BOOL)enterPainEntryForLocation:(NSDictionary *)locdict levelPain:(int)painLvl notes:(NSString *)notes ;
 
-
 +(void)locationEntryWithName:(NSString *)locName shape:(NSData *)shape zoomLevel:(int16_t)levZoom orientation:(int16_t)orient;
 
 +(NSArray *)painLocations;
 
-
-+(NSArray *)painEntriesForOrientation:(int)orient zoomLevel:(int)zoom;
++(NSArray *)painLocationsForOrientation:(int)orient zoomLevel:(int)zoom;
 +(id)painEntryToRenderWithOrient:(int)orient Zoom:(int)zoomLvl;
 
 @end

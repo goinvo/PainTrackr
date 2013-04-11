@@ -8,10 +8,10 @@
 
 #import "InvoHistoryView.h"
 #import "QuartzCore/QuartzCore.h"
-#import "InvoPainColorHelper.h"
+
 #import "PainEntry.h"
 #import "PainLocation.h"
-
+#import "UIColor+PainColor.h"
 
 @interface InvoHistoryView ()
 {
@@ -84,7 +84,7 @@
         zoomLevel1 = [[obj valueForKey:@"zoomLevel"] integerValue];
         
 //        NSLog(@"pain level is %d",[[[locatArr objectAtIndex:0] valueForKey:@"painLevel"] integerValue]);
-        self.partColor = [InvoPainColorHelper colorfromPain:[[[locatArr objectAtIndex:0] valueForKey:@"painLevel"] integerValue]];
+        self.partColor = [UIColor colorfromPain:[[[locatArr objectAtIndex:0] valueForKey:@"painLevel"] integerValue]];
         
         NSData *vertices = [obj valueForKey:@"shape"];
         int count = ([vertices length])/sizeof(CGPoint);
@@ -282,7 +282,7 @@
     self.orientation2 = [[loca valueForKey:@"orientation"] intValue];
     zoomLevel2 = [[loca valueForKey:@"zoomLevel"] integerValue];
     
-    self.partColor2 = [InvoPainColorHelper colorfromPain:[[secondEntry valueForKey:@"painLevel"] integerValue]];
+    self.partColor2 = [UIColor colorfromPain:[[secondEntry valueForKey:@"painLevel"] integerValue]];
     
     NSData *vertices = [loca valueForKey:@"shape"];
     int count = ([vertices length])/sizeof(CGPoint);

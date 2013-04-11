@@ -10,11 +10,11 @@
 #import <QuartzCore/QuartzCore.h>
 #import "InvoBodyPartDetails.h"
 #import "InvoDataManager.h"
+#import "UIColor+PainColor.h"
 
 @interface BodyView() {
    NSCache *_imageCache;
 }
-
 
 @property (nonatomic, strong) UIColor *bodyStrokeColor;
 @property (nonatomic, readwrite) BOOL isMask;
@@ -108,8 +108,9 @@
     if (!found) {
         [self addObjToSHapesArrayWithShape:[path copy] color:fillColor detail:level name:[pName copy] orientation:side];
     }
+   // NSLog(@"path bounds are %@",NSStringFromCGRect([path bounds]));
     
-    [self setNeedsDisplayInRect:[path bounds]];
+    [self setNeedsDisplay];
 }
 
 #pragma mark Calculate center of a uiBezierPath
@@ -200,7 +201,7 @@
        
        if (numFrmScale !=0) {
 
-           filename = ([self.currentView isEqualToString:@"front"])? [NSString stringWithFormat:@"body_slices_%02d_%d.png", (col+1) + (row) * BODY_TILE_COLUMNS,numFrmScale] :
+           filename = ([self.currentView isEqualToString:@"front"])? [NSString stringWithFormat:@"body_slices_%02d_%d.png", (col+1) + (row) * BODY_TILE_COLUMNS,numFrmScale]:
                                                                     [NSString stringWithFormat:@"back_zin_%02d_%d.png", (col+1) + (row) * BODY_TILE_COLUMNS,numFrmScale];
        }
        else {
@@ -240,30 +241,33 @@
         
         if (part.partShapePoints && CGRectIntersectsRect(rect, [part.partShapePoints bounds]) && part.orientation == currSide) {
             
+            UIColor *fillColor = part.shapeColor;
+            
             if(zm == part.zoomLevel){
                 
                 CGContextSetStrokeColorWithColor(ctx,[UIColor clearColor].CGColor);
-                CGContextSetFillColorWithColor(ctx, [part.shapeColor CGColor]);
+                CGContextSetFillColorWithColor(ctx, [fillColor CGColor]);
                 
                 [part.partShapePoints applyTransform:CGAffineTransformMakeTranslation(ofst.x, ofst.y)];
-
+                
                 [part.partShapePoints fill];
                 [part.partShapePoints stroke];
                 [part.partShapePoints applyTransform:CGAffineTransformMakeTranslation(-ofst.x, -ofst.y)];
             }
-            else{
+            else {
                 
-                CGPoint centPoint = [self midPoinfOfBezierPath:part.partShapePoints];
-                
-                CGContextSetLineWidth(ctx, 4.0f);
-                CGContextSetStrokeColorWithColor(ctx, part.shapeColor.CGColor);
-                CGContextSetFillColorWithColor(ctx, part.shapeColor.CGColor);
-                CGContextSetAlpha(ctx, 0.5f);
-                //CGContextSetBlendMode(ctx, kCGBlendModeSourceAtop);
-                CGContextFillEllipseInRect(ctx, CGRectMake(centPoint.x-150 +ofst.x , centPoint.y-150+ofst.y , 300, 300));
-                CGContextSetAlpha(ctx, 1.0f);
-                CGContextFillEllipseInRect(ctx, CGRectMake(centPoint.x-50+ofst.x, centPoint.y-50+ofst.y, 100, 100));
-
+                if(![part.shapeColor isEqual:[UIColor colorfromPain:0]]){
+                    CGPoint centPoint = [self midPoinfOfBezierPath:part.partShapePoints];
+                    
+                    CGContextSetLineWidth(ctx, 4.0f);
+                    CGContextSetStrokeColorWithColor(ctx, part.shapeColor.CGColor);
+                    CGContextSetFillColorWithColor(ctx, part.shapeColor.CGColor);
+                    CGContextSetAlpha(ctx, 0.5f);
+                    //CGContextSetBlendMode(ctx, kCGBlendModeSourceAtop);
+                    CGContextFillEllipseInRect(ctx, CGRectMake(centPoint.x-150 +ofst.x , centPoint.y-150+ofst.y , 300, 300));
+                    CGContextSetAlpha(ctx, 1.0f);
+                    CGContextFillEllipseInRect(ctx, CGRectMake(centPoint.x-50+ofst.x, centPoint.y-50+ofst.y, 100, 100));
+                }
             }
         }
     }

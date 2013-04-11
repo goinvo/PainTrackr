@@ -11,6 +11,9 @@
 #import <MessageUI/MessageUI.h>
 #import <MessageUi/MFMailComposeViewController.h>
 
+extern NSString *const FrontView;
+extern NSString *const RearView;
+
 typedef enum{
 
     kTagPartNameBubble = 10
@@ -20,7 +23,6 @@ typedef enum{
 @interface InvoBodySelectionViewController : UIViewController <UIScrollViewDelegate,UIGestureRecognizerDelegate,PainFaceDelegate,MFMailComposeViewControllerDelegate, UIDocumentInteractionControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *flipButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *viewLabelButton;
 
 - (IBAction)flipTapped:(id)sender;
 - (IBAction)clearButtonTapped:(id)sender;

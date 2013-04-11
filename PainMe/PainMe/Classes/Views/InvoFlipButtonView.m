@@ -8,8 +8,8 @@
 
 #import "InvoFlipButtonView.h"
 #import "InvoDataManager.h"
-#import "InvoPainColorHelper.h"
 
+#import "UIColor+PainColor.h"
 
 @interface InvoFlipButtonView ()
 
@@ -52,7 +52,7 @@
     
     [entryToRender enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
         
-        UIColor *fillColor = [InvoPainColorHelper colorfromPain:[[obj valueForKey:@"painLevel"] integerValue]];
+        UIColor *fillColor = [UIColor colorfromPain:[[obj valueForKey:@"painLevel"] integerValue]];
         PainLocation *loc = [(PainEntry *)obj location];
         int zoom = [[loc valueForKey:@"zoomLevel"] intValue];
 //if a painLevel other than 0
