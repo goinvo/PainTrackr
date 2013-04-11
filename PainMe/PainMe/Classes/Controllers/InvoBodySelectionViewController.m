@@ -39,15 +39,13 @@ NSString *const RearView = @"Back View";
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet BodyView *bodyView;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *sendButton;
-@property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
+@property (nonatomic, weak) UITapGestureRecognizer *tapGesture;
 
 @property (nonatomic, strong) BodyPartGeometry *bodyGeometry;
 @property (nonatomic, strong) PainFaceView *painFace;
 
 @property (nonatomic, strong) UITapGestureRecognizer *doubleTap;
 @property (nonatomic, weak) UIImageView *overLayView;
-
-@property (nonatomic, strong)UIDocumentInteractionController *docInterCtrl;
 
 -(void)initTapGesture;
 -(int)tileAtTouchLocation:(CGPoint)touchPt;
@@ -274,10 +272,15 @@ NSString *const RearView = @"Back View";
 #pragma mark Init tap Gesture
 -(void)initTapGesture{
 
-    self.tapGesture   =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
-    self.tapGesture.delegate = self;
-    self.tapGesture.numberOfTapsRequired = 1;
-    [self.scrollView addGestureRecognizer:self.tapGesture];
+    UITapGestureRecognizer *tapReco;
+    
+    tapReco   =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+    tapReco.delegate = self;
+    tapReco.numberOfTapsRequired = 1;
+    [self.scrollView addGestureRecognizer:tapReco];
+    
+    self.tapGesture = tapReco;
+    
     [self.tapGesture setCancelsTouchesInView:NO];
 
 }
@@ -591,25 +594,6 @@ NSString *const RearView = @"Back View";
 
     } ];
 
-
-    
-
-//    NSURL *URL = [[NSBundle mainBundle] URLForResource:@"coachmarks" withExtension:@"png"];
-//    if (URL) {
-//        // Initialize Document Interaction Controller
-//        self.docInterCtrl = [UIDocumentInteractionController interactionControllerWithURL:URL];
-//        // Configure Document Interaction Controller
-//        [self.docInterCtrl setDelegate:self];
-//        // Preview PDF
-//        [self.docInterCtrl presentPreviewAnimated:YES];
-//    }
-}
-
-#pragma mark DocInteraction Ctrl delegate methods
-
-- (UIViewController *) documentInteractionControllerViewControllerForPreview: (UIDocumentInteractionController *) controller{
-
-    return self;
 }
 
 #pragma mark -
@@ -662,7 +646,7 @@ NSString *const RearView = @"Back View";
     return (([self.bodyView.currentView isEqualToString:FrontView])?0:1);
 }
 
-
+#pragma mark clear Pressed
 - (IBAction)clearButtonTapped:(id)sender {
 
     NSLog(@"clear Button tapped");

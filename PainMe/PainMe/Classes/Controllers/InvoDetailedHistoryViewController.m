@@ -23,7 +23,6 @@
 @property (nonatomic, readwrite) int currDateIndex;
 @property (nonatomic, strong) NSDictionary *sortedByDateEntries;
 @property (nonatomic, strong) NSArray *datesArray;
-@property (nonatomic, strong) UIPageControl *pageViewCtrl;
 
 -(void)addFacesToView;
 -(IBAction)leftTapped:(id)sender;
@@ -43,6 +42,7 @@
             
             NSDateFormatter *frmtr = [[NSDateFormatter alloc]init];
             [frmtr setDateStyle:NSDateFormatterShortStyle];
+            [frmtr setLocale:[NSLocale currentLocale]];
             NSDate *dateFrmStr = [frmtr dateFromString:dateString];
             [frmtr setDateFormat:@"EEEE d"];
             
@@ -93,6 +93,7 @@
     
     NSMutableArray *unSortedDates = [NSMutableArray array];
     NSDateFormatter *frmtr = [[NSDateFormatter alloc]init];
+    [frmtr setLocale:[NSLocale currentLocale]];
     [frmtr setDateStyle:NSDateFormatterShortStyle];
     
     for (id objDate in [self.sortedByDateEntries allKeys]) {
@@ -116,6 +117,8 @@
         
         NSDateFormatter *frmtr = [[NSDateFormatter alloc]init];
         [frmtr setDateStyle:NSDateFormatterShortStyle];
+        [frmtr setLocale:[NSLocale currentLocale]];
+        
         NSDate *dteFromString = [frmtr dateFromString:date];
         
         return ([self.datesArray indexOfObject:dteFromString]);

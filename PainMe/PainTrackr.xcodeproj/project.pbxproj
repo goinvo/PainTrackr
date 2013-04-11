@@ -644,7 +644,6 @@
 		76C61AF515E3E21E00EDCBFC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76C61AF415E3E21E00EDCBFC /* MessageUI.framework */; };
 		76D3E50C15D598970095C553 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 76D3E50B15D598970095C553 /* libz.dylib */; };
 		76D9950215EFB02D00FFF78C /* InvoHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D9950015EFB02D00FFF78C /* InvoHistoryViewController.m */; };
-		76D9950315EFB02D00FFF78C /* InvoHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76D9950115EFB02D00FFF78C /* InvoHistoryViewController.xib */; };
 		76D9950715EFB1B300FFF78C /* InvoHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D9950615EFB1B300FFF78C /* InvoHistoryView.m */; };
 		76F1120E15AF5BEA00E2907C /* F2.png in Resources */ = {isa = PBXBuildFile; fileRef = 76F1120815AF5BEA00E2907C /* F2.png */; };
 		76F1120F15AF5BEA00E2907C /* F3.png in Resources */ = {isa = PBXBuildFile; fileRef = 76F1120915AF5BEA00E2907C /* F3.png */; };
@@ -680,7 +679,6 @@
 		83A3BE3A1593B955008EB148 /* BodyPartGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A3BE391593B955008EB148 /* BodyPartGeometry.m */; };
 		83C440201598D73E00F401D2 /* BodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C4401F1598D73E00F401D2 /* BodyView.m */; };
 		83C440241598D85100F401D2 /* InvoBodySelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C440221598D85100F401D2 /* InvoBodySelectionViewController.m */; };
-		83C440251598D85100F401D2 /* InvoBodySelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83C440231598D85100F401D2 /* InvoBodySelectionViewController.xib */; };
 		83C440271598D96800F401D2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C440261598D96800F401D2 /* QuartzCore.framework */; };
 		83C4402A1598DA2700F401D2 /* PainLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C440291598DA2700F401D2 /* PainLocation.m */; };
 /* End PBXBuildFile section */
@@ -1357,7 +1355,6 @@
 		76D3E50B15D598970095C553 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		76D994FF15EFB02D00FFF78C /* InvoHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoHistoryViewController.h; sourceTree = "<group>"; };
 		76D9950015EFB02D00FFF78C /* InvoHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = InvoHistoryViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		76D9950115EFB02D00FFF78C /* InvoHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoHistoryViewController.xib; sourceTree = "<group>"; };
 		76D9950515EFB1B300FFF78C /* InvoHistoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = InvoHistoryView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		76D9950615EFB1B300FFF78C /* InvoHistoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = InvoHistoryView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		76F1120815AF5BEA00E2907C /* F2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = F2.png; sourceTree = "<group>"; };
@@ -1406,7 +1403,6 @@
 		83C4401F1598D73E00F401D2 /* BodyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BodyView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		83C440211598D85100F401D2 /* InvoBodySelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoBodySelectionViewController.h; sourceTree = "<group>"; };
 		83C440221598D85100F401D2 /* InvoBodySelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = InvoBodySelectionViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		83C440231598D85100F401D2 /* InvoBodySelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoBodySelectionViewController.xib; sourceTree = "<group>"; };
 		83C440261598D96800F401D2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		83C440281598DA2700F401D2 /* PainLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PainLocation.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		83C440291598DA2700F401D2 /* PainLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PainLocation.m; sourceTree = "<group>"; };
@@ -2386,10 +2382,8 @@
 				834C1009158F7255000C5652 /* InvoMasterViewController.m */,
 				83C440211598D85100F401D2 /* InvoBodySelectionViewController.h */,
 				83C440221598D85100F401D2 /* InvoBodySelectionViewController.m */,
-				83C440231598D85100F401D2 /* InvoBodySelectionViewController.xib */,
 				76D994FF15EFB02D00FFF78C /* InvoHistoryViewController.h */,
 				76D9950015EFB02D00FFF78C /* InvoHistoryViewController.m */,
-				76D9950115EFB02D00FFF78C /* InvoHistoryViewController.xib */,
 				76C5FC7A1610DC3200B9CDAD /* InvoDetailedHistoryViewController.h */,
 				76C5FC7B1610DC3200B9CDAD /* InvoDetailedHistoryViewController.m */,
 				76C5FC7C1610DC3200B9CDAD /* InvoDetailedHistoryViewController.xib */,
@@ -2564,7 +2558,6 @@
 			files = (
 				834C1020158F7255000C5652 /* MainStoryboard_iPad.storyboard in Resources */,
 				834C1021158F7255000C5652 /* MainStoryboard_iPhone.storyboard in Resources */,
-				83C440251598D85100F401D2 /* InvoBodySelectionViewController.xib in Resources */,
 				76F1120E15AF5BEA00E2907C /* F2.png in Resources */,
 				76F1120F15AF5BEA00E2907C /* F3.png in Resources */,
 				76F1121015AF5BEA00E2907C /* F4.png in Resources */,
@@ -2864,7 +2857,6 @@
 				76B127E415D441480000286A /* body_slices_35_512@2x.png in Resources */,
 				76B127E515D441480000286A /* body_slices_36_512@2x.png in Resources */,
 				763307A715EEB3AE0059152A /* BodyPartData.csv in Resources */,
-				76D9950315EFB02D00FFF78C /* InvoHistoryViewController.xib in Resources */,
 				76BB404415F1144700ED69A9 /* historyBodyImage.png in Resources */,
 				76BB404515F1144700ED69A9 /* historyBodyImage@2x.png in Resources */,
 				7612D8AB160D02E6009924A9 /* README.md in Resources */,
