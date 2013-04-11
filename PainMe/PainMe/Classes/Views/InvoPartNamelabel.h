@@ -12,6 +12,6 @@
 
 - (id)initWithFrame:(CGRect)frame name:(NSString *)partName;
 
-@property (nonatomic, strong)NSString *name;
+@property (nonatomic, copy)NSString *name;
 
 @end

@@ -14,31 +14,20 @@
 
 @interface InvoDataManager : NSObject
 
-
-@property (nonatomic,strong) NSMutableArray *parsedComponents;
-@property (nonatomic, strong) NSMutableArray *vertRange;
-@property (nonatomic, strong) NSArray *nwArrVert;
-
-@property (nonatomic, strong) NSFetchedResultsController *fetCtrl;
-
-
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
 +(InvoDataManager *)sharedDataManager;
+
+-(NSArray *)totalPainEntriesForPart:(NSString *)pName;
+
+-(NSDictionary *)entriesPerDayList;
+
+-(NSManagedObjectContext *) objContext;
 
 +(BOOL)painEntryForLocation:(NSDictionary *)locDetails levelPain:(int)painLvl notes:(NSString *)nots;
 
 -(void)listCoordinates;
 -(void)checkPainLocationDataBase;
 
--(NSArray *)totalPainEntriesForPart:(NSString *)pName;
-
--(id)lastPainEntryToRenderWithOrient:(int)orient;
-
--(NSArray *)namesOfBodyParts;
-
--(NSDictionary *)entriesPerDayList;
-
--(NSManagedObjectContext *) objContext;
 @end

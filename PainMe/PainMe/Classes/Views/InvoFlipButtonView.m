@@ -8,8 +8,8 @@
 
 #import "InvoFlipButtonView.h"
 #import "InvoDataManager.h"
-#import "InvoPainColorHelper.h"
 
+#import "UIColor+PainColor.h"
 
 @interface InvoFlipButtonView ()
 
@@ -20,54 +20,63 @@
 
 +(UIImage *)imageWithOrientation:(int)side{
 
-    CGRect flipRect = CGRectMake(0, 0, 40, 90);
+    CGRect flipRect = CGRectMake(0, 0, 40, 90.0);
    
-    int currSide = (side ==0)?1 : 0;
+    float offsetY = 0.0;
+    NSArray *entryToRender = [PainLocation  painEntryToRenderWithOrient:side Zoom:1];
     
-    PainEntry *entry = [[InvoDataManager sharedDataManager] lastPainEntryToRenderWithOrient:currSide];
-    PainLocation *loc = [entry valueForKey:@"location"];
-    
-// getting data points to draw the bezier shape
-    NSData *vertices = [loc valueForKey:@"shape"];
-    UIBezierPath *path = [InvoFlipButtonView createUIBezierWithdata:[vertices copy] Offset:CGPointZero];
-
 // selecting the UIImage based on the orientation
-    NSString *flipImageName = (side ==0)? @"zout_back_image.png":@"historyBodyImage.png";
+    NSString *flipImageName = (side ==1)? @"zout_back_image.png":@"historyBodyImage.png";
     UIImage *flipImage = [UIImage imageNamed:flipImageName];
-
-//Pain Color
-    UIColor *painColor = [InvoPainColorHelper colorfromPain:[[entry valueForKey:@"painLevel"]intValue]];
-    
-// drawing with the coloring of the most recent PainEntry
-    UIGraphicsBeginImageContextWithOptions(flipRect.size,NO,[[UIScreen mainScreen]scale]);
+    float newHeight = flipRect.size.height;
+//resetting the frame to match the flipsize image aspect ratio
+    if (side ==1) {
+        //0.5
+        newHeight = flipRect.size.width/(flipImage.size.width/flipImage.size.height);
+        offsetY = -(flipRect.size.height - newHeight)*0.25;
+        CGRect newRect = CGRectMake(flipRect.origin.x, flipRect.origin.y + (flipRect.size.height - newHeight)*0.25, flipRect.size.width,newHeight);
+        flipRect = newRect;
+        
+        NSLog(@"new rect is %@", NSStringFromCGRect(newRect));
+    }
+//starting the drawing
+    UIGraphicsBeginImageContextWithOptions(flipRect.size, NO, [[UIScreen mainScreen]scale]);
     
     [[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.4]setFill];
     UIRectFill(flipRect);
-
-    [painColor setFill];
     [[UIColor blackColor]setStroke];
-  //resetting the frame to match the flipsize image aspect ratio
-    if (currSide ==0) {
-        float newHeight = flipRect.size.width/(flipImage.size.width/flipImage.size.height);
-        CGRect newRect = CGRectMake(flipRect.origin.x, flipRect.origin.y + (flipRect.size.height - newHeight)*0.5, flipRect.size.width,newHeight);
-        flipRect = newRect;
-    }
     
     [flipImage drawInRect:flipRect
                 blendMode:kCGBlendModeNormal
                     alpha:0.8];
-    [path fill];
+    
+    [entryToRender enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+        
+        UIColor *fillColor = [UIColor colorfromPain:[[obj valueForKey:@"painLevel"] integerValue]];
+        PainLocation *loc = [(PainEntry *)obj location];
+        int zoom = [[loc valueForKey:@"zoomLevel"] intValue];
+//if a painLevel other than 0
+        if (fillColor && zoom ==1) {
+            NSData *vertices = [loc valueForKey:@"shape"];
+            UIBezierPath *path = [InvoFlipButtonView createUIBezierWithdata:[vertices copy]
+                                                                     Offset:CGPointMake(0, offsetY)];
+    
+            [fillColor setFill];
+            [path fill];
+        }
+    }];
     
     flipImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-
+    
     return flipImage;
 }
 
 +(UIBezierPath *)createUIBezierWithdata:(NSData *)vertices Offset:(CGPoint)offsetPoint {
     
     CGFloat viewWidth = 40 -offsetPoint.x;
-    CGFloat viewHeight = 90.0 - offsetPoint.y;
+    CGFloat viewHeight = 90.0;
+    //CGFloat viewHeight = 90.0 - offsetPoint.y;
     
     int pointCount = 0;
     UIBezierPath *bezierPath = nil;
@@ -87,11 +96,11 @@
         
         bezierPath = [UIBezierPath bezierPath];
             
-            [bezierPath moveToPoint: CGPointMake(points[0].x*viewWidth,points[0].y*viewHeight) ];
+            [bezierPath moveToPoint: CGPointMake(points[0].x*viewWidth,offsetPoint.y + points[0].y*viewHeight) ];
             
             for (int i=1; i<pointCount; i++) {
                 
-                [bezierPath addLineToPoint:CGPointMake(points[i].x*viewWidth ,points[i].y*viewHeight)];
+                [bezierPath addLineToPoint:CGPointMake(points[i].x*viewWidth ,offsetPoint.y+ points[i].y*viewHeight)];
             }
         [bezierPath closePath];
     }

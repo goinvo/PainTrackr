@@ -10,11 +10,11 @@
 #import <QuartzCore/QuartzCore.h>
 #import "InvoBodyPartDetails.h"
 #import "InvoDataManager.h"
+#import "UIColor+PainColor.h"
 
 @interface BodyView() {
    NSCache *_imageCache;
 }
-
 
 @property (nonatomic, strong) UIColor *bodyStrokeColor;
 @property (nonatomic, readwrite) BOOL isMask;
@@ -63,13 +63,13 @@
 
 }
 
-// handle delegate method
-// body pain level changed
-// [self setNeedsDisplayInRect: ...]
-
 -(void)addObjToSHapesArrayWithShape:(UIBezierPath *)shape color:(UIColor *)fillColor detail:(int)levDet name:(NSString *)partName orientation:(int)side{
 
-    InvoBodyPartDetails *partDetail = [InvoBodyPartDetails invoBodyPartWithShape:[shape copy] color:fillColor zoomLevel:levDet name:[partName copy] orientation:side];
+    InvoBodyPartDetails *partDetail = [InvoBodyPartDetails invoBodyPartWithShape:[shape copy]
+                                                                           color:fillColor
+                                                                       zoomLevel:levDet
+                                                                            name:[partName copy]
+                                                                     orientation:side];
     
     [self.shapesArray addObject:partDetail];
 
@@ -102,15 +102,15 @@
     }
     
     if(newPart){
-//        NSLog(@"Was changing color");
         newPart.shapeColor = fillColor;
     }
 
     if (!found) {
-        
         [self addObjToSHapesArrayWithShape:[path copy] color:fillColor detail:level name:[pName copy] orientation:side];
     }
-        [self setNeedsDisplayInRect:[path bounds]];
+   // NSLog(@"path bounds are %@",NSStringFromCGRect([path bounds]));
+    
+    [self setNeedsDisplay];
 }
 
 #pragma mark Calculate center of a uiBezierPath
@@ -201,7 +201,7 @@
        
        if (numFrmScale !=0) {
 
-           filename = ([self.currentView isEqualToString:@"front"])? [NSString stringWithFormat:@"body_slices_%02d_%d.png", (col+1) + (row) * BODY_TILE_COLUMNS,numFrmScale] :
+           filename = ([self.currentView isEqualToString:@"front"])? [NSString stringWithFormat:@"body_slices_%02d_%d.png", (col+1) + (row) * BODY_TILE_COLUMNS,numFrmScale]:
                                                                     [NSString stringWithFormat:@"back_zin_%02d_%d.png", (col+1) + (row) * BODY_TILE_COLUMNS,numFrmScale];
        }
        else {
@@ -241,30 +241,33 @@
         
         if (part.partShapePoints && CGRectIntersectsRect(rect, [part.partShapePoints bounds]) && part.orientation == currSide) {
             
+            UIColor *fillColor = part.shapeColor;
+            
             if(zm == part.zoomLevel){
                 
                 CGContextSetStrokeColorWithColor(ctx,[UIColor clearColor].CGColor);
-                CGContextSetFillColorWithColor(ctx, [part.shapeColor CGColor]);
+                CGContextSetFillColorWithColor(ctx, [fillColor CGColor]);
                 
                 [part.partShapePoints applyTransform:CGAffineTransformMakeTranslation(ofst.x, ofst.y)];
-
+                
                 [part.partShapePoints fill];
                 [part.partShapePoints stroke];
                 [part.partShapePoints applyTransform:CGAffineTransformMakeTranslation(-ofst.x, -ofst.y)];
             }
-            else{
+            else {
                 
-                CGPoint centPoint = [self midPoinfOfBezierPath:part.partShapePoints];
-                
-                CGContextSetLineWidth(ctx, 4.0f);
-                CGContextSetStrokeColorWithColor(ctx, part.shapeColor.CGColor);
-                CGContextSetFillColorWithColor(ctx, part.shapeColor.CGColor);
-                CGContextSetAlpha(ctx, 0.5f);
-                //CGContextSetBlendMode(ctx, kCGBlendModeSourceAtop);
-                CGContextFillEllipseInRect(ctx, CGRectMake(centPoint.x-150 +ofst.x , centPoint.y-150+ofst.y , 300, 300));
-                CGContextSetAlpha(ctx, 1.0f);
-                CGContextFillEllipseInRect(ctx, CGRectMake(centPoint.x-50+ofst.x, centPoint.y-50+ofst.y, 100, 100));
-
+                if(![part.shapeColor isEqual:[UIColor colorfromPain:0]]){
+                    CGPoint centPoint = [self midPoinfOfBezierPath:part.partShapePoints];
+                    
+                    CGContextSetLineWidth(ctx, 4.0f);
+                    CGContextSetStrokeColorWithColor(ctx, part.shapeColor.CGColor);
+                    CGContextSetFillColorWithColor(ctx, part.shapeColor.CGColor);
+                    CGContextSetAlpha(ctx, 0.5f);
+                    //CGContextSetBlendMode(ctx, kCGBlendModeSourceAtop);
+                    CGContextFillEllipseInRect(ctx, CGRectMake(centPoint.x-150 +ofst.x , centPoint.y-150+ofst.y , 300, 300));
+                    CGContextSetAlpha(ctx, 1.0f);
+                    CGContextFillEllipseInRect(ctx, CGRectMake(centPoint.x-50+ofst.x, centPoint.y-50+ofst.y, 100, 100));
+                }
             }
         }
     }
@@ -431,7 +434,7 @@
     
     UIImage *imgTRet = UIGraphicsGetImageFromCurrentImageContext();
     
-    CGSize screenSize = [[UIScreen mainScreen]applicationFrame].size;
+//    CGSize screenSize = [[UIScreen mainScreen]applicationFrame].size;
 
 //    UIImage *testImg;
 //    CGContextSaveGState(ctxRef);
@@ -440,9 +443,7 @@
 //    CGContextRestoreGState(ctxRef);
     
 
-    
     UIGraphicsEndImageContext();
-   // NSData *data = UIImageJPEGRepresentation(imgTRet, 1);
      NSData *data = UIImageJPEGRepresentation(imgTRet, 1);
     return data;
 }
@@ -455,4 +456,23 @@
     [self setNeedsDisplay];
 }
 
+-(void)clearAllPartsForOrientation:(int)orient{
+
+    NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
+    for (InvoBodyPartDetails *part in self.shapesArray) {
+        
+        if (part.orientation == orient) {
+            [indexSet addIndex:[self.shapesArray indexOfObject:part]];
+        }
+    }
+    if ([indexSet count]) {
+        [self.shapesArray removeObjectsAtIndexes:indexSet];
+        [self setNeedsDisplay];
+    }
+}
+
+-(NSArray *)currentPartsUsedForDrawing{
+
+    return [NSArray arrayWithArray:_shapesArray];
+}
 @end

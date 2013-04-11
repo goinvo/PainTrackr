@@ -260,37 +260,44 @@
     
     float newWidth = oldWidth * [entriesValue count];
     
-        for (int i=0; i<[entriesValue count]; i++) {
-            
-            InvoDetailedHistoryBodyView *detailView = [InvoDetailedHistoryBodyView detailedBodyViewWithFrame:CGRectMake(offsetX + oldWidth*i, 0, width, height) PainDetails:[entriesValue objectAtIndex:i]];
-            [_entriesScrollView addSubview:detailView];
+    for (int i=0; i<[entriesValue count]; i++) {
+        
+        InvoDetailedHistoryBodyView *detailView = [InvoDetailedHistoryBodyView detailedBodyViewWithFrame:CGRectMake(offsetX + oldWidth*i, 0, width, height) PainDetails:[entriesValue objectAtIndex:i]];
+        [_entriesScrollView addSubview:detailView];
     }
     
     [_entriesScrollView setContentSize:CGSizeMake(newWidth, _entriesScrollView.bounds.size.height)];
     
-//    _pageViewCtrl = [[UIPageControl alloc]initWithFrame:CGRectMake((oldWidth-100)*0.5, height+10.0, 100, 50.0)];
-//    _pageViewCtrl.numberOfPages = [entriesValue count];
-//    _pageViewCtrl.currentPage = 0;
-//    [_pageViewCtrl setPageIndicatorTintColor:[UIColor redColor]];
-//    [_pageViewCtrl setCurrentPageIndicatorTintColor:[UIColor grayColor]];
-//    [self.view insertSubview:_pageViewCtrl aboveSubview:_entriesScrollView];
 }
 
 #pragma mark -
-/*
--(UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView{
 
-    return _entriesScrollView;
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+
+   // NSLog(@"scrollview did scroll");
+    float xContentOffset = scrollView.contentOffset.x;
+}
+
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    NSLog(@"did end dragging");
+   }
+
+-(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
+
+    NSLog(@"begin decelerating");
+    NSLog(@"current page num is %f", scrollView.contentOffset.x/scrollView.frame.size.width);
+
 }
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
 
-//    CGPoint contentOffset = scrollView.contentOffset;
-    
-//    int number = contentOffset.x/scrollView.frame.size.width;
-//    NSLog(@"number is %d", number);
-//    [_pageViewCtrl setCurrentPage:number];
-    
+    float xContentOffset = scrollView.contentOffset.x;
+    NSLog(@" End decelerating current page num is %f", scrollView.contentOffset.x/scrollView.frame.size.width);
+}
+/*
+-(UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView{
+
+    return _entriesScrollView;
 }
 */
 #pragma mark change date label based on selection

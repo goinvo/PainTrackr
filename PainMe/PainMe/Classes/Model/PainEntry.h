@@ -16,7 +16,7 @@ typedef void(^ErrorHandler)(NSError *);
 
 @interface PainEntry : NSManagedObject
 
-@property (nonatomic, strong) NSString * notes;
+@property (nonatomic, copy) NSString * notes;
 @property (nonatomic) int16_t painLevel;
 @property (nonatomic) NSTimeInterval timestamp;
 @property (nonatomic, strong) PainLocation *location;

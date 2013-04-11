@@ -14,7 +14,9 @@
 		7612D8AA160D02E6009924A9 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7612D8A6160D02E6009924A9 /* libTestFlight.a */; };
 		7612D8AB160D02E6009924A9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7612D8A7160D02E6009924A9 /* README.md */; };
 		7612D8AC160D02E6009924A9 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 7612D8A8160D02E6009924A9 /* release_notes.md */; };
-		7612E21215A1E94500E8E009 /* BodyPartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7612E21115A1E94500E8E009 /* BodyPartView.m */; };
+		7614943D17168400005CEFD0 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7614943C17168400005CEFD0 /* libFlurry.a */; };
+		7614943F17168462005CEFD0 /* Flurry-LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7614943E17168462005CEFD0 /* Flurry-LICENSE.txt */; };
+		7614944117168654005CEFD0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7614944017168654005CEFD0 /* SystemConfiguration.framework */; };
 		761FA948165ABAE50031C53E /* NewBodyPartData.csv in Resources */ = {isa = PBXBuildFile; fileRef = 761FA947165ABAE50031C53E /* NewBodyPartData.csv */; };
 		761FAA28165ACB250031C53E /* back_zin_01_128.png in Resources */ = {isa = PBXBuildFile; fileRef = 761FA94B165ACB250031C53E /* back_zin_01_128.png */; };
 		761FAA29165ACB250031C53E /* back_zin_02_128.png in Resources */ = {isa = PBXBuildFile; fileRef = 761FA94C165ACB250031C53E /* back_zin_02_128.png */; };
@@ -336,7 +338,7 @@
 		7673B51315ADD7CD006112C2 /* PainFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7673B51215ADD7CD006112C2 /* PainFaceView.m */; };
 		767CF894165D510B002BABB2 /* InvoTextForEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 767CF893165D510B002BABB2 /* InvoTextForEmail.m */; };
 		7683CBA9160BC8F500B566A7 /* InvoPartNamelabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7683CBA8160BC8F500B566A7 /* InvoPartNamelabel.m */; };
-		76880DE6165C36AF007A6F81 /* InvoPainColorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 76880DE5165C36AF007A6F81 /* InvoPainColorHelper.m */; };
+		7688BDB417170A0E003236F2 /* UIColor+PainColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7688BDB317170A0E003236F2 /* UIColor+PainColor.m */; };
 		768B2479170E04AE0098C708 /* back_Zout.png in Resources */ = {isa = PBXBuildFile; fileRef = 768B2478170E04AE0098C708 /* back_Zout.png */; };
 		768B2481170E158A0098C708 /* back_Zout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 768B2480170E158A0098C708 /* back_Zout@2x.png */; };
 		768B2484170E18500098C708 /* back_Zin.png in Resources */ = {isa = PBXBuildFile; fileRef = 768B2482170E18500098C708 /* back_Zin.png */; };
@@ -703,8 +705,10 @@
 		7612D8A7160D02E6009924A9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		7612D8A8160D02E6009924A9 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
 		7612D8A9160D02E6009924A9 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
-		7612E21015A1E94500E8E009 /* BodyPartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BodyPartView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		7612E21115A1E94500E8E009 /* BodyPartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyPartView.m; sourceTree = "<group>"; };
+		7614943B17168400005CEFD0 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		7614943C17168400005CEFD0 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
+		7614943E17168462005CEFD0 /* Flurry-LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Flurry-LICENSE.txt"; sourceTree = "<group>"; };
+		7614944017168654005CEFD0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		761FA945165AB53A0031C53E /* BackViewIncluded.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BackViewIncluded.xcdatamodel; sourceTree = "<group>"; };
 		761FA947165ABAE50031C53E /* NewBodyPartData.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NewBodyPartData.csv; sourceTree = "<group>"; };
 		761FA94B165ACB250031C53E /* back_zin_01_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_zin_01_128.png; sourceTree = "<group>"; };
@@ -1042,8 +1046,8 @@
 		767CF893165D510B002BABB2 /* InvoTextForEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoTextForEmail.m; sourceTree = "<group>"; };
 		7683CBA7160BC8F500B566A7 /* InvoPartNamelabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoPartNamelabel.h; sourceTree = "<group>"; };
 		7683CBA8160BC8F500B566A7 /* InvoPartNamelabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoPartNamelabel.m; sourceTree = "<group>"; };
-		76880DE4165C36AF007A6F81 /* InvoPainColorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InvoPainColorHelper.h; path = ../Model/InvoPainColorHelper.h; sourceTree = "<group>"; };
-		76880DE5165C36AF007A6F81 /* InvoPainColorHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InvoPainColorHelper.m; path = ../Model/InvoPainColorHelper.m; sourceTree = "<group>"; };
+		7688BDB217170A0E003236F2 /* UIColor+PainColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PainColor.h"; sourceTree = "<group>"; };
+		7688BDB317170A0E003236F2 /* UIColor+PainColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PainColor.m"; sourceTree = "<group>"; };
 		768B2478170E04AE0098C708 /* back_Zout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_Zout.png; sourceTree = "<group>"; };
 		768B2480170E158A0098C708 /* back_Zout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_Zout@2x.png"; sourceTree = "<group>"; };
 		768B2482170E18500098C708 /* back_Zin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_Zin.png; sourceTree = "<group>"; };
@@ -1413,6 +1417,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7614944117168654005CEFD0 /* SystemConfiguration.framework in Frameworks */,
 				76C61AF515E3E21E00EDCBFC /* MessageUI.framework in Frameworks */,
 				76D3E50C15D598970095C553 /* libz.dylib in Frameworks */,
 				760D738B15CC54A300404C10 /* CoreImage.framework in Frameworks */,
@@ -1422,6 +1427,7 @@
 				834C0FC6158F7121000C5652 /* CoreGraphics.framework in Frameworks */,
 				834C0FC8158F7121000C5652 /* CoreData.framework in Frameworks */,
 				7612D8AA160D02E6009924A9 /* libTestFlight.a in Frameworks */,
+				7614943D17168400005CEFD0 /* libFlurry.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1447,7 +1453,18 @@
 				7612D8A8160D02E6009924A9 /* release_notes.md */,
 				7612D8A9160D02E6009924A9 /* TestFlight.h */,
 			);
-			path = TestFlightSDK1;
+			name = TestFlightSDK1;
+			path = Classes/TestFlightSDK1;
+			sourceTree = "<group>";
+		};
+		7614943A171683B8005CEFD0 /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				7614943E17168462005CEFD0 /* Flurry-LICENSE.txt */,
+				7614943B17168400005CEFD0 /* Flurry.h */,
+				7614943C17168400005CEFD0 /* libFlurry.a */,
+			);
+			name = Flurry;
 			sourceTree = "<group>";
 		};
 		761FA949165AC7540031C53E /* BackBodyImages */ = {
@@ -2301,6 +2318,7 @@
 		834C0FC0158F7121000C5652 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7614944017168654005CEFD0 /* SystemConfiguration.framework */,
 				76C61AF415E3E21E00EDCBFC /* MessageUI.framework */,
 				760D738A15CC54A300404C10 /* CoreImage.framework */,
 				83C440261598D96800F401D2 /* QuartzCore.framework */,
@@ -2316,6 +2334,8 @@
 		834C0FC9158F7121000C5652 /* PainMe */ = {
 			isa = PBXGroup;
 			children = (
+				7612D8A5160D02E6009924A9 /* TestFlightSDK1 */,
+				7614943A171683B8005CEFD0 /* Flurry */,
 				766FF8FC15E51EA8000EDCD2 /* ErrorHandler.h */,
 				834C1002158F7255000C5652 /* Classes */,
 				834C100F158F7255000C5652 /* Resources */,
@@ -2347,7 +2367,6 @@
 			children = (
 				834C100D158F7255000C5652 /* Model */,
 				834C100A158F7255000C5652 /* Helpers */,
-				7612D8A5160D02E6009924A9 /* TestFlightSDK1 */,
 				762EC61E15C1CC8D00250155 /* CSVParser */,
 				76AB5DA115B8909000FEB78B /* Singletons */,
 				834C1003158F7255000C5652 /* Controllers */,
@@ -2384,14 +2403,14 @@
 		834C100A158F7255000C5652 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				76880DE4165C36AF007A6F81 /* InvoPainColorHelper.h */,
-				76880DE5165C36AF007A6F81 /* InvoPainColorHelper.m */,
 				834C100B158F7255000C5652 /* main.m */,
 				834C100C158F7255000C5652 /* PainMe-Prefix.pch */,
 				76354CD5170CA41B009E8D6A /* UIDevice+deviceInfo.h */,
 				76354CD6170CA41B009E8D6A /* UIDevice+deviceInfo.m */,
 				76354CD8170CD09D009E8D6A /* UIFont+PainTrackrFonts.h */,
 				76354CD9170CD09D009E8D6A /* UIFont+PainTrackrFonts.m */,
+				7688BDB217170A0E003236F2 /* UIColor+PainColor.h */,
+				7688BDB317170A0E003236F2 /* UIColor+PainColor.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2416,8 +2435,6 @@
 			children = (
 				83C4401E1598D73E00F401D2 /* BodyView.h */,
 				83C4401F1598D73E00F401D2 /* BodyView.m */,
-				7612E21015A1E94500E8E009 /* BodyPartView.h */,
-				7612E21115A1E94500E8E009 /* BodyPartView.m */,
 				7673B51115ADD7CD006112C2 /* PainFaceView.h */,
 				7673B51215ADD7CD006112C2 /* PainFaceView.m */,
 				76D9950515EFB1B300FFF78C /* InvoHistoryView.h */,
@@ -3175,6 +3192,7 @@
 				76F26141171380F500E61B65 /* coachmarks_long@2x.png in Resources */,
 				76F26142171380F500E61B65 /* coachmarks.png in Resources */,
 				76F26143171380F500E61B65 /* coachmarks@2x.png in Resources */,
+				7614943F17168462005CEFD0 /* Flurry-LICENSE.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3219,7 +3237,6 @@
 				83C440201598D73E00F401D2 /* BodyView.m in Sources */,
 				83C440241598D85100F401D2 /* InvoBodySelectionViewController.m in Sources */,
 				83C4402A1598DA2700F401D2 /* PainLocation.m in Sources */,
-				7612E21215A1E94500E8E009 /* BodyPartView.m in Sources */,
 				7673B51315ADD7CD006112C2 /* PainFaceView.m in Sources */,
 				76AB5DA515B890E100FEB78B /* InvoDataManager.m in Sources */,
 				762EC62915C1CCBE00250155 /* CHCSVParser.m in Sources */,
@@ -3234,10 +3251,10 @@
 				762C1A03161258FD00434807 /* InvoDetailedHistoryBodyView.m in Sources */,
 				7657561D161382BC00067BAF /* InvoAboutViewController.m in Sources */,
 				763A4F0E165BDCC70082D0D8 /* InvoFlipButtonView.m in Sources */,
-				76880DE6165C36AF007A6F81 /* InvoPainColorHelper.m in Sources */,
 				767CF894165D510B002BABB2 /* InvoTextForEmail.m in Sources */,
 				76354CD7170CA41B009E8D6A /* UIDevice+deviceInfo.m in Sources */,
 				76354CDA170CD09D009E8D6A /* UIFont+PainTrackrFonts.m in Sources */,
+				7688BDB417170A0E003236F2 /* UIColor+PainColor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3317,6 +3334,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3348,6 +3366,7 @@
 		834C0FFD158F7121000C5652 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PainMe/Classes/Helpers/PainMe-Prefix.pch";
 				GCC_VERSION = "";
@@ -3360,6 +3379,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = PainTrackr;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				TARGETED_DEVICE_FAMILY = 1;

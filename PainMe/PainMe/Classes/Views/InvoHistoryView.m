@@ -8,14 +8,15 @@
 
 #import "InvoHistoryView.h"
 #import "QuartzCore/QuartzCore.h"
-#import "InvoPainColorHelper.h"
+
 #import "PainEntry.h"
 #import "PainLocation.h"
-
+#import "UIColor+PainColor.h"
 
 @interface InvoHistoryView ()
 {
-    CGPoint *_points;
+    CGPoint *_points1;
+    CGPoint *_points2;
     int zoomLevel1;
     int zoomLevel2;
 }
@@ -46,16 +47,16 @@
 
 - (void) setPointCount: (NSInteger) newPoints {
     
-    if (_points) {free(_points);}
-    _points = (CGPoint *)calloc(sizeof(CGPoint), newPoints);
+    if (_points1) {free(_points1);}
+    _points1 = (CGPoint *)calloc(sizeof(CGPoint), newPoints);
     _pointCount = newPoints;
     self.bezierPath = [UIBezierPath bezierPath];
 }
 
 - (void) setPointCount2: (NSInteger) newPoints {
     
-    if (_points) {free(_points);}
-    _points = (CGPoint *)calloc(sizeof(CGPoint), newPoints);
+    if (_points2) {free(_points2);}
+    _points2 = (CGPoint *)calloc(sizeof(CGPoint), newPoints);
     _pointCount2 = newPoints;
     self.bezierPath2 = [UIBezierPath bezierPath];
 }
@@ -67,8 +68,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-//        NSLog(@"history view init");
-//        NSLog(@"Received dict is %@",shapesDict);
         
         [self setUserInteractionEnabled:YES];
         [self setExclusiveTouch:YES];
@@ -84,8 +83,8 @@
         self.orientation1 = [[obj valueForKey:@"orientation"] intValue];
         zoomLevel1 = [[obj valueForKey:@"zoomLevel"] integerValue];
         
-        NSLog(@"pain level is %d",[[[locatArr objectAtIndex:0] valueForKey:@"painLevel"] integerValue]);
-        self.partColor = [InvoPainColorHelper colorfromPain:[[[locatArr objectAtIndex:0] valueForKey:@"painLevel"] integerValue]];
+//        NSLog(@"pain level is %d",[[[locatArr objectAtIndex:0] valueForKey:@"painLevel"] integerValue]);
+        self.partColor = [UIColor colorfromPain:[[[locatArr objectAtIndex:0] valueForKey:@"painLevel"] integerValue]];
         
         NSData *vertices = [obj valueForKey:@"shape"];
         int count = ([vertices length])/sizeof(CGPoint);
@@ -93,7 +92,7 @@
         //set Point Count to calloc enough memory
         [self setPointCount:count];
         // copy bytes to buffer _points
-        [vertices getBytes:(CGPoint *)_points length:[vertices length]];
+        [vertices getBytes:(CGPoint *)_points1 length:[vertices length]];
         
         //creating the bezeier1
         [self createShape:1
@@ -283,7 +282,7 @@
     self.orientation2 = [[loca valueForKey:@"orientation"] intValue];
     zoomLevel2 = [[loca valueForKey:@"zoomLevel"] integerValue];
     
-    self.partColor2 = [InvoPainColorHelper colorfromPain:[[secondEntry valueForKey:@"painLevel"] integerValue]];
+    self.partColor2 = [UIColor colorfromPain:[[secondEntry valueForKey:@"painLevel"] integerValue]];
     
     NSData *vertices = [loca valueForKey:@"shape"];
     int count = ([vertices length])/sizeof(CGPoint);
@@ -291,7 +290,7 @@
     //set Point Count to calloc enough memory
     [self setPointCount2:count];
     // copy bytes to buffer _points
-    [vertices getBytes:(CGPoint *)_points length:[vertices length]];
+    [vertices getBytes:(CGPoint *)_points2 length:[vertices length]];
     
     CGRect selfBounds = [self bounds];
     [self createShape:2
@@ -304,32 +303,36 @@
 
     CGFloat viewWidth = viewSize.width - offsetPoint.x;
     CGFloat viewHeight = viewSize.height - offsetPoint.y;
-    
+ //default shape1
     UIBezierPath *toUse = nil;
     int bezierPoints = 0;
     
-    if (shapeNum ==1) {
-        toUse = _bezierPath;
-        bezierPoints = _pointCount;
-    }
-    else if (shapeNum ==2){
+    CGPoint *points = _points1;
+    toUse = _bezierPath;
+    bezierPoints = _pointCount;
+    
+    if (shapeNum ==2){
         toUse = _bezierPath2;
         bezierPoints = _pointCount2;
+        points = _points2;
     }
     
     if ([toUse isEmpty]) {
     
         if (bezierPoints > 2) {
             
-            [toUse moveToPoint: CGPointMake(offsetPoint.x + _points[0].x*viewWidth,
-                                                  _points[0].y*viewHeight) ];
+            [toUse moveToPoint: CGPointMake(offsetPoint.x + points[0].x*viewWidth,
+                                                  points[0].y*viewHeight) ];
             
             for (int i=1; i<bezierPoints; i++) {
                 
-                [toUse addLineToPoint:CGPointMake(offsetPoint.x +_points[i].x*viewWidth ,
-                                                        _points[i].y*viewHeight)];
+                [toUse addLineToPoint:CGPointMake(offsetPoint.x +points[i].x*viewWidth ,
+                                                        points[i].y*viewHeight)];
             }
             [toUse closePath];
+        }
+        if (points) {
+            free(points);
         }
     }
 }

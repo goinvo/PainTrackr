@@ -67,9 +67,13 @@
                                 <segue destination="x1J-dd-DmD" kind="modal" id="ewi-GP-hql"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem width="19" style="plain" systemItem="fixedSpace" id="sGJ-LP-xR4"/>
-                        <barButtonItem title="Front View" style="plain" id="EtS-Ld-gJN"/>
-                        <barButtonItem width="20" style="plain" systemItem="fixedSpace" id="1Hr-u5-13t"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="sGJ-LP-xR4"/>
+                        <barButtonItem title="Clear All" id="LXZ-Wa-deQ">
+                            <connections>
+                                <action selector="clearButtonTapped:" destination="Yo3-Z7-ePf" id="Igt-Y3-hYf"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="1Hr-u5-13t"/>
                         <barButtonItem systemItem="action" id="gHK-Kg-PFO">
                             <connections>
                                 <action selector="sendPresed:" destination="Yo3-Z7-ePf" id="PFk-iI-YcU"/>
@@ -88,7 +92,6 @@
                         <outlet property="flipButton" destination="0Lb-yE-oJf" id="aOU-dG-8fM"/>
                         <outlet property="scrollView" destination="c8j-aa-t6T" id="6by-tb-6by"/>
                         <outlet property="sendButton" destination="gHK-Kg-PFO" id="gvF-ei-mGC"/>
-                        <outlet property="viewLabelButton" destination="EtS-Ld-gJN" id="4ON-e4-qTq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nsC-l6-yud" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -147,31 +150,6 @@
             <point key="canvasLocation" x="622" y="655"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="BodyView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BodyView.h"/>
-        </class>
-        <class className="InvoBodySelectionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/InvoBodySelectionViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="aboutPressed:"/>
-                <relationship kind="action" name="flipTapped:"/>
-                <relationship kind="action" name="sendPresed:"/>
-                <relationship kind="outlet" name="bodyView" candidateClass="BodyView"/>
-                <relationship kind="outlet" name="flipButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="sendButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="viewLabelButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="InvoHistoryViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/InvoHistoryViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backPressed:"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

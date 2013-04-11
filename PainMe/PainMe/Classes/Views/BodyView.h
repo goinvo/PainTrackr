@@ -20,7 +20,7 @@
 }
 
 @property (nonatomic, readwrite)BOOL strokeChanged;
-@property (nonatomic, strong) NSString *currentView;
+@property (nonatomic, copy) NSString *currentView;
 
 -(void)renderPainForBodyPartPath:(UIBezierPath *)path WithColor:(UIColor *)fillColor detailLevel:(int)level name:(NSString *)pName orient:(int)side;
 
@@ -28,7 +28,7 @@
 -(void)resetStroke;
 
 -(NSString *)partNameAtLocation:(CGPoint)touch withObj:(NSDictionary *)objDict remove:(BOOL)toRem;
-//-(NSString *)partNameAtLocation:(CGPoint)touch remove:(BOOL)toRem;
+
 -(void)addObjToSHapesArrayWithShape:(UIBezierPath *)shape color:(UIColor *)fillColor detail:(int)levDet name:(NSString *)partName orientation:(int)side;
 
 -(BOOL)doesEntryExist:(NSString *)name withZoomLevel:(int)level;
@@ -37,4 +37,7 @@
 -(void)colorBodyLocationsInRect:(CGRect)rect WithZoom:(int)zm InContext:(CGContextRef)ctx withOffset:(CGPoint)ofst;
 
 -(void)flipView;
+-(void)clearAllPartsForOrientation:(int)orient;
+
+-(NSArray *)currentPartsUsedForDrawing;
 @end

@@ -9,7 +9,7 @@
 // CUrrent total number of locations is 245
 
 #import "InvoDataManager.h"
-
+//257
 #define MAX_LOCATIONS 257
 
 #define NUM_COLUMNS 4.0
@@ -86,30 +86,8 @@
 	return instance;
 }
 
-
-- (void)saveContext
-{
-//    NSLog(@"Saving COntext");
-    
-    NSError *error = nil;
-    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-    
-    if (managedObjectContext != nil) {
-        
-//        NSLog(@" managedObjectContext is not nil");
-        
-        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-            
-            
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-//            abort();
-        }
-    }
-}
-
 /*
+//useful for debugging purposes 
 -(id)init{
 
     self = [super init];
@@ -132,8 +110,9 @@
  
 -(void)checkPainLocationDataBase{
 
-//    [self painLocationsInDatabase];
-    
+    //check to see if stored locations
+    //are not equal to actual
+    //App comes preloaded with a sqlite file
     if(MAX_LOCATIONS != [self painLocationsInDatabase]){
             
         [self getDataFromCSVInDict];
@@ -144,28 +123,20 @@
 #pragma mark get painLocation Data from database
 
 -(int)painLocationsInDatabase{
-      
-    NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainLocation" inManagedObjectContext:self.managedObjectContext];
-    
-    NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
-    [fetReq setEntity:descript];
-    [fetReq setResultType:NSDictionaryResultType];
-    
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name !=%@",@""];
-//    [fetReq setPredicate:predicate];
-    
-    NSError *error = nil;
-    NSArray *locData = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
-    
-//    NSLog(@"Entries are %@ with count %d", locData,[locData count]);
+        
     self.keysFromStoredLocData = [NSMutableArray array];
+    NSArray *allLocations = [PainLocation painLocations];
     
-    for (NSDictionary *dicti in locData) {
-        //getting all names
-        [self.keysFromStoredLocData addObject:[[dicti allValues]objectAtIndex:0]];
+    if (allLocations) {
+     
+        for (NSDictionary *dict in allLocations) {
+            //getting all names
+            [self.keysFromStoredLocData addObject:[[dict allValues]objectAtIndex:0]];
+        }
+//        NSLog(@"count is %d",[self.keysFromStoredLocData count]);
+        return [self.keysFromStoredLocData count];
     }
-    
-    return [self.keysFromStoredLocData count];
+    return 0;
 }
 
 #pragma mark -
@@ -175,15 +146,15 @@
     
 //    NSLog(@"Beginning...");
 	NSStringEncoding encoding = 0;
-    // NSString *file = @"/Users/DDKarwa/Desktop/tmpCsvParse/Workbook1.csv";
+    //if the user already has data front locations
+    //and is missing the backView pain Locations
     NSString *file = [[NSBundle mainBundle] pathForResource:@"BackViewData" ofType:@"csv"];
 //      NSString *file = [[NSBundle mainBundle] pathForResource:@"NewBodyPartData" ofType:@"csv"];
     NSInputStream *stream = [NSInputStream inputStreamWithFileAtPath:file];
     NSError *error = nil;
     
+    //using the CHCSV parser to aprse through the body csv data
 	CHCSVParser * p = [[CHCSVParser alloc] initWithStream:stream usedEncoding:&encoding error:&error];
-	
-//	NSLog(@"encoding: %@", CFStringGetNameOfEncoding(CFStringConvertNSStringEncodingToEncoding(encoding)));
 	
 	Delegate * d = [[Delegate alloc] init];
 	[p setParserDelegate:d];
@@ -195,14 +166,10 @@
 //	NSLog(@"raw difference: %f", (end-start));
     
     NSArray *a = [NSArray arrayWithContentsOfCSVFile:file encoding:encoding error:nil];
-  //  NSLog(@"%@", a);
     NSString *s = [a CSVString];
-    
-    //NSLog(@"s is %@",s);
     
     NSArray *csvArray = [s CSVComponents];
     int csvArrayCount = [csvArray count];
-//    NSLog(@" Array is %d",[csvArray count]);
     
     self.dict = [NSMutableDictionary dictionary];
     
@@ -237,20 +204,6 @@
 
 #pragma mark check if location exists in database
 -(BOOL)painLocationExists:(NSString*)locName{
-
-//    for (NSString *str in self.keysFromStoredLocData) {
-//        
-//        if ([locName isEqualToString:str]) {
-//            
-//            return YES;
-//        }
-//    }
-//    return NO;
-    
-//    if ([self.keysFromStoredLocData indexOfObject:locName] == NSNotFound) {
-//        return NO;
-//    }
-//    return YES;
     
     if ([self.keysFromStoredLocData containsObject:locName]) {
         NSLog(@"exists");
@@ -268,54 +221,59 @@
     for (NSString *ky in dictKeys) {
         
         if ([dictKeys count]!=[self.keysFromStoredLocData count]) {
-        
+            
             if ([ky isEqualToString:@"Posterior Head"]) {
                 
                 NSLog(@"details are %@",ky);
             }
-
-//            if (![self painLocationExists:[ky copy]])
-//            {
-                NSArray *valArray = [self.dict valueForKey:ky];
+            
+            NSArray *valArray = [self.dict valueForKey:ky];
+            
+            int itmCount = [valArray count];
+            
+            [self setPointCount:itmCount];
+            
+            int i=0;
+            
+            NSString *orientString = [[valArray objectAtIndex:0] objectAtIndex:6];
+            int16_t orientation =  ([orientString isEqualToString:@"Back"])?1:0;
+            
+            for (NSArray *arr in valArray) {
                 
-                int itmCount = [valArray count];
+                float xadd = [[arr objectAtIndex:2] floatValue];
+                float yadd = [[arr objectAtIndex:3] floatValue];
+                float xCoor = [[arr objectAtIndex:4] floatValue];
+                float yCoor = [[arr objectAtIndex:5] floatValue];
                 
-                [self setPointCount:itmCount];
-                
-                int i=0;
-                
-                NSString *orientString = [[valArray objectAtIndex:0] objectAtIndex:6];
-                int16_t orientation =  ([orientString isEqualToString:@"Back"])?1:0;
-                
-                for (NSArray *arr in valArray) {
-                    
-                    float xadd = [[arr objectAtIndex:2] floatValue];
-                    float yadd = [[arr objectAtIndex:3] floatValue];
-                    float xCoor = [[arr objectAtIndex:4] floatValue];
-                    float yCoor = [[arr objectAtIndex:5] floatValue];
-                    
-                    _pts[i]=CGPointMake((xadd/NUM_COLUMNS) + (xCoor/BODY_WIDTH), (yadd/NUM_ROWS) +(yCoor/BODY_HEIGHT));
-                    i++;
-                }
-                
-                NSData *shapeVertices = [NSData dataWithBytes:_pts length:sizeof(CGPoint)*itmCount];
-                
-                int zoomLvl = [[[valArray objectAtIndex:0] objectAtIndex:1] integerValue];
+                _pts[i]=CGPointMake((xadd/NUM_COLUMNS) + (xCoor/BODY_WIDTH), (yadd/NUM_ROWS) +(yCoor/BODY_HEIGHT));
+                i++;
+            }
+            
+            NSData *shapeVertices = [NSData dataWithBytes:_pts length:sizeof(CGPoint)*itmCount];
+            
+            int zoomLvl = [[[valArray objectAtIndex:0] objectAtIndex:1] integerValue];
             
             if ([ky isEqualToString:@"Posterior Head"]) {
                 
                 NSLog(@"details are %@ zoom%d orient%d",ky,zoomLvl, orientation );
             }
-
-                [PainLocation locationEntryWithName:[ky copy] shape:shapeVertices zoomLevel:zoomLvl orientation:orientation ];
-
-                valArray = nil;
-//            }
+            
+            [PainLocation locationEntryWithName:[ky copy] shape:shapeVertices zoomLevel:zoomLvl orientation:orientation ];
+            
+            valArray = nil;
+            
         }
     }
     [self saveContext];
     [self.keysFromStoredLocData removeAllObjects];
     [self painLocationsInDatabase];
+    
+    [self.dict removeAllObjects];
+   
+    if (_pts) {
+        free(_pts);
+        _pts = nil;
+    }
     
 }
 
@@ -331,8 +289,7 @@
 
 // Returns the managed object context for the application.
 // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
-- (NSManagedObjectContext *)managedObjectContext
-{
+- (NSManagedObjectContext *)managedObjectContext{
 
     if(!_managedObjectContext ){
         NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
@@ -413,6 +370,33 @@
     return _persistentStoreCoordinator;
 }
 
+#pragma mark save the ManagedObject Context
+- (void)saveContext
+{
+    //    NSLog(@"Saving COntext");
+    
+    NSError *error = nil;
+    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    
+    if (managedObjectContext != nil) {
+        
+        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+            
+            
+            // Replace this implementation with code to handle the error appropriately.
+            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            //            abort();
+        }
+    }
+}
+
+#pragma mark -
+-(NSManagedObjectContext *) objContext{
+    
+    return self.managedObjectContext;
+}
+
 #pragma mark - Application's Documents directory
 
 // Returns the URL to the application's Documents directory.
@@ -448,74 +432,10 @@
     
     NSError *error = nil;
     CrDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
-//    count = [CrDta count];
-        
-//    NSLog(@"value in COreData PainEntry is %d", [CrDta count]);
         
     }
     
     return [CrDta copy];
-}
-
-
--(id)lastPainEntryToRenderWithOrient:(int)orient{
-
-    NSEntityDescription *ent = [NSEntityDescription entityForName:@"PainEntry" inManagedObjectContext:self.managedObjectContext];
-    
-    NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
-    [fetReq setEntity:ent];
-    
-    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO];
-    [fetReq setSortDescriptors:[NSArray arrayWithObject:sort]];
-
-    NSPredicate *pred;
-    
-    if (orient ==0) {
-         pred = [NSPredicate predicateWithFormat:@"location.orientation == %@ ",[NSNumber numberWithInt:0]];
-    }
-    else{
-        pred = [NSPredicate predicateWithFormat:@"location.orientation == %@",[NSNumber numberWithInt:orient]];
-    }
-    [fetReq setPredicate:pred];
-    [fetReq setFetchLimit:1];
-    
-    
-//    [fetReq setResultType:NSDictionaryResultType];
-    [fetReq setPropertiesToFetch:[NSArray arrayWithObjects:@"location",@"notes",@"painLevel",@"timestamp", nil]];
-    
-    NSError *error;
-    NSArray *CrDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
-    
-    if ([CrDta count] >0) {
-
-        return [CrDta objectAtIndex:0];
-    }
-    return nil;
-}
-
-
--(NSArray *)namesOfBodyParts{
-
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"PainLocation" inManagedObjectContext:self.managedObjectContext];
-    
-    NSFetchRequest *fetreq = [[NSFetchRequest alloc] init];
-    [fetreq setEntity:entity];
-    [fetreq setResultType:NSDictionaryResultType];
-    
-    NSMutableArray *arrtoRet = [NSMutableArray array];
-    NSError *error = nil;
-    
-    NSArray *data = [self.managedObjectContext executeFetchRequest:fetreq error:&error];
-    
-    if ([data count] >0) {
-        
-        for (NSDictionary *arr in data) {
-            
-            [arrtoRet addObject:[[arr valueForKey:@"name"] copy]];
-        }
-        return [arrtoRet copy];
-    }
-    return nil;
 }
 
 -(NSDictionary *)entriesPerDayList{
@@ -535,19 +455,17 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterShortStyle];
 
-   // NSString *currDate =[formatter stringFromDate:[(NSDictionary *)[totalEntries objectAtIndex:0] valueForKey:@"timestamp"]];
-    
+   
     NSString *prevDate = [formatter stringFromDate:[(NSDictionary *)[totalEntries objectAtIndex:0] valueForKey:@"timestamp"]];
     NSMutableArray *arr = [NSMutableArray array];
     
     for (int i=0; i<[totalEntries count];i++) {
         
-  
         PainEntry *entry = [totalEntries objectAtIndex:i];
-        NSString *currDate;
+        NSString *currDate = nil;
         
         if(entry){
-            currDate = [formatter stringFromDate:[entry valueForKey:@"timestamp"]] ;
+            currDate = [formatter stringFromDate:[entry valueForKey:@"timestamp"]];
             
             if (![currDate isEqualToString:prevDate]) {
                 
@@ -569,16 +487,13 @@
                 [arr addObject:entry];
             }
 
-            prevDate = currDate;
+            prevDate = [currDate copy];
+            currDate = nil;
         }
     }
+    prevDate = nil;
 //    NSLog(@"date sorted entries are %@",dateSortedEntries);
     return( ([totalEntries count]>0 )?[dateSortedEntries copy]:nil);
-}
-#pragma mark -
--(NSManagedObjectContext *) objContext{
-
-    return self.managedObjectContext;
 }
 
 @end
