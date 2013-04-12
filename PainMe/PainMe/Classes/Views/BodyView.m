@@ -91,16 +91,16 @@
             if (![fillColor isEqual:partDetail.shapeColor]) {
                 found = YES;
                 newPart = partDetail;
-                newPart.shapeColor = fillColor;
+               // newPart.shapeColor = fillColor;
                 break;
             }
             else return;
         }
     }
     
-//    if(newPart){
-//        newPart.shapeColor = fillColor;
-//    }
+    if(newPart){
+        newPart.shapeColor = fillColor;
+    }
 
     if (!found) {
         [self addObjToSHapesArrayWithShape:[path copy]
