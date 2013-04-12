@@ -11,8 +11,6 @@
 #import "InvoBodySelectionViewController.h"
 
 #import "InvoDataManager.h"
-
-#import "Flurry.h"
 //#import "TestFlight.h"
 
 @implementation InvoAppDelegate
@@ -35,22 +33,20 @@
 //        NSLog(@"%@",str);
 //    }];
 
-   if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-       UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-       UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-       splitViewController.delegate = (id)navigationController.topViewController;
-       
-    } else {
- 
-//TODO: figureOut the reason for this else        
-   }
+//   if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+//       UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
+//       UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
+//       splitViewController.delegate = (id)navigationController.topViewController;
+//    }
 
+    [Flurry setSessionReportsOnPauseEnabled:NO];
+    [Flurry setSessionReportsOnCloseEnabled:YES];
     [Flurry startSession:@"HWTNBHG34FKWNKHT9ZP5"];
-//    [TestFlight takeOff:@"c35236eb-4eab-4e34-a60d-c04afc4ce2d5"];
     
     InvoDataManager *dtaMgr = [InvoDataManager sharedDataManager];
     [dtaMgr checkPainLocationDataBase];
-    
+
+//    [TestFlight takeOff:@"c35236eb-4eab-4e34-a60d-c04afc4ce2d5"];
     return YES;
 }
 							
@@ -79,7 +75,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
    // Saves changes in the application's managed object context before the application terminates.
-    
     [[InvoDataManager sharedDataManager] saveContext];
 }
 

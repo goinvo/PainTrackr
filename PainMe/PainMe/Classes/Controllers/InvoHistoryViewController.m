@@ -26,9 +26,17 @@
 
 @implementation InvoHistoryViewController
 
+-(void)viewWillDisappear:(BOOL)animated{
+    
+    [Flurry endTimedEvent:@"InHistoryView" withParameters:nil];
+    [super viewWillDisappear:animated];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [Flurry logEvent:@"InHistoryView" timed:YES];
     
 //        NSLog(@"History view did load");
     // Do any additional setup after loading the view from its nib.

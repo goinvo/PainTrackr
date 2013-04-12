@@ -336,7 +336,6 @@
 		767CF894165D510B002BABB2 /* InvoTextForEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 767CF893165D510B002BABB2 /* InvoTextForEmail.m */; };
 		7683CBA9160BC8F500B566A7 /* InvoPartNamelabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7683CBA8160BC8F500B566A7 /* InvoPartNamelabel.m */; };
 		7688BDB417170A0E003236F2 /* UIColor+PainColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7688BDB317170A0E003236F2 /* UIColor+PainColor.m */; };
-		7688BDB6171770A3003236F2 /* InvoLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7688BDB5171770A3003236F2 /* InvoLogo.png */; };
 		7688BDBA171792E2003236F2 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7688BDB8171792E2003236F2 /* libTestFlight.a */; };
 		768B2479170E04AE0098C708 /* back_Zout.png in Resources */ = {isa = PBXBuildFile; fileRef = 768B2478170E04AE0098C708 /* back_Zout.png */; };
 		768B2481170E158A0098C708 /* back_Zout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 768B2480170E158A0098C708 /* back_Zout@2x.png */; };
@@ -672,7 +671,6 @@
 		834C101C158F7255000C5652 /* InvoMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834C1009158F7255000C5652 /* InvoMasterViewController.m */; };
 		834C101D158F7255000C5652 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 834C100B158F7255000C5652 /* main.m */; };
 		834C101E158F7255000C5652 /* PainMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 834C1011158F7255000C5652 /* PainMe.xcdatamodeld */; };
-		834C1020158F7255000C5652 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 834C1015158F7255000C5652 /* MainStoryboard_iPad.storyboard */; };
 		834C1021158F7255000C5652 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 834C1017158F7255000C5652 /* MainStoryboard_iPhone.storyboard */; };
 		83A3BE371593B8D0008EB148 /* PainEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A3BE361593B8D0008EB148 /* PainEntry.m */; };
 		83A3BE3A1593B955008EB148 /* BodyPartGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A3BE391593B955008EB148 /* BodyPartGeometry.m */; };
@@ -1041,7 +1039,6 @@
 		7683CBA8160BC8F500B566A7 /* InvoPartNamelabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoPartNamelabel.m; sourceTree = "<group>"; };
 		7688BDB217170A0E003236F2 /* UIColor+PainColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PainColor.h"; sourceTree = "<group>"; };
 		7688BDB317170A0E003236F2 /* UIColor+PainColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PainColor.m"; sourceTree = "<group>"; };
-		7688BDB5171770A3003236F2 /* InvoLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InvoLogo.png; sourceTree = "<group>"; };
 		7688BDB8171792E2003236F2 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		7688BDB9171792E2003236F2 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		768B2478170E04AE0098C708 /* back_Zout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_Zout.png; sourceTree = "<group>"; };
@@ -1389,7 +1386,6 @@
 		834C100C158F7255000C5652 /* PainMe-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PainMe-Prefix.pch"; sourceTree = "<group>"; };
 		834C1012158F7255000C5652 /* PainMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PainMe.xcdatamodel; sourceTree = "<group>"; };
 		834C1014158F7255000C5652 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		834C1016158F7255000C5652 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		834C1018158F7255000C5652 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		834C1019158F7255000C5652 /* PainMe-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PainMe-Info.plist"; sourceTree = "<group>"; };
 		83A3BE2A1593B786008EB148 /* 1.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 1.0.xcdatamodel; sourceTree = "<group>"; };
@@ -2443,7 +2439,6 @@
 		834C100F158F7255000C5652 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				7688BDB5171770A3003236F2 /* InvoLogo.png */,
 				7673D2D3170F6387009D2D09 /* HistroyViewImages */,
 				7673D2CC170F636C009D2D09 /* CoachMark */,
 				76117D451677EC7C00A284B9 /* PainMe.sqlite */,
@@ -2454,7 +2449,6 @@
 				83C43F071598D6F700F401D2 /* images */,
 				834C1010158F7255000C5652 /* Core Data */,
 				834C1013158F7255000C5652 /* InfoPlist.strings */,
-				834C1015158F7255000C5652 /* MainStoryboard_iPad.storyboard */,
 				834C1017158F7255000C5652 /* MainStoryboard_iPhone.storyboard */,
 				834C1019158F7255000C5652 /* PainMe-Info.plist */,
 			);
@@ -2552,7 +2546,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				834C1020158F7255000C5652 /* MainStoryboard_iPad.storyboard in Resources */,
 				834C1021158F7255000C5652 /* MainStoryboard_iPhone.storyboard in Resources */,
 				76F1120E15AF5BEA00E2907C /* F2.png in Resources */,
 				76F1120F15AF5BEA00E2907C /* F3.png in Resources */,
@@ -3179,7 +3172,6 @@
 				76F26142171380F500E61B65 /* coachmarks.png in Resources */,
 				76F26143171380F500E61B65 /* coachmarks@2x.png in Resources */,
 				7614943F17168462005CEFD0 /* Flurry-LICENSE.txt in Resources */,
-				7688BDB6171770A3003236F2 /* InvoLogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3280,14 +3272,6 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		834C1015158F7255000C5652 /* MainStoryboard_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				834C1016158F7255000C5652 /* en */,
-			);
-			name = MainStoryboard_iPad.storyboard;
-			sourceTree = "<group>";
-		};
 		834C1017158F7255000C5652 /* MainStoryboard_iPhone.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -3306,7 +3290,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3334,7 +3318,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -3353,7 +3337,7 @@
 		834C0FFD158F7121000C5652 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PainMe/Classes/Helpers/PainMe-Prefix.pch";
 				GCC_VERSION = "";
@@ -3378,7 +3362,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PainMe/Classes/Helpers/PainMe-Prefix.pch";
 				GCC_VERSION = "";
