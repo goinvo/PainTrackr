@@ -40,7 +40,7 @@
     if (result && [result count]>0) {
 
         locFound = (PainLocation *)[result objectAtIndex:0];
-        NSLog(@"PainLocation found is %@", locFound.name);
+      //  NSLog(@"PainLocation found is %@", locFound.name);
     }
     
     NSSet *entriesForLocation = locFound.painEntries;
@@ -176,7 +176,9 @@
     NSFetchRequest *fetchreq = [[NSFetchRequest alloc] init];
     [fetchreq setEntity:entyDescrip];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"orientation == %d&& zoomLevel == %d",orient, zoomLvl];
+    
+    NSPredicate *predicate = (zoomLvl == 0)? [NSPredicate predicateWithFormat:@"orientation == %d",orient]:
+                                             [NSPredicate predicateWithFormat:@"orientation == %d&& zoomLevel == %d",orient, zoomLvl];
     [fetchreq setPredicate:predicate];
 
     NSError *error;

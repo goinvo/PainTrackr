@@ -73,6 +73,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [Flurry logEvent:@"InDetailedHistoryView" timed:YES];
+    
     // Do any additional setup after loading the view from its nib.
     if (![self.dateLabelText isEqualToString:@""]) {
         [dateLabel setText:self.dateLabelText];
@@ -97,6 +100,11 @@
     [self.navigationController setToolbarHidden:YES];
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+
+    [Flurry endTimedEvent:@"InDetailedHistoryView" withParameters:nil];
+    [super viewWillDisappear:animated];
+}
 #pragma mark Sort Dates
 
 -(void)sortDates{

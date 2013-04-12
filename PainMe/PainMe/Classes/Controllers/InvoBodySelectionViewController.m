@@ -242,7 +242,7 @@ NSString *const RearView = @"Back View";
 -(void)checkAndAddLastEntryToView{
     
     NSArray *entryToRender = [PainLocation painEntryToRenderWithOrient:[self currentOrientation]
-                                                                  Zoom:ZOOM_LEVEL(self.scrollView.zoomScale)];
+                                                                  Zoom:0];
         
     if ([entryToRender count]) {
         //    NSLog(@"entry to render is %@",entryToRender);
@@ -416,7 +416,7 @@ NSString *const RearView = @"Back View";
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale {
    
-    NSLog(@"Scale is %f",scale);
+//    NSLog(@"Scale is %f",scale);
     
     [self.painFace increaseVisibility];
 
@@ -684,6 +684,7 @@ NSString *const RearView = @"Back View";
         }
         [[InvoDataManager sharedDataManager] saveContext];
         [ _bodyView clearAllPartsForOrientation:[self currentOrientation]];
+        [self removeBodyNamePopUp];
     }
 }
 @end
