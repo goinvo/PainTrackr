@@ -206,7 +206,7 @@
 -(BOOL)painLocationExists:(NSString*)locName{
     
     if ([self.keysFromStoredLocData containsObject:locName]) {
-        NSLog(@"exists");
+//        NSLog(@"exists");
         return YES;
     }
     return NO;
@@ -224,7 +224,7 @@
             
             if ([ky isEqualToString:@"Posterior Head"]) {
                 
-                NSLog(@"details are %@",ky);
+//                NSLog(@"details are %@",ky);
             }
             
             NSArray *valArray = [self.dict valueForKey:ky];
@@ -255,7 +255,7 @@
             
             if ([ky isEqualToString:@"Posterior Head"]) {
                 
-                NSLog(@"details are %@ zoom%d orient%d",ky,zoomLvl, orientation );
+//                NSLog(@"details are %@ zoom%d orient%d",ky,zoomLvl, orientation );
             }
             
             [PainLocation locationEntryWithName:[ky copy] shape:shapeVertices zoomLevel:zoomLvl orientation:orientation ];

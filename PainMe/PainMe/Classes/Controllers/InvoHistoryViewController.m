@@ -127,7 +127,7 @@
         self.scrollView.contentSize = (yIndex+108 <[UIScreen mainScreen].bounds.size.height -35)?CGSizeMake( 320, [UIScreen mainScreen].bounds.size.height -35) :
                                                                                                  CGSizeMake(320, yIndex+118*2);
         
-        NSLog(@"scrollview content size is %@", NSStringFromCGSize(self.scrollView.contentSize));
+//        NSLog(@"scrollview content size is %@", NSStringFromCGSize(self.scrollView.contentSize));
     }
 
 }
@@ -156,7 +156,7 @@
     
     for (id objDate in [self.painEntriesByDate allKeys]) {
         
-        NSLog(@"objDate is %@", objDate);
+//        NSLog(@"objDate is %@", objDate);
         NSString *conDate = [[frmtr dateFromString:objDate] copy];
         [unSortedDates addObject:conDate];
     }
@@ -166,7 +166,7 @@
         return [d1 compare:d2];
     }];
     
-    NSLog(@"sorted array is %@", self.sortedDates);
+//    NSLog(@"sorted array is %@", self.sortedDates);
 
 }
 

@@ -152,7 +152,7 @@ NSString *const RearView = @"Back View";
     
     NSArray *docDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     
-    NSLog(@"docDirectory count is%d", [docDirectories count]);
+//    NSLog(@"docDirectory count is%d", [docDirectories count]);
     
     NSString *docDirectory = [docDirectories objectAtIndex:0];
     
@@ -167,7 +167,7 @@ NSString *const RearView = @"Back View";
     
     if (timesLaunched ==0) {
         
-        NSLog(@"Launching for first time");
+//        NSLog(@"Launching for first time");
         [self addCoachMarks];
     }
     

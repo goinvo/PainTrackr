@@ -11,9 +11,6 @@
 		76111ED515D547BF007C1FC9 /* InvoBodyPartDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 76111ED415D547BF007C1FC9 /* InvoBodyPartDetails.m */; };
 		76117D441677EB2F00A284B9 /* BackViewData.csv in Resources */ = {isa = PBXBuildFile; fileRef = 76117D431677EB2F00A284B9 /* BackViewData.csv */; };
 		76117D461677EC7C00A284B9 /* PainMe.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 76117D451677EC7C00A284B9 /* PainMe.sqlite */; };
-		7612D8AA160D02E6009924A9 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7612D8A6160D02E6009924A9 /* libTestFlight.a */; };
-		7612D8AB160D02E6009924A9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7612D8A7160D02E6009924A9 /* README.md */; };
-		7612D8AC160D02E6009924A9 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 7612D8A8160D02E6009924A9 /* release_notes.md */; };
 		7614943D17168400005CEFD0 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7614943C17168400005CEFD0 /* libFlurry.a */; };
 		7614943F17168462005CEFD0 /* Flurry-LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7614943E17168462005CEFD0 /* Flurry-LICENSE.txt */; };
 		7614944117168654005CEFD0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7614944017168654005CEFD0 /* SystemConfiguration.framework */; };
@@ -339,6 +336,8 @@
 		767CF894165D510B002BABB2 /* InvoTextForEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 767CF893165D510B002BABB2 /* InvoTextForEmail.m */; };
 		7683CBA9160BC8F500B566A7 /* InvoPartNamelabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7683CBA8160BC8F500B566A7 /* InvoPartNamelabel.m */; };
 		7688BDB417170A0E003236F2 /* UIColor+PainColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7688BDB317170A0E003236F2 /* UIColor+PainColor.m */; };
+		7688BDB6171770A3003236F2 /* InvoLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7688BDB5171770A3003236F2 /* InvoLogo.png */; };
+		7688BDBA171792E2003236F2 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7688BDB8171792E2003236F2 /* libTestFlight.a */; };
 		768B2479170E04AE0098C708 /* back_Zout.png in Resources */ = {isa = PBXBuildFile; fileRef = 768B2478170E04AE0098C708 /* back_Zout.png */; };
 		768B2481170E158A0098C708 /* back_Zout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 768B2480170E158A0098C708 /* back_Zout@2x.png */; };
 		768B2484170E18500098C708 /* back_Zin.png in Resources */ = {isa = PBXBuildFile; fileRef = 768B2482170E18500098C708 /* back_Zin.png */; };
@@ -699,10 +698,6 @@
 		76111ED415D547BF007C1FC9 /* InvoBodyPartDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoBodyPartDetails.m; sourceTree = "<group>"; };
 		76117D431677EB2F00A284B9 /* BackViewData.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BackViewData.csv; sourceTree = "<group>"; };
 		76117D451677EC7C00A284B9 /* PainMe.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = PainMe.sqlite; sourceTree = "<group>"; };
-		7612D8A6160D02E6009924A9 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		7612D8A7160D02E6009924A9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		7612D8A8160D02E6009924A9 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
-		7612D8A9160D02E6009924A9 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		7614943B17168400005CEFD0 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		7614943C17168400005CEFD0 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		7614943E17168462005CEFD0 /* Flurry-LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Flurry-LICENSE.txt"; sourceTree = "<group>"; };
@@ -1046,6 +1041,9 @@
 		7683CBA8160BC8F500B566A7 /* InvoPartNamelabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoPartNamelabel.m; sourceTree = "<group>"; };
 		7688BDB217170A0E003236F2 /* UIColor+PainColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PainColor.h"; sourceTree = "<group>"; };
 		7688BDB317170A0E003236F2 /* UIColor+PainColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PainColor.m"; sourceTree = "<group>"; };
+		7688BDB5171770A3003236F2 /* InvoLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InvoLogo.png; sourceTree = "<group>"; };
+		7688BDB8171792E2003236F2 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		7688BDB9171792E2003236F2 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		768B2478170E04AE0098C708 /* back_Zout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_Zout.png; sourceTree = "<group>"; };
 		768B2480170E158A0098C708 /* back_Zout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_Zout@2x.png"; sourceTree = "<group>"; };
 		768B2482170E18500098C708 /* back_Zin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_Zin.png; sourceTree = "<group>"; };
@@ -1422,8 +1420,8 @@
 				834C0FC4158F7121000C5652 /* Foundation.framework in Frameworks */,
 				834C0FC6158F7121000C5652 /* CoreGraphics.framework in Frameworks */,
 				834C0FC8158F7121000C5652 /* CoreData.framework in Frameworks */,
-				7612D8AA160D02E6009924A9 /* libTestFlight.a in Frameworks */,
 				7614943D17168400005CEFD0 /* libFlurry.a in Frameworks */,
+				7688BDBA171792E2003236F2 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1441,18 +1439,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7612D8A5160D02E6009924A9 /* TestFlightSDK1 */ = {
-			isa = PBXGroup;
-			children = (
-				7612D8A6160D02E6009924A9 /* libTestFlight.a */,
-				7612D8A7160D02E6009924A9 /* README.md */,
-				7612D8A8160D02E6009924A9 /* release_notes.md */,
-				7612D8A9160D02E6009924A9 /* TestFlight.h */,
-			);
-			name = TestFlightSDK1;
-			path = Classes/TestFlightSDK1;
-			sourceTree = "<group>";
-		};
 		7614943A171683B8005CEFD0 /* Flurry */ = {
 			isa = PBXGroup;
 			children = (
@@ -1920,6 +1906,15 @@
 			name = HistroyViewImages;
 			sourceTree = "<group>";
 		};
+		7688BDB7171792CF003236F2 /* TestFlight */ = {
+			isa = PBXGroup;
+			children = (
+				7688BDB8171792E2003236F2 /* libTestFlight.a */,
+				7688BDB9171792E2003236F2 /* TestFlight.h */,
+			);
+			name = TestFlight;
+			sourceTree = "<group>";
+		};
 		76AB5DA115B8909000FEB78B /* Singletons */ = {
 			isa = PBXGroup;
 			children = (
@@ -2330,7 +2325,7 @@
 		834C0FC9158F7121000C5652 /* PainMe */ = {
 			isa = PBXGroup;
 			children = (
-				7612D8A5160D02E6009924A9 /* TestFlightSDK1 */,
+				7688BDB7171792CF003236F2 /* TestFlight */,
 				7614943A171683B8005CEFD0 /* Flurry */,
 				766FF8FC15E51EA8000EDCD2 /* ErrorHandler.h */,
 				834C1002158F7255000C5652 /* Classes */,
@@ -2448,6 +2443,7 @@
 		834C100F158F7255000C5652 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7688BDB5171770A3003236F2 /* InvoLogo.png */,
 				7673D2D3170F6387009D2D09 /* HistroyViewImages */,
 				7673D2CC170F636C009D2D09 /* CoachMark */,
 				76117D451677EC7C00A284B9 /* PainMe.sqlite */,
@@ -2859,8 +2855,6 @@
 				763307A715EEB3AE0059152A /* BodyPartData.csv in Resources */,
 				76BB404415F1144700ED69A9 /* historyBodyImage.png in Resources */,
 				76BB404515F1144700ED69A9 /* historyBodyImage@2x.png in Resources */,
-				7612D8AB160D02E6009924A9 /* README.md in Resources */,
-				7612D8AC160D02E6009924A9 /* release_notes.md in Resources */,
 				76C5FC7E1610DC3200B9CDAD /* InvoDetailedHistoryViewController.xib in Resources */,
 				76C5FC811610DFDC00B9CDAD /* arrow_Left.png in Resources */,
 				76C5FC821610DFDC00B9CDAD /* arrow_right.png in Resources */,
@@ -3185,6 +3179,7 @@
 				76F26142171380F500E61B65 /* coachmarks.png in Resources */,
 				76F26143171380F500E61B65 /* coachmarks@2x.png in Resources */,
 				7614943F17168462005CEFD0 /* Flurry-LICENSE.txt in Resources */,
+				7688BDB6171770A3003236F2 /* InvoLogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3311,7 +3306,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3339,7 +3334,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -3358,7 +3353,7 @@
 		834C0FFD158F7121000C5652 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PainMe/Classes/Helpers/PainMe-Prefix.pch";
 				GCC_VERSION = "";
@@ -3383,7 +3378,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PainMe/Classes/Helpers/PainMe-Prefix.pch";
 				GCC_VERSION = "";

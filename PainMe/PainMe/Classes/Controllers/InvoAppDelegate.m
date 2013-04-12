@@ -12,9 +12,8 @@
 
 #import "InvoDataManager.h"
 
-#import "TestFlight.h"
-
 #import "Flurry.h"
+#import "TestFlight.h"
 
 @implementation InvoAppDelegate
 
@@ -47,13 +46,10 @@
    }
 
     [Flurry startSession:@"HWTNBHG34FKWNKHT9ZP5"];
+    [TestFlight takeOff:@"c35236eb-4eab-4e34-a60d-c04afc4ce2d5"];
     
     InvoDataManager *dtaMgr = [InvoDataManager sharedDataManager];
-
     [dtaMgr checkPainLocationDataBase];
-    
-//    [TestFlight takeOff:@"35de84803bb30da2ded080223940da33_MTEwMDY2MjAxMi0wNy0xMyAxNDo1MTozNi44MDQ4NjU"];
-    
     
     return YES;
 }

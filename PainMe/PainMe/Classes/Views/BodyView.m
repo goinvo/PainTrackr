@@ -331,7 +331,7 @@
     NSString *nameToCompare = [[objDict allKeys] objectAtIndex:0];
     [self.shapesArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
     
-        NSLog(@"shape in shaesArray is %@", [((InvoBodyPartDetails *)obj) partName]);
+//        NSLog(@"shape in shaesArray is %@", [((InvoBodyPartDetails *)obj) partName]);
     }];
     
     for (InvoBodyPartDetails *part in self.shapesArray) {

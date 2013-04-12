@@ -11,4 +11,6 @@
 
 @interface InvoAboutViewController : UIViewController<MFMailComposeViewControllerDelegate>
 
+- (IBAction)linkTapped:(id)sender;
+
 @end
