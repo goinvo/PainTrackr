@@ -86,7 +86,7 @@
 //        NSLog(@"pain level is %d",[[[locatArr objectAtIndex:0] valueForKey:@"painLevel"] integerValue]);
         self.partColor = [UIColor colorfromPain:[[[locatArr objectAtIndex:0] valueForKey:@"painLevel"] integerValue]];
         
-        NSData *vertices = [obj valueForKey:@"shape"];
+        NSData *vertices = [[obj valueForKey:@"shape"] copy];
         int count = ([vertices length])/sizeof(CGPoint);
         
         //set Point Count to calloc enough memory
@@ -284,7 +284,7 @@
     
     self.partColor2 = [UIColor colorfromPain:[[secondEntry valueForKey:@"painLevel"] integerValue]];
     
-    NSData *vertices = [loca valueForKey:@"shape"];
+    NSData *vertices = [[loca valueForKey:@"shape"] copy];
     int count = ([vertices length])/sizeof(CGPoint);
     
     //set Point Count to calloc enough memory

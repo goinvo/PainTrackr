@@ -82,34 +82,34 @@
     InvoBodyPartDetails *newPart = nil;
     
     NSArray *arrayToIter = nil;
-    
-    //@synchronized(self.shapesArray){
-        arrayToIter = [self.shapesArray copy];
-//    }
-        
+    arrayToIter = [self.shapesArray copy];
+
     for (InvoBodyPartDetails *partDetail in arrayToIter) {
         
         if([pName isEqualToString:partDetail.partName]){
             
             if (![fillColor isEqual:partDetail.shapeColor]) {
-//                NSLog(@"Found to change color");
                 found = YES;
                 newPart = partDetail;
+                newPart.shapeColor = fillColor;
                 break;
             }
             else return;
         }
     }
     
-    if(newPart){
-        newPart.shapeColor = fillColor;
-    }
+//    if(newPart){
+//        newPart.shapeColor = fillColor;
+//    }
 
     if (!found) {
-        [self addObjToSHapesArrayWithShape:[path copy] color:fillColor detail:level name:[pName copy] orientation:side];
+        [self addObjToSHapesArrayWithShape:[path copy]
+                                     color:fillColor
+                                    detail:level
+                                      name:[pName copy]
+                               orientation:side];
     }
-   // NSLog(@"path bounds are %@",NSStringFromCGRect([path bounds]));
-    
+  
     [self setNeedsDisplay];
 }
 
@@ -331,7 +331,7 @@
     NSString *nameToCompare = [[objDict allKeys] objectAtIndex:0];
     [self.shapesArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
     
-        NSLog(@"shape in shaesArray is %@", [((InvoBodyPartDetails *)obj) partName]);
+//        NSLog(@"shape in shaesArray is %@", [((InvoBodyPartDetails *)obj) partName]);
     }];
     
     for (InvoBodyPartDetails *part in self.shapesArray) {

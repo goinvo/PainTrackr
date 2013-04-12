@@ -73,4 +73,13 @@
     [controller dismissModalViewControllerAnimated:YES];
 }
 
+- (void)viewDidUnload {
+   
+    [super viewDidUnload];
+}
+
+- (IBAction)linkTapped:(id)sender {
+
+     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.paintrackr.com"]];
+}
 @end

@@ -37,7 +37,7 @@
         CGRect newRect = CGRectMake(flipRect.origin.x, flipRect.origin.y + (flipRect.size.height - newHeight)*0.25, flipRect.size.width,newHeight);
         flipRect = newRect;
         
-        NSLog(@"new rect is %@", NSStringFromCGRect(newRect));
+//        NSLog(@"new rect is %@", NSStringFromCGRect(newRect));
     }
 //starting the drawing
     UIGraphicsBeginImageContextWithOptions(flipRect.size, NO, [[UIScreen mainScreen]scale]);

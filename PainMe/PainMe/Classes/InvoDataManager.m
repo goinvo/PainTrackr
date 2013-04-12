@@ -206,7 +206,7 @@
 -(BOOL)painLocationExists:(NSString*)locName{
     
     if ([self.keysFromStoredLocData containsObject:locName]) {
-        NSLog(@"exists");
+//        NSLog(@"exists");
         return YES;
     }
     return NO;
@@ -224,7 +224,7 @@
             
             if ([ky isEqualToString:@"Posterior Head"]) {
                 
-                NSLog(@"details are %@",ky);
+//                NSLog(@"details are %@",ky);
             }
             
             NSArray *valArray = [self.dict valueForKey:ky];
@@ -255,7 +255,7 @@
             
             if ([ky isEqualToString:@"Posterior Head"]) {
                 
-                NSLog(@"details are %@ zoom%d orient%d",ky,zoomLvl, orientation );
+//                NSLog(@"details are %@ zoom%d orient%d",ky,zoomLvl, orientation );
             }
             
             [PainLocation locationEntryWithName:[ky copy] shape:shapeVertices zoomLevel:zoomLvl orientation:orientation ];
@@ -453,10 +453,12 @@
     
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setLocale:[NSLocale currentLocale]];
     [formatter setDateStyle:NSDateFormatterShortStyle];
 
+    NSDate *date = [[(NSDictionary *)[totalEntries objectAtIndex:0] valueForKey:@"timestamp"]copy];
    
-    NSString *prevDate = [formatter stringFromDate:[(NSDictionary *)[totalEntries objectAtIndex:0] valueForKey:@"timestamp"]];
+    NSString *prevDate = [formatter stringFromDate:date];
     NSMutableArray *arr = [NSMutableArray array];
     
     for (int i=0; i<[totalEntries count];i++) {
@@ -465,11 +467,12 @@
         NSString *currDate = nil;
         
         if(entry){
-            currDate = [formatter stringFromDate:[entry valueForKey:@"timestamp"]];
+            NSDate *entryDate = [[entry valueForKey:@"timestamp"] copy];
+            currDate = [formatter stringFromDate:entryDate];
             
             if (![currDate isEqualToString:prevDate]) {
                 
-                [dateSortedEntries setValue:arr forKey:prevDate];
+                [dateSortedEntries setValue:arr forKey:[prevDate copy] ];
                 arr = [NSMutableArray array];
                 
                 if(![arr containsObject:entry]){
@@ -480,7 +483,7 @@
             
                 id value = [dateSortedEntries valueForKey:currDate];
                 if (!value) {
-                    [dateSortedEntries setValue:arr forKey:currDate];
+                    [dateSortedEntries setValue:arr forKey:[currDate copy]];
                 }
             }
             if(![arr containsObject:entry]){
@@ -492,7 +495,7 @@
         }
     }
     prevDate = nil;
-//    NSLog(@"date sorted entries are %@",dateSortedEntries);
+
     return( ([totalEntries count]>0 )?[dateSortedEntries copy]:nil);
 }
 

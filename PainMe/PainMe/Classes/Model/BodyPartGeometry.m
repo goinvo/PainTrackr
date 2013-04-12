@@ -110,12 +110,7 @@
             [arrToIter addObject:part];
         }
     }
-    
-//    for(InvoBodyPartDetails *part in arrToIter){
-//    
-//        NSLog(@"part names to check are %@",part.partName);
-//    }
-    
+        
     for (InvoBodyPartDetails *part in arrToIter) {
         
         if ([part.partShapePoints containsPoint:pointToCheck]) {
@@ -125,19 +120,7 @@
         }
     }
     arrToIter = nil;
-    
-//    for (InvoBodyPartDetails *part in self.painShapeDetailsArr) {
-//        
-//        if (part.zoomLevel == zmLVL && part.orientation == orientation) {
-//            
-//            if ([part.partShapePoints containsPoint:pointToCheck]) {
-//                
-//                toRet = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObject:part.partShapePoints] forKeys:[NSArray arrayWithObject:part.partName]];
-//                break;
-//            }
-//        }
-//    }
-    
+        
     return toRet;
 }
 

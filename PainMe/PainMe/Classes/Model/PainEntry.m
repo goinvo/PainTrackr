@@ -63,18 +63,15 @@
     
     NSError *error = nil;
     NSArray *result = [mangObjContext executeFetchRequest:fetchReq error:&error];
-    
-    if (!error) {
+   
+    if (!error && [result count]) {
         
-        if (result &&[result count]>0) {
-            return result;
-        }
+        return [result copy];
     }
-    else{
-        handler(error);
-    }
+
+    handler(error);
     
-    return nil; 
+    return nil;
 }
 
 +(NSArray *)arrayofEntiresSorted:(ErrorHandler)handler{
@@ -91,20 +88,18 @@
     NSSortDescriptor *desc = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO];
     [fetchReq setSortDescriptors:[NSArray arrayWithObject:desc]];
     
-    
     NSError *error = nil;
     NSArray *result = [mangObjContext executeFetchRequest:fetchReq error:&error];
     
-    if (!error) {
-        
-        if (result &&[result count]>0) {
-            return [result copy];
-        }
-    }
-    else{
-        handler(error);
-    }
+    desc = nil;
     
+    if (!error && [result count]) {
+        
+        return [result copy];
+    }
+
+    handler(error);
+
     return nil;
 }
 

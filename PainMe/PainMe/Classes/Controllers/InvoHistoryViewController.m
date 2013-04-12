@@ -15,8 +15,8 @@
 
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) NSDateFormatter *form1;
-@property (nonatomic, strong)NSArray *sortedDates;
-@property (nonatomic, strong)NSDictionary *painEntriesByDate;
+@property (nonatomic, strong) NSArray *sortedDates;
+@property (nonatomic, strong) NSDictionary *painEntriesByDate;
 
 -(IBAction)backPressed:(id)sender;
 
@@ -40,7 +40,7 @@
         
         int maxCOunt = [self.sortedDates count];
         
-        NSDate *prevDateString = [self.sortedDates objectAtIndex:0];
+        NSDate *prevDateString = [[self.sortedDates objectAtIndex:0] copy];
         
         [self addLabelFromDate:prevDateString
                    formatStyle:@"MMMM YYY"
@@ -127,7 +127,7 @@
         self.scrollView.contentSize = (yIndex+108 <[UIScreen mainScreen].bounds.size.height -35)?CGSizeMake( 320, [UIScreen mainScreen].bounds.size.height -35) :
                                                                                                  CGSizeMake(320, yIndex+118*2);
         
-        NSLog(@"scrollview content size is %@", NSStringFromCGSize(self.scrollView.contentSize));
+//        NSLog(@"scrollview content size is %@", NSStringFromCGSize(self.scrollView.contentSize));
     }
 
 }
@@ -135,6 +135,7 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    
     // Release any stronged subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -148,13 +149,16 @@
 -(void)sortDates{
 
     NSMutableArray *unSortedDates = [NSMutableArray array];
-    NSDateFormatter *frmtr = [[NSDateFormatter alloc]init];
     
+    NSDateFormatter *frmtr = [[NSDateFormatter alloc]init];
     [frmtr setDateStyle:NSDateFormatterShortStyle];
+    [frmtr setLocale:[NSLocale currentLocale]];
     
     for (id objDate in [self.painEntriesByDate allKeys]) {
         
-        [unSortedDates addObject:[frmtr dateFromString:objDate]];
+//        NSLog(@"objDate is %@", objDate);
+        NSString *conDate = [[frmtr dateFromString:objDate] copy];
+        [unSortedDates addObject:conDate];
     }
     
     self.sortedDates = [unSortedDates sortedArrayUsingComparator:^(NSDate *d1, NSDate *d2) {
@@ -184,7 +188,7 @@
     [self.scrollView setFrame:CGRectMake(0, 0, 320, 480)];
     
     _form1 = [[NSDateFormatter alloc] init];
-    
+    [_form1 setLocale:[NSLocale currentLocale]];
     [self sortDates];
 
 }
@@ -230,7 +234,13 @@
 -(IBAction)backPressed:(id)sender{
 
 //    NSLog(@"Back Pressed");
-    [self.navigationController dismissModalViewControllerAnimated:YES];
+//    [self.navigationController dismissModalViewControllerAnimated:YES];
+        [self.scrollView removeFromSuperview];
+    if(_form1)  _form1 = nil;
+    if(_sortedDates)  _sortedDates = nil;
+    if(_painEntriesByDate)  _painEntriesByDate = nil;
+
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
 #pragma mark UIScrollViewDelegate methods
