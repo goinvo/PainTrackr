@@ -22,7 +22,7 @@
 
 @property (nonatomic, strong) NSMutableArray *shapesArray;
 
-+ (UIImage *)imageToMask:(UIImage *)image Withcolor:(UIColor *)color;
+//+ (UIImage *)imageToMask:(UIImage *)image Withcolor:(UIColor *)color;
 
 @end
 
@@ -70,7 +70,7 @@
                                                                        zoomLevel:levDet
                                                                             name:[partName copy]
                                                                      orientation:side];
-    
+//    NSLog(@"was still adding");
     [self.shapesArray addObject:partDetail];
 
 }
@@ -109,8 +109,13 @@
                                       name:[pName copy]
                                orientation:side];
     }
-  
-    [self setNeedsDisplay];
+//    NSLog(@"Need display for %@", pName);
+    
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//         self.layer.contents = nil;
+        [self setNeedsDisplay];
+//    });
+    
 }
 
 #pragma mark Calculate center of a uiBezierPath
@@ -134,6 +139,11 @@
 - (void)drawRect:(CGRect)rect {
     
     CGContextRef context = UIGraphicsGetCurrentContext();
+//    CGContextClearRect(context, rect);
+    CGContextFlush(context);
+//    CGContextSetFillColorSpace(context, CGColorSpaceCreateDeviceRGB());
+//    CGContextSetFillColorWithColor(context, [UIColor colorfromPain:0].CGColor);
+//    CGContextFillRect(context, rect);
     
     CGSize tileSize = (CGSize){BODY_TILE_SIZE, BODY_TILE_SIZE};
     
@@ -229,7 +239,7 @@
 -(void)colorBodyLocationsInRect:(CGRect)rect WithZoom:(int)zm InContext:(CGContextRef)ctx withOffset:(CGPoint)ofst{
     
     NSArray *shapesArrayCopy = nil;
-
+//    NSLog(@"coloring body");
     int currSide = ([self.currentView isEqualToString:@"front"]?0:1);
     
     @synchronized(self.shapesArray){
@@ -241,18 +251,13 @@
         
         if (part.partShapePoints && CGRectIntersectsRect(rect, [part.partShapePoints bounds]) && part.orientation == currSide) {
             
-            UIColor *fillColor = part.shapeColor;
-            
             if(zm == part.zoomLevel){
-                
-                CGContextSetStrokeColorWithColor(ctx,[UIColor clearColor].CGColor);
-                CGContextSetFillColorWithColor(ctx, [fillColor CGColor]);
-                
-                [part.partShapePoints applyTransform:CGAffineTransformMakeTranslation(ofst.x, ofst.y)];
-                
-                [part.partShapePoints fill];
-                [part.partShapePoints stroke];
-                [part.partShapePoints applyTransform:CGAffineTransformMakeTranslation(-ofst.x, -ofst.y)];
+
+                UIBezierPath *path = [part.partShapePoints copy];
+                 [path applyTransform:CGAffineTransformMakeTranslation(ofst.x, ofst.y)];
+                CGContextSetFillColorWithColor(ctx, part.shapeColor.CGColor);
+                [path fill];
+                [path applyTransform:CGAffineTransformMakeTranslation(ofst.x, -ofst.y)];
             }
             else {
                 
@@ -260,10 +265,9 @@
                     CGPoint centPoint = [self midPoinfOfBezierPath:part.partShapePoints];
                     
                     CGContextSetLineWidth(ctx, 4.0f);
-                    CGContextSetStrokeColorWithColor(ctx, part.shapeColor.CGColor);
+                   // CGContextSetStrokeColorWithColor(ctx, part.shapeColor.CGColor);
                     CGContextSetFillColorWithColor(ctx, part.shapeColor.CGColor);
                     CGContextSetAlpha(ctx, 0.5f);
-                    //CGContextSetBlendMode(ctx, kCGBlendModeSourceAtop);
                     CGContextFillEllipseInRect(ctx, CGRectMake(centPoint.x-150 +ofst.x , centPoint.y-150+ofst.y , 300, 300));
                     CGContextSetAlpha(ctx, 1.0f);
                     CGContextFillEllipseInRect(ctx, CGRectMake(centPoint.x-50+ofst.x, centPoint.y-50+ofst.y, 100, 100));
@@ -271,6 +275,7 @@
             }
         }
     }
+    shapesArrayCopy = nil;
 }
 
 #pragma mark -
@@ -301,20 +306,20 @@
 
 #pragma mark -
 
-+ (UIImage *)imageToMask:(UIImage *)image Withcolor:(UIColor *)color
++ (UIImage *)imageToMask:(UIImage *)image Withcolor:(UIColor *)color ;
 {
     
     CGRect rect = CGRectMake(0, 0, image.size.width, image.size.height);
     
     UIGraphicsBeginImageContextWithOptions(rect.size, NO, image.scale);
     
-    CGContextRef ctxRef = UIGraphicsGetCurrentContext();
+    CGContextRef ctxRef2 = UIGraphicsGetCurrentContext();
     
     [image drawInRect:rect];
     
-    CGContextSetFillColorWithColor(ctxRef, [color CGColor]);
-    CGContextSetBlendMode(ctxRef, kCGBlendModeSourceAtop);
-    CGContextFillRect(ctxRef, rect);
+    CGContextSetFillColorWithColor(ctxRef2, [color CGColor]);
+    CGContextSetBlendMode(ctxRef2, kCGBlendModeSourceAtop);
+    CGContextFillRect(ctxRef2, rect);
     
     UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -329,10 +334,10 @@
     InvoBodyPartDetails *PartToRem =nil;
     NSString *strToRet = nil;
     NSString *nameToCompare = [[objDict allKeys] objectAtIndex:0];
-    [self.shapesArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+//    [self.shapesArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
     
 //        NSLog(@"shape in shaesArray is %@", [((InvoBodyPartDetails *)obj) partName]);
-    }];
+//    }];
     
     for (InvoBodyPartDetails *part in self.shapesArray) {
         
@@ -434,15 +439,6 @@
     
     UIImage *imgTRet = UIGraphicsGetImageFromCurrentImageContext();
     
-//    CGSize screenSize = [[UIScreen mainScreen]applicationFrame].size;
-
-//    UIImage *testImg;
-//    CGContextSaveGState(ctxRef);
-//    [imgTRet drawInRect:CGRectMake(0, 0, 150, 150)];
-//    testImg = UIGraphicsGetImageFromCurrentImageContext();
-//    CGContextRestoreGState(ctxRef);
-    
-
     UIGraphicsEndImageContext();
      NSData *data = UIImageJPEGRepresentation(imgTRet, 1);
     return data;
@@ -451,9 +447,12 @@
 #pragma mark -
 
 -(void)flipView{
- 
+    
+    self.layer.contents = nil;
+    self.shapesArray = [NSMutableArray array];
     self.currentView = ([self.currentView isEqualToString:@"front"]? @"back" : @"front");
-    [self setNeedsDisplay];
+  
+   [self setNeedsDisplay];
 }
 
 -(void)clearAllPartsForOrientation:(int)orient{
@@ -467,6 +466,7 @@
     }
     if ([indexSet count]) {
         [self.shapesArray removeObjectsAtIndexes:indexSet];
+        self.layer.contents = nil;
         [self setNeedsDisplay];
     }
 }
