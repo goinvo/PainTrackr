@@ -17,7 +17,7 @@
 - (CGPoint *)getPoints;
 - (UIBezierPath *) bezierPath;
 
--(UIBezierPath *)dictFrBodyLocation:(NSString *)locName;
+-(UIBezierPath *)shapeForLocationName:(NSString *)locName;
 
 
 

@@ -16,11 +16,11 @@
 }
 
 @property (nonatomic, readonly) NSInteger pointCount;
-@property (nonatomic, retain) UIBezierPath *bezierPath;
+@property (nonatomic, strong) UIBezierPath *bezierPath;
 
-@property (nonatomic, retain) NSArray *painLocDetails;
+@property (nonatomic, strong) NSArray *painLocDetails;
 
-@property (nonatomic, retain)NSMutableArray *painShapeDetailsArr;
+@property (nonatomic, strong)NSMutableArray *painShapeDetailsArr;
 
 
 @end
@@ -29,9 +29,6 @@
 #define NUM_TO_DIVIDEY (1024.0*9)
 
 @implementation BodyPartGeometry
-
-@synthesize pointCount = _pointCount, bezierPath = _bezierPath;
-@synthesize painLocDetails = painLocDetails;
 
 
 - (id) init {
@@ -62,12 +59,6 @@
            
            [self.painShapeDetailsArr addObject:part];
        }
-       
-//       for (InvoBodyPartDetails *part in self.painShapeDetailsArr) {
-//           if (part.zoomLevel ==1) {
-//             NSLog(@"part names to check are %@",part.partName);
-//           }
-//       }
     }
    return self;
 }
@@ -119,40 +110,22 @@
             [arrToIter addObject:part];
         }
     }
-    
-    for(InvoBodyPartDetails *part in arrToIter){
-    
-//        NSLog(@"part names to check are %@",part.partName);
-    }
-    
+        
     for (InvoBodyPartDetails *part in arrToIter) {
         
         if ([part.partShapePoints containsPoint:pointToCheck]) {
-            
-//            toRet = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObject:part.partShapePoints] forKeys:[NSArray arrayWithObject:part.partName]];
+
             toRet = [NSDictionary dictionaryWithObject:[NSArray arrayWithObjects:part.partShapePoints,[NSNumber numberWithInt:part.zoomLevel],nil] forKey:part.partName];
             break;
         }
     }
     arrToIter = nil;
-    
-//    for (InvoBodyPartDetails *part in self.painShapeDetailsArr) {
-//        
-//        if (part.zoomLevel == zmLVL && part.orientation == orientation) {
-//            
-//            if ([part.partShapePoints containsPoint:pointToCheck]) {
-//                
-//                toRet = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObject:part.partShapePoints] forKeys:[NSArray arrayWithObject:part.partName]];
-//                break;
-//            }
-//        }
-//    }
-    
+        
     return toRet;
 }
 
 
--(UIBezierPath *)dictFrBodyLocation:(NSString *)locName{
+-(UIBezierPath *)shapeForLocationName:(NSString *)locName{
 
     UIBezierPath *path;
     if (locName) {

@@ -11,8 +11,7 @@
 #import "InvoBodySelectionViewController.h"
 
 #import "InvoDataManager.h"
-
-#import "TestFlight.h"
+//#import "TestFlight.h"
 
 @implementation InvoAppDelegate
 
@@ -34,25 +33,20 @@
 //        NSLog(@"%@",str);
 //    }];
 
-   if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-       UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-       UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-       splitViewController.delegate = (id)navigationController.topViewController;
-       
-       //UINavigationController *masterNavigationController = [splitViewController.viewControllers objectAtIndex:0];
-       //InvoBodySelectionViewControllerViewController *controller = (InvoBodySelectionViewControllerViewController *)masterNavigationController.topViewController;
-   } else {
-       //UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-       //InvoBodySelectionViewControllerViewController *controller = (InvoBodySelectionViewControllerViewController *)navigationController.topViewController;
-   }
+//   if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+//       UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
+//       UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
+//       splitViewController.delegate = (id)navigationController.topViewController;
+//    }
 
-    InvoDataManager *dtaMgr = [InvoDataManager sharedDataManager];
-//    dispatch_async(dispatch_get_current_queue(), ^(){
-        [dtaMgr checkPainLocationDataBase];
-//    });
+    [Flurry setSessionReportsOnPauseEnabled:NO];
+    [Flurry setSessionReportsOnCloseEnabled:YES];
+    [Flurry startSession:@"HWTNBHG34FKWNKHT9ZP5"];
     
-    [TestFlight takeOff:@"35de84803bb30da2ded080223940da33_MTEwMDY2MjAxMi0wNy0xMyAxNDo1MTozNi44MDQ4NjU"];
-       
+    InvoDataManager *dtaMgr = [InvoDataManager sharedDataManager];
+    [dtaMgr checkPainLocationDataBase];
+
+//    [TestFlight takeOff:@"c35236eb-4eab-4e34-a60d-c04afc4ce2d5"];
     return YES;
 }
 							
@@ -66,6 +60,7 @@
 {
    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -81,7 +76,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
    // Saves changes in the application's managed object context before the application terminates.
-    
     [[InvoDataManager sharedDataManager] saveContext];
 }
 

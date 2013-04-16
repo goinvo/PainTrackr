@@ -9,22 +9,30 @@
 #import "InvoDetailedHistoryViewController.h"
 #import "InvoDetailedHistoryBodyView.h"
 
+//2 FRONT, 2 BACK AND ONE CURRENT
+#define MAXLOADEDVIEWS 5
+
 @interface InvoDetailedHistoryViewController (){
 
      IBOutlet UILabel *dateLabel;
-     UIScrollView *entriesScrollView;
     
     __weak IBOutlet UIButton *leftButton;
     __weak IBOutlet UIButton *rightButton;
-
+    
+    int minCurrTag ;
+    int maxCurrTag ;
 }
 
-@property (nonatomic, strong)NSString *dateLabelText;
-@property (nonatomic, readwrite)int currDateIndex;
+@property (nonatomic, copy) NSString *dateString;
+@property (nonatomic, copy) NSString *dateLabelText;
+
+@property (nonatomic, assign, readonly) int totalCount;
+@property (nonatomic, readwrite) int currDateIndex;
+
+@property (nonatomic, weak) UIScrollView *entriesScrollView;
+
 @property (nonatomic, strong) NSDictionary *sortedByDateEntries;
 @property (nonatomic, strong) NSArray *datesArray;
-@property (nonatomic, strong) UIPageViewController *pageViewCtrl;
-
 
 -(void)addFacesToView;
 -(IBAction)leftTapped:(id)sender;
@@ -39,31 +47,25 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        
-//        [self addFacesToView];
+
         if (dateString) {
             
             NSDateFormatter *frmtr = [[NSDateFormatter alloc]init];
             [frmtr setDateStyle:NSDateFormatterShortStyle];
+            [frmtr setLocale:[NSLocale currentLocale]];
             NSDate *dateFrmStr = [frmtr dateFromString:dateString];
             [frmtr setDateFormat:@"EEEE d"];
             
             self.dateLabelText = [frmtr stringFromDate:dateFrmStr];
         }
-        
         if (sortedDict) {
             self.sortedByDateEntries = [sortedDict copy];
             
             [self sortDates];
-            
             self.currDateIndex = [ self indexOfDate:dateString];
-            
 //            NSLog(@"dates are %@",self.datesArray);
-        
             [self addBodyViewsForDate:[dateString copy]];
         }
-
-          
     }
     return self;
 }
@@ -71,12 +73,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [Flurry logEvent:@"InDetailedHistoryView" timed:YES];
+    
     // Do any additional setup after loading the view from its nib.
     if (![self.dateLabelText isEqualToString:@""]) {
         [dateLabel setText:self.dateLabelText];
     }
     [self checkButtonsToDisplayWithIndex:self.currDateIndex];
-    entriesScrollView.pagingEnabled = YES;
+    
+    _entriesScrollView.pagingEnabled = YES;
+    _entriesScrollView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -93,12 +100,18 @@
     [self.navigationController setToolbarHidden:YES];
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+
+    [Flurry endTimedEvent:@"InDetailedHistoryView" withParameters:nil];
+    [super viewWillDisappear:animated];
+}
 #pragma mark Sort Dates
 
 -(void)sortDates{
     
     NSMutableArray *unSortedDates = [NSMutableArray array];
     NSDateFormatter *frmtr = [[NSDateFormatter alloc]init];
+    [frmtr setLocale:[NSLocale currentLocale]];
     [frmtr setDateStyle:NSDateFormatterShortStyle];
     
     for (id objDate in [self.sortedByDateEntries allKeys]) {
@@ -122,6 +135,8 @@
         
         NSDateFormatter *frmtr = [[NSDateFormatter alloc]init];
         [frmtr setDateStyle:NSDateFormatterShortStyle];
+        [frmtr setLocale:[NSLocale currentLocale]];
+        
         NSDate *dteFromString = [frmtr dateFromString:date];
         
         return ([self.datesArray indexOfObject:dteFromString]);
@@ -223,43 +238,155 @@
     
     //    NSLog(@"date is %@",date);
     
-    if (entriesScrollView) {
-        [entriesScrollView removeFromSuperview];
+    if (_entriesScrollView) {
+        [_entriesScrollView removeFromSuperview];
     }
     
-    entriesScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(80, 50, 160, 360)];
-    [entriesScrollView setBackgroundColor:[UIColor lightGrayColor]];
-    entriesScrollView.pagingEnabled = YES;
-    [self.view insertSubview:entriesScrollView atIndex:100];
-
-    NSString *dString;
+    //42 is for the NavBar
+    float dateHeight = dateLabel.frame.size.height;
+    float padding = 12.0f;
+    float height = [[UIScreen mainScreen] applicationFrame].size.height - 42.0f -dateHeight - padding*4;
+    float imgAspect = 4.0/9;
+    float width = imgAspect*height;
+    
+//    NSLog(@"new height:%f width:%f", height,width);
+    
+    //160, 360
+    UIScrollView *scrollview;
+    
+    scrollview = [[UIScrollView alloc]initWithFrame:CGRectMake(10, 32, [[UIScreen mainScreen] applicationFrame].size.width, height)];
+    [scrollview setBackgroundColor:[UIColor colorWithWhite:0.94 alpha:0.8f]];
+    scrollview.pagingEnabled = YES;
+    scrollview.delegate = self;
+//    scrollview.showsHorizontalScrollIndicator = NO;
+    [self.view insertSubview:scrollview atIndex:100];
+    _entriesScrollView = scrollview;
+    
+   // NSString *dString;
     if([date isKindOfClass:[NSString class]]){
     
-        dString = [date copy];
+        _dateString = [date copy];
     }
     else{
         NSDateFormatter *frmtr = [[NSDateFormatter alloc] init];
         [frmtr setDateStyle:NSDateFormatterShortStyle];
-        dString = [frmtr stringFromDate:date];
+        _dateString = [frmtr stringFromDate:date];
     }
     
-    NSArray *entriesValue = [self.sortedByDateEntries valueForKey:dString];
+    NSArray *entriesValue = [self.sortedByDateEntries valueForKey:_dateString];
 //    NSLog(@"value count is %d",[entriesValue count]);
+
+    float oldWidth = _entriesScrollView.bounds.size.width;
+    float offsetX = (oldWidth - width)*0.5;
     
-    float oldWIdth = entriesScrollView.bounds.size.width;
-    float newWidth = oldWIdth * [entriesValue count];
+    float newWidth = oldWidth * [entriesValue count];
     
+    _totalCount = [entriesValue count];
     
-    for (int i=0; i<[entriesValue count]; i++) {
-                //360
-        InvoDetailedHistoryBodyView *detailView = [InvoDetailedHistoryBodyView detailedBodyViewWithFrame:CGRectMake(160*i, 0, 160, 360) PainDetails:[entriesValue objectAtIndex:i]];
-        [entriesScrollView addSubview:detailView];
+    int countToUse = (_totalCount < MAXLOADEDVIEWS)? _totalCount : MAXLOADEDVIEWS;
+    
+    minCurrTag = 0;
+    maxCurrTag = countToUse-1;
+    for (int i=0; i< countToUse; i++) {
+        
+        InvoDetailedHistoryBodyView *detailView = [InvoDetailedHistoryBodyView detailedBodyViewWithFrame:CGRectMake(offsetX + oldWidth*i, 0, width, height) PainDetails:[entriesValue objectAtIndex:i]];
+        detailView.tag = i;
+        [_entriesScrollView addSubview:detailView];
     }
     
-    [entriesScrollView setContentSize:CGSizeMake(newWidth, entriesScrollView.bounds.size.height)];
+//    NSLog(@"entries view subviews are %@", [_entriesScrollView subviews]);
+    
+    [_entriesScrollView setContentSize:CGSizeMake(newWidth, _entriesScrollView.bounds.size.height)];
+    
 }
 
 #pragma mark -
+
+#pragma mark manage images in memory
+-(void)manageViewsWithOffSet:(CGPoint)contOffset{
+    
+    int calcPageIndex =  (int) ((contOffset.x +self.entriesScrollView.frame.size.width) /self.entriesScrollView.frame.size.width);
+    calcPageIndex = (calcPageIndex == _totalCount)? calcPageIndex-1 : calcPageIndex;
+    
+    int numToAddSub = MAXLOADEDVIEWS/2 ;
+    
+    int maxCacheIndex = (calcPageIndex + numToAddSub) +2;
+    maxCacheIndex = (maxCacheIndex > _totalCount)? _totalCount : maxCacheIndex;
+    
+    int minCacheIndex = (maxCacheIndex - MAXLOADEDVIEWS);
+    minCacheIndex = (minCacheIndex <0)?0:minCacheIndex;
+
+
+//    NSLog(@"page based on offset is %d",calcPageIndex);
+//    NSLog(@"MaxCache = %d MinCache = %d ",maxCacheIndex, minCacheIndex);
+
+            
+    //42 is for the NavBar
+    float dateHeight = dateLabel.frame.size.height;
+    float padding = 12.0f;
+    float height = [[UIScreen mainScreen] applicationFrame].size.height - 42.0f -dateHeight - padding*2;
+    float imgAspect = 4.0/9;
+    float width = imgAspect*height;
+    
+     NSArray *entriesValue = [self.sortedByDateEntries valueForKey:_dateString];
+    
+    //adding missing lowerBound views
+    int minDiff = minCurrTag - minCacheIndex;
+
+    if (minDiff>0) {
+        float oldWidth = _entriesScrollView.bounds.size.width;
+        float offsetX = (oldWidth - width)*0.5;
+                
+        for (int i = minDiff ; i >0; i--) {
+
+            minCurrTag--;
+            maxCurrTag--;
+//            NSLog(@"adding object at index %d", minCurrTag);
+            InvoDetailedHistoryBodyView *detailView = [InvoDetailedHistoryBodyView detailedBodyViewWithFrame:CGRectMake(offsetX + oldWidth*minCurrTag, 0, width, height) PainDetails:[entriesValue objectAtIndex:minCurrTag]];
+            detailView.tag = minCurrTag;
+            [_entriesScrollView addSubview:detailView];
+        }
+    }
+//adding missing UpperBound views
+    int maxDiff = maxCurrTag - maxCacheIndex;
+    
+    if (maxDiff <0) {
+        float oldWidth = _entriesScrollView.bounds.size.width;
+        float offsetX = (oldWidth - width)*0.5;
+
+        for (int i= maxCurrTag; i< maxCacheIndex ; i++) {
+            
+            InvoDetailedHistoryBodyView *detailView = [InvoDetailedHistoryBodyView detailedBodyViewWithFrame:CGRectMake(offsetX + oldWidth*i, 0, width, height) PainDetails:[entriesValue objectAtIndex:i]];
+            detailView.tag = i;
+            [_entriesScrollView addSubview:detailView];
+           // maxCurrTag = i;
+            minCurrTag ++;
+            maxCurrTag ++;
+        }
+    }
+    
+    NSArray *subArray = [NSArray arrayWithArray:[self.entriesScrollView subviews]] ;
+    
+//removing views not needed from scrollView
+    [subArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+    
+        int objTag = [(UIView *)obj tag];
+        if (objTag< minCacheIndex || objTag > maxCacheIndex) {
+            
+//            NSLog(@"removing object with tag %d", objTag);
+            [(UIView *)obj removeFromSuperview];
+        }
+    }];
+    
+}
+
+
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+   
+    if (decelerate) {
+        [self manageViewsWithOffSet:scrollView.contentOffset];
+    }
+}
 
 #pragma mark change date label based on selection
 

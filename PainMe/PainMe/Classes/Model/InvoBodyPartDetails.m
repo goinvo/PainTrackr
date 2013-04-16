@@ -34,13 +34,12 @@
     self = [super init];
     if (self) {
     
-        self.partShapePoints = [shapePts copy];
-        self.partShapePoints.lineJoinStyle = kCGLineJoinRound;
-        
-        self.shapeColor = shpColor;
-        self.zoomLevel = level;
-        self.partName = [name copy];
-        self.orientation = side;
+        _partShapePoints = [shapePts copy];
+        _partShapePoints.lineJoinStyle = kCGLineJoinRound;
+        _shapeColor = shpColor;
+        _zoomLevel = level;
+        _partName = [name copy];
+        _orientation = side;
     }
     return self;
 }
@@ -50,13 +49,11 @@
     self = [super init];
     if (self) {
         
-        self.partShapePoints = [shapePts copy];
-        //self.partShapePoints.lineJoinStyle = kCGLineJoinRound;
-        
-        self.shapeColor = nil;
-        self.zoomLevel = level;
-        self.partName = [pName copy];
-        self.orientation = side;
+        _partShapePoints = [shapePts copy];
+        _shapeColor = nil;
+        _zoomLevel = level;
+        _partName = [pName copy];
+        _orientation = side;
     }
     return self;
 }

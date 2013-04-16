@@ -7,22 +7,22 @@
 //
 
 #import "InvoDetailedHistoryBodyView.h"
-
+#import "UIFont+PainTrackrFonts.h"
+#import "UIColor+PainColor.h"
 @interface InvoDetailedHistoryBodyView (){
 
     CGPoint *_points;
     int zoomLevel;
-    NSString *partName;
 }
 
-@property (nonatomic, retain) UIBezierPath *bezierPath;
+@property (nonatomic, copy) NSString *partName;
+@property (nonatomic, strong) UIBezierPath *bezierPath;
 @property (nonatomic, readonly) NSInteger pointCount;
-@property (nonatomic, retain) UIColor *partColor;
+@property (nonatomic, strong) UIColor *partColor;
 
 - (id)initWithFrame:(CGRect)frame painDetail:(id)detail;
 -(void)createUIBezierWithOffset:(CGPoint)offsetPoint;
 -(CGPoint)midPoinfOfBezierPath:(UIBezierPath *)bezier;
--(UIColor *)colorfromPain:(int)painLvl;
 
 @end
 
@@ -42,11 +42,11 @@
         [self setUserInteractionEnabled:NO];
         
         id obj = [detail valueForKey:@"location"];
-        self.orient = [[obj valueForKey:@"orientation"] intValue];
+        _orient = [[obj valueForKey:@"orientation"] intValue];
         
         NSData *vertices = [obj valueForKey:@"shape"];
         zoomLevel = [[obj valueForKey:@"zoomLevel"] integerValue];
-        self.partColor = [self colorfromPain:[[detail valueForKey:@"painLevel"] integerValue]];
+        self.partColor = [UIColor colorfromPain:[[detail valueForKey:@"painLevel"] integerValue]];
         
         int count = ([vertices length])/sizeof(CGPoint);
         
@@ -55,14 +55,9 @@
         // copy bytes to buffer _points
         [vertices getBytes:(CGPoint *)_points length:[vertices length]];
         
-        if (self.orient ==1) {
-            [self createUIBezierWithOffset:CGPointMake(0, 0.0)];
-        }else{
-            [self createUIBezierWithOffset:CGPointZero];
-        }
+        [self createUIBezierWithOffset:CGPointZero];
         
-        partName = [obj valueForKey:@"name"];
-    
+        _partName = [obj valueForKey:@"name"];
     }
     return self;
 }
@@ -73,26 +68,65 @@
 - (void)drawRect:(CGRect)rect
 {
     // Drawing code
+    CGContextRef ctxRef = UIGraphicsGetCurrentContext();
     
     [[UIColor whiteColor] setFill];
     UIRectFill(rect);
     
-    UIImage *img = (self.orient ==0)? [UIImage imageNamed:@"Body_Detail.png"] :[UIImage imageNamed:@"zoomout-back-image.png"] ;
-    [img drawInRect:rect];
+    NSString *imgNameToUse = nil;
+    CGRect drawingRect = CGRectZero;
+   
+    //choosing right image and rect to use for drawing
+    switch (self.orient) {
+        case 0:
+            imgNameToUse = (zoomLevel ==1)?@"Body_Detail.png" : @"Front_Zin.png";
+            drawingRect = rect;	
+            break;
+        case 1:
+            imgNameToUse = (zoomLevel ==1)?@"back_Zout.png" : @"back_Zin.png";
+            UIImage *tmpImg =  [UIImage imageNamed:imgNameToUse];
+            float newHeight = rect.size.width/(tmpImg.size.width/tmpImg.size.height);
+             drawingRect = CGRectMake(rect.origin.x, rect.origin.y + (rect.size.height - newHeight)*0.5, rect.size.width,newHeight);
+            break;
+    }
+    UIImage *img =  [UIImage imageNamed:imgNameToUse];
+    
+    [img drawInRect:drawingRect];
     
     [[UIColor blackColor]setStroke];
     [self.partColor setFill];
-
-    [self.bezierPath fill];
+    [_bezierPath fill];
     
     CGPoint midpt = [self midPoinfOfBezierPath:self.bezierPath];
     
+    //creating the rect based on label size
+    CGSize labelSize = [_partName sizeWithFont:[UIFont bubbleFont]];
+    CGRect textRect = CGRectMake(midpt.x-labelSize.width*0.5, midpt.y-labelSize.height*0.5, labelSize.width+10, labelSize.height);
+  
+    //positioning the label properly within the bounds of the view
+    if ((textRect.origin.x + textRect.size.width) > rect.size.width) {
+        textRect.origin.x -= ((textRect.origin.x + textRect.size.width) - rect.size.width);
+    }else if (textRect.origin.x < 0){
+        textRect.origin.x = 1.0;
+    }
+    
+    if ((textRect.origin.y + textRect.size.height) > rect.size.height) {
+        textRect.origin.y -= ((textRect.origin.y + textRect.size.height) - rect.size.height);
+    }
+    
     [[UIColor darkGrayColor] setFill];
-    CGContextSetAlpha(UIGraphicsGetCurrentContext(), 0.6f);
-    CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(midpt.x-30, midpt.y-8, 70, 16));
-    CGContextSetAlpha(UIGraphicsGetCurrentContext(), 1.0f);
-    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [UIColor whiteColor].CGColor);
-    [partName drawInRect: CGRectMake(midpt.x-30, midpt.y-8, 70, 16) withFont:[UIFont fontWithName:@"Helvetica" size:10.0]lineBreakMode:NSLineBreakByTruncatingHead alignment:NSTextAlignmentCenter];
+    CGPathRef roundedRectPath = [UIBezierPath bezierPathWithRoundedRect:textRect cornerRadius:4.0f].CGPath;
+    CGContextSetAlpha(ctxRef, 0.6f);
+    CGContextAddPath(ctxRef, roundedRectPath);
+    CGContextFillPath(ctxRef);
+    
+    CGContextSetAlpha(ctxRef, 1.0f);
+    CGContextSetFillColorWithColor(ctxRef, [UIColor whiteColor].CGColor);
+    
+    [_partName drawInRect:textRect
+                withFont:[UIFont bubbleFont]
+           lineBreakMode:NSLineBreakByTruncatingHead
+               alignment:NSTextAlignmentCenter];
 }
 
 - (void) setPointCount: (NSInteger) newPoints {
@@ -106,9 +140,7 @@
 -(void)createUIBezierWithOffset:(CGPoint)offsetPoint{
     
     CGFloat viewWidth = self.bounds.size.width -offsetPoint.x;
-    CGFloat viewHeight = self.bounds.size.height - offsetPoint.y;
-    
-    (self.orient ==1)? (viewHeight = 364) : (viewHeight = viewHeight);
+    CGFloat viewHeight = self.bounds.size.height ;
     
     if (!_bezierPath) {
         
@@ -121,10 +153,13 @@
             for (int i=1; i<_pointCount; i++) {
                 
                 [_bezierPath addLineToPoint:CGPointMake(_points[i].x*viewWidth ,_points[i].y*viewHeight)];
-                
             }
             [_bezierPath closePath];
         }
+    }
+    
+    if (_points) {
+        free(_points);
     }
 }
 
@@ -140,37 +175,5 @@
     }
     return CGPointZero;
 }
-
--(UIColor *)colorfromPain:(int)painLvl{
-    
-    UIColor *colorToFill = nil;
-    
-    switch (painLvl) {
-        case 0:
-            //colorToFill = [UIColor colorWithRed:0.00f green:0.00f blue:0.00f alpha:1.0f];
-            break;
-        case 1:
-            colorToFill = [UIColor colorWithRed:0.99f green:0.71f blue:0.51f alpha:0.9f];
-            break;
-        case 2:
-            colorToFill = [UIColor colorWithRed:0.98f green:0.57f blue:0.26f alpha:0.9f];
-            break;
-        case 3:
-            colorToFill = [UIColor colorWithRed:0.92 green:0.41 blue:0.42 alpha:0.9f];
-            break;
-        case 4:
-            colorToFill = [UIColor colorWithRed:0.95 green:0.15 blue:0.21 alpha:0.9f];
-            break;
-        case 5:
-            colorToFill = [UIColor colorWithRed:0.8 green:0.15 blue:0.24 alpha:0.9f];
-            break;
-            
-        default:
-            break;
-    }
-    
-    return colorToFill;
-}
-
 
 @end

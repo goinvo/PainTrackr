@@ -17,8 +17,17 @@
 #import "InvoHistoryViewController.h"
 #import "InvoAboutViewController.h"
 #import "InvoFlipButtonView.h"
-#import "InvoPainColorHelper.h"
+
 #import "InvoTextForEmail.h"
+#import "InvoBodyPartDetails.h"
+#import "UIDevice+deviceInfo.h"
+#import "UIFont+PainTrackrFonts.h"
+#import "UIColor+PainColor.h"
+
+#define ZOOM_LEVEL(x) ((x <0.06)?1:2)
+
+NSString *const FrontView = @"front";
+NSString *const RearView = @"Back View";
 
 @interface InvoBodySelectionViewController () {
    
@@ -27,15 +36,16 @@
     UIView *grayOverLayView;
 }
 
-@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, retain) IBOutlet BodyView *bodyView;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *sendButton;
-@property (nonatomic, retain) UITapGestureRecognizer *tapGesture;
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, weak) IBOutlet BodyView *bodyView;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *sendButton;
+@property (nonatomic, weak) UITapGestureRecognizer *tapGesture;
 
-@property (nonatomic, retain) BodyPartGeometry *bodyGeometry;
-@property (nonatomic, retain) PainFaceView *painFace;
+@property (nonatomic, strong) BodyPartGeometry *bodyGeometry;
+@property (nonatomic, weak) PainFaceView *painFace;
 
-@property (nonatomic, retain) UITapGestureRecognizer *doubleTap;
+@property (nonatomic, strong) UITapGestureRecognizer *doubleTap;
+@property (nonatomic, weak) UIImageView *overLayView;
 
 -(void)initTapGesture;
 -(int)tileAtTouchLocation:(CGPoint)touchPt;
@@ -56,21 +66,19 @@
 
 @implementation InvoBodySelectionViewController
 
-@synthesize scrollView = _scrollView, bodyView = _bodyView;
-@synthesize tapGesture = _tapGesture;
-@synthesize bodyGeometry = _bodyGeometry;
-@synthesize painFace = _painFace;
 
-/*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)viewDidUnload
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    [self setFlipButton:nil];
+    [super viewDidUnload];
+    // Release any stronged subviews of the main view.
+    // e.g. self.myOutlet = nil;
 }
-*/
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
 
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -90,23 +98,29 @@
     bodyOffset = CGPointZero;
     
     self.scrollView.contentSize = CGSizeMake(BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT );
-    
-    self.scrollView.backgroundColor = [UIColor clearColor];
+    self.scrollView.bounces = NO;
+    self.scrollView.backgroundColor = [UIColor whiteColor];
     
     self.bodyView.frame = CGRectMake(70,0,BODY_VIEW_WIDTH *1.17, BODY_VIEW_HEIGHT);
+
+    //40 for the BottomBar
+    float appHeight =[[UIScreen mainScreen] applicationFrame].size.height -42;
     
-//    NSLog(@"bodyview frame is %@", NSStringFromCGRect(self.bodyView.frame));
-    self.scrollView.minimumZoomScale = 0.045;
-    self.scrollView.zoomScale = 0.045;
+    //helps define the zoomScale
+    //to fit the view within the height of view
+    float minZoomScale = appHeight/BODY_VIEW_HEIGHT;
+    self.scrollView.minimumZoomScale = minZoomScale;
+    self.scrollView.zoomScale = minZoomScale;
     self.scrollView.maximumZoomScale = 1.0;
     
-// Add the Face button View
-    
-    self.painFace = [[PainFaceView alloc] init];
-    self.painFace.delegate = self;
-    [self.view insertSubview:self.painFace atIndex:10];
+    // Add the Face button View
+    PainFaceView *faceView = [[PainFaceView alloc] init];
+//    self.painFace = [[PainFaceView alloc] init];
+    faceView.delegate = self;
+    [self.view insertSubview:faceView atIndex:10];
+    self.painFace = faceView;
    
-//Init TapGesture Recognizer    
+    //Init TapGesture Recognizer    
     [self initTapGesture];
     
     self.bodyGeometry = [[BodyPartGeometry alloc] init];
@@ -123,56 +137,168 @@
    
 //Activity indicator
     indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    [indicator setColor:[UIColor grayColor]];
+    [indicator setColor:[UIColor indicatiorColor]];
     [indicator setCenter:CGPointMake(160, 240)];
     [self.view insertSubview:indicator aboveSubview:self.scrollView];
     
 //Configuring image for flipButton
     [self configFlipButtonImage];
-
+    
+//Add a transparent overlay
+    [self checkSaveNumberOfLaunches];
 }
 
+#pragma mark Check Number of AppLaunches
+-(void)checkSaveNumberOfLaunches{
+    
+    NSArray *docDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+//    NSLog(@"docDirectory count is%d", [docDirectories count]);
+    
+    NSString *docDirectory = [docDirectories objectAtIndex:0];
+    
+    NSString *fileName = [NSString stringWithFormat:@"%@/LaunchNumber.txt",docDirectory];
+    
+    NSError *error2 ;
+    NSString *launch = [[NSString alloc] initWithContentsOfFile:fileName
+                                                   usedEncoding:nil
+                                                          error:&error2];
+    int timesLaunched = 0;
+    timesLaunched = [launch intValue] ;
+    
+    if (timesLaunched ==0) {
+        
+//        NSLog(@"Launching for first time");
+        [self addCoachMarks];
+    }
+    
+    timesLaunched +=1;
+    NSString *numbr = [NSString stringWithFormat:@"%d",timesLaunched];
+    NSError *error;
+    [numbr writeToFile:fileName
+            atomically:YES
+              encoding:NSStringEncodingConversionAllowLossy
+                 error:&error]; 
+}
+
+#pragma mark add/remove coachMarks
+-(void)addCoachMarks{
+
+    CGRect frame = [[UIScreen mainScreen] applicationFrame];
+    
+    NSString *imgName = (frame.size.height > 480.0)? @"coachmarks_long.png":
+    @"coachmarks.png";
+    
+    UIImageView *tmpView = [[UIImageView alloc]initWithFrame:frame];
+    [tmpView setImage:[UIImage imageNamed:imgName]];
+    
+    [[[[UIApplication sharedApplication] delegate] window] addSubview:tmpView];
+    _overLayView = tmpView;
+    
+    [self makeViewsRecieveTouch:NO];
+}
+
+-(void)removeCoachMarks{
+
+    if (_overLayView) {
+        [_overLayView removeFromSuperview];
+        _overLayView = nil;
+    }
+    [self makeViewsRecieveTouch:YES];
+}
+
+#pragma mark  manage touches for Adding/Removing coachMarks
+-(void)makeViewsRecieveTouch:(BOOL)isTouch{
+
+    [self.painFace setUserInteractionEnabled:isTouch];
+    [self.scrollView setUserInteractionEnabled:isTouch];
+    [self.toolbarItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+        
+        [(UIBarButtonItem *)obj setEnabled:isTouch];
+        //NSLog(@"Tool bar items are %@",self.toolbarItems);
+    }];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+
+    if (_overLayView) {
+        [self removeCoachMarks];
+    }
+}
+
+
+#pragma mark add the FlipButton
 -(void)configFlipButtonImage{
     //0 = Front, 1 = Back
-    int currentOrient = [self currentOrientation];
+    int flipOrient = ([self currentOrientation]+1)%2;
     
     CGRect flipRect = CGRectMake(253, 20, 40, 90);
-    [self.flipButton setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.8f]];
+    [self.flipButton setBackgroundColor:[UIColor flipButnBackColor]];
     [self.flipButton setFrame:flipRect];
-    [self.flipButton setImage:[InvoFlipButtonView imageWithOrientation:currentOrient] forState:UIControlStateNormal];
-
+    [self.flipButton setImage:[InvoFlipButtonView imageWithOrientation:flipOrient] forState:UIControlStateNormal];
 }
- 
+
 
 #pragma mark Draw last entry if it exists
 -(void)checkAndAddLastEntryToView{
-
-    id entryToRender =   [[InvoDataManager sharedDataManager] lastPainEntryToRenderWithOrient:[self currentOrientation]];
+    
+    NSArray *entryToRender = [PainLocation painEntryToRenderWithOrient:[self currentOrientation]
+                                                                  Zoom:0];
         
-    if (entryToRender) {
+    if ([entryToRender count]) {
         //    NSLog(@"entry to render is %@",entryToRender);
-        
-        UIColor *fillColor = [InvoPainColorHelper colorfromPain:[[(PainEntry *)entryToRender valueForKey:@"painLevel"] integerValue]];
-        
-        if (fillColor) {
-            PainLocation *loc = (PainLocation *)[entryToRender valueForKey:@"location"];
-            int zoom = [[loc valueForKey:@"zoomLevel"] intValue];
+
+        for(id obj in entryToRender){
+            UIColor *fillColor = [UIColor colorfromPain:[[obj valueForKey:@"painLevel"] integerValue]];
             
-            UIBezierPath *locpath = [self.bodyGeometry dictFrBodyLocation:[ [loc valueForKey:@"name"] copy]];
-            
-            [self.bodyView addObjToSHapesArrayWithShape:locpath color:fillColor detail:zoom name:[[loc valueForKey:@"name"] copy] orientation:[self currentOrientation]];
-            
+            if (fillColor) {
+                PainLocation *loc = (PainLocation *)[obj valueForKey:@"location"];
+                int zoom = [[loc valueForKey:@"zoomLevel"] intValue];
+                
+                UIBezierPath *locpath = [self.bodyGeometry shapeForLocationName:[ [loc valueForKey:@"name"] copy]];
+                
+                [self.bodyView addObjToSHapesArrayWithShape:[locpath copy]
+                                                 color:fillColor
+                                                detail:zoom
+                                                  name:[[loc valueForKey:@"name"] copy]
+                                           orientation:[self currentOrientation]];
+            }
         }
+        
+//        __block BodyView *weakCopy = self.bodyView;
+//        [entryToRender enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+//            
+//            UIColor *fillColor = [UIColor colorfromPain:[[obj valueForKey:@"painLevel"] integerValue]];
+//            
+//            if (fillColor) {
+//                PainLocation *loc = (PainLocation *)[obj valueForKey:@"location"];
+//                int zoom = [[loc valueForKey:@"zoomLevel"] intValue];
+//                
+//                UIBezierPath *locpath = [self.bodyGeometry shapeForLocationName:[ [loc valueForKey:@"name"] copy]];
+//                
+//                [weakCopy addObjToSHapesArrayWithShape:locpath
+//                                                 color:fillColor
+//                                                detail:zoom
+//                                                  name:[[loc valueForKey:@"name"] copy]
+//                                           orientation:[self currentOrientation]];
+//            }
+//            
+//        }];
     }
 }
 
 #pragma mark Init tap Gesture
 -(void)initTapGesture{
 
-    self.tapGesture   =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
-    self.tapGesture.delegate = self;
-    self.tapGesture.numberOfTapsRequired = 1;
-    [self.scrollView addGestureRecognizer:self.tapGesture];
+    UITapGestureRecognizer *tapReco;
+    
+    tapReco   =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+    tapReco.delegate = self;
+    tapReco.numberOfTapsRequired = 1;
+    [self.scrollView addGestureRecognizer:tapReco];
+    
+    self.tapGesture = tapReco;
+    
     [self.tapGesture setCancelsTouchesInView:NO];
 
 }
@@ -189,29 +315,44 @@
 
 -(void)handleTapGesture:(UITapGestureRecognizer *)gestureReco{
 
+    if (_overLayView) {
+        [_overLayView resignFirstResponder];
+        [_overLayView removeFromSuperview];
+        _overLayView = nil;
+    }
+    
     [self removeBodyNamePopUp];
         
     CGPoint touchLocation = [gestureReco locationInView:self.scrollView];
-//    NSLog(@"Tapped inside scrollView at x:%f y:%f",touchLocation.x, touchLocation.y);
   
     CGPoint newPt = [self.bodyView convertPoint:touchLocation fromView:self.scrollView];
- //   NSLog(@"New Point is %@", NSStringFromCGPoint(newPt));
-
+ 
 //Creating a zero Pain Entry
     NSDictionary *locDict = nil;
     
     int zmLvl = (self.scrollView.zoomScale <0.06)?1:2;
     
-    locDict = [self.bodyGeometry containsPoint:CGPointMake(newPt.x/BODY_VIEW_WIDTH, newPt.y/BODY_VIEW_HEIGHT) withZoomLVL:zmLvl withOrientation:[self currentOrientation]];
+    locDict = [self.bodyGeometry containsPoint:CGPointMake(newPt.x/BODY_VIEW_WIDTH, newPt.y/BODY_VIEW_HEIGHT)
+                                   withZoomLVL:zmLvl
+                               withOrientation:[self currentOrientation]];
+    
 //Making changes to the text label
-    NSString *name =  [self.bodyView partNameAtLocation:newPt remove:NO];
+    NSString *name =  [self.bodyView partNameAtLocation:newPt withObj:[locDict copy] remove:NO];
     
     if (name) {
         
         CGPoint labelPt = [self.view convertPoint:touchLocation fromView:self.scrollView];
 //        NSLog(@"label Pt should be %@", NSStringFromCGPoint(labelPt));
+        CGSize labelSize = [name sizeWithFont:[UIFont bubbleFont]];
         
-        InvoPartNamelabel *bble = [[InvoPartNamelabel alloc] initWithFrame:CGRectMake(labelPt.x,labelPt.y , 100, 20) name:[name copy]];
+        float startX = [self xPosWithCurrentXPos:labelPt.x
+                                      labelWidth:(labelSize.width+10)];
+        
+        float startY = [self yPosWithCurrentYPos:labelPt.y
+                                     labelHeight:labelSize.height];
+               
+        InvoPartNamelabel *bble = [[InvoPartNamelabel alloc] initWithFrame:CGRectMake(startX, startY, labelSize.width+10, 20)
+                                                                      name:[name copy]];
         [bble setTag:kTagPartNameBubble];
         [bble.layer setCornerRadius:5.0f];
         [bble.layer setMasksToBounds:YES];
@@ -219,19 +360,43 @@
     }
 }
 
+-(float)xPosWithCurrentXPos:(float)currPos labelWidth:(float)currWidth{
+    float frameWidth = [[UIScreen mainScreen] applicationFrame].size.width;
+    float toReturn = currPos;
+  
+    if (toReturn< 0) {
+        toReturn +=10.0f;
+    }else if ((toReturn + currWidth)> frameWidth){
+        toReturn = frameWidth - (currWidth +20);
+    }
+    return toReturn;
+}
+
+-(float)yPosWithCurrentYPos:(float)currPos labelHeight:(float)currHeight{
+    
+    float frameHeight = [[UIScreen mainScreen] applicationFrame].size.height;
+    float toReturn = currPos;
+    
+    if ((toReturn + currHeight)> (frameHeight - 50)){
+        toReturn -= (currHeight+10);
+    }
+    return toReturn;
+}
+
 -(void)handleDoubleTap:(UIGestureRecognizer*)gestReco{
 
-//    NSLog(@"double tap happened");
-        [self removeBodyNamePopUp];
+    [self removeBodyNamePopUp];
     
     if (self.scrollView.zoomScale >=0.065) {
     
         [self.scrollView zoomToRect:CGRectMake(0, 0,BODY_VIEW_WIDTH, BODY_VIEW_HEIGHT) animated:YES];
-
     }
     else{
+        //3
         [self.scrollView zoomToRect:CGRectMake(0, 0,BODY_VIEW_WIDTH-1024*3, BODY_VIEW_HEIGHT-1024*3) animated:YES];
     }
+    self.bodyView.layer.contents = nil;
+    [self.bodyView.layer setNeedsDisplay];
 }
 
 
@@ -259,19 +424,6 @@
 }
 #pragma mark-
 
-- (void)viewDidUnload
-{
-    [self setFlipButton:nil];
-    [self setViewLabelButton:nil];
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
 
 #pragma mark UIScrollViewDelegate methods
 
@@ -307,12 +459,6 @@
     [self removeBodyNamePopUp];
 }
 
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView {
-   
-//    NSLog(@"ScrollView zoom scale is %f", scrollView.zoomScale);
-    
-}
-
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
     
 //    NSLog(@"bodyview frame is %@", NSStringFromCGRect(self.bodyView.frame));
@@ -330,13 +476,9 @@
     
     convPoint = [self.view convertPoint:locPoint toView:self.scrollView];
 
-//    NSLog(@"conv point is %@", NSStringFromCGPoint(convPoint));
-
     convPoint = CGPointMake((convPoint.x -70)/(BODY_VIEW_WIDTH*self.scrollView.zoomScale),convPoint.y/( BODY_VIEW_HEIGHT*self.scrollView.zoomScale));
     
     int zoomLVL = (self.scrollView.zoomScale >=0.062) ? 2 :1;
-
-// Point is inside the Belly circle  
 
     NSDictionary *pathContainingPoint = nil;
     pathContainingPoint = [self.bodyGeometry containsPoint:convPoint withZoomLVL:zoomLVL withOrientation:[self currentOrientation]];
@@ -353,40 +495,41 @@
             }
             else bezierShape = [value copy];
         }
-        if(painLvl ==0){
         
-            if ([self.bodyView doesEntryExist:name withZoomLevel:level]) {
-                UIColor *fillcolor = [InvoPainColorHelper colorfromPain:painLvl];
-                
-                [self.bodyView renderPainForBodyPartPath:bezierShape WithColor:[UIColor clearColor] detailLevel:zoomLVL name:[[pathContainingPoint allKeys] objectAtIndex:0] orient:[self currentOrientation]];
-                fillcolor = nil;
+        
+        dispatch_queue_t q_main = dispatch_get_main_queue();
+        dispatch_async(q_main, ^() {
+        
+            [self drawAndCreatePainEntryForPath:bezierShape
+                                       location:[pathContainingPoint copy]
+                                           name:[[pathContainingPoint allKeys] objectAtIndex:0]
+                                      levelPain:painLvl
+                                           zoom:zoomLVL];
+            });
 
-                [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:0 notes:nil];
-            }
-            return;
-        }
-        else{
+    }
+}
+
+-(void)drawAndCreatePainEntryForPath:(UIBezierPath *)path location:(id)value name:(NSString *)name levelPain:(int)painLvl zoom:(int)zoomLVL{
+
+    //checking it trying to erase an entry and
+    //if that entry actually exisits.
+    
+    if(painLvl ==0 && (![self.bodyView doesEntryExist:name withZoomLevel:zoomLVL])){
+    //if doesnot exist then no need to create
+    //so return
+        return;
+    }
+    
+    if([InvoDataManager painEntryForLocation:[value copy] levelPain:painLvl notes:nil]){
+        UIColor *fillcolor = [UIColor colorfromPain:painLvl];
+        [self.bodyView renderPainForBodyPartPath:path
+                                       WithColor:fillcolor
+                                     detailLevel:zoomLVL
+                                            name:[[value allKeys] objectAtIndex:0]
+                                          orient:[self currentOrientation]];
         
-            UIColor *fillcolor = [InvoPainColorHelper colorfromPain:painLvl];
-            
-            [self.bodyView renderPainForBodyPartPath:bezierShape WithColor:fillcolor detailLevel:zoomLVL name:[[pathContainingPoint allKeys] objectAtIndex:0] orient:[self currentOrientation]];
-            fillcolor = nil;
-            
-            [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:painLvl notes:nil];
-        }
-//        if(painLvl ==0){
-//        
-//            if([self.bodyView doesEntryExist:[[[pathContainingPoint allKeys]objectAtIndex:0]copy]]){
-//                [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:0 notes:nil];
-//            }
-//        }
-//        UIColor *fillcolor = [InvoPainColorHelper colorfromPain:painLvl];
-//        
-//        [self.bodyView renderPainForBodyPartPath:[[pathContainingPoint allValues] objectAtIndex:0] WithColor:fillcolor detailLevel:zoomLVL name:[[pathContainingPoint allKeys] objectAtIndex:0] orient:[self currentOrientation]];
-//        
-//        [InvoDataManager painEntryForLocation:[pathContainingPoint copy] levelPain:painLvl notes:nil];
-//        
-//        fillcolor = nil;
+        fillcolor = nil;
     }
 }
 
@@ -405,7 +548,7 @@
         
         if ( [self.bodyGeometry containsPoint:convPoint withZoomLVL:zoomLVL withOrientation:[self currentOrientation]]) {
             
-            UIColor *fillcolor = [InvoPainColorHelper colorfromPain:painLvl];
+            UIColor *fillcolor = [UIColor colorfromPain:painLvl];
             
             [self.bodyView maskWithColor:fillcolor];
         }
@@ -432,7 +575,9 @@
     [indicator startAnimating];
     [self.sendButton setEnabled:NO];
     
-    grayOverLayView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 460)];
+    CGSize overLayeSize = [[UIScreen mainScreen]applicationFrame].size;
+    
+    grayOverLayView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, overLayeSize.width, overLayeSize.height)];
     [grayOverLayView setBackgroundColor:[UIColor blackColor]];
     [grayOverLayView setAlpha:0.4f];
     [self.view addSubview:grayOverLayView];
@@ -458,16 +603,14 @@
     
     NSData *img = [self.bodyView imageToAttachToReportWithZoomLevel:self.scrollView.zoomScale];
   
-    NSString *bodyText = [InvoTextForEmail bodyTextForEmail];
+    NSString *bodyText = [InvoTextForEmail bodyTextForEmailWithImage:[img copy]];
     
     MFMailComposeViewController *mailComp = [[MFMailComposeViewController alloc] init];
-    
     [mailComp setSubject:[[self timeForReport] copy]];
     //    [mailComp setToRecipients:[NSArray arrayWithObject:@"dhaval@goinvo.com"]];
     [mailComp addAttachmentData:img mimeType:@"image/png" fileName:@"BodyReport"];
-    
     [mailComp setMessageBody:bodyText isHTML:NO];
-    
+
     mailComp.mailComposeDelegate = self;
     
     [self presentViewController:mailComp animated:YES completion:^(){
@@ -513,21 +656,63 @@
     
     [self.navigationController pushViewController:aboutCtrl animated:YES];
 }
-#pragma mark -
+
+#pragma mark FlipTapped
 
 - (IBAction)flipTapped:(id)sender {
 
+    [self removeBodyNamePopUp];
     [self.bodyView flipView];
+//Show all relevant entries for a given orientation
     [self checkAndAddLastEntryToView];
+//    [self.bodyView  setNeedsDisplay];
     [self configFlipButtonImage];
-    
-    (0 ==[self currentOrientation])?[self.viewLabelButton setTitle:@"Front View"]:
-    [self.viewLabelButton setTitle:@"Back View"];
-    
 }
 
 -(int)currentOrientation{
 
-    return (([self.bodyView.currentView isEqualToString:@"front"])?0:1);
+    return (([self.bodyView.currentView isEqualToString:FrontView])?0:1);
+}
+
+#pragma mark clear Pressed
+- (IBAction)clearButtonTapped:(id)sender {
+
+    NSLog(@"clear Button tapped");
+    if (_bodyView) {
+        
+        NSArray *currentParts = [_bodyView currentPartsUsedForDrawing];
+//        UIColor *fillcolor = [UIColor colorfromPain:0];
+        NSArray *allLocations = [PainLocation  painLocationsForOrientation:[self currentOrientation]
+                                                               zoomLevel:0];
+        
+        for (InvoBodyPartDetails *part in currentParts) {
+            
+            if (part.orientation == [self currentOrientation]) {
+                
+                for (id painLoc in allLocations) {
+                    
+                    if ([[painLoc valueForKey:@"name"] isEqualToString:part.partName]) {
+                //creating a zero PainEntry                        
+                        [PainEntry painEntryWithTime:[NSDate date]
+                                           painLevel:0
+                                          extraNotes:nil
+                                            location:painLoc ];
+                        
+                        //drawing the zero PainEntry in bodyView
+                        [self.bodyView renderPainForBodyPartPath:part.partShapePoints
+                                                       WithColor:[UIColor colorfromPain:0]
+                                                     detailLevel:ZOOM_LEVEL(self.scrollView.zoomScale)
+                                                            name:[part.partName copy]
+                                                          orient:[self currentOrientation]];
+
+                        break;
+                    }
+                }
+            }
+        }
+        [[InvoDataManager sharedDataManager] saveContext];
+        [ _bodyView clearAllPartsForOrientation:[self currentOrientation]];
+        [self removeBodyNamePopUp];
+    }
 }
 @end

@@ -16,10 +16,6 @@
 
 @implementation InvoMasterViewController
 
-@synthesize detailViewController = _detailViewController;
-@synthesize fetchedResultsController = __fetchedResultsController;
-@synthesize managedObjectContext = __managedObjectContext;
-
 - (void)awakeFromNib
 {
    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
@@ -43,7 +39,7 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
+    // Release any stronged subviews of the main view.
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -144,8 +140,8 @@
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
-    if (__fetchedResultsController != nil) {
-        return __fetchedResultsController;
+    if (_fetchedResultsController != nil) {
+        return _fetchedResultsController;
     }
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -176,7 +172,7 @@
 //	    abort();
 	}
     
-    return __fetchedResultsController;
+    return _fetchedResultsController;
 }    
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller

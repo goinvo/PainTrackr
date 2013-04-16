@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InvoDetailedHistoryViewController : UIViewController
+@interface InvoDetailedHistoryViewController : UIViewController <UIScrollViewDelegate>
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil date:(NSString *)dateString painEntriesByDate:(NSDictionary *)sortedDict;
 @end

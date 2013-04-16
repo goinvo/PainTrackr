@@ -9,7 +9,7 @@
 // CUrrent total number of locations is 245
 
 #import "InvoDataManager.h"
-
+//257
 #define MAX_LOCATIONS 257
 
 #define NUM_COLUMNS 4.0
@@ -50,9 +50,13 @@
     CGPoint *_pts;
 }
 
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
 @property (nonatomic, readonly)NSInteger pointCount;
-@property (nonatomic, retain)NSMutableDictionary *dict;
-@property (nonatomic, retain)NSMutableArray *keysFromStoredLocData;
+@property (nonatomic, strong)NSMutableDictionary *dict;
+@property (nonatomic, strong)NSMutableArray *keysFromStoredLocData;
 
 -(void)getDataFromCSVInDict;
 
@@ -64,21 +68,6 @@
 
 
 @implementation InvoDataManager
-
-@synthesize pointCount = _pointCount;
-
-@synthesize managedObjectContext = __managedObjectContext;
-@synthesize managedObjectModel = __managedObjectModel;
-@synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
-
-@synthesize vertRange = _vertRange;
-@synthesize nwArrVert = _nwArrVert;
-@synthesize parsedComponents = _parsedComponents;
-@synthesize keysFromStoredLocData = _keysFromStoredLocData;
-
-
-@synthesize dict =_dict;
-@synthesize fetCtrl;
 
 -(void)dealloc{
 
@@ -97,30 +86,8 @@
 	return instance;
 }
 
-
-- (void)saveContext
-{
-//    NSLog(@"Saving COntext");
-    
-    NSError *error = nil;
-    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-    
-    if (managedObjectContext != nil) {
-        
-//        NSLog(@" managedObjectContext is not nil");
-        
-        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-            
-            
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-//            abort();
-        }
-    }
-}
-
 /*
+//useful for debugging purposes 
 -(id)init{
 
     self = [super init];
@@ -143,8 +110,9 @@
  
 -(void)checkPainLocationDataBase{
 
-//    [self painLocationsInDatabase];
-    
+    //check to see if stored locations
+    //are not equal to actual
+    //App comes preloaded with a sqlite file
     if(MAX_LOCATIONS != [self painLocationsInDatabase]){
             
         [self getDataFromCSVInDict];
@@ -155,28 +123,20 @@
 #pragma mark get painLocation Data from database
 
 -(int)painLocationsInDatabase{
-      
-    NSEntityDescription *descript = [NSEntityDescription entityForName:@"PainLocation" inManagedObjectContext:self.managedObjectContext];
-    
-    NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
-    [fetReq setEntity:descript];
-    [fetReq setResultType:NSDictionaryResultType];
-    
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name !=%@",@""];
-//    [fetReq setPredicate:predicate];
-    
-    NSError *error = nil;
-    NSArray *locData = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
-    
-//    NSLog(@"Entries are %@ with count %d", locData,[locData count]);
+        
     self.keysFromStoredLocData = [NSMutableArray array];
+    NSArray *allLocations = [PainLocation painLocations];
     
-    for (NSDictionary *dicti in locData) {
-        //getting all names
-        [self.keysFromStoredLocData addObject:[[dicti allValues]objectAtIndex:0]];
+    if (allLocations) {
+     
+        for (NSDictionary *dict in allLocations) {
+            //getting all names
+            [self.keysFromStoredLocData addObject:[[dict allValues]objectAtIndex:0]];
+        }
+//        NSLog(@"count is %d",[self.keysFromStoredLocData count]);
+        return [self.keysFromStoredLocData count];
     }
-    
-    return [self.keysFromStoredLocData count];
+    return 0;
 }
 
 #pragma mark -
@@ -186,15 +146,15 @@
     
 //    NSLog(@"Beginning...");
 	NSStringEncoding encoding = 0;
-    // NSString *file = @"/Users/DDKarwa/Desktop/tmpCsvParse/Workbook1.csv";
+    //if the user already has data front locations
+    //and is missing the backView pain Locations
     NSString *file = [[NSBundle mainBundle] pathForResource:@"BackViewData" ofType:@"csv"];
 //      NSString *file = [[NSBundle mainBundle] pathForResource:@"NewBodyPartData" ofType:@"csv"];
     NSInputStream *stream = [NSInputStream inputStreamWithFileAtPath:file];
     NSError *error = nil;
     
+    //using the CHCSV parser to aprse through the body csv data
 	CHCSVParser * p = [[CHCSVParser alloc] initWithStream:stream usedEncoding:&encoding error:&error];
-	
-//	NSLog(@"encoding: %@", CFStringGetNameOfEncoding(CFStringConvertNSStringEncodingToEncoding(encoding)));
 	
 	Delegate * d = [[Delegate alloc] init];
 	[p setParserDelegate:d];
@@ -206,14 +166,10 @@
 //	NSLog(@"raw difference: %f", (end-start));
     
     NSArray *a = [NSArray arrayWithContentsOfCSVFile:file encoding:encoding error:nil];
-  //  NSLog(@"%@", a);
     NSString *s = [a CSVString];
-    
-    //NSLog(@"s is %@",s);
     
     NSArray *csvArray = [s CSVComponents];
     int csvArrayCount = [csvArray count];
-//    NSLog(@" Array is %d",[csvArray count]);
     
     self.dict = [NSMutableDictionary dictionary];
     
@@ -248,23 +204,9 @@
 
 #pragma mark check if location exists in database
 -(BOOL)painLocationExists:(NSString*)locName{
-
-//    for (NSString *str in self.keysFromStoredLocData) {
-//        
-//        if ([locName isEqualToString:str]) {
-//            
-//            return YES;
-//        }
-//    }
-//    return NO;
-    
-//    if ([self.keysFromStoredLocData indexOfObject:locName] == NSNotFound) {
-//        return NO;
-//    }
-//    return YES;
     
     if ([self.keysFromStoredLocData containsObject:locName]) {
-        NSLog(@"exists");
+//        NSLog(@"exists");
         return YES;
     }
     return NO;
@@ -279,54 +221,59 @@
     for (NSString *ky in dictKeys) {
         
         if ([dictKeys count]!=[self.keysFromStoredLocData count]) {
-        
-            if ([ky isEqualToString:@"Posterior Head"]) {
-                
-                NSLog(@"details are %@",ky);
-            }
-
-//            if (![self painLocationExists:[ky copy]])
-//            {
-                NSArray *valArray = [self.dict valueForKey:ky];
-                
-                int itmCount = [valArray count];
-                
-                [self setPointCount:itmCount];
-                
-                int i=0;
-                
-                NSString *orientString = [[valArray objectAtIndex:0] objectAtIndex:6];
-                int16_t orientation =  ([orientString isEqualToString:@"Back"])?1:0;
-                
-                for (NSArray *arr in valArray) {
-                    
-                    float xadd = [[arr objectAtIndex:2] floatValue];
-                    float yadd = [[arr objectAtIndex:3] floatValue];
-                    float xCoor = [[arr objectAtIndex:4] floatValue];
-                    float yCoor = [[arr objectAtIndex:5] floatValue];
-                    
-                    _pts[i]=CGPointMake((xadd/NUM_COLUMNS) + (xCoor/BODY_WIDTH), (yadd/NUM_ROWS) +(yCoor/BODY_HEIGHT));
-                    i++;
-                }
-                
-                NSData *shapeVertices = [NSData dataWithBytes:_pts length:sizeof(CGPoint)*itmCount];
-                
-                int zoomLvl = [[[valArray objectAtIndex:0] objectAtIndex:1] integerValue];
             
             if ([ky isEqualToString:@"Posterior Head"]) {
                 
-                NSLog(@"details are %@ zoom%d orient%d",ky,zoomLvl, orientation );
+//                NSLog(@"details are %@",ky);
             }
-
-                [PainLocation locationEntryWithName:[ky copy] shape:shapeVertices zoomLevel:zoomLvl orientation:orientation ];
-
-                valArray = nil;
-//            }
+            
+            NSArray *valArray = [self.dict valueForKey:ky];
+            
+            int itmCount = [valArray count];
+            
+            [self setPointCount:itmCount];
+            
+            int i=0;
+            
+            NSString *orientString = [[valArray objectAtIndex:0] objectAtIndex:6];
+            int16_t orientation =  ([orientString isEqualToString:@"Back"])?1:0;
+            
+            for (NSArray *arr in valArray) {
+                
+                float xadd = [[arr objectAtIndex:2] floatValue];
+                float yadd = [[arr objectAtIndex:3] floatValue];
+                float xCoor = [[arr objectAtIndex:4] floatValue];
+                float yCoor = [[arr objectAtIndex:5] floatValue];
+                
+                _pts[i]=CGPointMake((xadd/NUM_COLUMNS) + (xCoor/BODY_WIDTH), (yadd/NUM_ROWS) +(yCoor/BODY_HEIGHT));
+                i++;
+            }
+            
+            NSData *shapeVertices = [NSData dataWithBytes:_pts length:sizeof(CGPoint)*itmCount];
+            
+            int zoomLvl = [[[valArray objectAtIndex:0] objectAtIndex:1] integerValue];
+            
+            if ([ky isEqualToString:@"Posterior Head"]) {
+                
+//                NSLog(@"details are %@ zoom%d orient%d",ky,zoomLvl, orientation );
+            }
+            
+            [PainLocation locationEntryWithName:[ky copy] shape:shapeVertices zoomLevel:zoomLvl orientation:orientation ];
+            
+            valArray = nil;
+            
         }
     }
     [self saveContext];
     [self.keysFromStoredLocData removeAllObjects];
     [self painLocationsInDatabase];
+    
+    [self.dict removeAllObjects];
+   
+    if (_pts) {
+        free(_pts);
+        _pts = nil;
+    }
     
 }
 
@@ -342,91 +289,112 @@
 
 // Returns the managed object context for the application.
 // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
-- (NSManagedObjectContext *)managedObjectContext
-{
-    if (__managedObjectContext != nil) {
-        return __managedObjectContext;
+- (NSManagedObjectContext *)managedObjectContext{
+
+    if(!_managedObjectContext ){
+        NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+        if (coordinator != nil) {
+            _managedObjectContext = [[NSManagedObjectContext alloc] init];
+            [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+        }
     }
-    
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-    if (coordinator != nil) {
-        __managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [__managedObjectContext setPersistentStoreCoordinator:coordinator];
-    }
-    return __managedObjectContext;
+    return _managedObjectContext;
 }
 
 // Returns the managed object model for the application.
 // If the model doesn't already exist, it is created from the application's model.
 - (NSManagedObjectModel *)managedObjectModel
 {
-    if (__managedObjectModel != nil) {
-        return __managedObjectModel;
+    if (!_managedObjectModel ) {
+        
+        NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"PainMe" withExtension:@"momd"];
+        _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     }
-   // NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"PainMe" withExtension:@"momd"];
-     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"PainMe" withExtension:@"momd"];
-    __managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    return __managedObjectModel;
+    return _managedObjectModel;
 }
 
 // Returns the persistent store coordinator for the application.
 // If the coordinator doesn't already exist, it is created and the application's store added to it.
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {
-    if (__persistentStoreCoordinator != nil) {
-        return __persistentStoreCoordinator;
-    }
+    if (!_persistentStoreCoordinator ){
+        NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"PainMe.sqlite"];
     
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"PainMe.sqlite"];
-    
-    //NSString *storePath = [storeURL path];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    // If the expected store doesn't exist, copy the default store.
-    if (![fileManager fileExistsAtPath:[storeURL path]]) {
-        NSURL *defaultStoreURL = [[NSBundle mainBundle] URLForResource:@"PainMe" withExtension:@"sqlite"];
-        if (defaultStoreURL) {
-            [fileManager copyItemAtURL:defaultStoreURL toURL:storeURL error:NULL];
+        //NSString *storePath = [storeURL path];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        
+        // If the expected store doesn't exist, copy the default store.
+        if (![fileManager fileExistsAtPath:[storeURL path]]) {
+            NSURL *defaultStoreURL = [[NSBundle mainBundle] URLForResource:@"PainMe" withExtension:@"sqlite"];
+            if (defaultStoreURL) {
+                [fileManager copyItemAtURL:defaultStoreURL toURL:storeURL error:NULL];
+            }
+        }
+        NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+                                 [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+        
+        NSError *error = nil;
+        _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+        
+        if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options: options error:&error]) {
+            /*
+             Replace this implementation with code to handle the error appropriately.
+             
+             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+             
+             Typical reasons for an error here include:
+             * The persistent store is not accessible;
+             * The schema for the persistent store is incompatible with current managed object model.
+             Check the error message to determine what the actual problem was.
+             
+             
+             If the persistent store is not accessible, there is typically something wrong with the file path. Often, a file URL is pointing into the application's resources directory instead of a writeable directory.
+             
+             If you encounter schema incompatibility errors during development, you can reduce their frequency by:
+             * Simply deleting the existing store:
+             [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil]
+             
+             * Performing automatic lightweight migration by passing the following dictionary as the options parameter:
+             [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+             
+             Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
+             
+             */
+            [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
+            
+            //        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            //        abort();
         }
     }
-    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
-                             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
-                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+    return _persistentStoreCoordinator;
+}
+
+#pragma mark save the ManagedObject Context
+- (void)saveContext
+{
+    //    NSLog(@"Saving COntext");
     
     NSError *error = nil;
-    __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
     
-    if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options: options error:&error]) {
-        /*
-         Replace this implementation with code to handle the error appropriately.
-         
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-         
-         Typical reasons for an error here include:
-         * The persistent store is not accessible;
-         * The schema for the persistent store is incompatible with current managed object model.
-         Check the error message to determine what the actual problem was.
-         
-         
-         If the persistent store is not accessible, there is typically something wrong with the file path. Often, a file URL is pointing into the application's resources directory instead of a writeable directory.
-         
-         If you encounter schema incompatibility errors during development, you can reduce their frequency by:
-         * Simply deleting the existing store:
-         [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil]
-         
-         * Performing automatic lightweight migration by passing the following dictionary as the options parameter: 
-         [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
-         
-         Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
-         
-         */
-        [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
+    if (managedObjectContext != nil) {
         
-//        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-//        abort();
+        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+            
+            
+            // Replace this implementation with code to handle the error appropriately.
+            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            //            abort();
+        }
     }
+}
+
+#pragma mark -
+-(NSManagedObjectContext *) objContext{
     
-    return __persistentStoreCoordinator;
+    return self.managedObjectContext;
 }
 
 #pragma mark - Application's Documents directory
@@ -442,9 +410,9 @@
 
 #pragma mark pain location enrty
 
-+(void)painEntryForLocation:(NSDictionary *)locDetails levelPain:(int)painLvl notes:(NSString *)nots{
++(BOOL)painEntryForLocation:(NSDictionary *)locDetails levelPain:(int)painLvl notes:(NSString *)nots{
 
-    [PainLocation enterPainEntryForLocation:[locDetails copy] levelPain:painLvl notes:[nots copy]];
+   return [PainLocation enterPainEntryForLocation:[locDetails copy] levelPain:painLvl notes:[nots copy]];
 }
 
 -(NSArray *)totalPainEntriesForPart:(NSString *)pName{
@@ -464,81 +432,10 @@
     
     NSError *error = nil;
     CrDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
-//    count = [CrDta count];
-        
-//    NSLog(@"value in COreData PainEntry is %d", [CrDta count]);
         
     }
     
     return [CrDta copy];
-}
-
-
--(id)lastPainEntryToRenderWithOrient:(int)orient{
-
-    NSEntityDescription *ent = [NSEntityDescription entityForName:@"PainEntry" inManagedObjectContext:self.managedObjectContext];
-    
-    NSFetchRequest *fetReq = [[NSFetchRequest alloc] init];
-    [fetReq setEntity:ent];
-    
-    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO];
-    [fetReq setSortDescriptors:[NSArray arrayWithObject:sort]];
-
-    NSPredicate *pred;
-    
-    if (orient ==0) {
-//        pred = [NSPredicate predicateWithFormat:@"location.orientation == '0'"];
-//        pred = [NSPredicate predicateWithFormat:@"location.orientation == %@",nil];
-         pred = [NSPredicate predicateWithFormat:@"location.orientation == %@ ",[NSNumber numberWithInt:0]];
-    }
-    else{
-        pred = [NSPredicate predicateWithFormat:@"location.orientation == %@",[NSNumber numberWithInt:orient]];
-    }
-    [fetReq setPredicate:pred];
-    [fetReq setFetchLimit:1];
-    
-//    NSExpression *lhs = [NSExpression expressionForKeyPath:@"location.orientation"];
-//    NSExpression *rhs = [NSExpression expressionForConstantValue:[NSNumber numberWithInt:orient]];
-//    
-//    NSPredicate *pred = [NSComparisonPredicate predicateWithLeftExpression:lhs rightExpression:rhs modifier:NSDirectPredicateModifier type:NSEqualToPredicateOperatorType options:0];
-//    [fetReq setPredicate:pred];
-    
-//    [fetReq setResultType:NSDictionaryResultType];
-    [fetReq setPropertiesToFetch:[NSArray arrayWithObjects:@"location",@"notes",@"painLevel",@"timestamp", nil]];
-    
-    NSError *error;
-    NSArray *CrDta = [self.managedObjectContext executeFetchRequest:fetReq error:&error];
-    
-    if ([CrDta count] >0) {
-
-        return [CrDta objectAtIndex:0];
-    }
-    return nil;
-}
-
-
--(NSArray *)namesOfBodyParts{
-
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"PainLocation" inManagedObjectContext:self.managedObjectContext];
-    
-    NSFetchRequest *fetreq = [[NSFetchRequest alloc] init];
-    [fetreq setEntity:entity];
-    [fetreq setResultType:NSDictionaryResultType];
-    
-    NSMutableArray *arrtoRet = [NSMutableArray array];
-    NSError *error = nil;
-    
-    NSArray *data = [self.managedObjectContext executeFetchRequest:fetreq error:&error];
-    
-    if ([data count] >0) {
-        
-        for (NSDictionary *arr in data) {
-            
-            [arrtoRet addObject:[[arr valueForKey:@"name"] copy]];
-        }
-        return [arrtoRet copy];
-    }
-    return nil;
 }
 
 -(NSDictionary *)entriesPerDayList{
@@ -556,25 +453,26 @@
     
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setLocale:[NSLocale currentLocale]];
     [formatter setDateStyle:NSDateFormatterShortStyle];
 
-   // NSString *currDate =[formatter stringFromDate:[(NSDictionary *)[totalEntries objectAtIndex:0] valueForKey:@"timestamp"]];
-    
-    NSString *prevDate = [formatter stringFromDate:[(NSDictionary *)[totalEntries objectAtIndex:0] valueForKey:@"timestamp"]];
+    NSDate *date = [[(NSDictionary *)[totalEntries objectAtIndex:0] valueForKey:@"timestamp"]copy];
+   
+    NSString *prevDate = [formatter stringFromDate:date];
     NSMutableArray *arr = [NSMutableArray array];
     
     for (int i=0; i<[totalEntries count];i++) {
         
-  
         PainEntry *entry = [totalEntries objectAtIndex:i];
-        NSString *currDate;
+        NSString *currDate = nil;
         
         if(entry){
-            currDate = [formatter stringFromDate:[entry valueForKey:@"timestamp"]] ;
+            NSDate *entryDate = [[entry valueForKey:@"timestamp"] copy];
+            currDate = [formatter stringFromDate:entryDate];
             
             if (![currDate isEqualToString:prevDate]) {
                 
-                [dateSortedEntries setValue:arr forKey:prevDate];
+                [dateSortedEntries setValue:arr forKey:[prevDate copy] ];
                 arr = [NSMutableArray array];
                 
                 if(![arr containsObject:entry]){
@@ -585,21 +483,20 @@
             
                 id value = [dateSortedEntries valueForKey:currDate];
                 if (!value) {
-                    [dateSortedEntries setValue:arr forKey:currDate];
+                    [dateSortedEntries setValue:arr forKey:[currDate copy]];
                 }
             }
             if(![arr containsObject:entry]){
                 [arr addObject:entry];
             }
 
-            prevDate = currDate;
+            prevDate = [currDate copy];
+            currDate = nil;
         }
-        
     }
-//    NSLog(@"date sorted entries are %@",dateSortedEntries);
+    prevDate = nil;
+
     return( ([totalEntries count]>0 )?[dateSortedEntries copy]:nil);
 }
-#pragma mark -
-
 
 @end
