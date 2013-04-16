@@ -195,7 +195,7 @@
                 //sorting the nsset of PainEntries
                 //for a given location
                 NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO]];
-                NSArray *sortedRecipes = [[[loc painEntries] allObjects] sortedArrayUsingDescriptors:sortDescriptors];
+                NSArray *sortedRecipes = [[[[loc painEntries] allObjects] sortedArrayUsingDescriptors:sortDescriptors] copy];
                 
                 PainEntry *latestObj = [sortedRecipes objectAtIndex:0];
 

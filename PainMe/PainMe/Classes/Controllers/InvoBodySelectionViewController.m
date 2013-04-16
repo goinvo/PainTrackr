@@ -36,13 +36,13 @@ NSString *const RearView = @"Back View";
     UIView *grayOverLayView;
 }
 
-@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, strong) IBOutlet BodyView *bodyView;
-@property (nonatomic, strong) IBOutlet UIBarButtonItem *sendButton;
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, weak) IBOutlet BodyView *bodyView;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *sendButton;
 @property (nonatomic, weak) UITapGestureRecognizer *tapGesture;
 
 @property (nonatomic, strong) BodyPartGeometry *bodyGeometry;
-@property (nonatomic, strong) PainFaceView *painFace;
+@property (nonatomic, weak) PainFaceView *painFace;
 
 @property (nonatomic, strong) UITapGestureRecognizer *doubleTap;
 @property (nonatomic, weak) UIImageView *overLayView;
@@ -114,10 +114,11 @@ NSString *const RearView = @"Back View";
     self.scrollView.maximumZoomScale = 1.0;
     
     // Add the Face button View
-    
-    self.painFace = [[PainFaceView alloc] init];
-    self.painFace.delegate = self;
-    [self.view insertSubview:self.painFace atIndex:10];
+    PainFaceView *faceView = [[PainFaceView alloc] init];
+//    self.painFace = [[PainFaceView alloc] init];
+    faceView.delegate = self;
+    [self.view insertSubview:faceView atIndex:10];
+    self.painFace = faceView;
    
     //Init TapGesture Recognizer    
     [self initTapGesture];
@@ -246,10 +247,8 @@ NSString *const RearView = @"Back View";
         
     if ([entryToRender count]) {
         //    NSLog(@"entry to render is %@",entryToRender);
-        
-        __block BodyView *weakCopy = self.bodyView;
-        [entryToRender enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
-            
+
+        for(id obj in entryToRender){
             UIColor *fillColor = [UIColor colorfromPain:[[obj valueForKey:@"painLevel"] integerValue]];
             
             if (fillColor) {
@@ -258,14 +257,33 @@ NSString *const RearView = @"Back View";
                 
                 UIBezierPath *locpath = [self.bodyGeometry shapeForLocationName:[ [loc valueForKey:@"name"] copy]];
                 
-                [weakCopy addObjToSHapesArrayWithShape:locpath
+                [self.bodyView addObjToSHapesArrayWithShape:[locpath copy]
                                                  color:fillColor
                                                 detail:zoom
                                                   name:[[loc valueForKey:@"name"] copy]
                                            orientation:[self currentOrientation]];
             }
-            
-        }];
+        }
+        
+//        __block BodyView *weakCopy = self.bodyView;
+//        [entryToRender enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+//            
+//            UIColor *fillColor = [UIColor colorfromPain:[[obj valueForKey:@"painLevel"] integerValue]];
+//            
+//            if (fillColor) {
+//                PainLocation *loc = (PainLocation *)[obj valueForKey:@"location"];
+//                int zoom = [[loc valueForKey:@"zoomLevel"] intValue];
+//                
+//                UIBezierPath *locpath = [self.bodyGeometry shapeForLocationName:[ [loc valueForKey:@"name"] copy]];
+//                
+//                [weakCopy addObjToSHapesArrayWithShape:locpath
+//                                                 color:fillColor
+//                                                detail:zoom
+//                                                  name:[[loc valueForKey:@"name"] copy]
+//                                           orientation:[self currentOrientation]];
+//            }
+//            
+//        }];
     }
 }
 
@@ -377,6 +395,7 @@ NSString *const RearView = @"Back View";
         //3
         [self.scrollView zoomToRect:CGRectMake(0, 0,BODY_VIEW_WIDTH-1024*3, BODY_VIEW_HEIGHT-1024*3) animated:YES];
     }
+    self.bodyView.layer.contents = nil;
     [self.bodyView.layer setNeedsDisplay];
 }
 
@@ -476,11 +495,18 @@ NSString *const RearView = @"Back View";
             }
             else bezierShape = [value copy];
         }
-        [self drawAndCreatePainEntryForPath:bezierShape
-                                   location:[pathContainingPoint copy]
-                                       name:[[pathContainingPoint allKeys] objectAtIndex:0]
-                                  levelPain:painLvl
-                                       zoom:zoomLVL];
+        
+        
+        dispatch_queue_t q_main = dispatch_get_main_queue();
+        dispatch_async(q_main, ^() {
+        
+            [self drawAndCreatePainEntryForPath:bezierShape
+                                       location:[pathContainingPoint copy]
+                                           name:[[pathContainingPoint allKeys] objectAtIndex:0]
+                                      levelPain:painLvl
+                                           zoom:zoomLVL];
+            });
+
     }
 }
 
@@ -635,9 +661,11 @@ NSString *const RearView = @"Back View";
 
 - (IBAction)flipTapped:(id)sender {
 
+    [self removeBodyNamePopUp];
     [self.bodyView flipView];
 //Show all relevant entries for a given orientation
     [self checkAndAddLastEntryToView];
+//    [self.bodyView  setNeedsDisplay];
     [self configFlipButtonImage];
 }
 
